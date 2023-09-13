@@ -1,17 +1,14 @@
 package com.app.ordenaly.repositories;
 
-import com.app.ordenaly.models.Order;
-import com.app.ordenaly.models.OrderItem;
+import com.app.ordenaly.models.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface OrderItemRepository extends JpaRepository<OrderItem, Integer> {
+public interface ItemRepository extends JpaRepository<Item, Integer> {
 
 //  public List<OrderItem> getOrderItemsByOrder(Order id);
 
-  OrderItem getOrderItemById(Integer id);
+  Item getOrderItemById(Integer id);
 
 }

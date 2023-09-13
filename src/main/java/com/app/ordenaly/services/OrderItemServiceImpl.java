@@ -1,27 +1,27 @@
 package com.app.ordenaly.services;
 
 import com.app.ordenaly.models.Order;
-import com.app.ordenaly.models.OrderItem;
-import com.app.ordenaly.repositories.OrderItemRepository;
+import com.app.ordenaly.models.Item;
+import com.app.ordenaly.repositories.ItemRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class OrderItemServiceImpl implements IOrderItemService {
+public class OrderItemServiceImpl implements IItemService {
 
-  private final OrderItemRepository orderItemRepository;
+  private final ItemRepository orderItemRepository;
 
-  public OrderItemServiceImpl(OrderItemRepository orderItemRepository) {
+  public OrderItemServiceImpl(ItemRepository orderItemRepository) {
     this.orderItemRepository = orderItemRepository;
   }
 
-  public OrderItem findOrderItemById(Integer id) {
+  public Item findOrderItemById(Integer id) {
     return orderItemRepository.getOrderItemById(id);
   }
 
   @Override
-  public List<OrderItem> findOrderItemsByOrder(Order id) {
+  public List<Item> findOrderItemsByOrder(Order id) {
     return null;
   }
 

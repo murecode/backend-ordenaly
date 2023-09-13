@@ -7,31 +7,30 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
-import com.app.ordenaly.models.Order;
 import com.app.ordenaly.models.Product;
-import com.app.ordenaly.models.OrderItem;
+import com.app.ordenaly.models.Item;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(false)
-class OrderItemRepositoryTest {
+class ItemRepositoryTest {
 
   @Autowired
-  private OrderItemRepository orderItemRepository;
+  private ItemRepository orderItemRepository;
   @Autowired
   private TestEntityManager entityManager;
 
   @Test
-  void testCreateOneOrderItem() {
+  void testCreateNewItem() {
     Product product = entityManager.find(Product.class, 1);
 
-    OrderItem newOrderItem = new OrderItem();
-    newOrderItem.setProduct(product);
-    newOrderItem.setQuantity(2);
+    Item newItem = new Item();
+    newItem.setProduct(product);
+    newItem.setQuantity(2);
 
-    OrderItem saveNewProduct = orderItemRepository.save(newOrderItem);
+    Item saveNewProduct = orderItemRepository.save(newItem);
 
     assertTrue(saveNewProduct.getId() > 0);
 

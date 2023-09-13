@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "ITEMS")
-public class OrderItem {
+public class Item {
   @Transient
   private String type = "orderItem";
 
