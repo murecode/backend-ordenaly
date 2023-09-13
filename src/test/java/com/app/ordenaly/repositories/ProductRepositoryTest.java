@@ -48,14 +48,6 @@ class ProductRepositoryTest {
 
   }
 
-  @Test
-  void tetestes() {
-    int num = 5;
-    int num2 = 5;
-
-    Assertions.assertEquals(10, num + num2);
-  }
-
 
 
 }
