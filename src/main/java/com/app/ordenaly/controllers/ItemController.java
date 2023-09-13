@@ -16,16 +16,16 @@ import java.util.List;
 public class ItemController {
 
   @Autowired
-  private IItemService orderItemService;
+  private IItemService ItemService;
 
-  @GetMapping(value = "/{id}")
-  public List<Item> findItemsByOrderId(@PathVariable("id") Integer id) {
+  @GetMapping(value = "list/{id}")
+  public List<Item> listItemsByOrderId(@PathVariable("id") Integer id) {
     return null;
   }
 
   @GetMapping(value = "/{id}")
   public Item findItemById(@PathVariable("id") Integer id ) {
-    return orderItemService.findOrderItemById(id);
+    return ItemService.findItemById(id);
   }
 
 }

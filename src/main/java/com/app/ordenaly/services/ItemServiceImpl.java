@@ -8,20 +8,19 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class OrderItemServiceImpl implements IItemService {
+public class ItemServiceImpl implements IItemService {
 
-  private final ItemRepository orderItemRepository;
+  private final ItemRepository itemRepository;
 
-  public OrderItemServiceImpl(ItemRepository orderItemRepository) {
-    this.orderItemRepository = orderItemRepository;
+  public ItemServiceImpl(ItemRepository itemRepository) {
+    this.itemRepository = itemRepository;
   }
 
-  public Item findOrderItemById(Integer id) {
-    return orderItemRepository.getOrderItemById(id);
+  public Item findItemById(Integer id) {
+    return itemRepository.getItemById(id);
   }
 
-  @Override
-  public List<Item> findOrderItemsByOrder(Order id) {
+  public List<Item> listItemsByOrder(Order id) {
     return null;
   }
 

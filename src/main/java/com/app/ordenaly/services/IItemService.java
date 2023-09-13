@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface IItemService {
 
-  Item findOrderItemById(Integer id);
+  Item findItemById(Integer id);
 
-  List<Item> findOrderItemsByOrder(Order id);
+  List<Item> listItemsByOrder(Order id);
 
 }
