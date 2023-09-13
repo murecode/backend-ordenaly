@@ -4,6 +4,8 @@ import com.app.ordenaly.models.Product;
 import com.app.ordenaly.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductServiceImpl implements IProductService {
   private final ProductRepository productRepository;
@@ -15,8 +17,11 @@ public class ProductServiceImpl implements IProductService {
     return productRepository.save(product);
   }
 
-  @Override
   public void removeProduct(Integer id) {
     productRepository.deleteById(id);
+  }
+
+  public List<Product> listAllProducts() {
+    return productRepository.findAll();
   }
 }
