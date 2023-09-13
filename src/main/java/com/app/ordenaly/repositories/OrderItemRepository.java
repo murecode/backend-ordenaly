@@ -12,6 +12,6 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Integer> {
 
 //  public List<OrderItem> getOrderItemsByOrder(Order id);
 
-  OrderItem getOrderItemById(OrderItem id);
+  OrderItem getOrderItemById(Integer id);
 
 }

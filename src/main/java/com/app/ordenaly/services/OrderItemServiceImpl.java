@@ -16,8 +16,7 @@ public class OrderItemServiceImpl implements IOrderItemService {
     this.orderItemRepository = orderItemRepository;
   }
 
-
-  public OrderItem findOrderItemById(OrderItem id) {
+  public OrderItem findOrderItemById(Integer id) {
     return orderItemRepository.getOrderItemById(id);
   }
 

@@ -3,14 +3,14 @@ package com.app.ordenaly.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "ORDER_ITEMS")
+@Table(name = "ITEMS")
 public class OrderItem {
   @Transient
   private String type = "orderItem";
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "ID")
+  @Column(name = "ITEM_ID")
   private Integer id;
 
   @OneToOne

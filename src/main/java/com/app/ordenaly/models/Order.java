@@ -14,7 +14,7 @@ public class Order {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "ID")
+  @Column(name = "ORDER_ID")
   private Integer id;
 
   @OneToOne
@@ -27,7 +27,7 @@ public class Order {
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   @ElementCollection
-  private List<OrderItem> orderItems = new ArrayList<>();
+  private List<OrderItem> items = new ArrayList<>();
 
 
   public String getType() {
@@ -62,12 +62,12 @@ public class Order {
     this.staff = staff;
   }
 
-  public List<OrderItem> getOrderItems() {
-    return orderItems;
+  public List<OrderItem> getItems() {
+    return items;
   }
 
-  public void setOrderItems(List<OrderItem> orderItems) {
-    this.orderItems = orderItems;
+  public void setOrderItems(List<OrderItem> items) {
+    this.items = items;
   }
 
 }

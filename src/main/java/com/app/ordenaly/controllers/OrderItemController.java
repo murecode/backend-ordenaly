@@ -19,14 +19,14 @@ public class OrderItemController {
   @Autowired
   private IOrderItemService orderItemService;
 
-  @GetMapping(value = "/{id}")
-  public List<OrderItem> findOrderItemsByOrderId(@PathVariable("id") Order id) {
-    return this.orderItemService.findOrderItemsByOrder(id);
-  }
+//  @GetMapping(value = "/{id}")
+//  public List<OrderItem> findOrderItemsByOrderId(@PathVariable("id") Order id) {
+//    return this.orderItemService.findOrderItemsByOrder(id);
+//  }
 
-  @GetMapping(value = "/saludo")
-  public String saludo(){
-    return "Hola🟢";
+  @GetMapping(value = "/{id}")
+  public OrderItem findOrderItemById(@PathVariable("id") Integer id ) {
+    return orderItemService.findOrderItemById(id);
   }
 
 }

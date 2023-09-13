@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IOrderItemService {
 
-  OrderItem findOrderItemById(OrderItem id);
+  OrderItem findOrderItemById(Integer id);
 
   List<OrderItem> findOrderItemsByOrder(Order id);
 

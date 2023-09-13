@@ -1,6 +1,7 @@
 package com.app.ordenaly.repositories;
 
 import com.app.ordenaly.models.Product;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -27,7 +28,7 @@ class ProductRepositoryTest {
     product1.setName("Pizza");
     product1.setDescription("Italiana y Napolitana");
     product1.setInStock(true);
-    product1.setPrice(12900);
+    product1.setPrice(1.234);
 
     Product saveNewProduct = productRepository.save(product1);
 
@@ -36,15 +37,23 @@ class ProductRepositoryTest {
   }
 
   @Test
-  void testDeletedProductById() {
+  void testDeleteProductById() {
 
-    Product productBeforeDeleted = entityManager.find(Product.class, 3);
+    Product productBeforeDeleted = entityManager.find(Product.class, 13);
     assertNotNull(productBeforeDeleted);
 
     productRepository.deleteById(productBeforeDeleted.getId());
 
-    assertTrue(productBeforeDeleted.getId() == 3);
+    assertNotNull(productRepository.findById(productBeforeDeleted.getId()).isEmpty());
 
+  }
+
+  @Test
+  void tetestes() {
+    int num = 5;
+    int num2 = 5;
+
+    Assertions.assertEquals(10, num + num2);
   }
 
 

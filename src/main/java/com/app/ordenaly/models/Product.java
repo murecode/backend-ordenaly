@@ -21,7 +21,7 @@ public class Product {
   private String description;
 
   @Column(name = "PRICE")
-  private float price;
+  private Double price;
 
   @Column(name = "IN_STOCK")
   private Boolean inStock;
@@ -59,11 +59,11 @@ public class Product {
     this.description = description;
   }
 
-  public float getPrice() {
+  public Double getPrice() {
     return price;
   }
 
-  public void setPrice(float price) {
+  public void setPrice(Double price) {
     this.price = price;
   }
 
