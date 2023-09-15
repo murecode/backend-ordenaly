@@ -20,6 +20,11 @@ public class Item {
   @Column(name = "QUANTITY")
   private Integer quantity;
 
+  public Item(Product product, Integer quantity) {
+    this.product = product;
+    this.quantity = quantity;
+  }
+
 
   public String getType() {
     return type;
@@ -52,6 +57,12 @@ public class Item {
   public void setQuantity(Integer quantity) {
     this.quantity = quantity;
   }
+
+
+  public Item addNewItem(Product product, Integer quantity) {
+    return new Item(product, quantity);
+  }
+
 
 }
 

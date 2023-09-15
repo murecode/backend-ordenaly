@@ -18,19 +18,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class ItemRepositoryTest {
 
   @Autowired
-  private ItemRepository orderItemRepository;
+  private ItemRepository itemRepository;
   @Autowired
   private TestEntityManager entityManager;
 
   @Test
-  void testCreateNewItem() {
-    Product product = entityManager.find(Product.class, 1);
+  void testAddNewItem() {
+    Product product = entityManager.find(Product.class, 15);
 
-    Item newItem = new Item();
-    newItem.setProduct(product);
-    newItem.setQuantity(6);
+    Item newItem = new Item(product, 66);
 
-    Item saveNewProduct = orderItemRepository.save(newItem);
+    Item saveNewProduct = itemRepository.save(newItem);
 
     assertTrue(saveNewProduct.getId() > 0);
 
