@@ -30,6 +30,11 @@ public class Order {
   private List<Item> items;
 
 
+  public Order(Ticket ticket, Staff staff) {
+    this.ticket = ticket;
+    this.staff = staff;
+  }
+
   public String getType() {
     return type;
   }
@@ -70,6 +75,10 @@ public class Order {
     this.items = items;
   }
 
+
+  public Order generateNewOrder(Ticket ticket, Staff staff){
+    return new Order(ticket, staff);
+  }
 
   public List<Item> addItemToOrder(Item item) {
     items.add(item);
