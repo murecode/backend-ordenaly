@@ -29,13 +29,11 @@ public class Order {
   @ElementCollection
   private List<Item> items;
 
-  public Order() {};
 
   public Order(Ticket ticket, Staff staff) {
     this.ticket = ticket;
     this.staff = staff;
   }
-
 
   public String getType() {
     return type;
@@ -79,7 +77,8 @@ public class Order {
 
 
   public Order generateNewOrder(Ticket ticket, Staff staff){
-    return new Order(ticket, staff);
+    Order order = new Order(ticket, staff);
+    return order;
   }
 
   public List<Item> addItemToOrder(Item item) {

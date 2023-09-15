@@ -29,9 +29,7 @@ class OrderRepositoryTest {
     Staff waiter_1 = entityManager.find(Staff.class, 1);
     Ticket ticket_3 = entityManager.find(Ticket.class, 2);
 
-    Order newOrder = new Order();
-
-    newOrder.generateNewOrder(ticket_3, waiter_1);
+    Order newOrder = new Order(ticket_3, waiter_1);
 
     Order saveNewOrder = orderRepository.save(newOrder);
 
