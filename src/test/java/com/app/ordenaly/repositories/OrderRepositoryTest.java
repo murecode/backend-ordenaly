@@ -1,9 +1,7 @@
 package com.app.ordenaly.repositories;
 
-import com.app.ordenaly.models.Order;
-import com.app.ordenaly.models.Staff;
-import com.app.ordenaly.models.StaffRole;
-import com.app.ordenaly.models.Ticket;
+import com.app.ordenaly.models.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -38,6 +36,18 @@ class OrderRepositoryTest {
     Order saveNewOrder = orderRepo.save(newOrder);
 
     assertTrue(saveNewOrder.getId() > 0);
+
+  }
+
+  @Test
+  void testAddItemToOrder() {
+
+    Item item_1 = entityManager.find(Item.class, 1);
+    Order order_1 = entityManager.find(Order.class, 1);
+
+    order_1.addItemToOrder(item_1);
+
+
 
   }
 

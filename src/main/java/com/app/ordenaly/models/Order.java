@@ -27,7 +27,7 @@ public class Order {
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   @ElementCollection
-  private List<Item> items = new ArrayList<>();
+  private List<Item> items;
 
 
   public String getType() {
@@ -68,6 +68,12 @@ public class Order {
 
   public void setOrderItems(List<Item> items) {
     this.items = items;
+  }
+
+
+  public List<Item> addItemToOrder(Item item) {
+    items.add(item);
+    return items;
   }
 
 }

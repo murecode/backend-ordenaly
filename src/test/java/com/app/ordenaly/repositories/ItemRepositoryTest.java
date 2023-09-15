@@ -28,12 +28,14 @@ class ItemRepositoryTest {
 
     Item newItem = new Item();
     newItem.setProduct(product);
-    newItem.setQuantity(2);
+    newItem.setQuantity(6);
 
     Item saveNewProduct = orderItemRepository.save(newItem);
 
     assertTrue(saveNewProduct.getId() > 0);
 
   }
+
+
 
 }
