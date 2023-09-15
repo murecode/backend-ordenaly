@@ -19,21 +19,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class OrderRepositoryTest {
 
   @Autowired
-  OrderRepository orderRepo;
+  OrderRepository orderRepository;
   @Autowired
   TestEntityManager entityManager;
 
   @Test
-  void testCreateNewOrder() {
+  void testGenerateNewOrder() {
 
     Staff waiter_1 = entityManager.find(Staff.class, 1);
-    Ticket ticket_3 = entityManager.find(Ticket.class, 1);
+    Ticket ticket_3 = entityManager.find(Ticket.class, 2);
 
     Order newOrder = new Order();
-    newOrder.setTicket(ticket_3);
-    newOrder.setStaff(waiter_1);
 
-    Order saveNewOrder = orderRepo.save(newOrder);
+    newOrder.generateNewOrder(ticket_3, waiter_1);
+
+    Order saveNewOrder = orderRepository.save(newOrder);
 
     assertTrue(saveNewOrder.getId() > 0);
 
@@ -42,7 +42,7 @@ class OrderRepositoryTest {
   @Test
   void testAddItemToOrder() {
 
-    Item item_1 = entityManager.find(Item.class, 1);
+    Item item_1 = entityManager.find(Item.class, 26);
     Order order_1 = entityManager.find(Order.class, 1);
 
     order_1.addItemToOrder(item_1);
