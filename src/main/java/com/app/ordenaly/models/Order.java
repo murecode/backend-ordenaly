@@ -77,8 +77,7 @@ public class Order {
 
 
   public Order generateNewOrder(Ticket ticket, Staff staff){
-    Order order = new Order(ticket, staff);
-    return order;
+    return new Order(ticket, staff);
   }
 
   public List<Item> addItemToOrder(Item item) {
