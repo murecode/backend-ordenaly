@@ -1,6 +1,5 @@
 package com.app.ordenaly.services;
 
-import com.app.ordenaly.models.Order;
 import com.app.ordenaly.models.Item;
 import com.app.ordenaly.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
