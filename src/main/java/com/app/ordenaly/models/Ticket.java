@@ -13,7 +13,7 @@ public class Ticket {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "ID")
+  @Column(name = "TICKET_ID")
   private Integer id;
 
   @Column(name = "TIMESTAMP", length = 8)
