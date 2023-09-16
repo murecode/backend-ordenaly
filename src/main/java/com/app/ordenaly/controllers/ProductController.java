@@ -1,12 +1,9 @@
 package com.app.ordenaly.controllers;
 
 import com.app.ordenaly.models.Product;
-import com.app.ordenaly.services.IProductService;
+import com.app.ordenaly.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,17 +11,16 @@ import java.util.List;
 @RequestMapping(value = "/api/product")
 public class ProductController {
   @Autowired
-  private IProductService productService;
+  private ProductService productService;
 
   @GetMapping(value = "/remove/{id}")
   public void removeProduct(@PathVariable("id") Integer id) {
-    productService.removeProduct(id);
-
+    productService.deleteProduct(id);
   }
 
   @GetMapping(value = "/list")
-  public List<Product> findAllProducts(){
-    return productService.listAllProducts();
+  public List<Product> listAllProducts(){
+    return productService.getAllProducts();
   }
 
 }

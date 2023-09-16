@@ -20,6 +20,8 @@ public class Item {
   @Column(name = "QUANTITY")
   private Integer quantity;
 
+  public Item() {};
+
   public Item(Product product, Integer quantity) {
     this.product = product;
     this.quantity = quantity;

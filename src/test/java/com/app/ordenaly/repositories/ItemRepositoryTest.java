@@ -26,7 +26,7 @@ class ItemRepositoryTest {
   void testAddNewItem() {
     Product product = entityManager.find(Product.class, 15);
 
-    Item newItem = new Item(product, 66);
+    Item newItem = new Item(product, 52);
 
     Item saveNewProduct = itemRepository.save(newItem);
 
