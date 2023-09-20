@@ -12,6 +12,7 @@ public class ItemService {
   @Autowired
   ItemRepository itemRepo;
 
+
   public Item getItemById(Integer id) {
     return itemRepo.findById(id).orElse(null);
   }

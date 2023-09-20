@@ -61,7 +61,7 @@ public class Item {
   }
 
 
-  public Item addNewItem(Product product, Integer quantity) {
+  public Item createNewItem(Product product, Integer quantity) {
     return new Item(product, quantity);
   }
 

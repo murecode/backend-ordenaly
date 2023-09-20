@@ -12,7 +12,7 @@ import com.app.ordenaly.models.Item;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/item")
+@RequestMapping(value = "/api/items")
 public class ItemController {
 
   @Autowired

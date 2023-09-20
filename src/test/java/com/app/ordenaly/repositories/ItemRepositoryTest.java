@@ -1,5 +1,6 @@
 package com.app.ordenaly.repositories;
 
+import com.app.ordenaly.models.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -24,6 +25,7 @@ class ItemRepositoryTest {
 
   @Test
   void testAddNewItem() {
+
     Product product = entityManager.find(Product.class, 15);
 
     Item newItem = new Item(product, 52);
@@ -31,6 +33,18 @@ class ItemRepositoryTest {
     Item saveNewProduct = itemRepository.save(newItem);
 
     assertTrue(saveNewProduct.getId() > 0);
+
+  }
+
+  @Test
+  void testDeleteItemFromOrder() {
+
+    Order order = entityManager.find(Order.class, 13);
+    Item item = entityManager.find(Item.class, 27);
+
+    itemRepository.deleteById(item.getId());
+
+
 
   }
 

@@ -25,10 +25,14 @@ public class Order {
   @JoinColumn(name = "STAFF_ID")
   private Staff staff;
 
+  //  Status... Proximamente
+
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   @ElementCollection
   private List<Item> items;
 
+
+  public Order() {};
 
   public Order(Ticket ticket, Staff staff) {
     this.ticket = ticket;
@@ -75,14 +79,10 @@ public class Order {
     this.items = items;
   }
 
-
-  public Order generateNewOrder(Ticket ticket, Staff staff){
-    return new Order(ticket, staff);
-  }
-
   public List<Item> addItemToOrder(Item item) {
     items.add(item);
     return items;
   }
+
 
 }

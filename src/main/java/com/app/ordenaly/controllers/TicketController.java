@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/api/ticket")
+@RequestMapping(value = "/api/tickets")
 public class TicketController {
   @Autowired
   TicketService ticketService;
 
-  @GetMapping(value = "/new-ticket")
+  @GetMapping(value = "/new")
   public Ticket newTicket(Ticket ticket) {
     return ticketService.generateTicket(ticket);
 
