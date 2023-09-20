@@ -24,15 +24,16 @@ class ItemRepositoryTest {
   private TestEntityManager entityManager;
 
   @Test
-  void testAddNewItem() {
+  void testAddNewItemToOrder() {
 
-    Product product = entityManager.find(Product.class, 15);
+    Product product = entityManager.find(Product.class, 16);
+    Order thisOrder = entityManager.find(Order.class, 13);
 
-    Item newItem = new Item(product, 52);
+    Item newItem = new Item(product, 1, thisOrder);
 
-    Item saveNewProduct = itemRepository.save(newItem);
+    Item saveNewItem = itemRepository.save(newItem);
 
-    assertTrue(saveNewProduct.getId() > 0);
+    assertTrue(saveNewItem.getId() > 0);
 
   }
 
@@ -40,7 +41,7 @@ class ItemRepositoryTest {
   void testDeleteItemFromOrder() {
 
     Order order = entityManager.find(Order.class, 13);
-    Item item = entityManager.find(Item.class, 27);
+    Item item = entityManager.find(Item.class, 3);
 
     itemRepository.deleteById(item.getId());
 

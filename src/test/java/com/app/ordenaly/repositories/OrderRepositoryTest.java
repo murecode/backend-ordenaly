@@ -40,7 +40,7 @@ class OrderRepositoryTest {
     Item item_1 = entityManager.find(Item.class, 21);
     Order order_1 = entityManager.find(Order.class, 13);
 
-    order_1.addItemToOrder(item_1);
+//    order_1.addItemToOrder(item_1);
 
   }
 
@@ -57,28 +57,19 @@ class OrderRepositoryTest {
 
   }
 
-  @Test
-  void testAddNewItemToOrder() {
-
-    Order thisOrder = entityManager.find(Order.class, 13);
-    Product product = entityManager.find(Product.class, 16);
-
-    Item newItem = new Item(product, 3);
-
-    thisOrder.addItemToOrder(newItem);
-
-    assertTrue(thisOrder.getItems().contains(newItem));
-
-  }
+//  @Test
+//  void testAddNewItemToOrder() {
+//
+//  }
 
   @Test
   void testDeleteOrderById() {
 
-    Order order = entityManager.find(Order.class, 33);
+    Order order = entityManager.find(Order.class, 31);
 
     orderRepository.deleteById(order.getId());
 
-    assertTrue( order.getId() == 33 );
+    assertTrue( order.getId() == 31 );
 
   }
 
