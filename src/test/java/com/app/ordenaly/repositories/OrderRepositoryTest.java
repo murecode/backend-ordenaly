@@ -58,12 +58,16 @@ class OrderRepositoryTest {
   }
 
   @Test
-  void testAddItemToOrderFromOrder() {
+  void testAddNewItemToOrder() {
 
-    Item item = entityManager.find(Item.class, 21);
-    Order order = entityManager.find(Order.class, 13);
+    Order thisOrder = entityManager.find(Order.class, 13);
+    Product product = entityManager.find(Product.class, 16);
 
-    order.addItemToOrder(item);
+    Item newItem = new Item(product, 3);
+
+    thisOrder.addItemToOrder(newItem);
+
+    assertTrue(thisOrder.getItems().contains(newItem));
 
   }
 
