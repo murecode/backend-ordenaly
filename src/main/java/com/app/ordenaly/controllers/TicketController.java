@@ -20,9 +20,9 @@ public class TicketController {
     return ticketService.getAllTickets();
   }
 
-  @GetMapping("/new")
+  @GetMapping("/new-ticket")
   public Ticket newTicket(Ticket ticket) {
-    return ticketService.generateTicket(ticket);
+    return ticketService.generateNewTicket();
   }
 
 }

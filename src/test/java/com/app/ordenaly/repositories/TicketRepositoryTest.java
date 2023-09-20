@@ -24,7 +24,7 @@ class TicketRepositoryTest {
   void testGenerateTicket() {
 
     Ticket newTicket = new Ticket();
-    newTicket.setTimestamp(LocalTime.now());
+    newTicket.setTime(LocalTime.now());
 
     Ticket generate = ticketRepo.save(newTicket);
 

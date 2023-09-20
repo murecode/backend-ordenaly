@@ -19,6 +19,8 @@ public class Ticket {
   @Column(name = "TICKET_TIME", length = 8)
   private LocalTime time;
 
+  public Ticket() {}
+
   public Integer getId() {
     return id;
   }
@@ -35,11 +37,11 @@ public class Ticket {
     this.id = id;
   }
 
-  public LocalTime getTimestamp() {
+  public LocalTime getTime() {
     return time;
   }
 
-  public void setTimestamp(LocalTime time) {
+  public void setTime(LocalTime time) {
     this.time = time;
   }
 
