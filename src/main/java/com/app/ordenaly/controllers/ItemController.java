@@ -18,10 +18,6 @@ public class ItemController {
   @Autowired
   ItemService itemService;
 
-  @GetMapping(value = "/list")
-  public List<Item> listAllItems() {
-    return itemService.getAllItems();
-  }
 
   @GetMapping(value = "/{id}")
   public Item findItemById(@PathVariable("id") Integer id ) {

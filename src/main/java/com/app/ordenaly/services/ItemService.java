@@ -1,6 +1,8 @@
 package com.app.ordenaly.services;
 
 import com.app.ordenaly.models.Item;
+import com.app.ordenaly.models.Order;
+import com.app.ordenaly.models.Product;
 import com.app.ordenaly.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +19,15 @@ public class ItemService {
     return itemRepo.findById(id).orElse(null);
   }
 
-  public List<Item> getAllItems() {
+  public List<Item> getItemsByOrderId() {
     return itemRepo.findAll();
   }
+
+  public Item createNewItem() {
+    Item item = new Item();
+    return item;
+  }
+
+
 
 }

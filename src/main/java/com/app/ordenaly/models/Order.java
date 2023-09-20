@@ -27,9 +27,9 @@ public class Order {
 
   //  Status... Proximamente
 
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  @ElementCollection
-  private List<Item> items;
+//  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//  @ElementCollection
+//  private List<Item> items;
 
 
   public Order() {};
@@ -71,18 +71,18 @@ public class Order {
     this.staff = staff;
   }
 
-  public List<Item> getItems() {
-    return items;
-  }
-
-  public void setOrderItems(List<Item> items) {
-    this.items = items;
-  }
-
-  public List<Item> addItemToOrder(Item item) {
-    items.add(item);
-    return items;
-  }
+//  public List<Item> getItems() {
+//    return items;
+//  }
+//
+//  public void setOrderItems(List<Item> items) {
+//    this.items = items;
+//  }
+//
+//  public List<Item> addItemToOrder(Item item) {
+//    items.add(item);
+//    return items;
+//  }
 
 
 }

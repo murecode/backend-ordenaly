@@ -16,9 +16,6 @@ public class OrderService {
 
   public Order createOrder() {
     Order order = new Order();
-    OrderDTO orderDTO = new OrderDTO();
-    orderDTO.setTicketNumber(order.getId());
-    orderDTO.setWaiterName(order.getStaff().getName());
     return order;
   }
 
@@ -32,14 +29,6 @@ public class OrderService {
 
   public List<Order> getAllOrders() {
     return orderRepo.findAll();
-  }
-
-  public OrderDTO getOrderDTO(Integer id) {
-    Order order = orderRepo.findById(id).orElse(null);
-    OrderDTO orderDTO = new OrderDTO();
-    orderDTO.setWaiterName(order.getStaff().getName());
-    orderDTO.setTicketNumber(order.getTicket().getId());
-    return orderDTO;
   }
 
 

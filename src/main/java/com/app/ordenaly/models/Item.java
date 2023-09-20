@@ -20,11 +20,16 @@ public class Item {
   @Column(name = "QUANTITY")
   private Integer quantity;
 
+  @ManyToOne
+  @JoinColumn(name = "ORDER_ID")
+  private Order order;
+
   public Item() {};
 
-  public Item(Product product, Integer quantity) {
+  public Item(Product product, Integer quantity, Order order) {
     this.product = product;
     this.quantity = quantity;
+    this.order = order;
   }
 
 
@@ -32,9 +37,9 @@ public class Item {
     return type;
   }
 
-  public void setType(String type) {
-    this.type = type;
-  }
+//  public void setType(String type) {
+//    this.type = type;
+//  }
 
   public Integer getId() {
     return id;
@@ -60,11 +65,9 @@ public class Item {
     this.quantity = quantity;
   }
 
+  public Order getOrder() { return order; }
 
-  public Item createNewItem(Product product, Integer quantity) {
-    return new Item(product, quantity);
-  }
-
+  public void setOrder(Order order) { this.order = order; }
 
 }
 
