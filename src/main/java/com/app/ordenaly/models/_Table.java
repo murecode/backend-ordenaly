@@ -3,15 +3,15 @@ package com.app.ordenaly.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "TABLEE")
-public class Tablee {
+@Table(name = "_TABLE")
+public class _Table {
 
   @Transient
   private String type = "table";
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "ID")
+  @Column(name = "TABLE_ID")
   private Integer id;
 
   @Column(name = "IDENTIFIER", length = 45)
@@ -20,10 +20,6 @@ public class Tablee {
 
   public String getType() {
     return type;
-  }
-
-  public void setType(String type) {
-    this.type = type;
   }
 
   public Integer getId() {
