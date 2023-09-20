@@ -27,11 +27,6 @@ public class Order {
 
   //  Status... Proximamente
 
-//  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-//  @ElementCollection
-//  private List<Item> items;
-
-
   public Order() {};
 
   public Order(Ticket ticket, Staff staff) {
@@ -70,19 +65,6 @@ public class Order {
   public void setStaff(Staff staff) {
     this.staff = staff;
   }
-
-//  public List<Item> getItems() {
-//    return items;
-//  }
-//
-//  public void setOrderItems(List<Item> items) {
-//    this.items = items;
-//  }
-//
-//  public List<Item> addItemToOrder(Item item) {
-//    items.add(item);
-//    return items;
-//  }
 
 
 }
