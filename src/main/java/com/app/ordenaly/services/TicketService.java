@@ -5,6 +5,8 @@ import com.app.ordenaly.repositories.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TicketService {
   @Autowired
@@ -12,6 +14,10 @@ public class TicketService {
 
   public Ticket generateTicket(Ticket ticket) {
     return ticketRepo.save(ticket);
+  }
+
+  public List<Ticket> getAllTickets() {
+    return ticketRepo.findAll();
   }
 
 }
