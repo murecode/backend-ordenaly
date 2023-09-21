@@ -26,8 +26,8 @@ class ItemRepositoryTest {
   @Test
   void testAddNewItemToOrder() {
 
-    Product product = entityManager.find(Product.class, 16);
-    Order thisOrder = entityManager.find(Order.class, 13);
+    Order thisOrder = entityManager.find(Order.class, 31);
+    Product product = entityManager.find(Product.class, 17);
 
     Item newItem = new Item(product, 1, thisOrder);
 
