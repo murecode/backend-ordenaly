@@ -47,8 +47,8 @@ class OrderRepositoryTest {
   @Test
   void testCreateNewOrder() {
 
-    Ticket ticket = entityManager.find(Ticket.class, 1);
-    Staff staff = entityManager.find(Staff.class, 2);
+    Ticket ticket = entityManager.find(Ticket.class, 9);
+    Staff staff = entityManager.find(Staff.class, 1);
 
     Order order = new Order(ticket, staff);
     Order saveOrder = orderRepository.save(order);
@@ -65,11 +65,11 @@ class OrderRepositoryTest {
   @Test
   void testDeleteOrderById() {
 
-    Order order = entityManager.find(Order.class, 31);
+    Order order = entityManager.find(Order.class, 6);
 
     orderRepository.deleteById(order.getId());
 
-    assertTrue( order.getId() == 31 );
+    assertTrue( order.getId() == 6 );
 
   }
 
