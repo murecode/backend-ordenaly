@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "ITEMS")
 public class Item {
   @Transient
-  private String type = "orderItem";
+  private String type = "item";
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
