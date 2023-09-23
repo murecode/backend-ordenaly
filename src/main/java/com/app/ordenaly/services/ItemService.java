@@ -1,14 +1,11 @@
 package com.app.ordenaly.services;
 
 import com.app.ordenaly.models.Item;
-import com.app.ordenaly.models.Order;
-import com.app.ordenaly.models.Product;
 import com.app.ordenaly.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ItemService {
