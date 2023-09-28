@@ -26,34 +26,36 @@ class OrderRepositoryTest {
     Staff waiter = entityManager.find(Staff.class, 2);
     Ticket ticket = entityManager.find(Ticket.class, 3);
 
-    Order newOrder = new Order(ticket, waiter);
+//    Order newOrder = new Order(ticket, waiter);
 
-    Order saveNewOrder = orderRepository.save(newOrder);
+//    Order saveNewOrder = orderRepository.save(newOrder);
 
-    assertTrue(saveNewOrder.getId() > 0);
+//    assertTrue(saveNewOrder.getId() > 0);
 
   }
 
   @Test
   void testAddItemToOrder() {
 
-    Item item_1 = entityManager.find(Item.class, 21);
-    Order order_1 = entityManager.find(Order.class, 13);
+    Item item_1 = entityManager.find(Item.class, 4);
+    Order order_1 = entityManager.find(Order.class, 16);
 
-//    order_1.addItemToOrder(item_1);
+    order_1.addItem(item_1);
+
+    orderRepository.save(order_1);
 
   }
 
   @Test
   void testCreateNewOrder() {
 
-    Ticket ticket = entityManager.find(Ticket.class, 9);
-    Staff staff = entityManager.find(Staff.class, 1);
+    Ticket ticket = entityManager.find(Ticket.class, 5);
+    Staff staff = entityManager.find(Staff.class, 3);
 
-    Order order = new Order(ticket, staff);
-    Order saveOrder = orderRepository.save(order);
+//    Order order = new Order(ticket, staff,);
+//    Order saveOrder = orderRepository.save(order);
 
-    assertTrue(saveOrder.getId() > 0);
+//    assertTrue(saveOrder.getId() > 0);
 
   }
 

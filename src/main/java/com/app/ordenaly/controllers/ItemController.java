@@ -28,7 +28,7 @@ public class ItemController {
 
   @GetMapping("/{id}/order-items")
   public List<Item> getItemsByOrder(@PathVariable("id") Integer order_id){
-    return itemService.getItemsByOrderId(order_id);
+    return null;
   }
 
 }

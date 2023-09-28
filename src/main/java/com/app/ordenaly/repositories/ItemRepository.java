@@ -13,6 +13,4 @@ import java.util.Optional;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Integer> {
 
-  public List<Item> findByOrderId(Integer order_id);
-
 }

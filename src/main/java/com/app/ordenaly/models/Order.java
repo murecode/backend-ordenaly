@@ -25,14 +25,13 @@ public class Order {
   @JoinColumn(name = "STAFF_ID")
   private Staff staff;
 
+  @ElementCollection
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Item> items = new ArrayList<>();
+
   //  Status... Proximamente
 
   public Order() {};
-
-  public Order(Ticket ticket, Staff staff) {
-    this.ticket = ticket;
-    this.staff = staff;
-  }
 
   public String getType() {
     return type;
@@ -66,5 +65,16 @@ public class Order {
     this.staff = staff;
   }
 
+  public List<Item> getItems() {
+    return items;
+  }
+
+  public void setItems(List<Item> items) {
+    this.items = items;
+  }
+
+  public void addItem(Item item) {
+    items.add(item);
+  }
 
 }

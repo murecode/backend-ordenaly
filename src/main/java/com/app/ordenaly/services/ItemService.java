@@ -17,10 +17,6 @@ public class ItemService {
     return itemRepo.findById(id).orElse(null);
   }
 
-  public List<Item> getItemsByOrderId(Integer order_id) {
-    return itemRepo.findByOrderId(order_id);
-  }
-
   public Item createNewItem() {
     Item item = new Item();
     return item;

@@ -24,7 +24,7 @@ class ProductRepositoryTest {
   void testCreateNewProduct() {
 
     Product product1 = new Product();
-    product1.setName("Pizza");
+    product1.setDescription("Pizza");
     product1.setDescription("Italiana y Napolitana");
     product1.setInStock(true);
     product1.setPrice(1.234);

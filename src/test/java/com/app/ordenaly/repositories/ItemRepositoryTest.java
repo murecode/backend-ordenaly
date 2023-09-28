@@ -26,15 +26,15 @@ class ItemRepositoryTest {
   @Test
   void testAddNewItemToOrder() {
 
-    Order thisOrder = entityManager.find(Order.class, 31);
-    Product product = entityManager.find(Product.class, 17);
+    Order thisOrder = entityManager.find(Order.class, 16);
+    Product product = entityManager.find(Product.class, 15);
 
-    Item newItem = new Item(product, 1, thisOrder);
+    Item newItem = new Item(product, 1);
+
 
     Item saveNewItem = itemRepository.save(newItem);
 
     assertTrue(saveNewItem.getId() > 0);
-
   }
 
   @Test
