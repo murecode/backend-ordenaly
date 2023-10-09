@@ -23,6 +23,14 @@ public class Product {
   @Column(name = "IN_STOCK")
   private Boolean inStock;
 
+  public Product() {};
+
+  public Product(String description, Double price, Boolean inStock) {
+    this.description = description;
+    this.price = price;
+    this.inStock = inStock;
+  }
+
 
   public String getType() {
     return type;
