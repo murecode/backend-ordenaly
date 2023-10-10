@@ -3,7 +3,9 @@ package com.app.ordenaly.controllers;
 import com.app.ordenaly.models.Product;
 import com.app.ordenaly.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +31,12 @@ public class ProductController {
   public String removeProduct(@PathVariable Integer id) {
     productService.deleteProduct(id);
     return "Se eliminó el producto: " + id;
+  }
+
+  @PutMapping(value = "/edit/{id}")
+  public Product updateProduct(@PathVariable Integer id, @RequestBody Product product) {
+    product.setId(id);
+    return productService.updateProduct(product);
   }
 
 
