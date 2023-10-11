@@ -1,6 +1,6 @@
 package com.app.ordenaly.models;
 
-public enum StaffRole {
+public enum UserRole {
   MESERO,
   COCINA,
   CAJA

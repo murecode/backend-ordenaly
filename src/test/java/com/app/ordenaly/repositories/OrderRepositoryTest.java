@@ -23,7 +23,7 @@ class OrderRepositoryTest {
   @Test
   void testGenerateNewOrder() {
 
-    Staff waiter = entityManager.find(Staff.class, 2);
+    User waiter = entityManager.find(User.class, 2);
     Ticket ticket = entityManager.find(Ticket.class, 3);
 
 //    Order newOrder = new Order(ticket, waiter);
@@ -49,13 +49,13 @@ class OrderRepositoryTest {
   @Test
   void testCreateNewOrder() {
 
-    Ticket ticket = entityManager.find(Ticket.class, 5);
-    Staff staff = entityManager.find(Staff.class, 3);
+    Ticket ticket = entityManager.find(Ticket.class, 14);
+    User staff = entityManager.find(User.class, 3);
 
-//    Order order = new Order(ticket, staff,);
-//    Order saveOrder = orderRepository.save(order);
+    Order order = new Order(ticket, staff);
+    Order saveOrder = orderRepository.save(order);
 
-//    assertTrue(saveOrder.getId() > 0);
+    assertTrue(saveOrder.getId() > 0);
 
   }
 

@@ -1,8 +1,7 @@
 package com.app.ordenaly.services;
 
 import com.app.ordenaly.DTOs.OrderDTO;
-import com.app.ordenaly.models.Item;
-import com.app.ordenaly.models.Order;
+import com.app.ordenaly.models.*;
 import com.app.ordenaly.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +13,19 @@ public class OrderService {
 
   @Autowired
   OrderRepository orderRepo;
+  @Autowired
+  ItemService itemService;
+
+//  public Order generateOrder(Ticket ticket, Staff waiter) {
+//    Order order = new Order();
+//    order.setTicket(ticket);
+//    order.setStaff(waiter);
+//    return order;
+//  }
 
   public Order createOrder() {
     Order order = new Order();
-    return order;
+    return orderRepo.save(order);
   }
 
   public void deleteOrder(Integer id) {

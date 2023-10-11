@@ -23,7 +23,7 @@ public class Order {
 
   @OneToOne
   @JoinColumn(name = "STAFF_ID")
-  private Staff staff;
+  private User staff;
 
   @ElementCollection
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -32,6 +32,11 @@ public class Order {
   //  Status... Proximamente
 
   public Order() {};
+
+  public Order(Ticket ticket, User staff) {
+    this.ticket = ticket;
+    this.staff = staff;
+  }
 
   public String getType() {
     return type;
@@ -57,11 +62,11 @@ public class Order {
     this.ticket = ticket;
   }
 
-  public Staff getStaff() {
+  public User getStaff() {
     return staff;
   }
 
-  public void setStaff(Staff staff) {
+  public void setStaff(User staff) {
     this.staff = staff;
   }
 

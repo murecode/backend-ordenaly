@@ -1,10 +1,9 @@
 package com.app.ordenaly.controllers;
 
-import com.app.ordenaly.models.Item;
 import com.app.ordenaly.models.Order;
-import com.app.ordenaly.DTOs.OrderDTO;
 import com.app.ordenaly.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,11 +30,10 @@ public class OrderController {
     orderService.deleteOrder(id);
   }
 
-
-//  @PostMapping("/new-order")
-//  public Order createOrder(@RequestBody Order order) {
-//    return orderService.createOrder();
-//  }
+  @PostMapping(path = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
+  public Order newOrder(@RequestBody Order order) {
+    return orderService.createOrder();
+  }
 //
 //  @PostMapping("/add-to-order/{id}")
 //  void itemToOrder(@PathVariable("id") Item id){

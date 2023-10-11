@@ -3,10 +3,7 @@ package com.app.ordenaly.controllers;
 import com.app.ordenaly.models.Order;
 import com.app.ordenaly.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.app.ordenaly.models.Item;
 
@@ -26,9 +23,10 @@ public class ItemController {
     return itemService.getItemById(id);
   }
 
-  @GetMapping("/{id}/order-items")
-  public List<Item> getItemsByOrder(@PathVariable("id") Integer order_id){
-    return null;
+  @PostMapping("/new/{productId}/{quantity}")
+  public Item createItem(
+          @PathVariable(name = "productId") Integer product_id,
+          @PathVariable(name = "quantity") Integer quantity) {
+    return itemService.addItem(product_id, quantity);
   }
-
 }

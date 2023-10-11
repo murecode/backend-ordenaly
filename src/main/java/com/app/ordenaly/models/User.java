@@ -3,15 +3,15 @@ package com.app.ordenaly.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "STAFF")
-public class Staff {
+@Table(name = "USERS")
+public class User {
 
   @Transient
-  private String type = "staff";
+  private String type = "user";
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "STAFF_ID")
+  @Column(name = "USER_ID")
   private Integer id;
 
   @Column(name = "FIRST_NAME", length = 45)
@@ -20,12 +20,15 @@ public class Staff {
   @Column(name = "LASTNAME", length = 45)
   private String lastname;
 
+  @Column(name = "PASSWORD")
+  private String password;
+
   @Column(name = "PHONE", length = 15)
   private String phone;
 
   @Column(name = "ROLE")
   @Enumerated(EnumType.STRING)
-  private StaffRole role;
+  private UserRole role;
 
 
   public String getType() {
@@ -64,11 +67,11 @@ public class Staff {
     this.phone = phone;
   }
 
-  public StaffRole getRole() {
+  public UserRole getRole() {
     return role;
   }
 
-  public void setRole(StaffRole role) {
+  public void setRole(UserRole role) {
     this.role = role;
   }
 
