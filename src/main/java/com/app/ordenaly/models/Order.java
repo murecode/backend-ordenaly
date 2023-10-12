@@ -22,21 +22,24 @@ public class Order {
   private Ticket ticket;
 
   @OneToOne
-  @JoinColumn(name = "STAFF_ID")
-  private User staff;
+  @JoinColumn(name = "USER_ID")
+  private User user;
 
   @ElementCollection
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Item> items = new ArrayList<>();
 
-  //  Status... Proximamente
+  @Column(name = "ORDER_STATUS")
+  @Enumerated()
+  private OrderStatus orderStatus;
 
   public Order() {};
 
-  public Order(Ticket ticket, User staff) {
+  public Order(Ticket ticket, User user) {
     this.ticket = ticket;
-    this.staff = staff;
+    this.user = user;
   }
+
 
   public String getType() {
     return type;
@@ -62,12 +65,12 @@ public class Order {
     this.ticket = ticket;
   }
 
-  public User getStaff() {
-    return staff;
+  public User getUser() {
+    return user;
   }
 
-  public void setStaff(User staff) {
-    this.staff = staff;
+  public void setUser(User user) {
+    this.user = user;
   }
 
   public List<Item> getItems() {
@@ -79,7 +82,17 @@ public class Order {
   }
 
   public void addItem(Item item) {
+//    if (items.contains(item.getProduct())) {
+//      System.out.println("El elemnto ya existe");
+//    }
     items.add(item);
   }
 
+  public OrderStatus getOrderStatus() {
+    return orderStatus;
+  }
+
+  public void setOrderStatus(OrderStatus orderStatus) {
+    this.orderStatus = orderStatus;
+  }
 }

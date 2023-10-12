@@ -20,49 +20,48 @@ class OrderRepositoryTest {
   @Autowired
   TestEntityManager entityManager;
 
-  @Test
-  void testGenerateNewOrder() {
-
-    User waiter = entityManager.find(User.class, 2);
-    Ticket ticket = entityManager.find(Ticket.class, 3);
-
-//    Order newOrder = new Order(ticket, waiter);
-
-//    Order saveNewOrder = orderRepository.save(newOrder);
-
-//    assertTrue(saveNewOrder.getId() > 0);
-
-  }
 
   @Test
   void testAddItemToOrder() {
 
-    Item item_1 = entityManager.find(Item.class, 4);
-    Order order_1 = entityManager.find(Order.class, 16);
+    Item item = entityManager.find(Item.class, 4);
+    Order order = entityManager.find(Order.class, 16);
 
-    order_1.addItem(item_1);
+    order.addItem(item);
 
-    orderRepository.save(order_1);
+    orderRepository.save(order);
 
   }
 
   @Test
   void testCreateNewOrder() {
 
-    Ticket ticket = entityManager.find(Ticket.class, 14);
-    User staff = entityManager.find(User.class, 3);
+    Ticket ticket = entityManager.find(Ticket.class, 15);
+    User user = entityManager.find(User.class, 3);
 
-    Order order = new Order(ticket, staff);
+    Order order = new Order(ticket, user);
+    order.setTicket(ticket);
+    order.setUser(user);
+    order.setOrderStatus(OrderStatus.COMPLETA);
     Order saveOrder = orderRepository.save(order);
 
     assertTrue(saveOrder.getId() > 0);
 
   }
 
-//  @Test
-//  void testAddNewItemToOrder() {
-//
-//  }
+  @Test
+  void testUpdateOrder() {
+
+    Order order = entityManager.find(Order.class, 35);
+    Ticket ticket = entityManager.find(Ticket.class, 1);
+    User user = entityManager.find(User.class, 3);
+
+    order.setTicket(ticket);
+    order.setUser(user);
+    order.setOrderStatus(OrderStatus.PENDIENTE);
+
+    orderRepository.save(order);
+  }
 
   @Test
   void testDeleteOrderById() {

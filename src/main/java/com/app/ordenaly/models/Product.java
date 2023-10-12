@@ -14,7 +14,10 @@ public class Product {
   @Column(name = "PRODUCT_ID")
   private Integer id;
 
-  @Column(name = "_DESCRIPTION", length = 45)
+  @Column(name = "PRODUCT_NAME", length = 45)
+  private String productName;
+
+  @Column(name = "DESCRIPTION_", length = 90)
   private String description;
 
   @Column(name = "PRICE")
@@ -42,6 +45,14 @@ public class Product {
 
   public void setId(Integer id) {
     this.id = id;
+  }
+
+  public String getProductName() {
+    return productName;
+  }
+
+  public void setProductName(String productName) {
+    this.productName = productName;
   }
 
   public String getDescription() {
