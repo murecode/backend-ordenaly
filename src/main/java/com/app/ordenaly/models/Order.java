@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "ORDERS")
+@Table(name = "ORDER")
 public class Order {
 
   @Transient
@@ -27,7 +27,7 @@ public class Order {
 
   @ElementCollection
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<Item> items = new ArrayList<>();
+  private List<Item> itemList = new ArrayList<>();
 
   @Column(name = "ORDER_STATUS")
   @Enumerated()
@@ -73,19 +73,19 @@ public class Order {
     this.user = user;
   }
 
-  public List<Item> getItems() {
-    return items;
+  public List<Item> getItemList() {
+    return itemList;
   }
 
-  public void setItems(List<Item> items) {
-    this.items = items;
+  public void setItemList(List<Item> itemList) {
+    this.itemList = itemList;
   }
 
   public void addItem(Item item) {
 //    if (items.contains(item.getProduct())) {
 //      System.out.println("El elemnto ya existe");
 //    }
-    items.add(item);
+    itemList.add(item);
   }
 
   public OrderStatus getOrderStatus() {

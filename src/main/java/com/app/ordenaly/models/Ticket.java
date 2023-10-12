@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "TICKETS")
+@Table(name = "TICKET")
 public class Ticket {
 
   @Transient

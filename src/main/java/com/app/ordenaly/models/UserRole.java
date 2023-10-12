@@ -1,7 +1,7 @@
 package com.app.ordenaly.models;
 
 public enum UserRole {
+  ADMIN,
   MESERO,
-  COCINA,
   CAJA
 }
