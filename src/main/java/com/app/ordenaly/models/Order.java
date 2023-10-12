@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "ORDER")
+@Table(name = "ORDERS")
 public class Order {
 
   @Transient
@@ -18,16 +18,19 @@ public class Order {
   private Integer id;
 
   @OneToOne
-  @JoinColumn(name = "TICKET_ID")
+  @JoinColumn(name = "TICKET")
   private Ticket ticket;
 
   @OneToOne
-  @JoinColumn(name = "USER_ID")
-  private User user;
+  @JoinColumn(name = "WAITER")
+  private User waiter;
 
   @ElementCollection
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<Item> itemList = new ArrayList<>();
+  private List<Item> itemlist = new ArrayList<>();
+
+  @Column(name = "NOTES")
+  private String notes;
 
   @Column(name = "ORDER_STATUS")
   @Enumerated()
@@ -35,11 +38,12 @@ public class Order {
 
   public Order() {};
 
-  public Order(Ticket ticket, User user) {
+  public Order(Ticket ticket, User waiter, String notes, OrderStatus status) {
     this.ticket = ticket;
-    this.user = user;
+    this.waiter = waiter;
+    this.notes = notes;
+    this.orderStatus = status;
   }
-
 
   public String getType() {
     return type;
@@ -66,26 +70,34 @@ public class Order {
   }
 
   public User getUser() {
-    return user;
+    return waiter;
   }
 
-  public void setUser(User user) {
-    this.user = user;
+  public void setUser(User waiter) {
+    this.waiter = waiter;
   }
 
   public List<Item> getItemList() {
-    return itemList;
+    return itemlist;
   }
 
-  public void setItemList(List<Item> itemList) {
-    this.itemList = itemList;
+  public void setItemList(List<Item> itemlist) {
+    this.itemlist = itemlist;
   }
 
   public void addItem(Item item) {
 //    if (items.contains(item.getProduct())) {
 //      System.out.println("El elemnto ya existe");
 //    }
-    itemList.add(item);
+    itemlist.add(item);
+  }
+
+  public String getNotes() {
+    return notes;
+  }
+
+  public void setNotes(String notes) {
+    this.notes = notes;
   }
 
   public OrderStatus getOrderStatus() {

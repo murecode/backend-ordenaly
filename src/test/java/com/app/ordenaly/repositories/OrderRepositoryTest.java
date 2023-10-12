@@ -37,11 +37,14 @@ class OrderRepositoryTest {
   void testCreateNewOrder() {
 
     Ticket ticket = entityManager.find(Ticket.class, 15);
-    User user = entityManager.find(User.class, 3);
+    User waiter = entityManager.find(User.class, 3);
+    OrderStatus status = OrderStatus.COMPLETA;
+    String note = "Caldo sin papa";
 
-    Order order = new Order(ticket, user);
+    Order order = new Order(ticket, waiter, note , status );
     order.setTicket(ticket);
-    order.setUser(user);
+    order.setUser(waiter);
+    order.setNotes(note);
     order.setOrderStatus(OrderStatus.COMPLETA);
     Order saveOrder = orderRepository.save(order);
 
