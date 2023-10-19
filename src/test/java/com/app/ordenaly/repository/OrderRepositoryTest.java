@@ -41,10 +41,9 @@ class OrderRepositoryTest {
     OrderStatus status = OrderStatus.COMPLETA;
     String note = "Caldo sin papa";
 
-    Order order = new Order(ticket, waiter, note , status );
+    Order order = new Order(ticket, waiter, status );
     order.setTicket(ticket);
     order.setUser(waiter);
-    order.setNotes(note);
     order.setOrderStatus(OrderStatus.COMPLETA);
     Order saveOrder = orderRepository.save(order);
 

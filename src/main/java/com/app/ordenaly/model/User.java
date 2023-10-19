@@ -14,17 +14,17 @@ public class User {
   @Column(name = "USER_ID")
   private Integer id;
 
-  @Column(name = "FIRST_NAME", length = 45)
+  @Column(name = "FIRSTNAME", length = 45)
   private String name;
 
   @Column(name = "LASTNAME", length = 45)
   private String lastname;
 
+  @Column(name = "EMAIL")
+  private String email;
+
   @Column(name = "PASSWORD")
   private String password;
-
-  @Column(name = "PHONE", length = 15)
-  private String phone;
 
   @Column(name = "ROLE")
   @Enumerated(EnumType.STRING)
@@ -59,12 +59,20 @@ public class User {
     this.lastname = lastname;
   }
 
-  public String getPhone() {
-    return phone;
+  public String getEmail() {
+    return email;
   }
 
-  public void setPhone(String phone) {
-    this.phone = phone;
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 
   public UserRole getRole() {

@@ -14,7 +14,7 @@ public class Item {
   private Integer id;
 
   @ManyToOne
-  @JoinColumn(name = "PRODUCT_ID")
+  @JoinColumn(name = "PRODUCT")
   private Product product;
 
   @Column(name = "QUANTITY")

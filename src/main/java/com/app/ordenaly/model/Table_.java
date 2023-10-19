@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "TABLE_")
-public class _Table {
+public class Table_ {
 
   @Transient
   private String type = "table";
@@ -17,6 +17,13 @@ public class _Table {
   @Column(name = "IDENTIFIER", length = 45)
   private String identifier;
 
+
+  public Table_() {};
+
+  public Table_(Integer id, String identifier) {
+    this.id = id;
+    this.identifier = identifier;
+  }
 
   public String getType() {
     return type;
@@ -37,4 +44,5 @@ public class _Table {
   public void setIdentifier(String identifier) {
     this.identifier = identifier;
   }
+
 }
