@@ -20,10 +20,23 @@ class OrderRepositoryTest {
   @Autowired
   TestEntityManager entityManager;
 
+  @Test
+  void testCreateNewOrder() {
+    Ticket ticket = entityManager.find(Ticket.class, 1);
+    User waiter = entityManager.find(User.class, 1);
+
+    Order order = new Order();
+    order.setTicket(ticket);
+    order.setUser(waiter);
+    order.setOrderStatus(OrderStatus.PENDIENTE);
+
+    Order saveOrder = orderRepository.save(order);
+
+    assertTrue(saveOrder.getId() > 0);
+  }
 
   @Test
   void testAddItemToOrder() {
-
     Item item = entityManager.find(Item.class, 4);
     Order order = entityManager.find(Order.class, 16);
 
@@ -33,23 +46,7 @@ class OrderRepositoryTest {
 
   }
 
-  @Test
-  void testCreateNewOrder() {
 
-    Ticket ticket = entityManager.find(Ticket.class, 15);
-    User waiter = entityManager.find(User.class, 3);
-    OrderStatus status = OrderStatus.COMPLETA;
-    String note = "Caldo sin papa";
-
-    Order order = new Order(ticket, waiter, status );
-    order.setTicket(ticket);
-    order.setUser(waiter);
-    order.setOrderStatus(OrderStatus.COMPLETA);
-    Order saveOrder = orderRepository.save(order);
-
-    assertTrue(saveOrder.getId() > 0);
-
-  }
 
   @Test
   void testUpdateOrder() {

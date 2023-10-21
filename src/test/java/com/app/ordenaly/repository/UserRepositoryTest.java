@@ -1,5 +1,10 @@
 package com.app.ordenaly.repository;
 
+import com.app.ordenaly.model.User;
+import com.app.ordenaly.model.UserRole;
+import jakarta.persistence.EntityManager;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
@@ -10,6 +15,23 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // 1
 @Rollback(value = false)
 class UserRepositoryTest {
+
+  @Autowired
+  private UserRepository userRepository;
+  @Autowired
+  private EntityManager entityManager;
+
+  @Test
+  void testCreateUser() {
+    User user = new User();
+    user.setFirstname("Rosa");
+    user.setLastname("Suarez");
+    user.setEmail("rosua@ordenaly.com");
+    user.setPassword("qwerty");
+    user.setRole(UserRole.MESERO);
+
+    userRepository.save(user);
+  }
 
 }
 

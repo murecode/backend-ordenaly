@@ -24,10 +24,10 @@ class ProductRepositoryTest {
   void testCreateNewProduct() {
 
     Product product1 = new Product();
-    product1.setDescription("Pizza");
+    product1.setProductName("Pizza");
     product1.setDescription("Italiana y Napolitana");
     product1.setInStock(true);
-    product1.setPrice(1.234);
+    product1.setPrice(12000.);
 
     Product saveNewProduct = productRepository.save(product1);
 
@@ -38,7 +38,7 @@ class ProductRepositoryTest {
   @Test
   void testDeleteProductById() {
 
-    Product productBeforeDeleted = entityManager.find(Product.class, 13);
+    Product productBeforeDeleted = entityManager.find(Product.class, 1);
     assertNotNull(productBeforeDeleted);
 
     productRepository.deleteById(productBeforeDeleted.getId());

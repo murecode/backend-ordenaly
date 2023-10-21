@@ -14,7 +14,6 @@ public class OrderController {
   @Autowired
   OrderService orderService;
 
-
   @GetMapping("/{id}")
   public Order findOrderById(@PathVariable("id") Integer id) {
     return orderService.getOrder(id);

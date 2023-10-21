@@ -11,13 +11,12 @@ import org.springframework.stereotype.Service;
 public class ItemService {
   @Autowired
   ItemRepository itemRepository;
-
+  @Autowired
   ProductRepository productRepository;
 
   public Item getItemById(Integer id) {
     return itemRepository.findById(id).orElse(null);
   }
-
 
   public Item addItem(Integer productId, Integer quantity) {
     Product product = productRepository.findById(productId).get();

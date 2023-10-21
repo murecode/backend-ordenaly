@@ -9,9 +9,8 @@ import java.util.List;
 
 @Service
 public class OrderService {
-
   @Autowired
-  OrderRepository orderRepo;
+  OrderRepository orderRepository;
   @Autowired
   ItemService itemService;
 
@@ -24,19 +23,19 @@ public class OrderService {
 
   public Order createOrder() {
     Order order = new Order();
-    return orderRepo.save(order);
+    return orderRepository.save(order);
   }
 
   public void deleteOrder(Integer id) {
-    orderRepo.deleteById(id);
+    orderRepository.deleteById(id);
   }
 
   public Order getOrder(Integer id) {
-    return orderRepo.findById(id).orElse(null);
+    return orderRepository.findById(id).orElse(null);
   }
 
   public List<Order> getAllOrders() {
-    return orderRepo.findAll();
+    return orderRepository.findAll();
   }
 
 

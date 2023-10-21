@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TicketRepositoryTest {
 
   @Autowired
-  TicketRepository ticketRepo;
+  TicketRepository ticketRepository;
 
   @Test
   void testGenerateTicket() {
@@ -25,7 +25,7 @@ class TicketRepositoryTest {
     Ticket newTicket = new Ticket();
     newTicket.setTime(LocalTime.now());
 
-    Ticket generate = ticketRepo.save(newTicket);
+    Ticket generate = ticketRepository.save(newTicket);
 
     assertTrue(generate.getId() > 0);
 

@@ -15,7 +15,7 @@ public class User {
   private Integer id;
 
   @Column(name = "FIRSTNAME", length = 45)
-  private String name;
+  private String firstname;
 
   @Column(name = "LASTNAME", length = 45)
   private String lastname;
@@ -30,6 +30,15 @@ public class User {
   @Enumerated(EnumType.STRING)
   private UserRole role;
 
+  public User() {};
+
+  public User(String firstname, String lastname, String email, String password, UserRole role) {
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.email = email;
+    this.password = password;
+    this.role = role;
+  }
 
   public String getType() {
     return type;
@@ -43,12 +52,12 @@ public class User {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getFirstname() {
+    return firstname;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setFirstname(String firstname) {
+    this.firstname = firstname;
   }
 
   public String getLastname() {
