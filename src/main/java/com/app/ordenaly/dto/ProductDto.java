@@ -1,42 +1,19 @@
+package com.app.ordenaly.dto;
 
-package com.app.ordenaly.model;
-
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "PRODUCT")
-public class Product {
-  @Transient
-  private String type = "product";
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "PRODUCT_ID")
+public class ProductDto {
   private int id;
-
-  @Column(name = "PRODUCT_NAME", length = 45)
   private String productName;
-
-  @Column(name = "DESCRIPTION_", length = 90)
   private String description;
-
-  @Column(name = "PRICE")
   private Double price;
-
-  @Column(name = "IN_STOCK")
   private Boolean inStock;
 
-  public Product() {};
-
-  public Product(String description, Double price, Boolean inStock) {
+  public ProductDto() {};
+  public ProductDto(int id, String productName, String description, Double price, Boolean inStock) {
+    this.id = id;
+    this.productName = productName;
     this.description = description;
     this.price = price;
     this.inStock = inStock;
-  }
-
-
-  public String getType() {
-    return type;
   }
 
   public int getId() {

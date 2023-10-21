@@ -2,11 +2,11 @@ package com.app.ordenaly.dto;
 
 import java.io.Serializable;
 
-public class OrderDTO implements Serializable {
+public class OrderDto implements Serializable {
   private String waiterName;
   private Integer ticketNumber;
-  public OrderDTO() {};
-  public OrderDTO(String waiterName, Integer ticketNumber) {
+  public OrderDto() {};
+  public OrderDto(String waiterName, Integer ticketNumber) {
     this.waiterName = waiterName;
     this.ticketNumber = ticketNumber;
   }

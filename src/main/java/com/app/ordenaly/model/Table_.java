@@ -5,10 +5,8 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "TABLE_")
 public class Table_ {
-
   @Transient
   private String type = "table";
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "TABLE_ID")
