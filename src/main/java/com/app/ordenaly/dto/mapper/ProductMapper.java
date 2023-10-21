@@ -2,10 +2,7 @@ package com.app.ordenaly.dto.mapper;
 
 import com.app.ordenaly.dto.ProductDto;
 import com.app.ordenaly.model.Product;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.Mappings;
+import org.mapstruct.*;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ProductMapper {
@@ -18,5 +15,8 @@ public interface ProductMapper {
           @Mapping(source = "inStock", target = "inStock")
   })
   ProductDto productToProductDto(Product product);
+
+  @InheritInverseConfiguration
+  Product ProductDtoToProduct(ProductDto productDto);
 
 }

@@ -1,30 +1,56 @@
 package com.app.ordenaly.dto;
 
+import com.app.ordenaly.model.OrderStatus;
+import com.app.ordenaly.model.Ticket;
+import com.app.ordenaly.model.User;
+
 import java.io.Serializable;
+import java.time.LocalTime;
 
-public class OrderDto implements Serializable {
-  private String waiterName;
-  private Integer ticketNumber;
+public class OrderDto {
+  private int orderId;
+  private int ticket;
+  private String waiter;
+  private String status;
+
   public OrderDto() {};
-  public OrderDto(String waiterName, Integer ticketNumber) {
-    this.waiterName = waiterName;
-    this.ticketNumber = ticketNumber;
+
+  public OrderDto(int orderId, int ticket, String waiter, String status) {
+    this.orderId = orderId;
+    this.ticket = ticket;
+    this.waiter = waiter;
+    this.status = status;
   }
 
-  public String getWaiterName(String name) {
-    return waiterName;
+  public int getOrderId() {
+    return orderId;
   }
 
-  public void setWaiterName(String waiterName) {
-    this.waiterName = waiterName;
+  public void setOrderId(int orderId) {
+    this.orderId = orderId;
   }
 
-  public Integer getTicketNumber(Integer id) {
-    return ticketNumber;
+  public int getTicket() {
+    return ticket;
   }
 
-  public void setTicketNumber(Integer ticketNumber) {
-    this.ticketNumber = ticketNumber;
+  public void setTicket(int ticket) {
+    this.ticket = ticket;
   }
 
+  public String getWaiter() {
+    return waiter;
+  }
+
+  public void setWaiter(String waiter) {
+    this.waiter = waiter;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
 }

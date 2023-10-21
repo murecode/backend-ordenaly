@@ -1,5 +1,6 @@
 package com.app.ordenaly.controller;
 
+import com.app.ordenaly.dto.OrderDto;
 import com.app.ordenaly.model.Order;
 import com.app.ordenaly.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class OrderController {
   }
 
   @GetMapping("/list")
-  public List<Order> listOrders() {
-    return orderService.getAllOrders();
+  public List<OrderDto> listOrders() {
+    return orderService.getOrders();
   }
 
   @DeleteMapping("/remove/{id}")

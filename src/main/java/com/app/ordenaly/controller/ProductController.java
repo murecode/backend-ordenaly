@@ -1,5 +1,7 @@
 package com.app.ordenaly.controller;
 
+import com.app.ordenaly.dto.ProductDto;
+import com.app.ordenaly.dto.mapper.ProductMapper;
 import com.app.ordenaly.model.Product;
 import com.app.ordenaly.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +23,8 @@ public class ProductController {
   }
 
   @GetMapping(value = "/list")
-  public List<Product> listAllProducts(){
-    return productService.getAllProducts();
+  public List<ProductDto> listAllProducts(){
+    return productService.getProducts();
   }
 
   @DeleteMapping(value = "/remove/{id}")

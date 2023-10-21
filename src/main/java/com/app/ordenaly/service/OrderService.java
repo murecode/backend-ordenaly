@@ -1,18 +1,22 @@
 package com.app.ordenaly.service;
 
+import com.app.ordenaly.dto.OrderDto;
+import com.app.ordenaly.dto.ProductDto;
+import com.app.ordenaly.dto.mapper.OrderMapper;
 import com.app.ordenaly.model.*;
 import com.app.ordenaly.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
   @Autowired
   OrderRepository orderRepository;
   @Autowired
-  ItemService itemService;
+  OrderMapper orderMapper;
 
 //  public Order generateOrder(Ticket ticket, Staff waiter) {
 //    Order order = new Order();
@@ -36,6 +40,13 @@ public class OrderService {
 
   public List<Order> getAllOrders() {
     return orderRepository.findAll();
+  }
+
+  public List<OrderDto> getOrders() {
+    List<Order> orders = orderRepository.findAll();
+    return orders.stream()
+            .map(orderMapper::orderToOrderDto)
+            .collect(Collectors.toList());
   }
 
 
