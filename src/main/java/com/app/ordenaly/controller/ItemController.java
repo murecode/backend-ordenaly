@@ -1,10 +1,14 @@
 package com.app.ordenaly.controller;
 
+import com.app.ordenaly.dto.ItemDto;
+import com.app.ordenaly.dto.OrderDto;
 import com.app.ordenaly.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.app.ordenaly.model.Item;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/items")
@@ -24,5 +28,10 @@ public class ItemController {
           @PathVariable(name = "productId") Integer product_id,
           @PathVariable(name = "quantity") Integer quantity) {
     return itemService.addItem(product_id, quantity);
+  }
+
+  @GetMapping("/list") //Prueba
+  public List<ItemDto> listItems() {
+    return itemService.getItems();
   }
 }

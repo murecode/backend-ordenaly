@@ -1,56 +1,69 @@
 package com.app.ordenaly.dto;
 
+import com.app.ordenaly.model.Item;
 import com.app.ordenaly.model.OrderStatus;
 import com.app.ordenaly.model.Ticket;
 import com.app.ordenaly.model.User;
 
 import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrderDto {
-  private int orderId;
-  private int ticket;
-  private String waiter;
-  private String status;
+  private int order;
+  private int turno;
+  private String mesero;
+  private String estado;
+  private List<Item> pedido;
 
   public OrderDto() {};
 
-  public OrderDto(int orderId, int ticket, String waiter, String status) {
-    this.orderId = orderId;
-    this.ticket = ticket;
-    this.waiter = waiter;
-    this.status = status;
+  public OrderDto(int order, int turno, String mesero, String estado, List<Item> pedido) {
+    this.order = order;
+    this.turno = turno;
+    this.mesero = mesero;
+    this.estado = estado;
+    this.pedido = pedido;
   }
 
-  public int getOrderId() {
-    return orderId;
+  public int getOrder() {
+    return order;
   }
 
-  public void setOrderId(int orderId) {
-    this.orderId = orderId;
+  public void setOrder(int order) {
+    this.order = order;
   }
 
-  public int getTicket() {
-    return ticket;
+  public int getTurno() {
+    return turno;
   }
 
-  public void setTicket(int ticket) {
-    this.ticket = ticket;
+  public void setTurno(int turno) {
+    this.turno = turno;
   }
 
-  public String getWaiter() {
-    return waiter;
+  public String getMesero() {
+    return mesero;
   }
 
-  public void setWaiter(String waiter) {
-    this.waiter = waiter;
+  public void setMesero(String mesero) {
+    this.mesero = mesero;
   }
 
-  public String getStatus() {
-    return status;
+  public String getEstado() {
+    return estado;
   }
 
-  public void setStatus(String status) {
-    this.status = status;
+  public void setEstado(String estado) {
+    this.estado = estado;
+  }
+
+  public List<Item> getPedido() {
+    return pedido;
+  }
+
+  public void setPedido(List<Item> pedido) {
+    this.pedido = pedido;
   }
 }
