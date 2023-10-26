@@ -26,28 +26,28 @@ class OrderRepositoryTest {
 
   @Test
   void testGenerateOrder() {
-    Ticket ticket = entityManager.find(Ticket.class, 7);
-    User waiter = entityManager.find(User.class, 2);
+    Ticket ticket = entityManager.find(Ticket.class, 8);
+    User waiter = entityManager.find(User.class, 1);
 
     Order order = new Order();
     order.setTicket(ticket);
     order.setUser(waiter);
     order.setOrderStatus(OrderStatus.PENDIENTE);
 
+    Order saveOrder = orderRepository.save(order);
+
     //Se asocia el id de la orden con el ticket
     ticket.setOrder(order);
-
-    Order saveOrder = orderRepository.save(order);
 
     assertTrue(saveOrder.getId() > 0);
   }
 
   @Test
   void testAddItemToOrder() {
-    Order order = entityManager.find(Order.class, 14);
-    Product product = entityManager.find(Product.class, 2);
+    Order order = entityManager.find(Order.class, 17);
+    Product product = entityManager.find(Product.class, 3);
 
-    Item item = new Item(product, 3);
+    Item item = new Item(product, 1);
     Item saveNewItem = itemRepository.save(item);
 
     order.addItem(item);
@@ -63,19 +63,15 @@ class OrderRepositoryTest {
     itemRepository.deleteById(item.getId());
   }
 
-
-
   @Test
-  void testUpdateOrder() {
+  void testUpdateOrderStatus() {
     Order order = entityManager.find(Order.class, 35);
-    Ticket ticket = entityManager.find(Ticket.class, 1);
-    User user = entityManager.find(User.class, 3);
 
-    order.setTicket(ticket);
-    order.setUser(user);
     order.setOrderStatus(OrderStatus.PENDIENTE);
 
     orderRepository.save(order);
+
+    assertTrue( order.getOrderStatus() != OrderStatus.COMPLETA );
   }
 
   @Test
