@@ -16,10 +16,18 @@ public class Ticket {
   @Column(name = "TICKET_ID")
   private Integer id;
 
-  @Column(name = "TICKET_TIME", length = 8)
+  @Column(name = "TICKET_TIME", length = 6)
   private LocalTime time;
 
+  @OneToOne
+  @JoinColumn(name = "ORDER_ASOC")
+  private Order order;
+
   public Ticket() {}
+
+  public Ticket(Order order) {
+    this.order = order;
+  }
 
   public Integer getId() {
     return id;
@@ -43,6 +51,14 @@ public class Ticket {
 
   public void setTime(LocalTime time) {
     this.time = time;
+  }
+
+  public Order getOrder() {
+    return order;
+  }
+
+  public void setOrder(Order order) {
+    this.order = order;
   }
 
 }

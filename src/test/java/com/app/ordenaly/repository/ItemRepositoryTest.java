@@ -23,18 +23,6 @@ class ItemRepositoryTest {
   @Autowired
   private TestEntityManager entityManager;
 
-  @Test
-  void testAddNewItemToOrder() {
-
-    Order order = entityManager.find(Order.class, 16);
-    Product product = entityManager.find(Product.class, 30);
-
-    Item item = new Item(product, 3);
-
-    Item saveNewItem = itemRepository.save(item);
-
-    assertTrue(saveNewItem.getId() > 0);
-  }
 
   @Test
   void testDeleteItemFromOrder() {

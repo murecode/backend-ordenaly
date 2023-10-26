@@ -1,6 +1,8 @@
 package com.app.ordenaly.repository;
 
+import com.app.ordenaly.model.Order;
 import com.app.ordenaly.model.Ticket;
+import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -10,6 +12,7 @@ import org.springframework.test.annotation.Rollback;
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.context.annotation.ConfigurationClassUtils.getOrder;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
