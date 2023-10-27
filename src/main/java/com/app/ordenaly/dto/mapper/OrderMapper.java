@@ -5,16 +5,17 @@ import com.app.ordenaly.model.Order;
 import org.mapstruct.*;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
-        uses = {ItemMapper.class}
+        uses = {ItemMapper.class, TicketMapper.class}
 )
 public interface OrderMapper {
 
   @Mappings({
-          @Mapping(source = "id", target = "order"),
+          @Mapping(source = "id", target = "id"),
           @Mapping(source = "ticket.id", target = "turno"),
           @Mapping(source = "user.firstname", target = "mesero"),
           @Mapping(source = "orderStatus", target = "estado"),
-          @Mapping(source = "itemList", target = "pedido")
+          @Mapping(source = "itemList", target = "pedido"),
+
   })
   OrderDto orderToOrderDto(Order order);
 

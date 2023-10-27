@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDto {
-  private int order;
+  private int id;
   private int turno;
   private String mesero;
   private String estado;
@@ -19,20 +19,20 @@ public class OrderDto {
 
   public OrderDto() {};
 
-  public OrderDto(int order, int turno, String mesero, String estado, List<ItemDto> pedido) {
-    this.order = order;
+  public OrderDto(int id, int turno, String mesero, String estado, List<ItemDto> pedido) {
+    this.id = id;
     this.turno = turno;
     this.mesero = mesero;
     this.estado = estado;
     this.pedido = pedido;
   }
 
-  public int getOrder() {
-    return order;
+  public int getId() {
+    return id;
   }
 
-  public void setOrder(int order) {
-    this.order = order;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public int getTurno() {

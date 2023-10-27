@@ -2,18 +2,19 @@ package com.app.ordenaly.dto;
 
 public class ProductDto {
   private int id;
-  private String productName;
-  private String description;
-  private Double price;
-  private Boolean inStock;
+  private String nombre;
+  private String descripcion;
+  private Double precio;
+  private Boolean disponible;
 
   public ProductDto() {};
-  public ProductDto(int id, String productName, String description, Double price, Boolean inStock) {
+
+  public ProductDto(int id, String nombre, String descripcion, Double precio, Boolean disponible) {
     this.id = id;
-    this.productName = productName;
-    this.description = description;
-    this.price = price;
-    this.inStock = inStock;
+    this.nombre = nombre;
+    this.descripcion = descripcion;
+    this.precio = precio;
+    this.disponible = disponible;
   }
 
   public int getId() {
@@ -24,36 +25,35 @@ public class ProductDto {
     this.id = id;
   }
 
-  public String getProductName() {
-    return productName;
+  public String getNombre() {
+    return nombre;
   }
 
-  public void setProductName(String productName) {
-    this.productName = productName;
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
   }
 
-  public String getDescription() {
-    return description;
+  public String getDescripcion() {
+    return descripcion;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
   }
 
-  public Double getPrice() {
-    return price;
+  public Double getPrecio() {
+    return precio;
   }
 
-  public void setPrice(Double price) {
-    this.price = price;
+  public void setPrecio(Double precio) {
+    this.precio = precio;
   }
 
-  public Boolean getInStock() {
-    return inStock;
+  public Boolean getDisponible() {
+    return disponible;
   }
 
-  public void setInStock(Boolean inStock) {
-    this.inStock = inStock;
+  public void setDisponible(Boolean disponible) {
+    this.disponible = disponible;
   }
-
 }

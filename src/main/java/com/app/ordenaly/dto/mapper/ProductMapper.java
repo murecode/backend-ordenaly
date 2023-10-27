@@ -9,10 +9,10 @@ public interface ProductMapper {
 
   @Mappings({
           @Mapping(source = "id", target = "id"),
-          @Mapping(source = "productName", target = "productName"),
-          @Mapping(source = "description", target = "description"),
-          @Mapping(source = "price", target = "price"),
-          @Mapping(source = "inStock", target = "inStock")
+          @Mapping(source = "productName", target = "nombre"),
+          @Mapping(source = "description", target = "descripcion"),
+          @Mapping(source = "price", target = "precio"),
+          @Mapping(source = "inStock", target = "disponible")
   })
   ProductDto productToProductDto(Product product);
 

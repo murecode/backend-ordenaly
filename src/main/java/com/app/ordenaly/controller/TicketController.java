@@ -1,5 +1,6 @@
 package com.app.ordenaly.controller;
 
+import com.app.ordenaly.dto.TicketDto;
 import com.app.ordenaly.model.Ticket;
 import com.app.ordenaly.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class TicketController {
   TicketService ticketService;
 
   @GetMapping("/list")
-  public List<Ticket> listAllTickets() {
+  public List<TicketDto> listAllTickets() {
     return ticketService.getAllTickets();
   }
 
