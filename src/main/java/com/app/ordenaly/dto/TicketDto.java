@@ -19,19 +19,19 @@ public class TicketDto {
     this.id = id;
   }
 
-  public String getTime() {
+  public String getHora() {
     return hora;
   }
 
-  public void setTime(String hora) {
+  public void setHora(String hora) {
     this.hora = hora;
   }
 
-  public int getOrder_asoc() {
+  public int getOrden() {
     return orden;
   }
 
-  public void setOrder_asoc(int orden) {
+  public void setOrden(int orden) {
     this.orden = orden;
   }
 
