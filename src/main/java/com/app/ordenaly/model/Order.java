@@ -21,7 +21,7 @@ public class Order {
   @JoinColumn(name = "TICKET")
   private Ticket ticket;
 
-  @OneToOne
+  @OneToOne(cascade = CascadeType.PERSIST)
   @JoinColumn(name = "WAITER")
   private User waiter;
 

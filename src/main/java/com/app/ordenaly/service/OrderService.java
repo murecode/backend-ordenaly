@@ -5,6 +5,7 @@ import com.app.ordenaly.dto.ProductDto;
 import com.app.ordenaly.dto.mapper.OrderMapper;
 import com.app.ordenaly.model.*;
 import com.app.ordenaly.repository.OrderRepository;
+import com.app.ordenaly.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,8 @@ public class OrderService {
   @Autowired
   OrderRepository orderRepository;
   @Autowired
+  TicketRepository ticketRepository;
+  @Autowired
   OrderMapper orderMapper;
 
 //  public Order generateOrder(Ticket ticket, Staff waiter) {
@@ -25,8 +28,8 @@ public class OrderService {
 //    return order;
 //  }
 
-  public Order createOrder() {
-    Order order = new Order();
+  public Order createOrder(OrderDto orderDto) {
+    Order order = orderMapper.orderDtoToOrder(orderDto);
     return orderRepository.save(order);
   }
 
@@ -38,9 +41,9 @@ public class OrderService {
     return orderRepository.findById(id).orElse(null);
   }
 
-  public List<Order> getAllOrders() {
+ /* public List<Order> getAllOrders() {
     return orderRepository.findAll();
-  }
+  }*/
 
   public List<OrderDto> getOrders() {
     List<Order> orders = orderRepository.findAll();
