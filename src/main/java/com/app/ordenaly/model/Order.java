@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name = "ORDERS")
@@ -34,12 +35,6 @@ public class Order {
   private OrderStatus orderStatus;
 
   public Order() {};
-
-  public Order(Ticket ticket, User waiter, OrderStatus status) {
-    this.ticket = ticket;
-    this.waiter = waiter;
-    this.orderStatus = status;
-  }
 
   public String getType() {
     return type;

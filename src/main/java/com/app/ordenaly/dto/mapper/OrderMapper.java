@@ -7,7 +7,7 @@ import org.mapstruct.*;
 import java.util.List;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
-        uses = {ItemMapper.class, TicketMapper.class}
+        uses = {ItemMapper.class, TicketMapper.class, UserMapper.class}
 )
 public interface OrderMapper {
 

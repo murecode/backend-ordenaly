@@ -1,16 +1,19 @@
 package com.app.ordenaly.service;
 
 import com.app.ordenaly.dto.OrderDto;
-import com.app.ordenaly.dto.ProductDto;
 import com.app.ordenaly.dto.mapper.OrderMapper;
 import com.app.ordenaly.model.*;
 import com.app.ordenaly.repository.OrderRepository;
 import com.app.ordenaly.repository.TicketRepository;
+import com.app.ordenaly.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static org.apache.coyote.http11.Constants.a;
 
 @Service
 public class OrderService {
@@ -19,18 +22,32 @@ public class OrderService {
   @Autowired
   TicketRepository ticketRepository;
   @Autowired
+  UserRepository userRepository;
+  @Autowired
   OrderMapper orderMapper;
 
-//  public Order generateOrder(Ticket ticket, Staff waiter) {
-//    Order order = new Order();
-//    order.setTicket(ticket);
-//    order.setStaff(waiter);
-//    return order;
-//  }
 
-  public Order createOrder(OrderDto orderDto) {
-    Order order = orderMapper.orderDtoToOrder(orderDto);
-    return orderRepository.save(order);
+  public Order createOrder(int ticket, int user) {
+
+    Ticket turno = ticketRepository.findById(ticket).orElse(null);
+    User mesero = userRepository.findById(user).orElse(null);
+
+    if (turno != null && mesero != null) {
+      Order newOrder = new Order();
+      newOrder.setTicket(turno);
+      newOrder.setUser(mesero);
+      newOrder.setOrderStatus(OrderStatus.PENDIENTE);
+
+      //Se asocia el id de la orden con el ticket
+      turno.setOrder(newOrder);
+
+      Order saveOrder = orderRepository.save(newOrder);
+
+      return saveOrder;
+
+    } else {
+      return null;
+    }
   }
 
   public void deleteOrder(Integer id) {

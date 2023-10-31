@@ -1,5 +1,6 @@
 package com.app.ordenaly.controller;
 
+import com.app.ordenaly.dto.UserDto;
 import com.app.ordenaly.model.User;
 import com.app.ordenaly.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class UserController {
   UserService userService;
 
   @GetMapping("/list")
-  public List<User> getAllUsers() {
+  public List<UserDto> getAllUsers() {
     return userService.findAllUsers();
   }
 

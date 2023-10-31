@@ -76,11 +76,11 @@ class OrderRepositoryTest {
 
   @Test
   void testDeleteOrder() {
-    Order order = entityManager.find(Order.class, 14);
+    Order order = entityManager.find(Order.class, 35);
 
     orderRepository.deleteById(order.getId());
 
-    assertTrue( order.getId() == 14 );
+    assertTrue( order.getId() == 35 );
   }
 
 }

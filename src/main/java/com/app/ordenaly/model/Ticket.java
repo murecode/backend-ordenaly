@@ -25,10 +25,6 @@ public class Ticket {
 
   public Ticket() {}
 
-  public Ticket(Order order) {
-    this.order = order;
-  }
-
   public Integer getId() {
     return id;
   }
