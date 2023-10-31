@@ -24,6 +24,16 @@ public class OrderController {
   @Autowired
   OrderMapper orderMapper;
 
+  @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Order> generateOrder(@RequestParam int ticket, @RequestParam int waiter) {
+    Order order =  orderService.createOrder(ticket, waiter);
+    if(order != null) {
+      return new ResponseEntity<>(order, HttpStatus.CREATED);
+    } else {
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+  }
+
   @GetMapping("/{id}")
   public Order findOrderById(@PathVariable("id") Integer id) {
     return orderService.getOrder(id);
@@ -40,15 +50,7 @@ public class OrderController {
     return ResponseEntity.noContent().build();
   }
 
-  @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Order> generateOrder(@RequestParam int ticket, @RequestParam int waiter) {
-    Order order =  orderService.createOrder(ticket, waiter);
-    if(order != null) {
-      return new ResponseEntity<>(order, HttpStatus.CREATED);
-    } else {
-      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-  }
+
 
 
 }

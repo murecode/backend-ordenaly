@@ -18,16 +18,17 @@ public class ProductService {
   @Autowired
   ProductMapper productMapper;
 
-  public Product saveProduct(Product product) {
-    return productRepository.save(product);
+  public Product generateProduct(Product product){
+    Product newProduct = new Product();
+    newProduct.setProductName(product.getProductName());
+    newProduct.setDescription(product.getDescription());
+    newProduct.setPrice(product.getPrice());
+    newProduct.setInStock(product.getInStock());
+    return productRepository.save(newProduct);
   }
 
   public void deleteProduct(Integer id) {
     productRepository.deleteById(id);
-  }
-
-  public List<Product> getAllProducts() {
-    return productRepository.findAll();
   }
 
   public Product getProduct(Integer id) { return productRepository.findById(id).orElse(null); }

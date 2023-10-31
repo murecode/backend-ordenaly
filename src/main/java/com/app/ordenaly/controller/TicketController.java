@@ -21,7 +21,7 @@ public class TicketController {
     return ticketService.getAllTickets();
   }
 
-  @GetMapping("/new-ticket")
+  @GetMapping("/new")
   public Ticket newTicket(Ticket ticket) {
     return ticketService.generateNewTicket();
   }

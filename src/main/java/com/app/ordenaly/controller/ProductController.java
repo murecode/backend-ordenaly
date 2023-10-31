@@ -5,7 +5,9 @@ import com.app.ordenaly.dto.mapper.ProductMapper;
 import com.app.ordenaly.model.Product;
 import com.app.ordenaly.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,9 +19,9 @@ public class ProductController {
   private ProductService productService;
 
   @PostMapping(path = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public String newProduct(@RequestBody Product product) {
-    productService.saveProduct(product);
-    return "Nuevo producto creado: " + product.getDescription();
+  public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+    Product createdProduct = productService.generateProduct(product);
+    return new ResponseEntity<Product>(createdProduct, HttpStatus.OK);
   }
 
   @GetMapping(value = "/list")

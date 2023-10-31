@@ -37,13 +37,10 @@ public class OrderService {
       newOrder.setTicket(turno);
       newOrder.setUser(mesero);
       newOrder.setOrderStatus(OrderStatus.PENDIENTE);
-
       //Se asocia el id de la orden con el ticket
       turno.setOrder(newOrder);
 
-      Order saveOrder = orderRepository.save(newOrder);
-
-      return saveOrder;
+      return orderRepository.save(newOrder);
 
     } else {
       return null;
