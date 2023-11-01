@@ -2,6 +2,7 @@ package com.app.ordenaly.controller;
 
 import com.app.ordenaly.dto.OrderDto;
 import com.app.ordenaly.dto.mapper.OrderMapper;
+import com.app.ordenaly.model.Item;
 import com.app.ordenaly.model.Order;
 import com.app.ordenaly.model.Ticket;
 import com.app.ordenaly.model.User;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -27,11 +29,16 @@ public class OrderController {
   @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Order> generateOrder(@RequestParam int ticket, @RequestParam int waiter) {
     Order order =  orderService.createOrder(ticket, waiter);
-    if(order != null) {
-      return new ResponseEntity<>(order, HttpStatus.CREATED);
-    } else {
-      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
+    return new ResponseEntity<>(order, HttpStatus.OK);
+  }
+
+  @PostMapping(value = "/add-item", consumes = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Order>  createItem(
+          @RequestParam(name = "orderId") int orderId,
+          @RequestParam(name = "productId") int productId,
+          @RequestParam(name = "quantity") int quantity) {
+    Order item = orderService.addItemToOrder(orderId, productId, quantity);
+    return new ResponseEntity<>(item, HttpStatus.ACCEPTED);
   }
 
   @GetMapping("/{id}")

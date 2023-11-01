@@ -3,9 +3,8 @@ package com.app.ordenaly.service;
 import com.app.ordenaly.dto.OrderDto;
 import com.app.ordenaly.dto.mapper.OrderMapper;
 import com.app.ordenaly.model.*;
-import com.app.ordenaly.repository.OrderRepository;
-import com.app.ordenaly.repository.TicketRepository;
-import com.app.ordenaly.repository.UserRepository;
+import com.app.ordenaly.repository.*;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +21,15 @@ public class OrderService {
   @Autowired
   TicketRepository ticketRepository;
   @Autowired
+  ItemRepository itemRepository;
+  @Autowired
+  ProductRepository productRepository;
+  @Autowired
   UserRepository userRepository;
   @Autowired
   OrderMapper orderMapper;
+  @Autowired
+  ItemService itemService;
 
 
   public Order createOrder(int ticket, int user) {
@@ -47,6 +52,17 @@ public class OrderService {
     }
   }
 
+  public Order addItemToOrder(int orderId, int productId, int quantity) {
+    Order order = orderRepository.findById(orderId).get();
+    Product product = productRepository.findById(productId).get();
+
+      Item item = new Item(product, quantity);
+      itemRepository.save(item);
+      order.addItem(item);
+
+    return orderRepository.save(order);
+  }
+
   public void deleteOrder(Integer id) {
     orderRepository.deleteById(id);
   }
@@ -54,10 +70,6 @@ public class OrderService {
   public Order getOrder(Integer id) {
     return orderRepository.findById(id).orElse(null);
   }
-
- /* public List<Order> getAllOrders() {
-    return orderRepository.findAll();
-  }*/
 
   public List<OrderDto> getOrders() {
     List<Order> orders = orderRepository.findAll();

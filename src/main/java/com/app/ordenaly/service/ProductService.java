@@ -33,8 +33,13 @@ public class ProductService {
 
   public Product getProduct(Integer id) { return productRepository.findById(id).orElse(null); }
 
-  public Product updateProduct(Product product) {
+  public Product updateProduct(int productId, Product product) {
+    Product id = productRepository.findById(productId).get();
+
+    product.setId(id.getId());
+
     return productRepository.save(product);
+
   }
 
   public List<ProductDto> getProducts() {

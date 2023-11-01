@@ -20,23 +20,24 @@ public class ItemService {
   ItemRepository itemRepository;
   @Autowired
   ItemMapper itemMapper;
-  @Autowired
-  ProductRepository productRepository;
 
-  public Item getItemById(Integer id) {
+//  @Autowired
+//  ProductRepository productRepository;
+
+  public Item getItemById(int id) {
     return itemRepository.findById(id).orElse(null);
   }
 
-  public Item addItem(Integer productId, Integer quantity) {
-    Product product = productRepository.findById(productId).get();
-    if (product != null) {
-      Item item = new Item(product, quantity);
-      itemRepository.save(item);
-    }
-    return null;
-  }
+//  public Item generateItem(int productId, int quantity) {
+//    Product product = productRepository.findById(productId).get();
+//    if (product != null) {
+//      Item item = new Item(product, quantity);
+//      itemRepository.save(item);
+//    }
+//    return null;
+//  }
 
-  public List<ItemDto> getItems() { //Prueba
+  public List<ItemDto> getItems() {
     List<Item> items = itemRepository.findAll();
     return items.stream()
             .map(itemMapper::itemToItemDto)

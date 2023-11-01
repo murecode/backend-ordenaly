@@ -24,18 +24,4 @@ class ItemRepositoryTest {
   private TestEntityManager entityManager;
 
 
-  @Test
-  void testDeleteItemFromOrder() {
-
-    Order order = entityManager.find(Order.class, 13);
-    Item item = entityManager.find(Item.class, 3);
-
-    itemRepository.deleteById(item.getId());
-
-
-
-  }
-
-
-
 }

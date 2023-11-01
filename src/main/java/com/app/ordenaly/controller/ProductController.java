@@ -35,10 +35,10 @@ public class ProductController {
     return "Se eliminó el producto: " + id;
   }
 
-  @PutMapping(value = "/edit/{id}")
-  public Product updateProduct(@PathVariable Integer id, @RequestBody Product product) {
-    product.setId(id);
-    return productService.updateProduct(product);
+  @PatchMapping(value = "/edit/{id}")
+  public ResponseEntity<Product> updateProduct(@PathVariable("id") int productId, @RequestBody Product product) {
+    Product updatedProduct = productService.updateProduct(productId, product);
+    return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
   }
 
 

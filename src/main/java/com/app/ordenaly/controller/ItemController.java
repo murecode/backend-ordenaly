@@ -23,14 +23,14 @@ public class ItemController {
     return itemService.getItemById(id);
   }
 
-  @PostMapping("/new/{productId}/{quantity}")
-  public Item createItem(
-          @PathVariable(name = "productId") Integer product_id,
-          @PathVariable(name = "quantity") Integer quantity) {
-    return itemService.addItem(product_id, quantity);
-  }
+//  @PostMapping("/new/{productId}/{quantity}")
+//  public Item createItem(
+//          @PathVariable(name = "productId") Integer product_id,
+//          @PathVariable(name = "quantity") Integer quantity) {
+//    return itemService.generateItem(product_id, quantity);
+//  }
 
-  @GetMapping("/list") //Prueba
+  @GetMapping("/list")
   public List<ItemDto> listItems() {
     return itemService.getItems();
   }

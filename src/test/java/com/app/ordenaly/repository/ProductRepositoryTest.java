@@ -23,10 +23,10 @@ class ProductRepositoryTest {
   @Test
   void testCreateNewProduct() {
     Product product1 = new Product();
-    product1.setProductName("Hamburgesa");
-    product1.setDescription("Carne de res y doble queso");
-    product1.setInStock(true);
-    product1.setPrice(15000.);
+    product1.setProductName("Pizza");
+    product1.setDescription("");
+    product1.setInStock(false);
+    product1.setPrice(9000.);
 
     Product saveNewProduct = productRepository.save(product1);
 
