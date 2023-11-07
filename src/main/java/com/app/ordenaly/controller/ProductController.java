@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/products")
+@RequestMapping(value = "/api/v1/products")
 public class ProductController {
   @Autowired
   private ProductService productService;
@@ -21,7 +21,7 @@ public class ProductController {
   @PostMapping(path = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Product> createProduct(@RequestBody Product product) {
     Product createdProduct = productService.generateProduct(product);
-    return new ResponseEntity<Product>(createdProduct, HttpStatus.OK);
+    return new ResponseEntity<Product>(createdProduct, HttpStatus.CREATED);
   }
 
   @GetMapping(value = "/list")
@@ -29,13 +29,13 @@ public class ProductController {
     return productService.getProducts();
   }
 
-  @DeleteMapping(value = "/remove/{id}")
+  @DeleteMapping(value = "/{id}")
   public String removeProduct(@PathVariable Integer id) {
     productService.deleteProduct(id);
     return "Se eliminó el producto: " + id;
   }
 
-  @PatchMapping(value = "/edit/{id}")
+  @PatchMapping(value = "/{id}")
   public ResponseEntity<Product> updateProduct(@PathVariable("id") int productId, @RequestBody Product product) {
     Product updatedProduct = productService.updateProduct(productId, product);
     return new ResponseEntity<>(updatedProduct, HttpStatus.OK);

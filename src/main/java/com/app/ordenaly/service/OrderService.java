@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.apache.coyote.http11.Constants.a;
 
@@ -63,12 +64,20 @@ public class OrderService {
     return orderRepository.save(order);
   }
 
-  public void deleteOrder(Integer id) {
-    orderRepository.deleteById(id);
-  }
-
-  public Order getOrder(Integer id) {
-    return orderRepository.findById(id).orElse(null);
+  public OrderDto findOrderById(Integer id) {
+    // 1. Buscar en la DB
+    Order order = orderRepository.findById(id).orElse(null);
+    // 2. Validar si existe
+    if ( order != null) {
+      // 3. Convertir la Entidad en un flujo
+      Stream<Order> orderStream = Stream.of(order);
+      // 4. Realizar la transformacion y recolectar el resultado en un Dto
+      OrderDto orderDto = orderStream.map(orderMapper::orderToOrderDto)
+              .findFirst() // Recoge el primer resultado (en este caso, el único)
+              .orElse(null); // Devuelve null si no hay resultados
+      return orderDto;
+    }
+    return null;
   }
 
   public List<OrderDto> getOrders() {
@@ -76,6 +85,10 @@ public class OrderService {
     return orders.stream()
             .map(orderMapper::orderToOrderDto)
             .collect(Collectors.toList());
+  }
+
+  public void deleteOrder(Integer id) {
+    orderRepository.deleteById(id);
   }
 
 
