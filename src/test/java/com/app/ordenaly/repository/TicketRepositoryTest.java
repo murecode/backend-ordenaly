@@ -18,10 +18,8 @@ import static org.springframework.context.annotation.ConfigurationClassUtils.get
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(value = false)
 class TicketRepositoryTest {
-
   @Autowired
   TicketRepository ticketRepository;
-
   @Test
   void testGenerateTicket() {
 

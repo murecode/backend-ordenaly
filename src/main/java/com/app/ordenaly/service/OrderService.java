@@ -33,22 +33,20 @@ public class OrderService {
   ItemService itemService;
 
 
-  public Order createOrder(int ticket, int user) {
+  public Order createOrder(int ticketId, int userId) {
+    Ticket ticket = ticketRepository.findById(ticketId).get();
+    User waiter = userRepository.findById(userId).get();
 
-    Ticket turno = ticketRepository.findById(ticket).orElse(null);
-    User mesero = userRepository.findById(user).orElse(null);
+    if(ticket != null && waiter != null) {
 
-    if (turno != null && mesero != null) {
       Order newOrder = new Order();
-      newOrder.setTicket(turno);
-      newOrder.setUser(mesero);
+      newOrder.setTicket(newOrder.getTicket());
+      newOrder.setUser(newOrder.getUser());
       newOrder.setOrderStatus(OrderStatus.SIN_ATENDER);
       newOrder.setPaymentStatus(PaymentStatus.PENDIENTE);
       //Se asocia el id de la orden con el ticket
-      turno.setOrder(newOrder);
-
+      ticket.setOrder(newOrder);
       return orderRepository.save(newOrder);
-
     } else {
       return null;
     }

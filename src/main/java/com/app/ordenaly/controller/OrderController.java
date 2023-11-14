@@ -23,18 +23,20 @@ public class OrderController {
   OrderMapper orderMapper;
 
   @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Order> generateOrder(@RequestParam int ticket, @RequestParam int waiter) {
-    Order order =  orderService.createOrder(ticket, waiter);
-    return new ResponseEntity<>(order, HttpStatus.OK);
+  public ResponseEntity<Order> generateOrder(
+          @RequestParam(name = "ticketId") int ticketId,
+          @RequestParam(name = "waiterId") int waiterId ) {
+    Order order = orderService.createOrder(ticketId, waiterId);
+    return ResponseEntity.ok().build();
   }
 
   @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Order>  createItem(
+  public ResponseEntity<String>  createItem(
           @RequestParam(name = "orderId") int orderId,
           @RequestParam(name = "productId") int productId,
           @RequestParam(name = "quantity") int quantity) {
     Order item = orderService.addItemToOrder(orderId, productId, quantity);
-    return new ResponseEntity<>(item, HttpStatus.ACCEPTED);
+    return ResponseEntity.ok("Item agregado al pedido");
   }
 
   @GetMapping("/{id}")
