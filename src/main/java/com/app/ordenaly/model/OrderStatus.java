@@ -1,6 +1,6 @@
 package com.app.ordenaly.model;
 
 public enum OrderStatus {
-  PENDIENTE,
-  COMPLETA
+  SIN_ATENDER,
+  ATENDIDA
 }

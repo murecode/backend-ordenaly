@@ -16,7 +16,9 @@ public interface OrderMapper {
           @Mapping(source = "ticket.id", target = "turno"),
           @Mapping(source = "user.firstname", target = "mesero"),
           @Mapping(source = "orderStatus", target = "estado"),
+          @Mapping(source = "paymentStatus", target = "pago"),
           @Mapping(source = "itemList", target = "pedido"),
+
 
   })
   OrderDto orderToOrderDto(Order order);

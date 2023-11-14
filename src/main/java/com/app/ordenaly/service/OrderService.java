@@ -42,7 +42,8 @@ public class OrderService {
       Order newOrder = new Order();
       newOrder.setTicket(turno);
       newOrder.setUser(mesero);
-      newOrder.setOrderStatus(OrderStatus.PENDIENTE);
+      newOrder.setOrderStatus(OrderStatus.SIN_ATENDER);
+      newOrder.setPaymentStatus(PaymentStatus.PENDIENTE);
       //Se asocia el id de la orden con el ticket
       turno.setOrder(newOrder);
 

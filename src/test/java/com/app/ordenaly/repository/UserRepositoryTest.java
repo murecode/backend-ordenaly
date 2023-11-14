@@ -24,11 +24,11 @@ class UserRepositoryTest {
   @Test
   void testCreateUser() {
     User user = new User();
-    user.setFirstname("Marta");
-    user.setLastname("Sanchez");
-    user.setEmail("marsa@ordenaly.com");
-    user.setPassword("ytrewq");
-    user.setRole(UserRole.MESERO);
+    user.setFirstname("Camila");
+    user.setLastname("Restrepo");
+    user.setEmail("care@ordenaly.com");
+    user.setPassword("123qwe");
+    user.setRole(UserRole.USER);
 
     userRepository.save(user);
   }

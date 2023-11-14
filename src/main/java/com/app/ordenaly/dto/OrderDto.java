@@ -15,17 +15,10 @@ public class OrderDto {
   private int turno;
   private String mesero;
   private String estado;
+  private String pago;
   private List<ItemDto> pedido;
 
   public OrderDto() {};
-
-  public OrderDto(int id, int turno, String mesero, String estado, List<ItemDto> pedido) {
-    this.id = id;
-    this.turno = turno;
-    this.mesero = mesero;
-    this.estado = estado;
-    this.pedido = pedido;
-  }
 
   public int getId() {
     return id;
@@ -59,6 +52,14 @@ public class OrderDto {
     this.estado = estado;
   }
 
+  public String getPago() {
+    return pago;
+  }
+
+  public void setPago(String pago) {
+    this.pago = pago;
+  }
+
   public List<ItemDto> getPedido() {
     return pedido;
   }
@@ -66,4 +67,5 @@ public class OrderDto {
   public void setPedido(List<ItemDto> pedido) {
     this.pedido = pedido;
   }
+
 }

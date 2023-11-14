@@ -32,7 +32,8 @@ class OrderRepositoryTest {
     Order order = new Order();
     order.setTicket(ticket);
     order.setUser(waiter);
-    order.setOrderStatus(OrderStatus.PENDIENTE);
+    order.setOrderStatus(OrderStatus.SIN_ATENDER);
+    order.setPaymentStatus(PaymentStatus.PENDIENTE);
 
     Order saveOrder = orderRepository.save(order);
 
@@ -65,13 +66,15 @@ class OrderRepositoryTest {
 
   @Test
   void testUpdateOrderStatus() {
-    Order order = entityManager.find(Order.class, 35);
+    Order order = entityManager.find(Order.class, 53);
 
-    order.setOrderStatus(OrderStatus.PENDIENTE);
+    order.setOrderStatus(OrderStatus.ATENDIDA);
+    order.setPaymentStatus(PaymentStatus.PAGADA);
 
     orderRepository.save(order);
 
-    assertTrue( order.getOrderStatus() != OrderStatus.COMPLETA );
+    assertTrue( order.getOrderStatus() == OrderStatus.ATENDIDA );
+    assertTrue( order.getPaymentStatus() == PaymentStatus.PAGADA);
   }
 
   @Test

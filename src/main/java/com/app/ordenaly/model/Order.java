@@ -34,6 +34,10 @@ public class Order {
   @Enumerated()
   private OrderStatus orderStatus;
 
+  @Column(name = "PAYMENT_STATUS")
+  @Enumerated()
+  private PaymentStatus paymentStatus;
+
   public Order() {};
 
   public String getType() {
@@ -90,4 +94,15 @@ public class Order {
   public void setOrderStatus(OrderStatus orderStatus) {
     this.orderStatus = orderStatus;
   }
+
+  public PaymentStatus getPaymentStatus() {
+    return paymentStatus;
+  }
+
+  public void setPaymentStatus(PaymentStatus paymentStatus) {
+    this.paymentStatus = paymentStatus;
+  }
+
 }
+
+
