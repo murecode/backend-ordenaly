@@ -24,10 +24,14 @@ public class OrderController {
 
   @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Order> generateOrder(
-          @RequestParam(name = "ticketId") int ticketId,
-          @RequestParam(name = "waiterId") int waiterId ) {
-    Order order = orderService.createOrder(ticketId, waiterId);
-    return ResponseEntity.ok().build();
+          @RequestParam(value = "ticket") int ticket,
+          @RequestParam(value = "waiter") int waiter) {
+    Order order =  orderService.createOrder(ticket, waiter);
+    if(order != null) {
+      return ResponseEntity.ok().build();
+    } else {
+      return ResponseEntity.badRequest().build();
+    }
   }
 
   @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
