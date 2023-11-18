@@ -1,19 +1,18 @@
 package com.app.ordenaly.service;
 
+import com.app.ordenaly.model.User;
 import com.app.ordenaly.dto.OrderDto;
 import com.app.ordenaly.dto.mapper.OrderMapper;
 import com.app.ordenaly.model.*;
 import com.app.ordenaly.repository.*;
-import org.aspectj.weaver.ast.Or;
+import com.app.ordenaly.utils.OrderStatus;
+import com.app.ordenaly.utils.PaymentStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static org.apache.coyote.http11.Constants.a;
 
 @Service
 public class OrderService {

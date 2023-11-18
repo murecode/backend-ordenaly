@@ -1,5 +1,6 @@
-package com.app.ordenaly.auth;
+package com.app.ordenaly.service;
 
+import com.app.ordenaly.dto.AuthResponse;
 import org.springframework.stereotype.Service;
 
 @Service

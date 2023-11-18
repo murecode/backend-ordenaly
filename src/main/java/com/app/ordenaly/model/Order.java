@@ -1,10 +1,11 @@
 package com.app.ordenaly.model;
 
+import com.app.ordenaly.utils.OrderStatus;
+import com.app.ordenaly.utils.PaymentStatus;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Entity
 @Table(name = "ORDERS")
@@ -31,11 +32,11 @@ public class Order {
   private List<Item> itemlist = new ArrayList<>();
 
   @Column(name = "ORDER_STATUS")
-  @Enumerated()
+  @Enumerated(EnumType.STRING)
   private OrderStatus orderStatus;
 
   @Column(name = "PAYMENT_STATUS")
-  @Enumerated()
+  @Enumerated(EnumType.STRING)
   private PaymentStatus paymentStatus;
 
   public Order() {};

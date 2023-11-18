@@ -1,13 +1,5 @@
 package com.app.ordenaly.dto;
 
-import com.app.ordenaly.model.Item;
-import com.app.ordenaly.model.OrderStatus;
-import com.app.ordenaly.model.Ticket;
-import com.app.ordenaly.model.User;
-
-import java.io.Serializable;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDto {

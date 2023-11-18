@@ -1,6 +1,9 @@
 package com.app.ordenaly.repository;
 
+import com.app.ordenaly.model.User;
 import com.app.ordenaly.model.*;
+import com.app.ordenaly.utils.OrderStatus;
+import com.app.ordenaly.utils.PaymentStatus;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
