@@ -1,5 +1,6 @@
 package com.app.ordenaly.config.security;
 
+import com.app.ordenaly.utils.Permissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,13 +27,14 @@ public class HttpSecurityConfig {
             .authenticationProvider(authenticationProvider)
             .authorizeHttpRequests((authorize) -> {
 
-              authorize.requestMatchers(HttpMethod.POST, "/auth/login").permitAll();
-              authorize.requestMatchers(HttpMethod.GET, "/auth/register").permitAll();
+              authorize.requestMatchers(HttpMethod.POST, "/auth/authenticate").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/auth/public-access").permitAll();
               authorize.requestMatchers("/error").permitAll();
 
-              authorize.requestMatchers(HttpMethod.GET, "products").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/products/list").hasAuthority(Permissions.RETRIEVE_ALL_PRODUCTS.name());
+              authorize.requestMatchers(HttpMethod.GET, "/products").hasAuthority(Permissions.SAVE_A_PRODUCT.name());
 
-
+              authorize.anyRequest().denyAll();
             });
 
 
