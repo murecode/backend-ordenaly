@@ -35,7 +35,7 @@ class OrderRepositoryTest {
     Order order = new Order();
     order.setTicket(ticket);
     order.setUser(waiter);
-    order.setOrderStatus(OrderStatus.SIN_ATENDER);
+    order.setOrderStatus(OrderStatus.PENDIENTE);
     order.setPaymentStatus(PaymentStatus.PENDIENTE);
 
     Order saveOrder = orderRepository.save(order);

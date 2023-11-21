@@ -18,9 +18,8 @@ public interface OrderMapper {
           @Mapping(source = "orderStatus", target = "estado"),
           @Mapping(source = "paymentStatus", target = "pago"),
           @Mapping(source = "itemList", target = "pedido"),
-
-
   })
+
   OrderDto orderToOrderDto(Order order);
   @InheritInverseConfiguration
   Order orderDtoToOrder(OrderDto orderDto);

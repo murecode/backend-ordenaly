@@ -40,7 +40,7 @@ public class OrderService {
       Order newOrder = new Order();
       newOrder.setTicket(ticket);
       newOrder.setUser(waiter);
-      newOrder.setOrderStatus(OrderStatus.SIN_ATENDER);
+      newOrder.setOrderStatus(OrderStatus.PENDIENTE);
       newOrder.setPaymentStatus(PaymentStatus.PENDIENTE);
 
       //Se asocia el id de la orden con el ticket
