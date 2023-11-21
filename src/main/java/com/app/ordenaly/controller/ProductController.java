@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/products")
+@RequestMapping(value = "/products")
 public class ProductController {
   @Autowired
   private ProductService productService;
@@ -24,6 +24,7 @@ public class ProductController {
     return new ResponseEntity<Product>(createdProduct, HttpStatus.CREATED);
   }
 
+  @CrossOrigin(origins = "http://localhost:4200")
   @GetMapping(value = "/list")
   public List<ProductDto> listAllProducts(){
     return productService.getProducts();

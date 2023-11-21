@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/orders")
+@RequestMapping("/orders")
 public class OrderController {
   @Autowired
   OrderService orderService;
@@ -53,6 +53,7 @@ public class OrderController {
     }
   }
 
+  @CrossOrigin(origins = "http://localhost:4200")
   @GetMapping("/list")
   public List<OrderDto> listOrders() {
     return orderService.getOrders();
@@ -71,3 +72,4 @@ public class OrderController {
   }
 
 }
+

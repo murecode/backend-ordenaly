@@ -22,7 +22,7 @@ public class HttpSecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
-            .csrf(csrfConfig -> csrfConfig.disable()) //1.
+            .csrf(csrfConfig -> csrfConfig.disable()) //1
             .sessionManagement( sessionMangConfig -> sessionMangConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authenticationProvider(authenticationProvider)
             .authorizeHttpRequests((authorize) -> {
@@ -31,7 +31,9 @@ public class HttpSecurityConfig {
               authorize.requestMatchers(HttpMethod.GET, "/auth/public-access").permitAll();
               authorize.requestMatchers("/error").permitAll();
 
-              authorize.requestMatchers(HttpMethod.GET, "/api/v1/orders/list").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/orders/list").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/products/list").permitAll();
+
               authorize.requestMatchers(HttpMethod.GET, "/api/v1/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.PATCH, "/api/v1/orders/{id}").permitAll();
 
