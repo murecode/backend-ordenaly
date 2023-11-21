@@ -30,7 +30,10 @@ public class HttpSecurityConfig {
               authorize.requestMatchers(HttpMethod.POST, "/auth/authenticate").permitAll();
               authorize.requestMatchers(HttpMethod.GET, "/auth/public-access").permitAll();
               authorize.requestMatchers("/error").permitAll();
+
               authorize.requestMatchers(HttpMethod.GET, "/api/v1/orders/list").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/api/v1/orders/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.PATCH, "/api/v1/orders/{id}").permitAll();
 
               authorize.requestMatchers(HttpMethod.GET, "/products/list").hasAuthority(Permissions.RETRIEVE_ALL_PRODUCTS.name());
               authorize.requestMatchers(HttpMethod.GET, "/products").hasAuthority(Permissions.SAVE_A_PRODUCT.name());

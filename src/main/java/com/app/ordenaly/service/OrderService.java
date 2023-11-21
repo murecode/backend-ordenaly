@@ -42,14 +42,10 @@ public class OrderService {
       newOrder.setUser(waiter);
       newOrder.setOrderStatus(OrderStatus.PENDIENTE);
       newOrder.setPaymentStatus(PaymentStatus.PENDIENTE);
-
       //Se asocia el id de la orden con el ticket
       ticket.setOrder(newOrder);
-
       Order saveOrder = orderRepository.save(newOrder);
-
       return saveOrder;
-
     } else {
       return null;
     }
@@ -87,6 +83,12 @@ public class OrderService {
     return orders.stream()
             .map(orderMapper::orderToOrderDto)
             .collect(Collectors.toList());
+  }
+
+  public Order updateOrder(int id, Order order) {
+    Order orderId = orderRepository.findById(id).get();
+    order.setId(orderId.getId());
+    return orderRepository.save(order);
   }
 
   public void deleteOrder(Integer id) {
