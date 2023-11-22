@@ -1,9 +1,11 @@
 package com.app.ordenaly.config.security;
 
 import com.app.ordenaly.utils.Permissions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.Customizer;
@@ -16,13 +18,14 @@ import java.security.Permission;
 
 @Configuration
 @EnableWebSecurity
+@Profile("test")
 public class HttpSecurityConfig {
   @Autowired
   private AuthenticationProvider authenticationProvider;
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
-            .csrf(csrfConfig -> csrfConfig.disable()) //1
+            .csrf(csrfConfig -> csrfConfig.disable()) //*
             .sessionManagement( sessionMangConfig -> sessionMangConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authenticationProvider(authenticationProvider)
             .authorizeHttpRequests((authorize) -> {
@@ -34,11 +37,11 @@ public class HttpSecurityConfig {
               authorize.requestMatchers(HttpMethod.GET, "/orders/list").permitAll();
               authorize.requestMatchers(HttpMethod.GET, "/products/list").permitAll();
 
-              authorize.requestMatchers(HttpMethod.GET, "/api/v1/orders/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.PATCH, "/api/v1/orders/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/orders/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.PATCH, "/orders/{id}").permitAll();
 
-              authorize.requestMatchers(HttpMethod.GET, "/products/list").hasAuthority(Permissions.RETRIEVE_ALL_PRODUCTS.name());
-              authorize.requestMatchers(HttpMethod.GET, "/products").hasAuthority(Permissions.SAVE_A_PRODUCT.name());
+//              authorize.requestMatchers(HttpMethod.GET, "/products/list").hasAuthority(Permissions.RETRIEVE_ALL_PRODUCTS.name());
+//              authorize.requestMatchers(HttpMethod.GET, "/products").hasAuthority(Permissions.SAVE_A_PRODUCT.name());
 
               authorize.anyRequest().denyAll();
             });
@@ -49,4 +52,4 @@ public class HttpSecurityConfig {
 
 }
 
-//1.
+//*

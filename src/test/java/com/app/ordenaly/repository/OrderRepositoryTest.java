@@ -13,7 +13,7 @@ import org.springframework.test.annotation.Rollback;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DataJpaTest
+@DataJpaTest //(*)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(value = false)
 class OrderRepositoryTest {
@@ -72,12 +72,12 @@ class OrderRepositoryTest {
     Order order = entityManager.find(Order.class, 53);
 
     order.setOrderStatus(OrderStatus.ATENDIDA);
-    order.setPaymentStatus(PaymentStatus.PAGADA);
+    order.setPaymentStatus(PaymentStatus.REALIZADO);
 
     orderRepository.save(order);
 
     assertTrue( order.getOrderStatus() == OrderStatus.ATENDIDA );
-    assertTrue( order.getPaymentStatus() == PaymentStatus.PAGADA);
+    assertTrue( order.getPaymentStatus() == PaymentStatus.REALIZADO);
   }
 
   @Test
@@ -90,3 +90,5 @@ class OrderRepositoryTest {
   }
 
 }
+
+//(*) Configurar y personalizar las pruebas unitarias centradas en la capa de acceso a datos

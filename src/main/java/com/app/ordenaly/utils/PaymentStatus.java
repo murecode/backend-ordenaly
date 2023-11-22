@@ -1,5 +1,5 @@
 package com.app.ordenaly.utils;
 
 public enum PaymentStatus {
-  PENDIENTE, PAGADA
+  PENDIENTE, REALIZADO
 }

@@ -4,6 +4,8 @@ import com.app.ordenaly.model.Order;
 import com.app.ordenaly.model.Ticket;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -17,6 +19,7 @@ import static org.springframework.context.annotation.ConfigurationClassUtils.get
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(value = false)
+@ExtendWith(MockitoExtension.class)
 class TicketRepositoryTest {
   @Autowired
   TicketRepository ticketRepository;
