@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/tickets")
+@RequestMapping(value = "/tickets")
 public class TicketController {
   @Autowired
   TicketService ticketService;

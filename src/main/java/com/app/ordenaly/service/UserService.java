@@ -4,6 +4,7 @@ import com.app.ordenaly.dto.UserDto;
 import com.app.ordenaly.dto.mapper.UserMapper;
 import com.app.ordenaly.model.User;
 import com.app.ordenaly.repository.UserRepository;
+import com.app.ordenaly.utils.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -18,8 +19,19 @@ public class UserService {
   @Autowired
   private UserMapper userMapper;
 
-  public User createUser() {
-    return null;
+  public void createUser(User user, Roles rol) {
+
+    // Verificar si el usuario que realiza la acción tiene el rol de "Administrador"
+    // Verificar que el nuevo usuario no exista
+    // ...
+
+    // Asignar informacion al nuevo usuario
+    // usuario.setUsername(username);
+    // usuario.setRoles(roles);
+
+    // Lógica para crear el nuevo usuario
+    // usuarioRepository.save(usuario);
+
   }
 
   public List<UserDto> findAllUsers() {

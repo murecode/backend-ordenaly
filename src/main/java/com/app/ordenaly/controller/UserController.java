@@ -3,6 +3,7 @@ package com.app.ordenaly.controller;
 import com.app.ordenaly.dto.UserDto;
 import com.app.ordenaly.model.User;
 import com.app.ordenaly.service.UserService;
+import com.app.ordenaly.utils.Roles;
 import jakarta.persistence.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,12 +24,14 @@ public class UserController {
   }
 
   @PostMapping(value = "/new")
-  public ResponseEntity<String> createUser() {
+  public ResponseEntity<String> createUser(
+          @RequestBody User user, @RequestParam Roles rol) {
+    userService.createUser(user, rol);
     return new ResponseEntity<>("Usuario creado",HttpStatus.CREATED);
   }
 
-  @DeleteMapping(value = "{id}")
-  public ResponseEntity<Void> deleteUser(@RequestParam("id") int id) {
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> deleteUser(@PathVariable("id") int id) {
     userService.deleteUser(id);
     return new ResponseEntity<>(HttpStatus.OK);
   }

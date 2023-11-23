@@ -39,22 +39,22 @@ public class HttpSecurityConfig {
 
               authorize.requestMatchers(HttpMethod.GET, "/products/list").permitAll();
 
+              authorize.requestMatchers(HttpMethod.GET, "/tickets/list").permitAll();
+
               authorize.requestMatchers(HttpMethod.GET,"/users/list").permitAll();
               authorize.requestMatchers(HttpMethod.POST,"/users/new").permitAll();
-              authorize.requestMatchers(HttpMethod.DELETE, "/users").permitAll();
+              authorize.requestMatchers(HttpMethod.DELETE, "/users/{id}").permitAll();
 
-
-
-//              authorize.requestMatchers(HttpMethod.GET, "/products/list").hasAuthority(Permissions.RETRIEVE_ALL_PRODUCTS.name());
+//              authorize.requestMatchers(HttpMethod.DELETE, "/users/{id}").hasAuthority(Permissions.DELETE_USER.name());
+//              authorize.requestMatchers(HttpMethod.GET, "/products/list").hasAuthority(Permissions.DELETE_PRODUCT.name());
 //              authorize.requestMatchers(HttpMethod.GET, "/products").hasAuthority(Permissions.SAVE_A_PRODUCT.name());
 
               authorize.anyRequest().denyAll();
             });
-
 
     return http.build();
   }
 
 }
 
-//*
+//* Deshabilita los origenes cruzados

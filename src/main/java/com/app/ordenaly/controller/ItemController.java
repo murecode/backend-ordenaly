@@ -11,7 +11,7 @@ import com.app.ordenaly.model.Item;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/items")
+@RequestMapping(value = "/items")
 public class ItemController {
 
   @Autowired
@@ -22,13 +22,6 @@ public class ItemController {
   public Item getItemById(@PathVariable("id") Integer id ) {
     return itemService.getItemById(id);
   }
-
-//  @PostMapping("/new/{productId}/{quantity}")
-//  public Item createItem(
-//          @PathVariable(name = "productId") Integer product_id,
-//          @PathVariable(name = "quantity") Integer quantity) {
-//    return itemService.generateItem(product_id, quantity);
-//  }
 
   @GetMapping("/list")
   public List<ItemDto> listItems() {

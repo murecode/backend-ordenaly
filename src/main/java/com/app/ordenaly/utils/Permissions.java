@@ -1,7 +1,8 @@
 package com.app.ordenaly.utils;
 
 public enum Permissions {
-  RETRIEVE_ALL_PRODUCTS,
-  SAVE_A_PRODUCT
+  READ_PRODUCTS, READ_ORDERS,
+  SAVE_PRODUCT, SAVE_USER,
+  DELETE_USER, DELETE_PRODUCT,
 
 }
