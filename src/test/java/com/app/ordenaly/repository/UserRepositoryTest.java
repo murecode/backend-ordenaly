@@ -22,14 +22,21 @@ class UserRepositoryTest {
   @Test
   void testCreateUser() {
     User user = new User();
-    user.setFirstname("Camila");
-    user.setLastname("Restrepo");
-    user.setEmail("care@ordenaly.com");
-    user.setPassword("123qwe");
-    user.setRole(Roles.STAFF);
+    user.setUsername("admu");
+    user.setFirstname("Adalberto");
+    user.setLastname("Murillo");
+    user.setEmail("admu@ordenaly.com");
+    user.setPassword("123456");
+    user.setRole(Roles.ADMIN);
 
     userRepository.save(user);
   }
+
+  @Test
+  void testUpdateUser() {}
+
+  @Test
+  void testDeleteUser() {}
 
 }
 

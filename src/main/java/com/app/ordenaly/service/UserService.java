@@ -18,11 +18,20 @@ public class UserService {
   @Autowired
   private UserMapper userMapper;
 
+  public User createUser() {
+    return null;
+  }
+
   public List<UserDto> findAllUsers() {
     List<User> users = userRepository.findAll();
     return users.stream()
             .map(userMapper::UserToUserDto)
             .collect(Collectors.toList());
+  }
+
+  public void deleteUser(int id) {
+    User user = userRepository.findById(id).get();
+    userRepository.deleteById(user.getId());
   }
 
 }

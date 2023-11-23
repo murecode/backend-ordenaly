@@ -12,8 +12,9 @@ public class OrdenalyApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OrdenalyApplication.class, args);
 	}
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
 
 	// GENERA LA CONTRASEÑA
 //	@Bean

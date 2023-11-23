@@ -5,6 +5,8 @@ import com.app.ordenaly.model.*;
 import com.app.ordenaly.utils.OrderStatus;
 import com.app.ordenaly.utils.PaymentStatus;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -16,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest //(*)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(value = false)
+//@ExtendWith(MockitoExtension.class)
 class OrderRepositoryTest {
 
   @Autowired
@@ -29,7 +32,7 @@ class OrderRepositoryTest {
 
   @Test
   void testGenerateOrder() {
-    Ticket ticket = entityManager.find(Ticket.class, 8);
+    Ticket ticket = entityManager.find(Ticket.class, 16);
     User waiter = entityManager.find(User.class, 1);
 
     Order order = new Order();
@@ -69,14 +72,14 @@ class OrderRepositoryTest {
 
   @Test
   void testUpdateOrderStatus() {
-    Order order = entityManager.find(Order.class, 53);
+    Order order = entityManager.find(Order.class, 54);
 
-    order.setOrderStatus(OrderStatus.ATENDIDA);
+    order.setOrderStatus(OrderStatus.PENDIENTE);
     order.setPaymentStatus(PaymentStatus.REALIZADO);
 
     orderRepository.save(order);
 
-    assertTrue( order.getOrderStatus() == OrderStatus.ATENDIDA );
+    assertTrue( order.getOrderStatus() == OrderStatus.PENDIENTE );
     assertTrue( order.getPaymentStatus() == PaymentStatus.REALIZADO);
   }
 

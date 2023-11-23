@@ -18,7 +18,6 @@ import java.security.Permission;
 
 @Configuration
 @EnableWebSecurity
-@Profile("test")
 public class HttpSecurityConfig {
   @Autowired
   private AuthenticationProvider authenticationProvider;
@@ -35,10 +34,16 @@ public class HttpSecurityConfig {
               authorize.requestMatchers("/error").permitAll();
 
               authorize.requestMatchers(HttpMethod.GET, "/orders/list").permitAll();
-              authorize.requestMatchers(HttpMethod.GET, "/products/list").permitAll();
-
               authorize.requestMatchers(HttpMethod.GET, "/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.PATCH, "/orders/{id}").permitAll();
+
+              authorize.requestMatchers(HttpMethod.GET, "/products/list").permitAll();
+
+              authorize.requestMatchers(HttpMethod.GET,"/users/list").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,"/users/new").permitAll();
+              authorize.requestMatchers(HttpMethod.DELETE, "/users").permitAll();
+
+
 
 //              authorize.requestMatchers(HttpMethod.GET, "/products/list").hasAuthority(Permissions.RETRIEVE_ALL_PRODUCTS.name());
 //              authorize.requestMatchers(HttpMethod.GET, "/products").hasAuthority(Permissions.SAVE_A_PRODUCT.name());
