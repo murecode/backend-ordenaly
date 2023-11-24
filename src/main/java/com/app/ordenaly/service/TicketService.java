@@ -18,7 +18,6 @@ public class TicketService {
   @Autowired
   private TicketMapper ticketMapper;
 
-
   public List<TicketDto> getAllTickets() {
     List<Ticket> tickets = ticketRepository.findAll();
     return tickets.stream()
@@ -30,6 +29,11 @@ public class TicketService {
     Ticket ticket = new Ticket();
     ticket.setTime(LocalTime.now());
     return ticketRepository.save(ticket);
+  }
+
+  public Ticket getTicketById(int id) {
+    Ticket ticket = ticketRepository.findById(id).get();
+    return ticket;
   }
 
 }

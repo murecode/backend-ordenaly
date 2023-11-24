@@ -7,6 +7,7 @@ import com.app.ordenaly.model.*;
 import com.app.ordenaly.repository.*;
 import com.app.ordenaly.utils.OrderStatus;
 import com.app.ordenaly.utils.PaymentStatus;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,19 +37,18 @@ public class OrderService {
     Ticket ticket = ticketRepository.findById(ticketId).get();
     User waiter = userRepository.findById(userId).get();
 
-    if (ticket != null && waiter != null) {
-      Order newOrder = new Order();
-      newOrder.setTicket(ticket);
-      newOrder.setUser(waiter);
-      newOrder.setOrderStatus(OrderStatus.PENDIENTE);
-      newOrder.setPaymentStatus(PaymentStatus.PENDIENTE);
-      //Se asocia el id de la orden con el ticket
-      ticket.setOrder(newOrder);
-      Order saveOrder = orderRepository.save(newOrder);
-      return saveOrder;
-    } else {
-      return null;
-    }
+    if (ticket == null) { throw new EntityNotFoundException("Ticket no encontrado"); }
+    if (waiter == null) { throw new EntityNotFoundException("User no encontrado"); }
+
+    Order newOrder = new Order();
+    newOrder.setTicket(ticket);
+    newOrder.setUser(waiter);
+    newOrder.setOrderStatus(OrderStatus.PENDIENTE);
+    newOrder.setPaymentStatus(PaymentStatus.PENDIENTE);
+    //Se asocia el id de la orden con el ticket
+    ticket.setOrder(newOrder);
+    Order saveOrder = orderRepository.save(newOrder);
+    return saveOrder;
   }
 
   public Order addItemToOrder(int orderId, int productId, int quantity) {
