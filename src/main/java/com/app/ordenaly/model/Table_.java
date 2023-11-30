@@ -12,7 +12,7 @@ public class Table_ {
   @Column(name = "TABLE_ID")
   private Integer id;
 
-  @Column(name = "IDENTIFIER", length = 45)
+  @Column(name = "IDENTIFIER", length = 12)
   private String identifier;
 
 

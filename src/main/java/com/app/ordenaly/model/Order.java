@@ -27,6 +27,10 @@ public class Order {
   @JoinColumn(name = "WAITER")
   private User waiter;
 
+  @OneToOne
+  @JoinColumn(name = "TABLE_")
+  private Table_ table;
+
   @ElementCollection
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Item> itemlist = new ArrayList<>();
@@ -71,6 +75,14 @@ public class Order {
 
   public void setUser(User waiter) {
     this.waiter = waiter;
+  }
+
+  public Table_ getTable() {
+    return table;
+  }
+
+  public void setTable(Table_ table) {
+    this.table = table;
   }
 
   public List<Item> getItemList() {

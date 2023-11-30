@@ -6,6 +6,7 @@ public class OrderDto {
   private int id;
   private int turno;
   private String mesero;
+  private String mesa;
   private String estado;
   private String pago;
   private List<ItemDto> pedido;
@@ -34,6 +35,14 @@ public class OrderDto {
 
   public void setMesero(String mesero) {
     this.mesero = mesero;
+  }
+
+  public String getMesa() {
+    return mesa;
+  }
+
+  public void setMesa(String mesa) {
+    this.mesa = mesa;
   }
 
   public String getEstado() {
