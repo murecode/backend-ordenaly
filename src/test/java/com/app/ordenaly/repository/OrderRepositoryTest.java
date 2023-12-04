@@ -32,7 +32,7 @@ class OrderRepositoryTest {
 
   @Test
   void testGenerateOrder() {
-    Ticket ticket = entityManager.find(Ticket.class, 16);
+    Ticket ticket = entityManager.find(Ticket.class, 1);
     User waiter = entityManager.find(User.class, 1);
 
     Order order = new Order();
