@@ -30,6 +30,11 @@ public class ProductController {
     return productService.getProducts();
   }
 
+  @GetMapping(path = "/{id}")
+  public Product getProductById(@PathVariable Integer id) {
+    return productService.getProduct(id);
+  }
+
   @DeleteMapping(value = "/{id}")
   public String removeProduct(@PathVariable Integer id) {
     productService.deleteProduct(id);

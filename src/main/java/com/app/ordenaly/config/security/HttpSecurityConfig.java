@@ -38,6 +38,7 @@ public class HttpSecurityConfig {
               authorize.requestMatchers(HttpMethod.PATCH, "/orders/{id}").permitAll();
 
               authorize.requestMatchers(HttpMethod.GET, "/products/list").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "products/{id}").permitAll();
 
               authorize.requestMatchers(HttpMethod.GET, "/tickets/list").permitAll();
               authorize.requestMatchers(HttpMethod.POST, "/tickets/new").permitAll();

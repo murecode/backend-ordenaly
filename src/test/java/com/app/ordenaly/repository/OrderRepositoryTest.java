@@ -72,24 +72,24 @@ class OrderRepositoryTest {
 
   @Test
   void testUpdateOrderStatus() {
-    Order order = entityManager.find(Order.class, 54);
+    Order order = entityManager.find(Order.class, 1);
 
-    order.setOrderStatus(OrderStatus.PENDIENTE);
+    order.setOrderStatus(OrderStatus.ATENDIDA);
     order.setPaymentStatus(PaymentStatus.REALIZADO);
 
     orderRepository.save(order);
 
-    assertTrue( order.getOrderStatus() == OrderStatus.PENDIENTE );
+    assertTrue( order.getOrderStatus() == OrderStatus.ATENDIDA );
     assertTrue( order.getPaymentStatus() == PaymentStatus.REALIZADO);
   }
 
   @Test
   void testDeleteOrder() {
-    Order order = entityManager.find(Order.class, 35);
+    Order order = entityManager.find(Order.class, 4);
 
     orderRepository.deleteById(order.getId());
 
-    assertTrue( order.getId() == 35 );
+    assertTrue( order.getId() == 4 );
   }
 
 }

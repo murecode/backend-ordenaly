@@ -31,15 +31,12 @@ public class ProductService {
     productRepository.deleteById(id);
   }
 
-  public Product getProduct(Integer id) { return productRepository.findById(id).orElse(null); }
+  public Product getProduct(Integer id) { return productRepository.findById(id).get(); }
 
   public Product updateProduct(int productId, Product product) {
     Product id = productRepository.findById(productId).get();
-
     product.setId(id.getId());
-
     return productRepository.save(product);
-
   }
 
   public List<ProductDto> getProducts() {

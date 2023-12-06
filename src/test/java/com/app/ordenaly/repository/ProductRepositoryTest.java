@@ -23,15 +23,14 @@ class ProductRepositoryTest {
   @Test
   void testCreateNewProduct() {
     Product product1 = new Product();
-    product1.setProductName("Pizza");
-    product1.setDescription("");
-    product1.setInStock(false);
-    product1.setPrice(9000.);
+    product1.setProductName("Hambuergesa");
+    product1.setDescription("carne | cebolla | tomate");
+    product1.setInStock(true);
+    product1.setPrice(12000.);
 
     Product saveNewProduct = productRepository.save(product1);
 
     assertTrue(saveNewProduct.getId() > 0);
-
   }
 
   @Test
