@@ -1,22 +1,22 @@
 package com.app.ordenaly.dto;
 
 public class UserDto {
-  private int id;
+  private int userId;
   private String nombre;
   private String rol;
 
-  public UserDto(int id, String nombre, String rol) {
-    this.id = id;
+  public UserDto(int userId, String nombre, String rol) {
+    this.userId = userId;
     this.nombre = nombre;
     this.rol = rol;
   }
 
-  public int getId() {
-    return id;
+  public int getUserId() {
+    return userId;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public void setUserId(int userId) {
+    this.userId = userId;
   }
 
   public String getNombre() {

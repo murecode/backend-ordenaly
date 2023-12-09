@@ -24,9 +24,8 @@ public class UserController {
   }
 
   @PostMapping(value = "/new")
-  public ResponseEntity<String> createUser(
-          @RequestBody User user, @RequestParam Roles rol) {
-    userService.createUser(user, rol);
+  public ResponseEntity<String> createUser(@RequestBody User user) {
+    userService.createUser(user);
     return new ResponseEntity<>("Usuario creado",HttpStatus.CREATED);
   }
 

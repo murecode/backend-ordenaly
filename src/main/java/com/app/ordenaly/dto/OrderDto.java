@@ -3,7 +3,7 @@ package com.app.ordenaly.dto;
 import java.util.List;
 
 public class OrderDto {
-  private int id;
+  private int ordenId;
   private int turno;
   private String mesero;
   private String mesa;
@@ -13,12 +13,12 @@ public class OrderDto {
 
   public OrderDto() {};
 
-  public int getId() {
-    return id;
+  public int getOrdenId() {
+    return ordenId;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public void setOrdenId(int ordenId) {
+    this.ordenId = ordenId;
   }
 
   public int getTurno() {

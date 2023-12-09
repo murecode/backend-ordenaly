@@ -8,7 +8,7 @@ import org.mapstruct.*;
 public interface TicketMapper {
 
   @Mappings({
-          @Mapping(source = "id", target = "id"),
+          @Mapping(source = "id", target = "ticketId"),
           @Mapping(source = "time", target = "hora", dateFormat = "hh:mm:ss a"),
           @Mapping(source = "order.id", target = "orden")
   })

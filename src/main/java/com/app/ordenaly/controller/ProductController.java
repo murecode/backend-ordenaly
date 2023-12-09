@@ -19,7 +19,7 @@ public class ProductController {
   private ProductService productService;
 
   @PostMapping(path = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+  public ResponseEntity<Product> createProduct(@RequestBody ProductDto product) {
     Product createdProduct = productService.generateProduct(product);
     return new ResponseEntity<Product>(createdProduct, HttpStatus.CREATED);
   }
@@ -41,7 +41,7 @@ public class ProductController {
     return "Se eliminó el producto: " + id;
   }
 
-  @PatchMapping(value = "/{id}")
+  @PutMapping(value = "/{id}")
   public ResponseEntity<Product> updateProduct(@PathVariable("id") int productId, @RequestBody Product product) {
     Product updatedProduct = productService.updateProduct(productId, product);
     return new ResponseEntity<>(updatedProduct, HttpStatus.OK);

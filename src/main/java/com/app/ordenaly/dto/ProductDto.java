@@ -1,26 +1,26 @@
 package com.app.ordenaly.dto;
 
 public class ProductDto {
-  private int id;
+  private int productoId;
   private String nombre;
   private String descripcion;
   private Double precio;
   private Boolean disponible;
 
-  public ProductDto(int id, String nombre, String descripcion, Double precio, Boolean disponible) {
-    this.id = id;
+  public ProductDto(int productoId, String nombre, String descripcion, Double precio, Boolean disponible) {
+    this.productoId = productoId;
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.precio = precio;
     this.disponible = disponible;
   }
 
-  public int getId() {
-    return id;
+  public int getProductoId() {
+    return productoId;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public void setProductoId(int productoId) {
+    this.productoId = productoId;
   }
 
   public String getNombre() {

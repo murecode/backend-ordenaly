@@ -1,22 +1,22 @@
 package com.app.ordenaly.dto;
 
 public class TicketDto {
-  private int id;
+  private int ticketId;
   private String hora;
   private int orden;
 
-  public TicketDto(int id, String hora, int orden) {
-    this.id = id;
+  public TicketDto(int ticketId, String hora, int orden) {
+    this.ticketId = ticketId;
     this.hora = hora;
     this.orden = orden;
   }
 
-  public int getId() {
-    return id;
+  public int getTicketId() {
+    return ticketId;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public void setTicketId(int ticketId) {
+    this.ticketId = ticketId;
   }
 
   public String getHora() {

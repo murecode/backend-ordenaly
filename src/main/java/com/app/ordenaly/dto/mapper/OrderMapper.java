@@ -12,7 +12,7 @@ import java.util.List;
 public interface OrderMapper {
 
   @Mappings({
-          @Mapping(source = "id", target = "id"),
+          @Mapping(source = "id", target = "ordenId"),
           @Mapping(source = "ticket.id", target = "turno"),
           @Mapping(source = "user.firstname", target = "mesero"),
           @Mapping(source = "table.identifier", target = "mesa"),

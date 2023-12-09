@@ -18,12 +18,12 @@ public class ProductService {
   @Autowired
   ProductMapper productMapper;
 
-  public Product generateProduct(Product product){
+  public Product generateProduct(ProductDto product){
     Product newProduct = new Product();
-    newProduct.setProductName(product.getProductName());
-    newProduct.setDescription(product.getDescription());
-    newProduct.setPrice(product.getPrice());
-    newProduct.setInStock(product.getInStock());
+    newProduct.setProductName(product.getNombre());
+    newProduct.setDescription(product.getDescripcion());
+    newProduct.setPrice(product.getPrecio());
+    newProduct.setInStock(product.getDisponible());
     return productRepository.save(newProduct);
   }
 
@@ -34,8 +34,11 @@ public class ProductService {
   public Product getProduct(Integer id) { return productRepository.findById(id).get(); }
 
   public Product updateProduct(int productId, Product product) {
-    Product id = productRepository.findById(productId).get();
-    product.setId(id.getId());
+    Product updProduct = productRepository.findById(productId).get();
+    updProduct.setId(product.getId());
+    updProduct.setProductName(product.getProductName());
+    updProduct.setPrice(product.getPrice());
+    updProduct.setInStock(product.getInStock());
     return productRepository.save(product);
   }
 
