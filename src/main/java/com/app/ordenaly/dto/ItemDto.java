@@ -3,11 +3,13 @@ package com.app.ordenaly.dto;
 public class ItemDto {
   private int itemId;
   private String producto;
+  private int precio;
   private int cantidad;
 
-  public ItemDto(int itemId, String producto, int cantidad) {
+  public ItemDto(int itemId, String producto, int precio, int cantidad) {
     this.itemId = itemId;
     this.producto = producto;
+    this.precio = precio;
     this.cantidad = cantidad;
   }
 
@@ -25,6 +27,14 @@ public class ItemDto {
 
   public void setProducto(String producto) {
     this.producto = producto;
+  }
+
+  public int getPrecio() {
+    return precio;
+  }
+
+  public void setPrecio(int precio) {
+    this.precio = precio;
   }
 
   public int getCantidad() {

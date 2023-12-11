@@ -5,8 +5,8 @@ import java.util.List;
 public class OrderDto {
   private int ordenId;
   private int turno;
-  private String mesero;
   private String mesa;
+  private String mesero;
   private String estado;
   private String pago;
   private List<ItemDto> pedido;

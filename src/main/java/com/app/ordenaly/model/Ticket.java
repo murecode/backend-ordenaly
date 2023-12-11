@@ -7,15 +7,12 @@ import java.time.LocalTime;
 @Entity
 @Table(name = "TICKET")
 public class Ticket {
-
   @Transient
   private String type = "ticket";
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "TICKET_ID")
   private Integer id;
-
   @Column(name = "TICKET_TIME", length = 6)
   private LocalTime time;
 

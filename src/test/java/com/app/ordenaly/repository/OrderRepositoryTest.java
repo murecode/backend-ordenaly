@@ -73,7 +73,7 @@ class OrderRepositoryTest {
 
   @Test
   void testUpdateOrderStatus() {
-    Order order = entityManager.find(Order.class, 1);
+    Order order = entityManager.find(Order.class, 5);
 
     order.setOrderStatus(OrderStatus.ATENDIDA);
     order.setPaymentStatus(PaymentStatus.REALIZADO);

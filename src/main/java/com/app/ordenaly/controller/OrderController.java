@@ -34,6 +34,7 @@ public class OrderController {
 //    }
 //  }
 
+  @CrossOrigin(origins = "http://localhost:4200")
   @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<String>  addItem(
           @RequestParam(name = "order") int orderId,
@@ -43,6 +44,7 @@ public class OrderController {
     return ResponseEntity.ok("Item agregado al pedido");
   }
 
+  @CrossOrigin(origins = "http://localhost:4200")
   @GetMapping("/{id}")
   public ResponseEntity<OrderDto> getOrder(@PathVariable Integer id) {
     OrderDto orderDto = orderService.findOrderById( id );

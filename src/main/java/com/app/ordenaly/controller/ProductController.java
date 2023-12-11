@@ -30,6 +30,7 @@ public class ProductController {
     return productService.getProducts();
   }
 
+  @CrossOrigin(origins = "http://localhost:4200")
   @GetMapping(path = "/{id}")
   public Product getProductById(@PathVariable Integer id) {
     return productService.getProduct(id);
