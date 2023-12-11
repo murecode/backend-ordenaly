@@ -42,6 +42,8 @@ public class Order {
   @Column(name = "PAYMENT_STATUS")
   @Enumerated(EnumType.STRING)
   private PaymentStatus paymentStatus;
+  @Column(name = "NOTES")
+  private String notes;
 
   public Order() {};
 
@@ -116,6 +118,13 @@ public class Order {
     this.paymentStatus = paymentStatus;
   }
 
+  public String getNotes() {
+    return notes;
+  }
+
+  public void setNotes(String notes) {
+    this.notes = notes;
+  }
 }
 
 

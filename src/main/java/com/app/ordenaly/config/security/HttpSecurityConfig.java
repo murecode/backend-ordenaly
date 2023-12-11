@@ -33,20 +33,21 @@ public class HttpSecurityConfig {
               authorize.requestMatchers(HttpMethod.GET, "/auth/public-access").permitAll();
               authorize.requestMatchers("/error").permitAll();
 
-              authorize.requestMatchers(HttpMethod.GET, "/orders/list").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/orders").permitAll();
               authorize.requestMatchers(HttpMethod.GET, "/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.PATCH, "/orders/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.POST, "/orders/add/**").permitAll();
 
-              authorize.requestMatchers(HttpMethod.GET, "/products/list").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/products").permitAll();
               authorize.requestMatchers(HttpMethod.GET, "products/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.PUT, "products/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "products/{id}").permitAll();
 
-              authorize.requestMatchers(HttpMethod.GET, "/tickets/list").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/tickets").permitAll();
               authorize.requestMatchers(HttpMethod.POST, "/tickets/new").permitAll();
               authorize.requestMatchers(HttpMethod.POST,"/tickets/{ticketId}/{waiterId}/take").permitAll();
 
-              authorize.requestMatchers(HttpMethod.GET,"/users/list").permitAll();
+              authorize.requestMatchers(HttpMethod.GET,"/users").permitAll();
               authorize.requestMatchers(HttpMethod.POST,"/users/new").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/users/{id}").permitAll();
 

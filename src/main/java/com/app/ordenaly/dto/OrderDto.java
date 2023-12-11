@@ -11,6 +11,8 @@ public class OrderDto {
   private String pago;
   private List<ItemDto> pedido;
 
+  private String notas;
+
   public OrderDto() {};
 
   public int getOrdenId() {
@@ -69,4 +71,11 @@ public class OrderDto {
     this.pedido = pedido;
   }
 
+  public String getNotas() {
+    return notas;
+  }
+
+  public void setNotas(String notas) {
+    this.notas = notas;
+  }
 }

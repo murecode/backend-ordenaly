@@ -7,19 +7,15 @@ import jakarta.persistence.*;
 public class Item {
   @Transient
   private String type = "item";
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "ITEM_ID")
   private Integer id;
-
   @ManyToOne
   @JoinColumn(name = "PRODUCT")
   private Product product;
-
   @Column(name = "QUANTITY")
   private Integer quantity;
-
 
   public Item() {};
 

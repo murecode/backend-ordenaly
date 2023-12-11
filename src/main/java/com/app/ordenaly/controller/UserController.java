@@ -18,12 +18,12 @@ public class UserController {
   @Autowired
   UserService userService;
 
-  @GetMapping("/list")
+  @GetMapping("")
   public List<UserDto> getAllUsers() {
     return userService.findAllUsers();
   }
 
-  @PostMapping(value = "/new")
+  @PostMapping("/new")
   public ResponseEntity<String> createUser(@RequestBody User user) {
     userService.createUser(user);
     return new ResponseEntity<>("Usuario creado",HttpStatus.CREATED);
@@ -34,5 +34,7 @@ public class UserController {
     userService.deleteUser(id);
     return new ResponseEntity<>(HttpStatus.OK);
   }
+
+  //update
 
 }

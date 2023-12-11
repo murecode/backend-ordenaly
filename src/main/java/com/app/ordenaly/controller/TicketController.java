@@ -22,7 +22,7 @@ public class TicketController {
   @Autowired
   OrderService orderService;
 
-  @GetMapping("/list")
+  @GetMapping("")
   public List<TicketDto> listAllTickets() {
     return ticketService.getAllTickets();
   }

@@ -7,6 +7,7 @@ import org.mapstruct.*;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper {
   @Mappings({
+          @Mapping(source = "id", target="userId"),
           @Mapping(source = "firstname", target = "nombre"),
           @Mapping(source = "role", target = "rol")
   })

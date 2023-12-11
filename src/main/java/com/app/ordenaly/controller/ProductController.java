@@ -25,7 +25,7 @@ public class ProductController {
   }
 
   @CrossOrigin(origins = "http://localhost:4200")
-  @GetMapping(value = "/list")
+  @GetMapping("")
   public List<ProductDto> listAllProducts(){
     return productService.getProducts();
   }

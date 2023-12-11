@@ -22,22 +22,22 @@ public class OrderController {
   @Autowired
   OrderMapper orderMapper;
 
-  @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Order> generateOrder(
-          @RequestParam(value = "ticket") int ticket,
-          @RequestParam(value = "waiter") int waiter) {
-    Order order =  orderService.createOrder(ticket, waiter);
-    if(order != null) {
-      return ResponseEntity.ok().build();
-    } else {
-      return ResponseEntity.badRequest().build();
-    }
-  }
+//  @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
+//  public ResponseEntity<Order> generateOrder(
+//          @RequestParam(value = "ticket") int ticket,
+//          @RequestParam(value = "waiter") int waiter) {
+//    Order order =  orderService.createOrder(ticket, waiter);
+//    if(order != null) {
+//      return ResponseEntity.ok().build();
+//    } else {
+//      return ResponseEntity.badRequest().build();
+//    }
+//  }
 
   @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<String>  createItem(
-          @RequestParam(name = "orderId") int orderId,
-          @RequestParam(name = "productId") int productId,
+  public ResponseEntity<String>  addItem(
+          @RequestParam(name = "order") int orderId,
+          @RequestParam(name = "product") int productId,
           @RequestParam(name = "quantity") int quantity) {
     Order item = orderService.addItemToOrder(orderId, productId, quantity);
     return ResponseEntity.ok("Item agregado al pedido");
@@ -54,7 +54,7 @@ public class OrderController {
   }
 
   @CrossOrigin(origins = "http://localhost:4200")
-  @GetMapping("/list")
+  @GetMapping("")
   public List<OrderDto> listOrders() {
     return orderService.getOrders();
   }

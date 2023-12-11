@@ -51,11 +51,15 @@ public class OrderService {
     return saveOrder;
   }
 
-  public Order addItemToOrder(int orderId, int productId, int quantity) {
+  public Order addItemToOrder(int orderId, int productId, int quantity ) {
     Order order = orderRepository.findById(orderId).get();
     Product product = productRepository.findById(productId).get();
 
-      Item item = new Item(product, quantity);
+      Item item = new Item();
+      item.setId(item.getId());
+      item.setProduct(product);
+      item.setQuantity(quantity);
+
       itemRepository.save(item);
       order.addItem(item);
 

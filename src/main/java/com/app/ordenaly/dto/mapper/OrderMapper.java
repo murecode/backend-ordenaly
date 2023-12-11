@@ -19,6 +19,7 @@ public interface OrderMapper {
           @Mapping(source = "orderStatus", target = "estado"),
           @Mapping(source = "paymentStatus", target = "pago"),
           @Mapping(source = "itemList", target = "pedido"),
+          @Mapping(source = "notes", target = "notas")
   })
 
   OrderDto orderToOrderDto(Order order);

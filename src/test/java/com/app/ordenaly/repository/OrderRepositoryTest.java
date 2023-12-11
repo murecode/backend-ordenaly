@@ -32,7 +32,7 @@ class OrderRepositoryTest {
 
   @Test
   void testGenerateOrder() {
-    Ticket ticket = entityManager.find(Ticket.class, 1);
+    Ticket ticket = entityManager.find(Ticket.class, 4);
     User waiter = entityManager.find(User.class, 1);
 
     Order order = new Order();
@@ -40,6 +40,7 @@ class OrderRepositoryTest {
     order.setUser(waiter);
     order.setOrderStatus(OrderStatus.PENDIENTE);
     order.setPaymentStatus(PaymentStatus.PENDIENTE);
+    order.setNotes("Esto es una nota de prueba");
 
     Order saveOrder = orderRepository.save(order);
 
@@ -51,7 +52,7 @@ class OrderRepositoryTest {
 
   @Test
   void testAddItemToOrder() {
-    Order order = entityManager.find(Order.class, 17);
+    Order order = entityManager.find(Order.class, 5);
     Product product = entityManager.find(Product.class, 3);
 
     Item item = new Item(product, 1);
