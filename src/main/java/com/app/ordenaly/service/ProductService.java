@@ -27,19 +27,23 @@ public class ProductService {
     return productRepository.save(newProduct);
   }
 
-  public void deleteProduct(Integer id) {
+  public void deleteProduct(int id) {
     productRepository.deleteById(id);
   }
 
-  public Product getProduct(Integer id) { return productRepository.findById(id).get(); }
+  public Product getProduct(int id) { return productRepository.findById(id).get(); }
 
-  public Product updateProduct(int productId, Product product) {
-    Product updProduct = productRepository.findById(productId).get();
-    updProduct.setId(product.getId());
-    updProduct.setProductName(product.getProductName());
-    updProduct.setPrice(product.getPrice());
-    updProduct.setInStock(product.getInStock());
-    return productRepository.save(product);
+  public Product updateProduct(int id, Product product) {
+    Product updProduct = productRepository.findById( id ).get();
+    if ( updProduct != null ) {
+      updProduct.setProductName(product.getProductName());
+      updProduct.setDescription(product.getDescription());
+      updProduct.setPrice(product.getPrice());
+      updProduct.setInStock(product.getInStock());
+      return productRepository.save(product);
+    } else {
+      return null;
+    }
   }
 
   public List<ProductDto> getProducts() {

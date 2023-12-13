@@ -32,22 +32,22 @@ public class ProductController {
 
   @CrossOrigin(origins = "http://localhost:4200")
   @GetMapping(path = "/{id}")
-  public Product getProductById(@PathVariable Integer id) {
+  public Product getProductById(@PathVariable int id) {
     return productService.getProduct(id);
   }
 
   @DeleteMapping(value = "/{id}")
-  public String removeProduct(@PathVariable Integer id) {
+  public String removeProduct(@PathVariable int id) {
     productService.deleteProduct(id);
     return "Se eliminó el producto: " + id;
   }
 
-  @PutMapping(value = "/{id}")
-  public ResponseEntity<Product> updateProduct(@PathVariable("id") int productId, @RequestBody Product product) {
-    Product updatedProduct = productService.updateProduct(productId, product);
-    return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+  @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Product> updateProduct(@PathVariable int id, @RequestBody Product product) {
+    Product updatedProduct = productService.updateProduct(id, product);
+    return new ResponseEntity<Product>(updatedProduct, HttpStatus.ACCEPTED);
   }
 
-
-
 }
+
+//TODO: Novedad en el controlador, actualiza recurso pero crea otro nuevo

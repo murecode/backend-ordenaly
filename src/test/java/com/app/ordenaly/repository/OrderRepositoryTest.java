@@ -6,7 +6,6 @@ import com.app.ordenaly.utils.OrderStatus;
 import com.app.ordenaly.utils.PaymentStatus;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -18,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest //(*)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(value = false)
-//@ExtendWith(MockitoExtension.class)
 class OrderRepositoryTest {
 
   @Autowired
@@ -32,7 +30,7 @@ class OrderRepositoryTest {
 
   @Test
   void testGenerateOrder() {
-    Ticket ticket = entityManager.find(Ticket.class, 4);
+    Ticket ticket = entityManager.find(Ticket.class, 5);
     User waiter = entityManager.find(User.class, 1);
 
     Order order = new Order();
@@ -40,7 +38,7 @@ class OrderRepositoryTest {
     order.setUser(waiter);
     order.setOrderStatus(OrderStatus.PENDIENTE);
     order.setPaymentStatus(PaymentStatus.PENDIENTE);
-    order.setNotes("Esto es una nota de prueba");
+    order.setNotes("Esta es para eliminar");
 
     Order saveOrder = orderRepository.save(order);
 
@@ -52,28 +50,26 @@ class OrderRepositoryTest {
 
   @Test
   void testAddItemToOrder() {
-    Order order = entityManager.find(Order.class, 5);
-    Product product = entityManager.find(Product.class, 3);
+    Order order = entityManager.find(Order.class, 6);
+    Product product = entityManager.find(Product.class, 15);
 
-    Item item = new Item(product, 1);
-    Item saveNewItem = itemRepository.save(item);
+      Item item = new Item(product, 1);
+      Item saveNewItem = itemRepository.save(item);
+      order.addItem(item);
 
-    order.addItem(item);
-
-    orderRepository.save(order);
+      orderRepository.save(order);
   }
 
   @Test
   void testDeleteItem() {
-    //Arroja error porque esta ligada a la entidad producto
-    Item item = entityManager.find(Item.class, 6);
+    Item item = entityManager.find(Item.class, 8);
 
     itemRepository.deleteById(item.getId());
   }
 
   @Test
   void testUpdateOrderStatus() {
-    Order order = entityManager.find(Order.class, 5);
+    Order order = entityManager.find(Order.class, 6);
 
     order.setOrderStatus(OrderStatus.ATENDIDA);
     order.setPaymentStatus(PaymentStatus.REALIZADO);
@@ -86,11 +82,9 @@ class OrderRepositoryTest {
 
   @Test
   void testDeleteOrder() {
-    Order order = entityManager.find(Order.class, 4);
-
+    Order order = entityManager.find(Order.class, 10);
     orderRepository.deleteById(order.getId());
-
-    assertTrue( order.getId() == 4 );
+    assertTrue( order.getId() == 10 );
   }
 
 }

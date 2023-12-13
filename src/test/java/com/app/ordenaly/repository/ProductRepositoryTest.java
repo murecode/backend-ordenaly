@@ -36,7 +36,7 @@ class ProductRepositoryTest {
   @Test
   void testDeleteProductById() {
 
-    Product productBeforeDeleted = entityManager.find(Product.class, 1);
+    Product productBeforeDeleted = entityManager.find(Product.class, 18);
     assertNotNull(productBeforeDeleted);
 
     productRepository.deleteById(productBeforeDeleted.getId());
