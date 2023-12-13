@@ -22,20 +22,18 @@ public class TicketController {
   @Autowired
   OrderService orderService;
 
-  @CrossOrigin(origins = "http://localhost:4200")
+
   @GetMapping("")
   public List<TicketDto> listAllTickets() {
     return ticketService.getAllTickets();
   }
 
-  @CrossOrigin(origins = "http://localhost:4200")
-  @PostMapping("/new")
-  public ResponseEntity<Ticket> newTicket(Ticket ticket) {
+  @GetMapping("/new")
+  public ResponseEntity<Ticket> newTicket() {
     Ticket newTicket= ticketService.generateNewTicket();
     return new ResponseEntity<>(newTicket, HttpStatus.CREATED);
   }
 
-  @CrossOrigin(origins = "http://localhost:4200")
   @PostMapping("/{ticketId}/{waiterId}/take")
   public ResponseEntity<String> takeOrder(@PathVariable int ticketId, @PathVariable int waiterId) {
     try {
