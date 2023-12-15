@@ -14,15 +14,16 @@ public class Item {
   @ManyToOne
   @JoinColumn(name = "PRODUCT")
   private Product product;
+
   @Column(name = "QUANTITY")
-  private Integer quantity;
+  private Integer quantity = 1;
 
   public Item() {};
 
-  public Item(Product product, Integer quantity) {
-    this.product = product;
-    this.quantity = quantity;
-  }
+//  public Item(Product product, int quantity) {
+//    this.product = product;
+//    this.quantity = 1;
+//  }
 
 
   public String getType() {

@@ -37,6 +37,7 @@ public class HttpSecurityConfig {
               authorize.requestMatchers(HttpMethod.GET, "/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.PATCH, "/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.POST, "/orders/add/**").permitAll();
+              authorize.requestMatchers(HttpMethod.PUT, "/orders/update/**").permitAll();
 
               authorize.requestMatchers(HttpMethod.GET, "/products").permitAll();
               authorize.requestMatchers(HttpMethod.GET, "/products/{id}").permitAll();

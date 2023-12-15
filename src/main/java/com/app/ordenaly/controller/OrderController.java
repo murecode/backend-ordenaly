@@ -36,12 +36,19 @@ public class OrderController {
 
   @CrossOrigin(origins = "http://localhost:4200")
   @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<String>  addItem(
-          @RequestParam(name = "order") int orderId,
-          @RequestParam(name = "product") int productId,
-          @RequestParam(name = "quantity") int quantity) {
-    Order item = orderService.addItemToOrder(orderId, productId, quantity);
+  public ResponseEntity<String> addItem(
+          @RequestParam(name = "orderId") int orderId,
+          @RequestParam(name = "productId") int productId) {
+    Order order = orderService.addItemToOrder(orderId, productId);
     return ResponseEntity.ok("Item agregado al pedido");
+  }
+
+  @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<String> updateQuantity(
+          @RequestParam(name = "item") int itemId,
+          @RequestParam(name = "quantity") int quantity) {
+    orderService.updateQuantity(itemId, quantity);
+    return ResponseEntity.ok("Actualizado");
   }
 
   @CrossOrigin(origins = "http://localhost:4200")

@@ -51,19 +51,17 @@ public class OrderService {
     return saveOrder;
   }
 
-  public Order addItemToOrder(int orderId, int productId, int quantity ) {
-    Order order = orderRepository.findById(orderId).get();
-    Product product = productRepository.findById(productId).get();
-
-      Item item = new Item();
-      item.setId(item.getId());
-      item.setProduct(product);
-      item.setQuantity(quantity);
-
-      itemRepository.save(item);
+  public Order addItemToOrder(int orderId, int productId) {
+    Order order = orderRepository.findById(orderId).orElse(null);
+    if ( order != null ) {
+      Item item = itemService.generateItem(productId);
       order.addItem(item);
-
+    }
     return orderRepository.save(order);
+  }
+
+  public void updateQuantity(int itemId, int newQuantity) {
+    itemService.updateQuantity(itemId, newQuantity);
   }
 
   public OrderDto findOrderById(Integer id) {

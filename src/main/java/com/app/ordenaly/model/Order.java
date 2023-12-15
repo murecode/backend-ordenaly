@@ -96,9 +96,6 @@ public class Order {
   }
 
   public void addItem(Item item) {
-//    if (items.contains(item.getProduct())) {
-//      System.out.println("El elemnto ya existe");
-//    }
     itemlist.add(item);
   }
 
