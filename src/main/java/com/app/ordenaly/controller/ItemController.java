@@ -13,10 +13,8 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/items")
 public class ItemController {
-
   @Autowired
   ItemService itemService;
-
 
   @GetMapping("/{id}")
   public Item getItemById(@PathVariable("id") Integer id ) {

@@ -8,7 +8,7 @@ import org.mapstruct.*;
 public interface UserMapper {
   @Mappings({
           @Mapping(source = "id", target="userId"),
-          @Mapping(source = "firstname", target = "nombre"),
+          @Mapping(source = "fullname", target = "nombre"),
           @Mapping(source = "role", target = "rol")
   })
   UserDto UserToUserDto(User user);

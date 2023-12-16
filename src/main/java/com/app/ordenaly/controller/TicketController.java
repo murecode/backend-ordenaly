@@ -34,7 +34,7 @@ public class TicketController {
     return new ResponseEntity<>(newTicket, HttpStatus.CREATED);
   }
 
-  @PostMapping("/{ticketId}/{waiterId}/take")
+  @PostMapping("/take/{ticketId}/{waiterId}")
   public ResponseEntity<String> takeOrder(@PathVariable int ticketId, @PathVariable int waiterId) {
     try {
       orderService.createOrder(ticketId, waiterId);

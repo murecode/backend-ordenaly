@@ -37,8 +37,12 @@ public class OrderService {
     Ticket ticket = ticketRepository.findById(ticketId).get();
     User waiter = userRepository.findById(userId).get();
 
-    if (ticket == null) { throw new EntityNotFoundException("Ticket no encontrado"); }
-    if (waiter == null) { throw new EntityNotFoundException("User no encontrado"); }
+    if (ticket == null) {
+      throw new EntityNotFoundException("Ticket no encontrado");
+    }
+    if (waiter == null) {
+      throw new EntityNotFoundException("User no encontrado");
+    }
 
     Order newOrder = new Order();
     newOrder.setTicket(ticket);
@@ -52,11 +56,12 @@ public class OrderService {
   }
 
   public Order addItemToOrder(int orderId, int productId) {
-    Order order = orderRepository.findById(orderId).orElse(null);
-    if ( order != null ) {
-      Item item = itemService.generateItem(productId);
-      order.addItem(item);
-    }
+    Order order = orderRepository.findById(orderId).get();
+//    Product product = productRepository.findById(productId).get();
+
+    Item item = itemService.generateItem(productId);
+    order.addItem(item);
+
     return orderRepository.save(order);
   }
 
@@ -68,7 +73,7 @@ public class OrderService {
     // 1. Buscar en la DB
     Order order = orderRepository.findById(id).orElse(null);
     // 2. Validar si existe
-    if ( order != null) {
+    if (order != null) {
       // 3. Convertir la Entidad en un flujo
       Stream<Order> orderStream = Stream.of(order);
       // 4. Realizar la transformacion y recolectar el resultado en un Dto
@@ -87,11 +92,15 @@ public class OrderService {
             .collect(Collectors.toList());
   }
 
-  public Order updateOrder(int id, Order order) {
-    Order orderId = orderRepository.findById(id).get();
-    order.setId(orderId.getId());
-    return orderRepository.save(order);
+  public void deleteItem(int itemId) {
+    itemService.deleteItem(itemId);
   }
+
+//  public Order updateOrder(int id, Order order) {
+//    Order orderId = orderRepository.findById(id).get();
+//    order.setId(orderId.getId());
+//    return orderRepository.save(order);
+//  }
 
   public void deleteOrder(Integer id) {
     orderRepository.deleteById(id);

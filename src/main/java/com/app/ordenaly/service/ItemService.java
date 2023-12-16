@@ -29,13 +29,10 @@ public class ItemService {
 
   public Item generateItem(int productId) {
     Product product = productRepository.findById(productId).get();
-    if (product != null) {
       Item item = new Item();
-      item.setProduct(item.getProduct());
-//      item.setQuantity();
-      itemRepository.save(item);
-    }
-    return null;
+      item.setProduct(product);
+      item.setQuantity(item.getQuantity());
+      return itemRepository.save(item);
   }
 
   public void updateQuantity(int itemId, int quantity) {
@@ -46,12 +43,16 @@ public class ItemService {
     }
   }
 
-
   public List<ItemDto> getItems() {
     List<Item> items = itemRepository.findAll();
     return items.stream()
             .map(itemMapper::itemToItemDto)
             .collect(Collectors.toList());
+  }
+
+  public void deleteItem(int itemId) {
+    Item item = itemRepository.findById(itemId).get();
+    itemRepository.deleteById(item.getId());
   }
 
 }

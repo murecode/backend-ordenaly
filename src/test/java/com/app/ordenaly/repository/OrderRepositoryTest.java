@@ -51,7 +51,7 @@ class OrderRepositoryTest {
   @Test
   void testAddItemToOrder() {
     Order order = entityManager.find(Order.class, 5);
-    Product product = entityManager.find(Product.class, 2);
+    Product product = entityManager.find(Product.class, 5);
 
       Item item = new Item();
       item.setProduct(product);

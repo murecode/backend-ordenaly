@@ -19,18 +19,17 @@ public class UserService {
   @Autowired
   private UserMapper userMapper;
 
-  public void createUser(User user) {
+  public User createUser(User user) {
     // Verificar si el usuario que realiza la acción tiene el rol de "Administrador"
     // Verificar que el nuevo usuario no exista
     // ...
     User newUser = new User();
-    newUser.setFirstname(newUser.getFirstname());
-    newUser.setLastname(newUser.getLastname());
+    newUser.setFullname(newUser.getFullname());
     newUser.setPassword(newUser.getPassword());
     newUser.setUsername(newUser.getUsername());
     newUser.setRole(newUser.getRole());
 
-    userRepository.save(newUser);
+    return userRepository.save(newUser);
   }
 
   public List<UserDto> findAllUsers() {

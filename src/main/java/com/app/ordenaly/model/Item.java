@@ -20,10 +20,10 @@ public class Item {
 
   public Item() {};
 
-//  public Item(Product product, int quantity) {
-//    this.product = product;
-//    this.quantity = 1;
-//  }
+  public Item(Product product, int quantity) {
+    this.product = product;
+    this.quantity = quantity;
+  }
 
 
   public String getType() {

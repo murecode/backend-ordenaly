@@ -21,11 +21,9 @@ public class User implements UserDetails {
   private Integer id;
   @Column(name = "USERNAME")
   private String username;
-  @Column(name = "FIRSTNAME", length = 45)
-  private String firstname;
-  @Column(name = "LASTNAME", length = 45)
-  private String lastname;
-  @Column(name = "EMAIL")
+  @Column(name = "FULLNAME", length = 45)
+  private String fullname;
+  @Column(name = "EMAIL", length = 45)
   private String email;
   @Column(name = "PASSWORD")
   private String password;
@@ -55,28 +53,12 @@ public class User implements UserDetails {
     this.username = username;
   }
 
-  public String getFirstname() {
-    return firstname;
+  public String getFullname() {
+    return fullname;
   }
 
-  public void setFirstname(String firstname) {
-    this.firstname = firstname;
-  }
-
-  public String getLastname() {
-    return lastname;
-  }
-
-  public void setLastname(String lastname) {
-    this.lastname = lastname;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
+  public void setFullname(String fullname) {
+    this.fullname = fullname;
   }
 
   public String getPassword() {
