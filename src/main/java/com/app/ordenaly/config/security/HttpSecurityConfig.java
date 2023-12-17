@@ -30,7 +30,7 @@ public class HttpSecurityConfig {
             .authorizeHttpRequests((authorize) -> {
 
               authorize.requestMatchers(HttpMethod.POST, "/auth/authenticate").permitAll();
-              authorize.requestMatchers(HttpMethod.GET, "/auth/public-access").permitAll();
+              authorize.requestMatchers(HttpMethod.GET,  "/auth/public-access").permitAll();
               authorize.requestMatchers("/error").permitAll();
 
               authorize.requestMatchers(HttpMethod.GET,    "/orders").permitAll();
@@ -44,17 +44,18 @@ public class HttpSecurityConfig {
 
               authorize.requestMatchers(HttpMethod.GET,    "/products").permitAll();
               authorize.requestMatchers(HttpMethod.GET,    "/products/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,   "/products/new").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,   "/products").permitAll();
               authorize.requestMatchers(HttpMethod.PUT,    "/products/{id}").permitAll();
 //              authorize.requestMatchers(HttpMethod.PATCH, "products/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/products/{id}").permitAll();
 
               authorize.requestMatchers(HttpMethod.GET, "/tickets").permitAll();
-              authorize.requestMatchers(HttpMethod.GET, "/tickets/new").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,"/tickets/take/{ticketId}/{waiterId}").permitAll();
+              authorize.requestMatchers(HttpMethod.POST, "/tickets").permitAll();
+//              authorize.requestMatchers(HttpMethod.POST,"/tickets/take/{ticketId}/{waiterId}").permitAll();
 
-              authorize.requestMatchers(HttpMethod.GET,"/users").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,"/users/new").permitAll();
+              authorize.requestMatchers(HttpMethod.GET,    "/users").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,   "/users").permitAll();
+              authorize.requestMatchers(HttpMethod.PUT,    "/users/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/users/{id}").permitAll();
 
 //              authorize.requestMatchers(HttpMethod.DELETE, "/users/{id}").hasAuthority(Permissions.DELETE_USER.name());

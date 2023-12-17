@@ -33,7 +33,7 @@ public class OrderService {
   ItemService itemService;
 
 
-  public Order createOrder(int ticketId, int userId) {
+  public Order createOrder(int ticketId, int userId, Order orderBody) {
     Ticket ticket = ticketRepository.findById(ticketId).get();
     User waiter = userRepository.findById(userId).get();
 
@@ -45,8 +45,8 @@ public class OrderService {
     }
 
     Order newOrder = new Order();
-    newOrder.setTicket(ticket);
-    newOrder.setUser(waiter);
+    newOrder.setTicket(orderBody.getTicket());
+    newOrder.setUser(orderBody.getUser());
     newOrder.setOrderStatus(OrderStatus.PENDIENTE);
     newOrder.setPaymentStatus(PaymentStatus.PENDIENTE);
     //Se asocia el id de la orden con el ticket

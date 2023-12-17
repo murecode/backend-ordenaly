@@ -39,6 +39,15 @@ public class UserService {
             .collect(Collectors.toList());
   }
 
+  public User updateUser(int userId, User userBody) {
+    User user = userRepository.findById(userId).get();
+    user.setFullname(userBody.getFullname());
+    user.setRole(userBody.getRole());
+    user.setUsername(userBody.getUsername());
+    user.setPassword(userBody.getPassword());
+    return userRepository.save(user);
+  }
+
   public void deleteUser(int id) {
     User user = userRepository.findById(id).get();
     userRepository.deleteById(user.getId());

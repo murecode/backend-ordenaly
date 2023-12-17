@@ -22,19 +22,20 @@ public class OrderController {
   @Autowired
   OrderMapper orderMapper;
 
-  @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
+  @PostMapping(value = "")
   public ResponseEntity<Order> newOrder(
-          @RequestParam(value = "ticket") int ticket,
-          @RequestParam(value = "waiter") int waiter) {
-    Order order =  orderService.createOrder(ticket, waiter);
-    if(order != null) {
+          @RequestParam("ticketId") int ticketId,
+          @RequestParam("userId") int userId,
+          @RequestBody Order orderBody) {
+    Order newOrder = orderService.createOrder(ticketId, userId, orderBody);
+    if(orderBody != null) {
       return ResponseEntity.ok().build();
     } else {
       return ResponseEntity.badRequest().build();
     }
+//    return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
   }
 
-  @CrossOrigin(origins = "http://localhost:4200")
   @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<String> addItemToOrder(
           @RequestParam(name = "orderId") int orderId,

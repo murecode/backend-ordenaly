@@ -18,32 +18,13 @@ public class ProductService {
   @Autowired
   ProductMapper productMapper;
 
-  public Product generateProduct(ProductDto product){
-    Product newProduct = new Product();
-    newProduct.setProductName(product.getNombre());
-    newProduct.setDescription(product.getDescripcion());
-    newProduct.setPrice(product.getPrecio());
-    newProduct.setInStock(product.getDisponible());
-    return productRepository.save(newProduct);
-  }
-
-  public void deleteProduct(int id) {
-    productRepository.deleteById(id);
-  }
-
-  public Product getProduct(int id) { return productRepository.findById(id).get(); }
-
-  public Product updateProduct(int id, Product product) {
-    Product updProduct = productRepository.findById( id ).get();
-    if ( updProduct != null ) {
-      updProduct.setProductName(product.getProductName());
-      updProduct.setDescription(product.getDescription());
-      updProduct.setPrice(product.getPrice());
-      updProduct.setInStock(product.getInStock());
-      return productRepository.save(product);
-    } else {
-      return null;
-    }
+  public Product generateProduct(Product productBody) {
+    Product product = new Product();
+    product.setProductName(productBody.getProductName());
+    product.setDescription(productBody.getDescription());
+    product.setPrice(productBody.getPrice());
+    product.setInStock(productBody.getInStock());
+    return productRepository.save(product);
   }
 
   public List<ProductDto> getProducts() {
@@ -53,6 +34,26 @@ public class ProductService {
             .collect(Collectors.toList());
   }
 
+  public Product getProduct(int id) {
+    return productRepository.findById(id).get();
+  }
+
+  public Product updateProduct(int productId, Product productBoby) {
+    Product product = productRepository.findById(productId).orElse(null);
+
+//    if (product != null) return null;
+
+    product.setProductName(productBoby.getProductName());
+    product.setDescription(productBoby.getDescription());
+    product.setPrice(productBoby.getPrice());
+    product.setInStock(productBoby.getInStock());
+    return productRepository.save(product);
+
+  }
+
+  public void deleteProduct(int id) {
+    productRepository.deleteById(id);
+  }
 
 
 }

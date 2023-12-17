@@ -28,27 +28,24 @@ public class TicketController {
     return ticketService.getAllTickets();
   }
 
-  @GetMapping("/new")
-  public ResponseEntity<Ticket> newTicket() {
-    Ticket newTicket= ticketService.generateNewTicket();
+  @PostMapping("")
+  public ResponseEntity<Ticket> newTicket(
+          @RequestBody Ticket ticketBody) {
+    Ticket newTicket= ticketService.generateTicket(ticketBody);
     return new ResponseEntity<>(newTicket, HttpStatus.CREATED);
   }
 
-  @PostMapping("/take/{ticketId}/{waiterId}")
-  public ResponseEntity<String> takeOrder(@PathVariable int ticketId, @PathVariable int waiterId) {
-    try {
-      orderService.createOrder(ticketId, waiterId);
-      return new ResponseEntity<>("Orden tomada", HttpStatus.CREATED);
-    } catch (EntityNotFoundException e) {
-      return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-    } catch (Exception e) {
-      return new ResponseEntity<>("Error creating order", HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-//    Ticket ticket = ticketService.getTicketById( ticketId );
-//    if(ticket == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND); }
-//    Order takenOrder = orderService.createOrder(ticketId, waiterId);
-//    ticket.setOrder(takenOrder);
-  }
+//  @PostMapping("/take")
+//  public ResponseEntity<String> takeOrder(
+//          @PathVariable int ticketId, @PathVariable int waiterId) {
+//    try {
+//      orderService.createOrder(ticketId, waiterId);
+//      return new ResponseEntity<>("Orden tomada", HttpStatus.CREATED);
+//    } catch (EntityNotFoundException e) {
+//      return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+//    } catch (Exception e) {
+//      return new ResponseEntity<>("Error creating order", HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
+//  }
 
 }
