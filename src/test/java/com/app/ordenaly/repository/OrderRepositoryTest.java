@@ -50,13 +50,6 @@ class OrderRepositoryTest {
 
   @Test
   void testAddItemToOrder() {
-<<<<<<< HEAD
-    Order order = entityManager.find(Order.class, 6);
-    Product product = entityManager.find(Product.class, 15);
-
-      Item item = new Item(product, 1);
-      Item saveNewItem = itemRepository.save(item);
-=======
     Order order = entityManager.find(Order.class, 5);
     Product product = entityManager.find(Product.class, 5);
 
@@ -65,7 +58,6 @@ class OrderRepositoryTest {
       item.setQuantity(item.getQuantity());
       itemRepository.save(item);
 
->>>>>>> wip
       order.addItem(item);
 
       orderRepository.save(order);
