@@ -2,6 +2,7 @@
 package com.app.ordenaly.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
 
 @Entity
 @Table(name = "PRODUCT")
@@ -21,6 +22,7 @@ public class Product {
   private String description;
 
   @Column(name = "PRICE")
+  @DecimalMin(value = "0.01")
   private Double price;
 
   @Column(name = "IN_STOCK")

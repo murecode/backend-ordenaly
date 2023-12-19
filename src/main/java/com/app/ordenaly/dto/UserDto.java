@@ -3,6 +3,7 @@ package com.app.ordenaly.dto;
 public class UserDto {
   private int userId;
   private String nombre;
+
   private String rol;
 
   public UserDto(int userId, String nombre, String rol) {
@@ -27,6 +28,7 @@ public class UserDto {
     this.nombre = nombre;
   }
 
+
   public String getRol() {
     return rol;
   }
@@ -34,5 +36,4 @@ public class UserDto {
   public void setRol(String rol) {
     this.rol = rol;
   }
-
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "ORDERS")
+@Table(name = "\"ORDER\"")
 public class Order {
 
   @Transient

@@ -29,8 +29,8 @@ public class HttpSecurityConfig {
             .authenticationProvider(authenticationProvider)
             .authorizeHttpRequests((authorize) -> {
 
-              authorize.requestMatchers(HttpMethod.POST, "/auth/authenticate").permitAll();
               authorize.requestMatchers(HttpMethod.GET,  "/auth/public-access").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,  "/auth/login").permitAll();
               authorize.requestMatchers("/error").permitAll();
 
               authorize.requestMatchers(HttpMethod.GET,    "/orders").permitAll();
@@ -58,9 +58,11 @@ public class HttpSecurityConfig {
               authorize.requestMatchers(HttpMethod.PUT,    "/users/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/users/{id}").permitAll();
 
-//              authorize.requestMatchers(HttpMethod.DELETE, "/users/{id}").hasAuthority(Permissions.DELETE_USER.name());
-//              authorize.requestMatchers(HttpMethod.GET, "/products/list").hasAuthority(Permissions.DELETE_PRODUCT.name());
-//              authorize.requestMatchers(HttpMethod.GET, "/products").hasAuthority(Permissions.SAVE_A_PRODUCT.name());
+              authorize.requestMatchers("http://localhost:8080/swagger-ui/index.html").permitAll();
+
+              authorize.requestMatchers(HttpMethod.DELETE, "/users/{id}").hasAuthority(Permissions.DELETE_USER.name());
+              authorize.requestMatchers(HttpMethod.GET, "/products").hasAuthority(Permissions.DELETE_PRODUCT.name());
+              authorize.requestMatchers(HttpMethod.GET, "/orders").hasAuthority(Permissions.READ_ORDERS.name());
 
               authorize.anyRequest().denyAll();
             });
