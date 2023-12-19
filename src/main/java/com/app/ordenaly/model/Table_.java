@@ -3,7 +3,7 @@ package com.app.ordenaly.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "TABLE_")
+@Table(name = "\"TABLE\"")
 public class Table_ {
   @Transient
   private String type = "table";

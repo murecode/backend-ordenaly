@@ -20,28 +20,40 @@ public class ItemService {
   ItemRepository itemRepository;
   @Autowired
   ItemMapper itemMapper;
+  @Autowired
+  ProductRepository productRepository;
 
-//  @Autowired
-//  ProductRepository productRepository;
 
   public Item getItemById(int id) {
     return itemRepository.findById(id).orElse(null);
   }
 
-//  public Item generateItem(int productId, int quantity) {
-//    Product product = productRepository.findById(productId).get();
-//    if (product != null) {
-//      Item item = new Item(product, quantity);
-//      itemRepository.save(item);
-//    }
-//    return null;
-//  }
+  public Item generateItem(int productId) {
+    Product product = productRepository.findById(productId).get();
+      Item item = new Item();
+      item.setProduct(product);
+      item.setQuantity(item.getQuantity());
+      return itemRepository.save(item);
+  }
+
+  public void updateQuantity(int itemId, int quantity) {
+    Item item = itemRepository.findById(itemId).get();
+    if ( item != null ) {
+      item.setQuantity(quantity);
+      itemRepository.save(item);
+    }
+  }
 
   public List<ItemDto> getItems() {
     List<Item> items = itemRepository.findAll();
     return items.stream()
             .map(itemMapper::itemToItemDto)
             .collect(Collectors.toList());
+  }
+
+  public void deleteItem(int itemId) {
+    Item item = itemRepository.findById(itemId).get();
+    itemRepository.deleteById(item.getId());
   }
 
 }

@@ -17,10 +17,13 @@ import org.springframework.stereotype.Component;
 public class SecurityConfig {
   @Autowired
   private UserRepository userRepository;
-  @Bean //1.
+
+  @Bean //*
   public AuthenticationManager authManager(AuthenticationConfiguration authConfig) throws Exception {
     return authConfig.getAuthenticationManager();
   }
+
+  //**
   @Bean
   public AuthenticationProvider authProvider() {
     DaoAuthenticationProvider daoAuthProvider = new DaoAuthenticationProvider();
@@ -28,18 +31,26 @@ public class SecurityConfig {
     daoAuthProvider.setPasswordEncoder(passwordEncoder());
     return daoAuthProvider;
   }
+
+  //***
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
+
+  //****
   @Bean
   public UserDetailsService userDetailsService() {
     return username -> {
       return userRepository.findByUsername(username)
-              .orElseThrow(() -> new RuntimeException("User Not Found"));
+              .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
     };
   }
 
 }
 
-//1. Esta linea genera el ProviderManager que puede coordinar varios provedores de autentificacion
+//* Esta linea genera el ProviderManager que puede coordinar varios provedores de autentificacion
+//** Configura varios proveedores de autenticación en este caso se usará contra base de datos
+//*** Compara y codifica la contraseña traida desde la base de datos
+//**** Recupera informacion del usuario (username y contraseña) de la base de datos
+

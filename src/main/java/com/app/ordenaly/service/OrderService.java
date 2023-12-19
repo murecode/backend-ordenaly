@@ -32,17 +32,20 @@ public class OrderService {
   @Autowired
   ItemService itemService;
 
-
-  public Order createOrder(int ticketId, int userId) {
+  public Order createOrder(int ticketId, int userId, Order orderBody) {
     Ticket ticket = ticketRepository.findById(ticketId).get();
     User waiter = userRepository.findById(userId).get();
 
-    if (ticket == null) { throw new EntityNotFoundException("Ticket no encontrado"); }
-    if (waiter == null) { throw new EntityNotFoundException("User no encontrado"); }
+    if (ticket == null) {
+      throw new EntityNotFoundException("Ticket no encontrado");
+    }
+    if (waiter == null) {
+      throw new EntityNotFoundException("User no encontrado");
+    }
 
     Order newOrder = new Order();
-    newOrder.setTicket(ticket);
-    newOrder.setUser(waiter);
+    newOrder.setTicket(orderBody.getTicket());
+    newOrder.setUser(orderBody.getUser());
     newOrder.setOrderStatus(OrderStatus.PENDIENTE);
     newOrder.setPaymentStatus(PaymentStatus.PENDIENTE);
     //Se asocia el id de la orden con el ticket
@@ -51,26 +54,25 @@ public class OrderService {
     return saveOrder;
   }
 
-  public Order addItemToOrder(int orderId, int productId, int quantity ) {
+  public Order addItemToOrder(int orderId, int productId) {
     Order order = orderRepository.findById(orderId).get();
-    Product product = productRepository.findById(productId).get();
+//    Product product = productRepository.findById(productId).get();
 
-      Item item = new Item();
-      item.setId(item.getId());
-      item.setProduct(product);
-      item.setQuantity(quantity);
-
-      itemRepository.save(item);
-      order.addItem(item);
+    Item item = itemService.generateItem(productId);
+    order.addItem(item);
 
     return orderRepository.save(order);
+  }
+
+  public void updateQuantity(int itemId, int newQuantity) {
+    itemService.updateQuantity(itemId, newQuantity);
   }
 
   public OrderDto findOrderById(Integer id) {
     // 1. Buscar en la DB
     Order order = orderRepository.findById(id).orElse(null);
     // 2. Validar si existe
-    if ( order != null) {
+    if (order != null) {
       // 3. Convertir la Entidad en un flujo
       Stream<Order> orderStream = Stream.of(order);
       // 4. Realizar la transformacion y recolectar el resultado en un Dto
@@ -89,16 +91,19 @@ public class OrderService {
             .collect(Collectors.toList());
   }
 
-  public Order updateOrder(int id, Order order) {
-    Order orderId = orderRepository.findById(id).get();
-    order.setId(orderId.getId());
-    return orderRepository.save(order);
+  public void deleteItem(int itemId) {
+    itemService.deleteItem(itemId);
   }
+
+//  public Order updateOrder(int id, Order order) {
+//    Order orderId = orderRepository.findById(id).get();
+//    order.setId(orderId.getId());
+//    return orderRepository.save(order);
+//  }
 
   public void deleteOrder(Integer id) {
     orderRepository.deleteById(id);
   }
-
 
 }
 

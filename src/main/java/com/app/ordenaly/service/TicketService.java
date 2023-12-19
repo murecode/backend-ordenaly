@@ -25,9 +25,10 @@ public class TicketService {
             .collect(Collectors.toList());
   }
 
-  public Ticket generateNewTicket() {
+  public Ticket generateTicket(Ticket ticketBody) {
     Ticket ticket = new Ticket();
     ticket.setTime(LocalTime.now());
+    ticket.setOrder(ticketBody.getOrder());
     return ticketRepository.save(ticket);
   }
 

@@ -18,23 +18,29 @@ public class UserController {
   @Autowired
   UserService userService;
 
-  @GetMapping("")
-  public List<UserDto> getAllUsers() {
-    return userService.findAllUsers();
-  }
-
-  @PostMapping("/new")
+  @PostMapping("")
   public ResponseEntity<String> createUser(@RequestBody User user) {
     userService.createUser(user);
     return new ResponseEntity<>("Usuario creado",HttpStatus.CREATED);
   }
 
-  @DeleteMapping("/{id}")
-  public ResponseEntity<Void> deleteUser(@PathVariable("id") int id) {
-    userService.deleteUser(id);
-    return new ResponseEntity<>(HttpStatus.OK);
+  @GetMapping("")
+  public List<UserDto> getAllUsers() {
+    return userService.findAllUsers();
   }
 
-  //update
+  @PutMapping("/{id}")
+  public ResponseEntity<String> updateUser(
+          @PathVariable("id") int userId,
+          @RequestBody User userBody) {
+    userService.updateUser(userId, userBody);
+    return new ResponseEntity<>("Usuario actualizado", HttpStatus.ACCEPTED);
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<String> deleteUser(@PathVariable("id") int id) {
+    userService.deleteUser(id);
+    return new ResponseEntity<>("Usuario eliminado", HttpStatus.OK);
+  }
 
 }

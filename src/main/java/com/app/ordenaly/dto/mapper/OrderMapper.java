@@ -14,7 +14,7 @@ public interface OrderMapper {
   @Mappings({
           @Mapping(source = "id", target = "ordenId"),
           @Mapping(source = "ticket.id", target = "turno"),
-          @Mapping(source = "user.firstname", target = "mesero"),
+          @Mapping(source = "user.fullname", target = "mesero"),
           @Mapping(source = "table.identifier", target = "mesa"),
           @Mapping(source = "orderStatus", target = "estado"),
           @Mapping(source = "paymentStatus", target = "pago"),

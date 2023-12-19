@@ -18,20 +18,18 @@ public class ProductController {
   @Autowired
   private ProductService productService;
 
-  @PostMapping(path = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Product> createProduct(@RequestBody ProductDto product) {
+  @PostMapping("")
+  public ResponseEntity<Product> createProduct(@RequestBody Product product) {
     Product createdProduct = productService.generateProduct(product);
     return new ResponseEntity<Product>(createdProduct, HttpStatus.CREATED);
   }
 
-  @CrossOrigin(origins = "http://localhost:4200")
   @GetMapping("")
   public List<ProductDto> listAllProducts(){
     return productService.getProducts();
   }
 
-  @CrossOrigin(origins = "http://localhost:4200")
-  @GetMapping(path = "/{id}")
+  @GetMapping("/{id}")
   public Product getProductById(@PathVariable int id) {
     return productService.getProduct(id);
   }
@@ -42,10 +40,12 @@ public class ProductController {
     return "Se eliminó el producto: " + id;
   }
 
-  @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Product> updateProduct(@PathVariable int id, @RequestBody Product product) {
-    Product updatedProduct = productService.updateProduct(id, product);
-    return new ResponseEntity<Product>(updatedProduct, HttpStatus.ACCEPTED);
+  @PutMapping("/{id}")
+  public ResponseEntity<String> updateProduct(
+          @PathVariable("id") int productId,
+          @RequestBody Product productBody) {
+    productService.updateProduct(productId, productBody);
+    return new ResponseEntity<>("Producto actualizado", HttpStatus.ACCEPTED);
   }
 
 }

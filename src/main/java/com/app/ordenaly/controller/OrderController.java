@@ -22,26 +22,34 @@ public class OrderController {
   @Autowired
   OrderMapper orderMapper;
 
-//  @PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE)
-//  public ResponseEntity<Order> generateOrder(
-//          @RequestParam(value = "ticket") int ticket,
-//          @RequestParam(value = "waiter") int waiter) {
-//    Order order =  orderService.createOrder(ticket, waiter);
-//    if(order != null) {
-//      return ResponseEntity.ok().build();
-//    } else {
-//      return ResponseEntity.badRequest().build();
-//    }
-//  }
+  @PostMapping(value = "")
+  public ResponseEntity<Order> newOrder(
+          @RequestParam("ticketId") int ticketId,
+          @RequestParam("userId") int userId,
+          @RequestBody Order orderBody) {
+    Order newOrder = orderService.createOrder(ticketId, userId, orderBody);
+    if(orderBody != null) {
+      return ResponseEntity.ok().build();
+    } else {
+      return ResponseEntity.badRequest().build();
+    }
+//    return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
+  }
 
-  @CrossOrigin(origins = "http://localhost:4200")
   @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<String>  addItem(
-          @RequestParam(name = "order") int orderId,
-          @RequestParam(name = "product") int productId,
-          @RequestParam(name = "quantity") int quantity) {
-    Order item = orderService.addItemToOrder(orderId, productId, quantity);
+  public ResponseEntity<String> addItemToOrder(
+          @RequestParam(name = "orderId") int orderId,
+          @RequestParam(name = "productId") int productId) {
+    orderService.addItemToOrder(orderId, productId);
     return ResponseEntity.ok("Item agregado al pedido");
+  }
+
+  @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<String> updateItemQuantity(
+          @RequestParam(name = "item") int itemId,
+          @RequestParam(name = "quantity") int quantity) {
+    orderService.updateQuantity(itemId, quantity);
+    return ResponseEntity.ok("Actualizado");
   }
 
   @CrossOrigin(origins = "http://localhost:4200")
@@ -55,20 +63,25 @@ public class OrderController {
     }
   }
 
-  @CrossOrigin(origins = "http://localhost:4200")
   @GetMapping("")
-  public List<OrderDto> listOrders() {
+  public List<OrderDto> getOrders() {
     return orderService.getOrders();
   }
 
-  @PatchMapping("/{id}")
-  public ResponseEntity<Order> update(@PathVariable("id") int id, @RequestBody Order order ) {
-    Order orderUpdated = orderService.updateOrder(id, order);
-    return new ResponseEntity<>(orderUpdated, HttpStatus.OK);
+//  @PatchMapping("/{id}")
+//  public ResponseEntity<Order> updateOrder(@PathVariable("id") int id, @RequestBody Order order ) {
+//    Order orderUpdated = orderService.updateOrder(id, order);
+//    return new ResponseEntity<>(orderUpdated, HttpStatus.OK);
+//  }
+
+  @DeleteMapping("/item/{id}")
+  public ResponseEntity<String> removeItemFromOrder(@PathVariable("id") Integer itemId) {
+    orderService.deleteItem(itemId);
+    return new ResponseEntity<>("Item eliminado", HttpStatus.ACCEPTED);
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> removeOrderById(@PathVariable("id") Integer id) {
+  public ResponseEntity<Void> removeOrder(@PathVariable("id") Integer id) {
     orderService.deleteOrder(id);
     return new ResponseEntity<>( HttpStatus.OK );
   }
