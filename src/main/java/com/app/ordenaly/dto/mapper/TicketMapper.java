@@ -9,8 +9,8 @@ public interface TicketMapper {
 
   @Mappings({
           @Mapping(source = "id", target = "ticketId"),
-          @Mapping(source = "time", target = "hora", dateFormat = "hh:mm:ss a"),
-          @Mapping(source = "order.id", target = "orden")
+          @Mapping(source = "time", target = "created_at", dateFormat = "hh:mm:ss a"),
+          @Mapping(source = "order.id", target = "related_order")
   })
   TicketDto ticketToTicketDto(Ticket ticket);
   @InheritInverseConfiguration

@@ -8,11 +8,11 @@ import org.mapstruct.*;
 public interface ProductMapper {
 
   @Mappings({
-          @Mapping(source = "id", target = "productoId"),
-          @Mapping(source = "productName", target = "nombre"),
-          @Mapping(source = "description", target = "descripcion"),
-          @Mapping(source = "price", target = "precio"),
-          @Mapping(source = "inStock", target = "disponible")
+          @Mapping(source = "id", target = "product_id"),
+          @Mapping(source = "productName", target = "product_name"),
+          @Mapping(source = "description", target = "description"),
+          @Mapping(source = "price", target = "price"),
+          @Mapping(source = "inStock", target = "in_stock")
   })
   ProductDto productToProductDto(Product product);
 

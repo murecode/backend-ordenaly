@@ -1,47 +1,47 @@
 package com.app.ordenaly.dto;
 
 public class ItemDto {
-  private int itemId;
-  private String producto;
-  private int precio;
-  private int cantidad;
+  private int item_id;
+  private String product_name;
+  private int price;
+  private int quantity;
 
-  public ItemDto(int itemId, String producto, int precio, int cantidad) {
-    this.itemId = itemId;
-    this.producto = producto;
-    this.precio = precio;
-    this.cantidad = cantidad;
+  public ItemDto(int item_id, String product_name, int precio, int quantity) {
+    this.item_id = item_id;
+    this.product_name = product_name;
+    this.price = price;
+    this.quantity = quantity;
   }
 
-  public int getItemId() {
-    return itemId;
+  public int getItem_id() {
+    return item_id;
   }
 
-  public void setItemId(int itemId) {
-    this.itemId = itemId;
+  public void setItem_id(int item_id) {
+    this.item_id = item_id;
   }
 
-  public String getProducto() {
-    return producto;
+  public String getProduct_name() {
+    return product_name;
   }
 
-  public void setProducto(String producto) {
-    this.producto = producto;
+  public void setProduct_name(String product_name) {
+    this.product_name = product_name;
   }
 
-  public int getPrecio() {
-    return precio;
+  public int getPrice() {
+    return price;
   }
 
-  public void setPrecio(int precio) {
-    this.precio = precio;
+  public void setPrice(int price) {
+    this.price = price;
   }
 
-  public int getCantidad() {
-    return cantidad;
+  public int getQuantity() {
+    return quantity;
   }
 
-  public void setCantidad(int cantidad) {
-    this.cantidad = cantidad;
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
   }
 }

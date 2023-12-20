@@ -12,10 +12,10 @@ import java.util.List;
 public interface ItemMapper {
 
   @Mappings({
-          @Mapping(source = "id", target = "itemId"),
-          @Mapping(source = "product.productName", target = "producto"),
-          @Mapping(source = "product.price", target = "precio"),
-          @Mapping(source = "quantity", target = "cantidad")
+          @Mapping(source = "id", target = "item_id"),
+          @Mapping(source = "product.productName", target = "product_name"),
+          @Mapping(source = "product.price", target = "price"),
+          @Mapping(source = "quantity", target = "quantity")
   })
   ItemDto itemToItemDto(Item item);
 

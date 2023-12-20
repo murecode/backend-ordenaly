@@ -12,14 +12,14 @@ import java.util.List;
 public interface OrderMapper {
 
   @Mappings({
-          @Mapping(source = "id", target = "ordenId"),
-          @Mapping(source = "ticket.id", target = "turno"),
-          @Mapping(source = "user.fullname", target = "mesero"),
-          @Mapping(source = "table.identifier", target = "mesa"),
-          @Mapping(source = "orderStatus", target = "estado"),
-          @Mapping(source = "paymentStatus", target = "pago"),
-          @Mapping(source = "itemList", target = "pedido"),
-          @Mapping(source = "notes", target = "notas")
+          @Mapping(source = "id", target = "order_id"),
+          @Mapping(source = "ticket.id", target = "related_ticket"),
+          @Mapping(source = "user.fullname", target = "waiter"),
+          @Mapping(source = "table.identifier", target = "table"),
+          @Mapping(source = "orderStatus", target = "order_status"),
+          @Mapping(source = "paymentStatus", target = "payment_status"),
+          @Mapping(source = "itemList", target = "item_list"),
+          @Mapping(source = "notes", target = "order_comment")
   })
 
   OrderDto orderToOrderDto(Order order);

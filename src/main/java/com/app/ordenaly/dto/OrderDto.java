@@ -3,79 +3,79 @@ package com.app.ordenaly.dto;
 import java.util.List;
 
 public class OrderDto {
-  private int ordenId;
-  private int turno;
-  private String mesa;
-  private String mesero;
-  private String estado;
-  private String pago;
-  private List<ItemDto> pedido;
+  private int order_id;
+  private int related_ticket;
+  private String table;
+  private String waiter;
+  private String order_status;
+  private String payment_status;
+  private List<ItemDto> item_list;
 
-  private String notas;
+  private String order_comment;
 
   public OrderDto() {};
 
-  public int getOrdenId() {
-    return ordenId;
+  public int getOrder_id() {
+    return order_id;
   }
 
-  public void setOrdenId(int ordenId) {
-    this.ordenId = ordenId;
+  public void setOrder_id(int order_id) {
+    this.order_id = order_id;
   }
 
-  public int getTurno() {
-    return turno;
+  public int getRelated_ticket() {
+    return related_ticket;
   }
 
-  public void setTurno(int turno) {
-    this.turno = turno;
+  public void setRelated_ticket(int related_ticket) {
+    this.related_ticket = related_ticket;
   }
 
-  public String getMesero() {
-    return mesero;
+  public String getTable() {
+    return table;
   }
 
-  public void setMesero(String mesero) {
-    this.mesero = mesero;
+  public void setTable(String table) {
+    this.table = table;
   }
 
-  public String getMesa() {
-    return mesa;
+  public String getWaiter() {
+    return waiter;
   }
 
-  public void setMesa(String mesa) {
-    this.mesa = mesa;
+  public void setWaiter(String waiter) {
+    this.waiter = waiter;
   }
 
-  public String getEstado() {
-    return estado;
+  public String getOrder_status() {
+    return order_status;
   }
 
-  public void setEstado(String estado) {
-    this.estado = estado;
+  public void setOrder_status(String order_status) {
+    this.order_status = order_status;
   }
 
-  public String getPago() {
-    return pago;
+  public String getPayment_status() {
+    return payment_status;
   }
 
-  public void setPago(String pago) {
-    this.pago = pago;
+  public void setPayment_status(String payment_status) {
+    this.payment_status = payment_status;
   }
 
-  public List<ItemDto> getPedido() {
-    return pedido;
+  public List<ItemDto> getItem_list() {
+    return item_list;
   }
 
-  public void setPedido(List<ItemDto> pedido) {
-    this.pedido = pedido;
+  public void setItem_list(List<ItemDto> item_list) {
+    this.item_list = item_list;
   }
 
-  public String getNotas() {
-    return notas;
+  public String getOrder_comment() {
+    return order_comment;
   }
 
-  public void setNotas(String notas) {
-    this.notas = notas;
+  public void setOrder_comment(String order_comment) {
+    this.order_comment = order_comment;
   }
 }

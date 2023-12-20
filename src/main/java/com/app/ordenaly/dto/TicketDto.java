@@ -2,13 +2,13 @@ package com.app.ordenaly.dto;
 
 public class TicketDto {
   private int ticketId;
-  private String hora;
-  private int orden;
+  private String created_at;
+  private int related_order;
 
-  public TicketDto(int ticketId, String hora, int orden) {
+  public TicketDto(int ticketId, String created_at, int related_order) {
     this.ticketId = ticketId;
-    this.hora = hora;
-    this.orden = orden;
+    this.created_at = created_at;
+    this.related_order = related_order;
   }
 
   public int getTicketId() {
@@ -19,20 +19,20 @@ public class TicketDto {
     this.ticketId = ticketId;
   }
 
-  public String getHora() {
-    return hora;
+  public String getCreated_at() {
+    return created_at;
   }
 
-  public void setHora(String hora) {
-    this.hora = hora;
+  public void setCreated_at(String created_at) {
+    this.created_at = created_at;
   }
 
-  public int getOrden() {
-    return orden;
+  public int getRelated_order() {
+    return related_order;
   }
 
-  public void setOrden(int orden) {
-    this.orden = orden;
+  public void setRelated_order(int related_order) {
+    this.related_order = related_order;
   }
 
 }

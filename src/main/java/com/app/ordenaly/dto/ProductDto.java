@@ -1,57 +1,57 @@
 package com.app.ordenaly.dto;
 
 public class ProductDto {
-  private int productoId;
-  private String nombre;
-  private String descripcion;
-  private Double precio;
-  private Boolean disponible;
+  private int product_id;
+  private String product_name;
+  private String description;
+  private Double price;
+  private Boolean in_stock;
 
-  public ProductDto(int productoId, String nombre, String descripcion, Double precio, Boolean disponible) {
-    this.productoId = productoId;
-    this.nombre = nombre;
-    this.descripcion = descripcion;
-    this.precio = precio;
-    this.disponible = disponible;
+  public ProductDto(int product_id, String product_name, String description, Double price, Boolean in_stock) {
+    this.product_id = product_id;
+    this.product_name = product_name;
+    this.description = description;
+    this.price = price;
+    this.in_stock = in_stock;
   }
 
-  public int getProductoId() {
-    return productoId;
+  public int getProduct_id() {
+    return product_id;
   }
 
-  public void setProductoId(int productoId) {
-    this.productoId = productoId;
+  public void setProduct_id(int product_id) {
+    this.product_id = product_id;
   }
 
-  public String getNombre() {
-    return nombre;
+  public String getProduct_name() {
+    return product_name;
   }
 
-  public void setNombre(String nombre) {
-    this.nombre = nombre;
+  public void setProduct_name(String product_name) {
+    this.product_name = product_name;
   }
 
-  public String getDescripcion() {
-    return descripcion;
+  public String getDescription() {
+    return description;
   }
 
-  public void setDescripcion(String descripcion) {
-    this.descripcion = descripcion;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
-  public Double getPrecio() {
-    return precio;
+  public Double getPrice() {
+    return price;
   }
 
-  public void setPrecio(Double precio) {
-    this.precio = precio;
+  public void setPrice(Double price) {
+    this.price = price;
   }
 
-  public Boolean getDisponible() {
-    return disponible;
+  public Boolean getIn_stock() {
+    return in_stock;
   }
 
-  public void setDisponible(Boolean disponible) {
-    this.disponible = disponible;
+  public void setIn_Stock(Boolean in_stock) {
+    this.in_stock = in_stock;
   }
 }
