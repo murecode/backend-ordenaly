@@ -17,12 +17,9 @@ import java.util.List;
 public class ProductController {
   @Autowired
   private ProductService productService;
+  @Autowired
+  private ProductMapper productMapper;
 
-  @PostMapping("")
-  public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-    Product createdProduct = productService.generateProduct(product);
-    return new ResponseEntity<Product>(createdProduct, HttpStatus.CREATED);
-  }
 
   @GetMapping("")
   public List<ProductDto> listAllProducts(){
@@ -34,18 +31,25 @@ public class ProductController {
     return productService.getProduct(id);
   }
 
-  @DeleteMapping(value = "/{id}")
-  public String removeProduct(@PathVariable int id) {
-    productService.deleteProduct(id);
-    return "Se eliminó el producto: " + id;
+  @PostMapping("")
+  public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+    Product createdProduct = productService.generateProduct(product);
+    return new ResponseEntity<Product>(createdProduct, HttpStatus.CREATED);
   }
 
   @PutMapping("/{id}")
   public ResponseEntity<String> updateProduct(
           @PathVariable("id") int productId,
-          @RequestBody Product productBody) {
+          @RequestBody ProductDto productDto) {
+    Product productBody = productMapper.ProductDtoToProduct(productDto);
     productService.updateProduct(productId, productBody);
     return new ResponseEntity<>("Producto actualizado", HttpStatus.ACCEPTED);
+  }
+
+  @DeleteMapping(value = "/{id}")
+  public String removeProduct(@PathVariable int id) {
+    productService.deleteProduct(id);
+    return "Se eliminó el producto: " + id;
   }
 
 }

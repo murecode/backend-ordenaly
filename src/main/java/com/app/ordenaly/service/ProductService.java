@@ -4,6 +4,7 @@ import com.app.ordenaly.dto.ProductDto;
 import com.app.ordenaly.dto.mapper.ProductMapper;
 import com.app.ordenaly.model.Product;
 import com.app.ordenaly.repository.ProductRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,13 +42,15 @@ public class ProductService {
   public Product updateProduct(int productId, Product productBoby) {
     Product product = productRepository.findById(productId).orElse(null);
 
-//    if (product != null) return null;
-
-    product.setProductName(productBoby.getProductName());
-    product.setDescription(productBoby.getDescription());
-    product.setPrice(productBoby.getPrice());
-    product.setInStock(productBoby.getInStock());
-    return productRepository.save(product);
+    if( product != null ) {
+      product.setProductName(productBoby.getProductName());
+      product.setDescription(productBoby.getDescription());
+      product.setPrice(productBoby.getPrice());
+      product.setInStock(productBoby.getInStock());
+      return productRepository.save(product);
+    } else {
+      throw new EntityNotFoundException("No se encontró el producto con ID: " + productId);
+    }
   }
 
   public void deleteProduct(int id) {

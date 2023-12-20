@@ -7,13 +7,15 @@ public class ProductDto {
   private Double price;
   private Boolean in_stock;
 
-  public ProductDto(int product_id, String product_name, String description, Double price, Boolean in_stock) {
-    this.product_id = product_id;
-    this.product_name = product_name;
-    this.description = description;
-    this.price = price;
-    this.in_stock = in_stock;
-  }
+  public ProductDto() {}
+
+//  public ProductDto(int product_id, String product_name, String description, Double price, Boolean in_stock) {
+//    this.product_id = product_id;
+//    this.product_name = product_name;
+//    this.description = description;
+//    this.price = price;
+//    this.in_stock = in_stock;
+//  }
 
   public int getProduct_id() {
     return product_id;
@@ -51,7 +53,7 @@ public class ProductDto {
     return in_stock;
   }
 
-  public void setIn_Stock(Boolean in_stock) {
+  public void setIn_stock(Boolean in_stock) {
     this.in_stock = in_stock;
   }
 }

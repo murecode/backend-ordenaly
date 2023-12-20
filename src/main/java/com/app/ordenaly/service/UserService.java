@@ -19,6 +19,7 @@ public class UserService {
   @Autowired
   private UserMapper userMapper;
 
+
   public User createUser(User user) {
 
     // Verificar si el usuario que realiza la acción tiene el rol de "Administrador"
@@ -43,11 +44,13 @@ public class UserService {
   public User updateUser(int userId, User userBody) {
     User user = userRepository.findById(userId).get();
     user.setFullname(userBody.getFullname());
-    user.setRole(userBody.getRole());
-    user.setUsername(userBody.getUsername());
-    user.setPassword(userBody.getPassword());
     return userRepository.save(user);
   }
+
+  // UPDATE_USER_CREDENTIALS - autorized only ADMIN
+  // user.setUsername(userBody.getUsername());
+  // user.setPassword(userBody.getPassword());
+  // user.setRole(userBody.getRole());
 
   public void deleteUser(int id) {
     User user = userRepository.findById(id).get();
