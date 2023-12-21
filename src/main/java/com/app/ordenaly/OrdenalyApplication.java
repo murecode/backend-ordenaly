@@ -11,22 +11,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 @OpenAPIDefinition
-
 public class OrdenalyApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OrdenalyApplication.class, args);
 	}
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
 
 	// GENERA LA CONTRASEÑA ENCRIPTADA PARA LA BASE DE DATOS
-	@Bean
-	public CommandLineRunner createPassword() {
-		return args -> {
-			System.out.println(passwordEncoder.encode("miclave123recontraguapa321AA_45-XX654@"));
-//			System.out.println(passwordEncoder.encode("qwerty"));
-		};
-	}
+//	@Bean
+//	public CommandLineRunner createPassword() {
+//		return args -> {
+//			System.out.println(passwordEncoder.encode("miclave123recontraguapa321AA_45-XX654@"));
+// 		    System.out.println(passwordEncoder.encode("qwerty"));
+//		};
+//	}
 
 }

@@ -59,7 +59,7 @@ public class HttpSecurityConfig {
               authorize.requestMatchers(HttpMethod.PUT,    "/users/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/users/{id}").permitAll();
 
-              authorize.requestMatchers("http://localhost:8080/swagger-ui/index.html").permitAll();
+              authorize.requestMatchers("/v1/authenticate", "/v3/api-docs/**", "swagger-ui/**","/swagger-ui.html").permitAll();
 
               authorize.requestMatchers(HttpMethod.DELETE, "/users/{id}").hasAuthority(Permissions.DELETE_USER.name());
               authorize.requestMatchers(HttpMethod.GET, "/products").hasAuthority(Permissions.DELETE_PRODUCT.name());
