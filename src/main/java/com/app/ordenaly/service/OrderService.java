@@ -32,25 +32,24 @@ public class OrderService {
   @Autowired
   ItemService itemService;
 
-  public Order createOrder(int ticketId, int userId, Order orderBody) {
+  public Order createOrder(int ticketId, int userId) {
     Ticket ticket = ticketRepository.findById(ticketId).get();
     User waiter = userRepository.findById(userId).get();
 
-    if (ticket == null) {
-      throw new EntityNotFoundException("Ticket no encontrado");
-    }
-    if (waiter == null) {
-      throw new EntityNotFoundException("User no encontrado");
+    if (ticket == null && waiter == null) {
+      throw new EntityNotFoundException("Fallo! No se pudo generar la orden");
     }
 
-    Order newOrder = new Order();
-    newOrder.setTicket(orderBody.getTicket());
-    newOrder.setUser(orderBody.getUser());
-    newOrder.setOrderStatus(OrderStatus.PENDIENTE);
-    newOrder.setPaymentStatus(PaymentStatus.PENDIENTE);
+    Order order = new Order();
+    order.setTicket( ticket );
+    order.setUser( waiter );
+    order.setOrderStatus(OrderStatus.PENDIENTE);
+    order.setPaymentStatus(PaymentStatus.PENDIENTE);
+    order.setItemList(order.getItemList());
+    order.setNotes(order.getNotes());
     //Se asocia el id de la orden con el ticket
-    ticket.setOrder(newOrder);
-    Order saveOrder = orderRepository.save(newOrder);
+    ticket.setOrder(order);
+    Order saveOrder = orderRepository.save(order);
     return saveOrder;
   }
 
@@ -84,11 +83,9 @@ public class OrderService {
     return null;
   }
 
-  public List<OrderDto> getOrders() {
+  public List<Order> getOrders() {
     List<Order> orders = orderRepository.findAll();
-    return orders.stream()
-            .map(orderMapper::orderToOrderDto)
-            .collect(Collectors.toList());
+    return orders;
   }
 
   public void deleteItem(int itemId) {

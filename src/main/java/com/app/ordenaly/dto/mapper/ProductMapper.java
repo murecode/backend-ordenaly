@@ -4,6 +4,8 @@ import com.app.ordenaly.dto.ProductDto;
 import com.app.ordenaly.model.Product;
 import org.mapstruct.*;
 
+import java.util.List;
+
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ProductMapper {
 
@@ -15,8 +17,8 @@ public interface ProductMapper {
           @Mapping(source = "inStock", target = "in_stock")
   })
   ProductDto productToProductDto(Product product);
-
   @InheritInverseConfiguration
   Product ProductDtoToProduct(ProductDto productDto);
+  List<ProductDto> productsDto(List<Product> productList);
 
 }

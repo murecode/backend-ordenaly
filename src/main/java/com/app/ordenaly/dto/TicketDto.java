@@ -1,22 +1,25 @@
 package com.app.ordenaly.dto;
 
 public class TicketDto {
-  private int ticketId;
+  private String ticket_id;
   private String created_at;
   private int related_order;
 
-  public TicketDto(int ticketId, String created_at, int related_order) {
-    this.ticketId = ticketId;
-    this.created_at = created_at;
-    this.related_order = related_order;
+  public TicketDto() {}
+
+//  public TicketDto(int ticketId, String created_at, int related_order) {
+//    this.ticketId = ticketId;
+//    this.created_at = created_at;
+//    this.related_order = related_order;
+//  }
+
+
+  public String getTicket_id() {
+    return ticket_id;
   }
 
-  public int getTicketId() {
-    return ticketId;
-  }
-
-  public void setTicketId(int ticketId) {
-    this.ticketId = ticketId;
+  public void setTicket_id(String ticket_id) {
+    this.ticket_id = ticket_id;
   }
 
   public String getCreated_at() {

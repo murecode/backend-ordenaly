@@ -25,7 +25,9 @@ public class OrderController {
 
   @GetMapping("")
   public List<OrderDto> getOrders() {
-    return orderService.getOrders();
+    List<Order> orders = orderService.getOrders();
+    List<OrderDto> ordersDto = orderMapper.ordersDto( orders );
+    return ordersDto;
   }
 
   @GetMapping("/{id}")
@@ -38,29 +40,29 @@ public class OrderController {
     }
   }
 
-  @PostMapping(value = "")
-  public ResponseEntity<Order> newOrder(
+  @PostMapping("")
+  public ResponseEntity<OrderDto> newOrder(
           @RequestParam("ticketId") int ticketId,
-          @RequestParam("userId") int userId,
-          @RequestBody Order orderBody) {
-    Order newOrder = orderService.createOrder(ticketId, userId, orderBody);
-    if(orderBody != null) {
-      return ResponseEntity.ok().build();
+          @RequestParam("userId") int userId) {
+    Order order = orderService.createOrder( ticketId, userId );
+    OrderDto orderDto = orderMapper.orderToOrderDto( order );
+    if(orderDto != null) {
+      return new ResponseEntity<OrderDto>( orderDto, HttpStatus.CREATED );
     } else {
       return ResponseEntity.badRequest().build();
     }
 //    return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
   }
 
-  @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+  @PostMapping("/{id}/add-item")
   public ResponseEntity<String> addItemToOrder(
-          @RequestParam(name = "orderId") int orderId,
+          @PathVariable("id") int orderId,
           @RequestParam(name = "productId") int productId) {
     orderService.addItemToOrder(orderId, productId);
     return ResponseEntity.ok("Item agregado al pedido");
   }
 
-  @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+  @PutMapping("/update")
   public ResponseEntity<String> updateItemQuantity(
           @RequestParam(name = "item") int itemId,
           @RequestParam(name = "quantity") int quantity) {

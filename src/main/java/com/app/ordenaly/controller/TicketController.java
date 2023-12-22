@@ -31,10 +31,9 @@ public class TicketController {
   }
 
   @PostMapping("")
-  public ResponseEntity<TicketDto> newTicket(
-          @RequestBody Ticket ticketBody) {
-    Ticket ticket = ticketService.generateTicket( ticketBody );
-    TicketDto ticketDto = ticketMapper.ticketToTicketDto(ticket);
+  public ResponseEntity<TicketDto> newTicket() {
+    Ticket ticket = ticketService.generateTicket();
+    TicketDto ticketDto = ticketMapper.ticketToTicketDto( ticket );
     return new ResponseEntity<>(ticketDto, HttpStatus.CREATED);
   }
 

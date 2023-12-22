@@ -3,7 +3,7 @@ package com.app.ordenaly.dto;
 import java.util.List;
 
 public class OrderDto {
-  private int order_id;
+  private String order_id;
   private int related_ticket;
   private String table;
   private String waiter;
@@ -15,11 +15,11 @@ public class OrderDto {
 
   public OrderDto() {};
 
-  public int getOrder_id() {
+  public String getOrder_id() {
     return order_id;
   }
 
-  public void setOrder_id(int order_id) {
+  public void setOrder_id(String order_id) {
     this.order_id = order_id;
   }
 

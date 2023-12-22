@@ -1,23 +1,25 @@
 package com.app.ordenaly.dto;
 
 public class ItemDto {
-  private int item_id;
+  private String item_id;
   private String product_name;
   private int price;
   private int quantity;
 
-  public ItemDto(int item_id, String product_name, int precio, int quantity) {
-    this.item_id = item_id;
-    this.product_name = product_name;
-    this.price = price;
-    this.quantity = quantity;
-  }
+  public ItemDto() {};
 
-  public int getItem_id() {
+//  public ItemDto(int item_id, String product_name, int precio, int quantity) {
+//    this.item_id = item_id;
+//    this.product_name = product_name;
+//    this.price = price;
+//    this.quantity = quantity;
+//  }
+
+  public String getItem_id() {
     return item_id;
   }
 
-  public void setItem_id(int item_id) {
+  public void setItem_id(String item_id) {
     this.item_id = item_id;
   }
 
