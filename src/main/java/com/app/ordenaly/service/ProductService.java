@@ -28,11 +28,9 @@ public class ProductService {
     return productRepository.save(product);
   }
 
-  public List<ProductDto> getProducts() {
+  public List<Product> getProducts() {
     List<Product> products = productRepository.findAll();
-    return products.stream()
-            .map(productMapper::productToProductDto)
-            .collect(Collectors.toList());
+    return products;
   }
 
   public Product getProduct(int id) {

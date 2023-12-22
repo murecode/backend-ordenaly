@@ -21,8 +21,9 @@ public class ItemController {
     return itemService.getItemById(id);
   }
 
-  @GetMapping("/list")
-  public List<ItemDto> listItems() {
-    return itemService.getItems();
-  }
+//  @GetMapping("/list")
+//  public List<ItemDto> listItems() {
+//    return itemService.getItems();
+//  }
+
 }

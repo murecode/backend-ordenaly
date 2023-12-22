@@ -22,6 +22,22 @@ public class OrderController {
   @Autowired
   OrderMapper orderMapper;
 
+
+  @GetMapping("")
+  public List<OrderDto> getOrders() {
+    return orderService.getOrders();
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<OrderDto> getOrder(@PathVariable Integer id) {
+    OrderDto orderDto = orderService.findOrderById( id );
+    if (orderDto != null) {
+      return ResponseEntity.ok(orderDto);
+    } else {
+      return ResponseEntity.notFound().build();
+    }
+  }
+
   @PostMapping(value = "")
   public ResponseEntity<Order> newOrder(
           @RequestParam("ticketId") int ticketId,
@@ -50,22 +66,6 @@ public class OrderController {
           @RequestParam(name = "quantity") int quantity) {
     orderService.updateQuantity(itemId, quantity);
     return ResponseEntity.ok("Actualizado");
-  }
-
-  @CrossOrigin(origins = "http://localhost:4200")
-  @GetMapping("/{id}")
-  public ResponseEntity<OrderDto> getOrder(@PathVariable Integer id) {
-    OrderDto orderDto = orderService.findOrderById( id );
-    if (orderDto != null) {
-      return ResponseEntity.ok(orderDto);
-    } else {
-      return ResponseEntity.notFound().build();
-    }
-  }
-
-  @GetMapping("")
-  public List<OrderDto> getOrders() {
-    return orderService.getOrders();
   }
 
 //  @PatchMapping("/{id}")

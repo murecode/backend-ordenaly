@@ -18,15 +18,15 @@ public class UserController {
   @Autowired
   UserService userService;
 
+  @GetMapping("")
+  public List<UserDto> getAllUsers() {
+    return userService.findAllUsers();
+  }
+
   @PostMapping("")
   public ResponseEntity<String> createUser(@RequestBody User user) {
     userService.createUser(user);
     return new ResponseEntity<>("Usuario creado",HttpStatus.CREATED);
-  }
-
-  @GetMapping("")
-  public List<UserDto> getAllUsers() {
-    return userService.findAllUsers();
   }
 
   @PutMapping("/{id}")

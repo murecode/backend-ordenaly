@@ -2,6 +2,7 @@ package com.app.ordenaly.controller;
 
 import com.app.ordenaly.dto.TicketDto;
 //import com.app.ordenaly.model.Order;
+import com.app.ordenaly.dto.mapper.TicketMapper;
 import com.app.ordenaly.model.Ticket;
 import com.app.ordenaly.service.OrderService;
 import com.app.ordenaly.service.TicketService;
@@ -21,6 +22,8 @@ public class TicketController {
   TicketService ticketService;
   @Autowired
   OrderService orderService;
+  @Autowired
+  TicketMapper ticketMapper;
 
   @GetMapping("")
   public List<TicketDto> listAllTickets() {
@@ -28,10 +31,11 @@ public class TicketController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Ticket> newTicket(
+  public ResponseEntity<TicketDto> newTicket(
           @RequestBody Ticket ticketBody) {
-    Ticket newTicket= ticketService.generateTicket(ticketBody);
-    return new ResponseEntity<>(newTicket, HttpStatus.CREATED);
+    Ticket ticket = ticketService.generateTicket( ticketBody );
+    TicketDto ticketDto = ticketMapper.ticketToTicketDto(ticket);
+    return new ResponseEntity<>(ticketDto, HttpStatus.CREATED);
   }
 
 //  @PostMapping("/take")

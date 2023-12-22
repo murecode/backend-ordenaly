@@ -1,7 +1,9 @@
 package com.app.ordenaly.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class ProductDto {
-  private int product_id;
+  private String product_id;
   private String product_name;
   private String description;
   private Double price;
@@ -17,11 +19,11 @@ public class ProductDto {
 //    this.in_stock = in_stock;
 //  }
 
-  public int getProduct_id() {
+  public String getProduct_id() {
     return product_id;
   }
 
-  public void setProduct_id(int product_id) {
+  public void setProduct_id(String product_id) {
     this.product_id = product_id;
   }
 

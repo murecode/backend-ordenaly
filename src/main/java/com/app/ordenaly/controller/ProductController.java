@@ -22,28 +22,32 @@ public class ProductController {
 
 
   @GetMapping("")
-  public List<ProductDto> listAllProducts(){
+  public List<Product> listAllProducts(){
     return productService.getProducts();
   }
 
   @GetMapping("/{id}")
-  public Product getProductById(@PathVariable int id) {
-    return productService.getProduct(id);
+  public ResponseEntity<ProductDto> getProductById(@PathVariable int id) {
+    Product product = productService.getProduct(id);
+    ProductDto productDto = productMapper.productToProductDto( product );
+    return new ResponseEntity<>(productDto, HttpStatus.OK);
   }
 
   @PostMapping("")
-  public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-    Product createdProduct = productService.generateProduct(product);
-    return new ResponseEntity<Product>(createdProduct, HttpStatus.CREATED);
+  public ResponseEntity<ProductDto> createProduct(
+          @RequestBody ProductDto productDto) {
+    Product product = productMapper.ProductDtoToProduct( productDto );
+    productService.generateProduct( product );
+    return new ResponseEntity<ProductDto>(productDto, HttpStatus.CREATED);
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<String> updateProduct(
+  public ResponseEntity<ProductDto> updateProduct(
           @PathVariable("id") int productId,
           @RequestBody ProductDto productDto) {
-    Product productBody = productMapper.ProductDtoToProduct(productDto);
-    productService.updateProduct(productId, productBody);
-    return new ResponseEntity<>("Producto actualizado", HttpStatus.ACCEPTED);
+    Product product = productMapper.ProductDtoToProduct(productDto);
+    productService.updateProduct(productId, product);
+    return new ResponseEntity<>(productDto, HttpStatus.ACCEPTED);
   }
 
   @DeleteMapping(value = "/{id}")
