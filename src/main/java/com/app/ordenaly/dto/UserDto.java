@@ -5,11 +5,7 @@ public class UserDto {
   private String name;
   private String rol;
 
-  public UserDto(String user_id, String name, String rol) {
-    this.user_id = user_id;
-    this.name = name;
-    this.rol = rol;
-  }
+  public UserDto() {};
 
   public String getUser_id() {
     return user_id;

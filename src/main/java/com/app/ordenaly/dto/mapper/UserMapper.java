@@ -4,6 +4,8 @@ import com.app.ordenaly.dto.UserDto;
 import com.app.ordenaly.model.User;
 import org.mapstruct.*;
 
+import java.util.List;
+
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper {
   @Mappings({
@@ -14,5 +16,6 @@ public interface UserMapper {
   UserDto UserToUserDto(User user);
   @InheritInverseConfiguration
   User UserDtoToUser(UserDto userDto);
+  List<UserDto> usersDto(List<User> userList);
 
 }

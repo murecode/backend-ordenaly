@@ -20,25 +20,24 @@ public class UserService {
   private UserMapper userMapper;
 
 
-  public User createUser(User user) {
+  public User createUser(User userBody) {
 
     // Verificar si el usuario que realiza la acción tiene el rol de "Administrador"
     // Verificar que el nuevo usuario no exista
     // ...
-    User newUser = new User();
-    newUser.setFullname(newUser.getFullname());
-    newUser.setPassword(newUser.getPassword());
-    newUser.setUsername(newUser.getUsername());
-    newUser.setRole(newUser.getRole());
+    User user = new User();
+    user.setId(user.getId());
+    user.setFullname(userBody.getFullname());
+    user.setPassword(userBody.getPassword());
+    user.setUsername(userBody.getUsername());
+    user.setRole(userBody.getRole());
 
-    return userRepository.save(newUser);
+    return userRepository.save( user );
   }
 
-  public List<UserDto> findAllUsers() {
+  public List<User> findAllUsers() {
     List<User> users = userRepository.findAll();
-    return users.stream()
-            .map(userMapper::UserToUserDto)
-            .collect(Collectors.toList());
+    return users;
   }
 
   public User updateUser(int userId, User userBody) {

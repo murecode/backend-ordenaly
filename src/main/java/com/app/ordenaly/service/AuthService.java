@@ -15,7 +15,6 @@ import java.util.Map;
 
 @Service
 public class AuthService {
-
   @Autowired
   AuthenticationManager authManager;
   @Autowired
@@ -24,7 +23,6 @@ public class AuthService {
   JwtService jwtService;
 
   public AuthResponse login(AuthRequest authRequest) {
-
     //*
     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken (
             authRequest.getUsername(), authRequest.getPassword()
