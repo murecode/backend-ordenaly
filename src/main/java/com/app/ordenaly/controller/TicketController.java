@@ -37,17 +37,17 @@ public class TicketController {
     return new ResponseEntity<>(ticketDto, HttpStatus.CREATED);
   }
 
-//  @PostMapping("/take")
-//  public ResponseEntity<String> takeOrder(
-//          @PathVariable int ticketId, @PathVariable int waiterId) {
-//    try {
-//      orderService.createOrder(ticketId, waiterId);
-//      return new ResponseEntity<>("Orden tomada", HttpStatus.CREATED);
-//    } catch (EntityNotFoundException e) {
-//      return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-//    } catch (Exception e) {
-//      return new ResponseEntity<>("Error creating order", HttpStatus.INTERNAL_SERVER_ERROR);
-//    }
-//  }
+  @PostMapping("/take")
+  public ResponseEntity<String> takeOrder(
+          @PathVariable int ticketId, @PathVariable int waiterId) {
+    try {
+      orderService.createOrder(ticketId, waiterId);
+      return new ResponseEntity<>("Orden tomada", HttpStatus.CREATED);
+    } catch (EntityNotFoundException e) {
+      return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    } catch (Exception e) {
+      return new ResponseEntity<>("Error creating order", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
 
 }
