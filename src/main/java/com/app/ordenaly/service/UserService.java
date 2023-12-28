@@ -43,6 +43,7 @@ public class UserService {
   public User updateUser(int userId, User userBody) {
     User user = userRepository.findById(userId).get();
     user.setFullname(userBody.getFullname());
+    user.setRole(userBody.getRole());
     return userRepository.save(user);
   }
 

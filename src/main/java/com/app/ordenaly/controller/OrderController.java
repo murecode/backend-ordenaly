@@ -4,6 +4,7 @@ import com.app.ordenaly.dto.OrderDto;
 import com.app.ordenaly.dto.mapper.OrderMapper;
 import com.app.ordenaly.model.Order;
 import com.app.ordenaly.service.OrderService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,9 +32,11 @@ public class OrderController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<OrderDto> getOrder(@PathVariable Integer id) {
-    OrderDto orderDto = orderService.findOrderById( id );
-    if (orderDto != null) {
+  public ResponseEntity<OrderDto> getOrder(
+          @PathVariable("id") int orderId) {
+    Order order = orderService.findOrderById( orderId );
+    OrderDto orderDto = orderMapper.orderToOrderDto( order );
+    if (order != null) {
       return ResponseEntity.ok(orderDto);
     } else {
       return ResponseEntity.notFound().build();
@@ -41,17 +44,15 @@ public class OrderController {
   }
 
   @PostMapping("")
-  public ResponseEntity<OrderDto> newOrder(
+  public ResponseEntity<String> newOrder(
           @RequestParam("ticketId") int ticketId,
           @RequestParam("userId") int userId) {
     Order order = orderService.createOrder( ticketId, userId );
-    OrderDto orderDto = orderMapper.orderToOrderDto( order );
-    if(orderDto != null) {
-      return new ResponseEntity<OrderDto>( orderDto, HttpStatus.CREATED );
-    } else {
-      return ResponseEntity.badRequest().build();
+
+    if(order.getTicket() == null || order.getUser() == null) {
+      return new ResponseEntity<>("Ticket o Mesero deben ser validos", HttpStatus.BAD_REQUEST );
     }
-//    return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
+    return new ResponseEntity<>("Orden Creada", HttpStatus.CREATED);
   }
 
   @PostMapping("/{id}/add-item")
@@ -62,24 +63,16 @@ public class OrderController {
     return ResponseEntity.ok("Item agregado al pedido");
   }
 
-  @PutMapping("/update")
-  public ResponseEntity<String> updateItemQuantity(
-          @RequestParam(name = "item") int itemId,
-          @RequestParam(name = "quantity") int quantity) {
-    orderService.updateQuantity(itemId, quantity);
-    return ResponseEntity.ok("Actualizado");
-  }
-
-//  @PatchMapping("/{id}")
-//  public ResponseEntity<Order> updateOrder(@PathVariable("id") int id, @RequestBody Order order ) {
-//    Order orderUpdated = orderService.updateOrder(id, order);
-//    return new ResponseEntity<>(orderUpdated, HttpStatus.OK);
-//  }
-
-  @DeleteMapping("/item/{id}")
-  public ResponseEntity<String> removeItemFromOrder(@PathVariable("id") Integer itemId) {
-    orderService.deleteItem(itemId);
-    return new ResponseEntity<>("Item eliminado", HttpStatus.ACCEPTED);
+  @PutMapping("/{id}")
+  public ResponseEntity<String> updateOrder(
+          @PathVariable("id") int orderId,
+          @RequestBody OrderDto orderDto ) {
+    Order orderBody = orderMapper.orderDtoToOrder( orderDto );
+    orderService.updateOrder( orderId, orderBody );
+    if ( orderBody.getId() != null ) {
+      return new ResponseEntity<>("Orden Actualizada", HttpStatus.OK);
+    }
+    return new ResponseEntity<>("No se encontrol la orden", HttpStatus.BAD_REQUEST);
   }
 
   @DeleteMapping("/{id}")

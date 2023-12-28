@@ -36,19 +36,12 @@ public class ItemService {
       return itemRepository.save(item);
   }
 
-  public void updateQuantity(int itemId, int quantity) {
+  public void updateQuantity( int itemId, Item itemBody) {
     Item item = itemRepository.findById(itemId).get();
     if ( item != null ) {
-      item.setQuantity(quantity);
+      item.setQuantity(itemBody.getQuantity());
       itemRepository.save(item);
     }
-  }
-
-  public List<ItemDto> getItems() {
-    List<Item> items = itemRepository.findAll();
-    return items.stream()
-            .map(itemMapper::itemToItemDto)
-            .collect(Collectors.toList());
   }
 
   public void deleteItem(int itemId) {

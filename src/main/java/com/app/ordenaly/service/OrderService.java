@@ -22,23 +22,23 @@ public class OrderService {
   @Autowired
   TicketRepository ticketRepository;
   @Autowired
-  ItemRepository itemRepository;
-  @Autowired
-  ProductRepository productRepository;
-  @Autowired
   UserRepository userRepository;
   @Autowired
-  OrderMapper orderMapper;
-  @Autowired
   ItemService itemService;
+
+
+  public List<Order> getOrders() {
+    List<Order> orders = orderRepository.findAll();
+    return orders;
+  }
+
+  public Order findOrderById(int orderId) {
+    return orderRepository.findById( orderId ).orElse(null);
+  }
 
   public Order createOrder(int ticketId, int userId) {
     Ticket ticket = ticketRepository.findById(ticketId).get();
     User waiter = userRepository.findById(userId).get();
-
-    if (ticket == null && waiter == null) {
-      throw new EntityNotFoundException("Fallo! No se pudo generar la orden");
-    }
 
     Order order = new Order();
     order.setTicket( ticket );
@@ -55,7 +55,6 @@ public class OrderService {
 
   public Order addItemToOrder(int orderId, int productId) {
     Order order = orderRepository.findById(orderId).get();
-//    Product product = productRepository.findById(productId).get();
 
     Item item = itemService.generateItem(productId);
     order.addItem(item);
@@ -63,40 +62,13 @@ public class OrderService {
     return orderRepository.save(order);
   }
 
-  public void updateQuantity(int itemId, int newQuantity) {
-    itemService.updateQuantity(itemId, newQuantity);
+  public Order updateOrder(int orderId, Order orderBody) {
+    Order order = orderRepository.findById( orderId ).get();
+    order.setOrderStatus(orderBody.getOrderStatus());
+    order.setPaymentStatus(orderBody.getPaymentStatus());
+    order.setNotes(orderBody.getNotes());
+    return orderRepository.save(order);
   }
-
-  public OrderDto findOrderById(Integer id) {
-    // 1. Buscar en la DB
-    Order order = orderRepository.findById(id).orElse(null);
-    // 2. Validar si existe
-    if (order != null) {
-      // 3. Convertir la Entidad en un flujo
-      Stream<Order> orderStream = Stream.of(order);
-      // 4. Realizar la transformacion y recolectar el resultado en un Dto
-      OrderDto orderDto = orderStream.map(orderMapper::orderToOrderDto)
-              .findFirst() // Recoge el primer resultado (en este caso, el único)
-              .orElse(null); // Devuelve null si no hay resultados
-      return orderDto;
-    }
-    return null;
-  }
-
-  public List<Order> getOrders() {
-    List<Order> orders = orderRepository.findAll();
-    return orders;
-  }
-
-  public void deleteItem(int itemId) {
-    itemService.deleteItem(itemId);
-  }
-
-//  public Order updateOrder(int id, Order order) {
-//    Order orderId = orderRepository.findById(id).get();
-//    order.setId(orderId.getId());
-//    return orderRepository.save(order);
-//  }
 
   public void deleteOrder(Integer id) {
     orderRepository.deleteById(id);

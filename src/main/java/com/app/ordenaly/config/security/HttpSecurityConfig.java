@@ -35,12 +35,14 @@ public class HttpSecurityConfig {
 
               authorize.requestMatchers(HttpMethod.GET,    "/orders").permitAll();
               authorize.requestMatchers(HttpMethod.GET,    "/orders/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.PATCH,  "/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.POST,   "/orders/{id}/add-item/**").permitAll();
               authorize.requestMatchers(HttpMethod.POST,   "/orders/**").permitAll(); //La orden se toma desde el ticket
-              authorize.requestMatchers(HttpMethod.PUT,    "/orders/update/**").permitAll();
+              authorize.requestMatchers(HttpMethod.PUT,    "/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/orders/item/{id}").permitAll();
+
+              authorize.requestMatchers(HttpMethod.GET, "/items/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.PUT, "/items/{id}").permitAll();
 
               authorize.requestMatchers(HttpMethod.GET, "/products").permitAll();
               authorize.requestMatchers(HttpMethod.GET, "/products/{id}").permitAll();
@@ -52,7 +54,6 @@ public class HttpSecurityConfig {
 
               authorize.requestMatchers(HttpMethod.GET, "/tickets").permitAll();
               authorize.requestMatchers(HttpMethod.POST,"/tickets").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,"/tickets/take/{ticketId}/{waiterId}").permitAll();
 
               authorize.requestMatchers(HttpMethod.GET,   "/users").permitAll();
               authorize.requestMatchers(HttpMethod.POST,  "/users").permitAll();

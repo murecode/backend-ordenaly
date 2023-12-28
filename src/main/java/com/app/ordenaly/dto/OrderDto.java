@@ -78,4 +78,5 @@ public class OrderDto {
   public void setOrder_comment(String order_comment) {
     this.order_comment = order_comment;
   }
+
 }
