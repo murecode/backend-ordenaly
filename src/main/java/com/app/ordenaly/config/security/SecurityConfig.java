@@ -18,12 +18,12 @@ public class SecurityConfig {
   @Autowired
   private UserRepository userRepository;
 
-  @Bean //*
+  @Bean //1.
   public AuthenticationManager authManager(AuthenticationConfiguration authConfig) throws Exception {
     return authConfig.getAuthenticationManager();
   }
 
-  //**
+  //2.
   @Bean
   public AuthenticationProvider authProvider() {
     DaoAuthenticationProvider daoAuthProvider = new DaoAuthenticationProvider();
@@ -32,13 +32,13 @@ public class SecurityConfig {
     return daoAuthProvider;
   }
 
-  //***
+  //3.
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 
-  //****
+  //4.
   @Bean
   public UserDetailsService userDetailsService() {
     return username -> {
@@ -49,8 +49,8 @@ public class SecurityConfig {
 
 }
 
-//* Esta linea genera el ProviderManager que puede coordinar varios provedores de autentificacion
-//** Configura varios proveedores de autenticación en este caso se usará contra base de datos
-//*** Compara y codifica la contraseña traida desde la base de datos
-//**** Recupera informacion del usuario (username y contraseña) de la base de datos
+//1. Esta linea genera el ProviderManager que puede coordinar varios provedores de autentificacion
+//2. Configura varios proveedores de autenticación en este caso se usará contra base de datos
+//3. Compara y codifica la contraseña traida desde la base de datos
+//4. Recupera informacion del usuario (username y contraseña) de la base de datos
 

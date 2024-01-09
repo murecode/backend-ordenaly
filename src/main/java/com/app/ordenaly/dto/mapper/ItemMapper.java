@@ -10,7 +10,6 @@ import java.util.List;
         uses = {ProductMapper.class}
 )
 public interface ItemMapper {
-
   @Mappings({
           @Mapping(source = "id", target = "item_id"),
           @Mapping(source = "product.productName", target = "product_name"),

@@ -1,5 +1,6 @@
 package com.app.ordenaly.controller;
 
+import com.app.ordenaly.dto.RegisterRequest;
 import com.app.ordenaly.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,16 @@ import com.app.ordenaly.dto.AuthResponse;
 import com.app.ordenaly.dto.AuthRequest;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/v1/auth")
 public class AuthController {
 
   @Autowired
   AuthService authService;
+
+  @PostMapping("/signup")
+  public void signup(@RequestBody RegisterRequest registerRequest){
+
+  }
 
   @PostMapping("/login")
   public ResponseEntity<AuthResponse> login(

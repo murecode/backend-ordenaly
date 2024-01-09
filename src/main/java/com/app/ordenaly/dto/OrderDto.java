@@ -1,25 +1,26 @@
 package com.app.ordenaly.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 public class OrderDto {
-  private String order_id;
+  private int order_id;
   private int related_ticket;
-  private String table;
+  private int related_table;
   private String waiter;
   private String order_status;
   private String payment_status;
   private List<ItemDto> item_list;
-
   private String order_comment;
 
   public OrderDto() {};
 
-  public String getOrder_id() {
+  public int getOrder_id() {
     return order_id;
   }
 
-  public void setOrder_id(String order_id) {
+  public void setOrder_id(int order_id) {
     this.order_id = order_id;
   }
 
@@ -31,12 +32,12 @@ public class OrderDto {
     this.related_ticket = related_ticket;
   }
 
-  public String getTable() {
-    return table;
+  public int getRelated_table() {
+    return related_table;
   }
 
-  public void setTable(String table) {
-    this.table = table;
+  public void setRelated_table(int related_table) {
+    this.related_table = related_table;
   }
 
   public String getWaiter() {

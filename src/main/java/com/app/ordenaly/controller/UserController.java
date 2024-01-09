@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
   @Autowired
   UserService userService;
@@ -31,13 +31,13 @@ public class UserController {
     return usersDto;
   }
 
-  @PostMapping("")
-  public ResponseEntity<String> createUser(
-          @RequestBody UserDetailsDto userDetailsDto) {
-    User user = userDetailsMapper.UserDetailsDtoToUser( userDetailsDto );
-    userService.createUser( user );
-    return new ResponseEntity<>("Usuario Creado",HttpStatus.CREATED);
-  }
+//  @PostMapping("")
+//  public ResponseEntity<String> createUser(
+//          @RequestBody UserDetailsDto userDetailsDto) {
+//    User user = userDetailsMapper.UserDetailsDtoToUser( userDetailsDto );
+//    userService.createUser( user );
+//    return new ResponseEntity<>("Usuario Creado",HttpStatus.CREATED);
+//  }
 
   @PutMapping("/{id}")
   public ResponseEntity<String> updateUser(

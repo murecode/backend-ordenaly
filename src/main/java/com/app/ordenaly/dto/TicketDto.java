@@ -7,13 +7,6 @@ public class TicketDto {
 
   public TicketDto() {}
 
-//  public TicketDto(int ticketId, String created_at, int related_order) {
-//    this.ticketId = ticketId;
-//    this.created_at = created_at;
-//    this.related_order = related_order;
-//  }
-
-
   public String getTicket_id() {
     return ticket_id;
   }

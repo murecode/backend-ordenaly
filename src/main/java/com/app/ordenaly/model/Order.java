@@ -10,50 +10,36 @@ import java.util.List;
 @Entity
 @Table(name = "\"ORDER\"")
 public class Order {
-
-  @Transient
-  private String type = "order";
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "ORDER_ID")
   private Integer id;
-
   @OneToOne
   @JoinColumn(name = "TICKET")
   private Ticket ticket;
-
   @OneToOne(cascade = CascadeType.PERSIST)
   @JoinColumn(name = "WAITER")
   private User waiter;
-
-  @OneToOne
-  @JoinColumn(name = "TABLE_")
-  private Table_ table;
-
+  @Column(name = "\"TABLE\"")
+  private int table;
   @ElementCollection
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Item> itemlist = new ArrayList<>();
-
   @Column(name = "ORDER_STATUS")
   @Enumerated(EnumType.STRING)
   private OrderStatus orderStatus;
-
   @Column(name = "PAYMENT_STATUS")
   @Enumerated(EnumType.STRING)
   private PaymentStatus paymentStatus;
   @Column(name = "NOTES")
-  private String notes;
+  private String notes = " ";
 
   public Order() {};
 
-  public String getType() {
-    return type;
-  }
-
-  public void setType(String type) {
-    this.type = type;
-  }
+  public Order(Ticket ticket, User waiter) {
+    this.ticket = ticket;
+    this.waiter = waiter;
+  };
 
   public Integer getId() {
     return id;
@@ -79,11 +65,11 @@ public class Order {
     this.waiter = waiter;
   }
 
-  public Table_ getTable() {
+  public int getTable() {
     return table;
   }
 
-  public void setTable(Table_ table) {
+  public void setTable(int table) {
     this.table = table;
   }
 

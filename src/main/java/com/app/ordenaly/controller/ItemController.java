@@ -14,7 +14,7 @@ import com.app.ordenaly.model.Item;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/items")
+@RequestMapping(value = "/api/v1/items")
 public class ItemController {
   @Autowired
   ItemService itemService;

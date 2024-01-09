@@ -7,6 +7,7 @@ import com.app.ordenaly.model.User;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserDetailsMapper {
   @Mappings({
+          @Mapping(source = "id", target = "user_id"),
           @Mapping(source = "fullname", target = "name"),
           @Mapping(source = "role",     target = "rol")
   })

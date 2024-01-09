@@ -29,42 +29,45 @@ public class HttpSecurityConfig {
             .authenticationProvider(authenticationProvider)
             .authorizeHttpRequests((authorize) -> {
 
-              authorize.requestMatchers(HttpMethod.GET,  "/auth/public-access").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,  "/auth/login").permitAll();
+              authorize.requestMatchers(HttpMethod.GET,  "/api/v1/auth/public-access").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,  "/api/v1/auth/login").permitAll();
               authorize.requestMatchers("/error").permitAll();
 
-              authorize.requestMatchers(HttpMethod.GET,    "/orders").permitAll();
-              authorize.requestMatchers(HttpMethod.GET,    "/orders/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,   "/orders/{id}/add-item/**").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,   "/orders/**").permitAll(); //La orden se toma desde el ticket
-              authorize.requestMatchers(HttpMethod.PUT,    "/orders/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.DELETE, "/orders/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.DELETE, "/orders/item/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.GET,    "/api/v1/orders").permitAll();
+              authorize.requestMatchers(HttpMethod.GET,    "/api/v1/orders/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,   "/api/v1/orders/{id}/add-item/**").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,   "/api/v1/orders/**").permitAll(); //La orden se toma desde el ticket
+              authorize.requestMatchers(HttpMethod.PUT,    "/api/v1/orders/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/orders/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/orders/item/{id}").permitAll();
 
-              authorize.requestMatchers(HttpMethod.GET, "/items/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.PUT, "/items/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/api/v1/items/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.PUT, "/api/v1/items/{id}").permitAll();
 
-              authorize.requestMatchers(HttpMethod.GET, "/products").permitAll();
-              authorize.requestMatchers(HttpMethod.GET, "/products/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,"/products").permitAll();
-              authorize.requestMatchers(HttpMethod.PUT, "/products/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/api/v1/products").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/api/v1/products/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,"/api/v1/products").permitAll();
+              authorize.requestMatchers(HttpMethod.PUT, "/api/v1/products/{id}").permitAll();
 
 //              authorize.requestMatchers(HttpMethod.PATCH, "products/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.DELETE, "/products/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/products/{id}").permitAll();
 
-              authorize.requestMatchers(HttpMethod.GET, "/tickets").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,"/tickets").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/api/v1/tickets").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,"/api/v1/tickets").permitAll();
 
-              authorize.requestMatchers(HttpMethod.GET,   "/users").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,  "/users").permitAll();
-              authorize.requestMatchers(HttpMethod.PUT,   "/users/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.DELETE,"/users/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.GET,   "/api/v1/users").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,  "/api/v1/users").permitAll();
+              authorize.requestMatchers(HttpMethod.PUT,   "/api/v1/users/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.DELETE,"/api/v1/users/{id}").permitAll();
+
+//              authorize.requestMatchers(HttpMethod.GET, "/mealtables").permitAll();
+//              authorize.requestMatchers(HttpMethod.POST, "/mealtables").permitAll();
 
               authorize.requestMatchers("/v1/authenticate", "/v3/api-docs/**", "swagger-ui/**","/swagger-ui.html").permitAll();
 
-              authorize.requestMatchers(HttpMethod.DELETE,"/users/{id}").hasAuthority(Permissions.DELETE_USER.name());
-              authorize.requestMatchers(HttpMethod.GET,   "/products").hasAuthority(Permissions.DELETE_PRODUCT.name());
-              authorize.requestMatchers(HttpMethod.GET,   "/orders").hasAuthority(Permissions.READ_ORDERS.name());
+              authorize.requestMatchers(HttpMethod.DELETE,"/api/v1/users/{id}").hasAuthority(Permissions.DELETE_USER.name());
+              authorize.requestMatchers(HttpMethod.GET,   "/api/v1/products").hasAuthority(Permissions.DELETE_PRODUCT.name());
+              authorize.requestMatchers(HttpMethod.GET,   "/api/v1/orders").hasAuthority(Permissions.READ_ORDERS.name());
 
               authorize.anyRequest().denyAll();
             });

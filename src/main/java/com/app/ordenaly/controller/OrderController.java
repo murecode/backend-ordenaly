@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("/api/v1/orders")
 public class OrderController {
   @Autowired
   OrderService orderService;
@@ -43,16 +43,29 @@ public class OrderController {
     }
   }
 
+//  @PostMapping("")
+//  public ResponseEntity<OrderDto> newOrder(
+//          @RequestParam("ticketId") int ticketId,
+//          @RequestParam("userId") int userId) {
+//    Order order = orderService.createOrder( ticketId, userId );
+//    OrderDto orderDto = orderMapper.orderToOrderDto( order );
+//
+//    if(order.getTicket() == null || order.getUser() == null) {
+//      return new ResponseEntity<OrderDto>(HttpStatus.BAD_REQUEST );
+//    }
+//    return new ResponseEntity<OrderDto>(orderDto, HttpStatus.CREATED);
+//  }
+
   @PostMapping("")
-  public ResponseEntity<String> newOrder(
-          @RequestParam("ticketId") int ticketId,
-          @RequestParam("userId") int userId) {
-    Order order = orderService.createOrder( ticketId, userId );
+  public ResponseEntity<OrderDto> newOrder(
+          @RequestBody OrderDto orderDto) {
+    Order order = orderMapper.orderDtoToOrder( orderDto );
+    orderService.createOrder( order );
 
     if(order.getTicket() == null || order.getUser() == null) {
-      return new ResponseEntity<>("Ticket o Mesero deben ser validos", HttpStatus.BAD_REQUEST );
+      return new ResponseEntity<OrderDto>(HttpStatus.BAD_REQUEST );
     }
-    return new ResponseEntity<>("Orden Creada", HttpStatus.CREATED);
+    return new ResponseEntity<OrderDto>(orderDto, HttpStatus.CREATED);
   }
 
   @PostMapping("/{id}/add-item")

@@ -7,9 +7,6 @@ import jakarta.validation.constraints.DecimalMin;
 @Entity
 @Table(name = "PRODUCT")
 public class Product {
-  @Transient
-  private String type = "product";
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "PRODUCT_ID")
@@ -29,10 +26,6 @@ public class Product {
   private Boolean inStock;
 
   public Product() {};
-
-  public String getType() {
-    return type;
-  }
 
   public int getId() {
     return id;

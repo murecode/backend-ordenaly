@@ -20,20 +20,17 @@ public class UserService {
   private UserMapper userMapper;
 
 
-  public User createUser(User userBody) {
-
-    // Verificar si el usuario que realiza la acción tiene el rol de "Administrador"
-    // Verificar que el nuevo usuario no exista
-    // ...
-    User user = new User();
-    user.setId(user.getId());
-    user.setFullname(userBody.getFullname());
-    user.setPassword(userBody.getPassword());
-    user.setUsername(userBody.getUsername());
-    user.setRole(userBody.getRole());
-
-    return userRepository.save( user );
-  }
+//  public User createUser(User userBody) {
+//
+//    User user = new User();
+//    user.setId(user.getId());
+//    user.setFullname(userBody.getFullname());
+//    user.setPassword(userBody.getPassword());
+//    user.setUsername(userBody.getUsername());
+//    user.setRole(userBody.getRole());
+//
+//    return userRepository.save( user );
+//  }
 
   public List<User> findAllUsers() {
     List<User> users = userRepository.findAll();

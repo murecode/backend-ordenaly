@@ -15,7 +15,7 @@ public interface OrderMapper {
           @Mapping(source = "id", target = "order_id"),
           @Mapping(source = "ticket.id", target = "related_ticket"),
           @Mapping(source = "user.fullname", target = "waiter"),
-          @Mapping(source = "table.identifier", target = "table"),
+          @Mapping(source = "table", target = "related_table"),
           @Mapping(source = "orderStatus", target = "order_status"),
           @Mapping(source = "paymentStatus", target = "payment_status"),
           @Mapping(source = "itemList", target = "item_list"),

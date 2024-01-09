@@ -13,8 +13,6 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "\"USER\"", uniqueConstraints = {@UniqueConstraint(columnNames = "USERNAME")}) //1.
 public class User implements UserDetails {
-  @Transient
-  private String type = "user";
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "USER_ID")
@@ -32,10 +30,6 @@ public class User implements UserDetails {
   private Roles role;
 
   public User() {};
-
-  public String getType() {
-    return type;
-  }
 
   public Integer getId() {
     return id;

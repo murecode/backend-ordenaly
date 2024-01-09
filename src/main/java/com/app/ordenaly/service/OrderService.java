@@ -36,11 +36,28 @@ public class OrderService {
     return orderRepository.findById( orderId ).orElse(null);
   }
 
-  public Order createOrder(int ticketId, int userId) {
-    Ticket ticket = ticketRepository.findById(ticketId).get();
-    User waiter = userRepository.findById(userId).get();
+//  public Order createOrder(int ticketId, int userId) {
+//    Ticket ticket = ticketRepository.findById(ticketId).get();
+//    User waiter = userRepository.findById(userId).get();
+//
+//    Order order = new Order();
+//    order.setTicket( ticket );
+//    order.setUser( waiter );
+//    order.setOrderStatus(OrderStatus.PENDIENTE);
+//    order.setPaymentStatus(PaymentStatus.PENDIENTE);
+//    order.setItemList(order.getItemList());
+//    order.setNotes(order.getNotes());
+//    //Se asocia el id de la orden con el ticket
+//    ticket.setOrder(order);
+//    Order saveOrder = orderRepository.save(order);
+//    return saveOrder;
+//  }
 
-    Order order = new Order();
+  public Order createOrder(Order order ) {
+    Ticket ticket = ticketRepository.findById( order.getTicket().getId() ).get();
+    User waiter = userRepository.findById( order.getUser().getId() ).get();
+
+//    Order order = new Order(  );
     order.setTicket( ticket );
     order.setUser( waiter );
     order.setOrderStatus(OrderStatus.PENDIENTE);
