@@ -20,7 +20,7 @@ public class AuthController {
 
   @PostMapping("/signup")
   public void signup(@RequestBody RegisterRequest registerRequest){
-
+    authService.signup(registerRequest);
   }
 
   @PostMapping("/login")
@@ -29,11 +29,5 @@ public class AuthController {
     AuthResponse jwtDto = authService.login(authRequest);
     return ResponseEntity.ok(jwtDto);
   }
-
-  @GetMapping("public-access")
-  public String publicAccess() {
-    return "Acceso publico";
-  }
-
 
 }

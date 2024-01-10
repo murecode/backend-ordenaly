@@ -23,11 +23,11 @@ public class JwtService {
 
   public String generateToken(User user, Map<String,Object> extraClaims) {
 
-    //*
+    //1.
     Date issueAt = new Date(System.currentTimeMillis());
     Date expiration = new Date( issueAt.getTime() + (EXPIRATION_MINUTES * 60 * 1000));
 
-    //**
+    //2.
     return Jwts.builder()
             .setClaims(extraClaims)
             .setSubject(user.getUsername())
@@ -38,7 +38,7 @@ public class JwtService {
             .compact();
   }
 
-  //***
+  //3.
   private Key generateKey() {
     byte[] secretKeyAsBytes = Decoders.BASE64.decode(SECRET_KEY);
     System.out.println(new String( secretKeyAsBytes ));
@@ -47,6 +47,6 @@ public class JwtService {
 
 }
 
-//* Configuracion de tiempos de expedicion y caducidad del token en milisegundos
-//** Definicion de los claims que contendra la Carga util en el JSON
-//*** Metodo para decodificar la contraseña encriptada en Base64
+//1. Configuracion de tiempos de expedicion y caducidad del token en milisegundos
+//2. Definicion de los claims que contendra la Carga util en el JSON
+//3. Metodo para decodificar la contraseña encriptada en Base64

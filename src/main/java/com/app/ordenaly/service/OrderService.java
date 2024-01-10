@@ -53,17 +53,19 @@ public class OrderService {
 //    return saveOrder;
 //  }
 
-  public Order createOrder(Order order ) {
-    Ticket ticket = ticketRepository.findById( order.getTicket().getId() ).get();
-    User waiter = userRepository.findById( order.getUser().getId() ).get();
+  public Order createOrder(Order orderBody ) {
+    Ticket ticket = ticketRepository.findById( orderBody.getTicket().getId() ).get();
+    User waiter = userRepository.findByFullname( orderBody.getUser().getFullname() ).get();
 
-//    Order order = new Order(  );
-    order.setTicket( ticket );
-    order.setUser( waiter );
+    Order order = new Order();
+    order.setTicket(ticket);
+    order.setUser(waiter);
+    order.setTable(orderBody.getTable());
     order.setOrderStatus(OrderStatus.PENDIENTE);
     order.setPaymentStatus(PaymentStatus.PENDIENTE);
     order.setItemList(order.getItemList());
     order.setNotes(order.getNotes());
+
     //Se asocia el id de la orden con el ticket
     ticket.setOrder(order);
     Order saveOrder = orderRepository.save(order);

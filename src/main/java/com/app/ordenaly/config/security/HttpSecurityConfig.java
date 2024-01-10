@@ -29,8 +29,8 @@ public class HttpSecurityConfig {
             .authenticationProvider(authenticationProvider)
             .authorizeHttpRequests((authorize) -> {
 
-              authorize.requestMatchers(HttpMethod.GET,  "/api/v1/auth/public-access").permitAll();
               authorize.requestMatchers(HttpMethod.POST,  "/api/v1/auth/login").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,  "/api/v1/auth/signup").permitAll();
               authorize.requestMatchers("/error").permitAll();
 
               authorize.requestMatchers(HttpMethod.GET,    "/api/v1/orders").permitAll();

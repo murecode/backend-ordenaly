@@ -23,8 +23,7 @@ public class SecurityConfig {
     return authConfig.getAuthenticationManager();
   }
 
-  //2.
-  @Bean
+  @Bean //2.
   public AuthenticationProvider authProvider() {
     DaoAuthenticationProvider daoAuthProvider = new DaoAuthenticationProvider();
     daoAuthProvider.setUserDetailsService(userDetailsService());
@@ -32,14 +31,12 @@ public class SecurityConfig {
     return daoAuthProvider;
   }
 
-  //3.
-  @Bean
+  @Bean   //3.
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 
-  //4.
-  @Bean
+  @Bean  //4.
   public UserDetailsService userDetailsService() {
     return username -> {
       return userRepository.findByUsername(username)

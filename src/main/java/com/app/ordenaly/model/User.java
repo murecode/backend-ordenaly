@@ -71,7 +71,7 @@ public class User implements UserDetails {
     this.role = role;
   }
 
-  //*
+  //1.
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
 
@@ -104,5 +104,5 @@ public class User implements UserDetails {
 
 }
 
-//* Hace referencia a los permisos concedidos al usuario
+//"GrantedAuthority", Hace referencia a los permisos concedidos al usuario
 
