@@ -81,13 +81,19 @@ public class OrderService {
     return orderRepository.save(order);
   }
 
-  public Order updateOrder(int orderId, Order orderBody) {
+  public Order updateOrderStatus(int orderId, Order orderBody) {
     Order order = orderRepository.findById( orderId ).get();
     order.setOrderStatus(orderBody.getOrderStatus());
     order.setPaymentStatus(orderBody.getPaymentStatus());
-    order.setNotes(orderBody.getNotes());
     return orderRepository.save(order);
   }
+
+//  public Order updateOrderInfo(int orderId, Order orderBody) {
+//    Order order = orderRepository.findById( orderId ).get();
+//    order.setTable(orderBody.getTable());
+//    order.setNotes(orderBody.getNotes());
+//    return orderRepository.save(order);
+//  }
 
   public void deleteOrder(Integer id) {
     orderRepository.deleteById(id);

@@ -1,11 +1,11 @@
 package com.app.ordenaly.dto;
 
-public class RegisterRequest {
+public class SignUpRequest {
   private String fullname;
   private String username;
   private String password;
 
-  public RegisterRequest() {};
+  public SignUpRequest() {};
 
   public String getFullname() {
     return fullname;

@@ -2,7 +2,7 @@ package com.app.ordenaly.service;
 
 import com.app.ordenaly.dto.AuthRequest;
 import com.app.ordenaly.dto.AuthResponse;
-import com.app.ordenaly.dto.RegisterRequest;
+import com.app.ordenaly.dto.SignUpRequest;
 import com.app.ordenaly.model.User;
 import com.app.ordenaly.repository.UserRepository;
 import com.app.ordenaly.utils.Roles;
@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 
 @Service
@@ -30,7 +29,7 @@ public class AuthService {
   JwtService jwtService;
 
   @Transactional
-  public void signup(RegisterRequest registerRequest) {
+  public void signup(SignUpRequest registerRequest) {
     User user = new User();
     user.setFullname(registerRequest.getFullname());
     user.setUsername(registerRequest.getUsername());
@@ -66,8 +65,8 @@ public class AuthService {
 
 }
 
-//1. Crea un objeto que contiene la info para la utenticación con mtds que retornan username y password
-//2. Toma el username y contraseña y lo delega al provedor de autenticacion
+//1. Crea un objeto llamado "authToken" que representea la info del usuario (username, password)
+//2. Realiza la autenticación utilizando la información proporcionada en "authToken".
 //3. Busca el username en la base de datos
-//4. Gebera el JWT con sus 3 partes: Header - Carga util - Firma
+//4. LLama al servicio encargado de generar el JWT crear una respuesta de autenticación "AuthResponse"
 

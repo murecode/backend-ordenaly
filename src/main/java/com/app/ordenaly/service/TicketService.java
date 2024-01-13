@@ -18,11 +18,9 @@ public class TicketService {
   @Autowired
   private TicketMapper ticketMapper;
 
-  public List<TicketDto> getAllTickets() {
+  public List<Ticket> getAllTickets() {
     List<Ticket> tickets = ticketRepository.findAll();
-    return tickets.stream()
-            .map(ticketMapper::ticketToTicketDto)
-            .collect(Collectors.toList());
+    return tickets;
   }
 
   public Ticket generateTicket() {

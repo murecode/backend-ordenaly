@@ -1,11 +1,12 @@
 package com.app.ordenaly.controller;
 
-import com.app.ordenaly.dto.RegisterRequest;
+import com.app.ordenaly.dto.SignUpRequest;
 import com.app.ordenaly.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
 import com.app.ordenaly.dto.AuthResponse;
@@ -19,15 +20,20 @@ public class AuthController {
   AuthService authService;
 
   @PostMapping("/signup")
-  public void signup(@RequestBody RegisterRequest registerRequest){
+  public void signup(@RequestBody SignUpRequest registerRequest){
     authService.signup(registerRequest);
   }
 
   @PostMapping("/login")
   public ResponseEntity<AuthResponse> login(
           @RequestBody @Valid AuthRequest authRequest) {
-    AuthResponse jwtDto = authService.login(authRequest);
-    return ResponseEntity.ok(jwtDto);
+    try {
+      AuthResponse jwtDto = authService.login(authRequest);
+      return ResponseEntity.ok(jwtDto);
+    } catch (BadCredentialsException exception) {
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+
   }
 
 }

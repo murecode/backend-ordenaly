@@ -6,6 +6,7 @@ import com.app.ordenaly.dto.mapper.TicketMapper;
 import com.app.ordenaly.model.Ticket;
 import com.app.ordenaly.service.OrderService;
 import com.app.ordenaly.service.TicketService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,9 +26,12 @@ public class TicketController {
   @Autowired
   TicketMapper ticketMapper;
 
+  @Operation(summary = "Listado de Tickets", description = "Retorna un arreglo con los Tickets")
   @GetMapping("")
-  public List<TicketDto> listAllTickets() {
-    return ticketService.getAllTickets();
+  public ResponseEntity<List<TicketDto>> listAllTickets() {
+    List<Ticket> tickets = ticketService.getAllTickets();
+    List<TicketDto> ticketDto = ticketMapper.ticketsDto( tickets );
+    return new ResponseEntity<>(ticketDto, HttpStatus.OK);
   }
 
   @PostMapping("")

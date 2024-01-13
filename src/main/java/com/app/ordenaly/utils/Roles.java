@@ -11,7 +11,9 @@ public enum Roles {
   )),
   STAFF(Arrays.asList(
           Permissions.READ_PRODUCTS,
-          Permissions.READ_ORDERS
+          Permissions.READ_ORDERS,
+          Permissions.READ_TICKETS,
+          Permissions.SAVE_TICKET
   ));
 
   private List<Permissions> userPermissionList;

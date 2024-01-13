@@ -4,6 +4,7 @@ import com.app.ordenaly.dto.OrderDto;
 import com.app.ordenaly.dto.mapper.OrderMapper;
 import com.app.ordenaly.model.Order;
 import com.app.ordenaly.service.OrderService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,7 @@ public class OrderController {
     return ordersDto;
   }
 
+  @Operation(summary = "Obtiene una Orden por su ID", description = "Retorna una orden especifica")
   @GetMapping("/{id}")
   public ResponseEntity<OrderDto> getOrder(
           @PathVariable("id") int orderId) {
@@ -81,12 +83,13 @@ public class OrderController {
           @PathVariable("id") int orderId,
           @RequestBody OrderDto orderDto ) {
     Order orderBody = orderMapper.orderDtoToOrder( orderDto );
-    orderService.updateOrder( orderId, orderBody );
+    orderService.updateOrderStatus( orderId, orderBody );
     if ( orderBody.getId() != null ) {
       return new ResponseEntity<>("Orden Actualizada", HttpStatus.OK);
     }
     return new ResponseEntity<>("No se encontrol la orden", HttpStatus.BAD_REQUEST);
   }
+
 
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> removeOrder(@PathVariable("id") Integer id) {

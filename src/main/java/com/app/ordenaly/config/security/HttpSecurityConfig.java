@@ -24,8 +24,8 @@ public class HttpSecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
-            .csrf(csrfConfig -> csrfConfig.disable()) //*
-            .sessionManagement( sessionMangConfig -> sessionMangConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .csrf(csrfConfig -> csrfConfig.disable()) //1.
+            .sessionManagement( sessionMangConfig -> sessionMangConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //2.
             .authenticationProvider(authenticationProvider)
             .authorizeHttpRequests((authorize) -> {
 
@@ -60,9 +60,6 @@ public class HttpSecurityConfig {
               authorize.requestMatchers(HttpMethod.PUT,   "/api/v1/users/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE,"/api/v1/users/{id}").permitAll();
 
-//              authorize.requestMatchers(HttpMethod.GET, "/mealtables").permitAll();
-//              authorize.requestMatchers(HttpMethod.POST, "/mealtables").permitAll();
-
               authorize.requestMatchers("/v1/authenticate", "/v3/api-docs/**", "swagger-ui/**","/swagger-ui.html").permitAll();
 
               authorize.requestMatchers(HttpMethod.DELETE,"/api/v1/users/{id}").hasAuthority(Permissions.DELETE_USER.name());
@@ -77,4 +74,8 @@ public class HttpSecurityConfig {
 
 }
 
-//* Deshabilita los origenes cruzados
+//1. Deshabilitar CORS
+//2.[Se encarga de configurar el manejo de sesiones en la aplicación. La aplicación no mantendrá...
+// el estado de la sesión en el servidor y cada solicitud se manejará de manera independiente sin...
+// depender del estado de la sesión. Esto es útil en escenarios donde se prefiere la...
+// arquitectura sin estado, comúnmente asociada con aplicaciones RESTful y servicios web.]
