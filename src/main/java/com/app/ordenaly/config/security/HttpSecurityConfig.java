@@ -35,30 +35,28 @@ public class HttpSecurityConfig {
 
               authorize.requestMatchers(HttpMethod.GET,    "/api/v1/orders").permitAll();
               authorize.requestMatchers(HttpMethod.GET,    "/api/v1/orders/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,   "/api/v1/orders/{id}/add-item/**").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,   "/api/v1/orders/**").permitAll(); //La orden se toma desde el ticket
-              authorize.requestMatchers(HttpMethod.PUT,    "/api/v1/orders/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/orders/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/orders/item/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,   "/api/v1/orders/{id}/add-item/**").hasAnyRole("ADMIN", "STAFF");
+              authorize.requestMatchers(HttpMethod.POST,   "/api/v1/orders/**").hasAnyRole("ADMIN", "STAFF");
+              authorize.requestMatchers(HttpMethod.PUT,    "/api/v1/orders/{id}").hasAnyRole("ADMIN", "STAFF");
+              authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/orders/{id}").hasAnyRole("ADMIN", "STAFF");
+              authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/orders/item/{id}").hasAnyRole("ADMIN", "STAFF");
 
-              authorize.requestMatchers(HttpMethod.GET, "/api/v1/items/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.PUT, "/api/v1/items/{id}").permitAll();
+//              authorize.requestMatchers(HttpMethod.GET, "/api/v1/items/{id}").permitAll();
+//              authorize.requestMatchers(HttpMethod.PUT, "/api/v1/items/{id}").permitAll();
 
               authorize.requestMatchers(HttpMethod.GET, "/api/v1/products").permitAll();
               authorize.requestMatchers(HttpMethod.GET, "/api/v1/products/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,"/api/v1/products").permitAll();
-              authorize.requestMatchers(HttpMethod.PUT, "/api/v1/products/{id}").permitAll();
-
-//              authorize.requestMatchers(HttpMethod.PATCH, "products/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,"/api/v1/products").hasRole("ADMIN");
+              authorize.requestMatchers(HttpMethod.PUT, "/api/v1/products/{id}").hasRole("ADMIN");
               authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/products/{id}").permitAll();
 
               authorize.requestMatchers(HttpMethod.GET, "/api/v1/tickets").permitAll();
               authorize.requestMatchers(HttpMethod.POST,"/api/v1/tickets").permitAll();
 
               authorize.requestMatchers(HttpMethod.GET,   "/api/v1/users").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,  "/api/v1/users").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,  "/api/v1/users").hasRole(Permissions.SAVE_USER.name());
               authorize.requestMatchers(HttpMethod.PUT,   "/api/v1/users/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.DELETE,"/api/v1/users/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.DELETE,"/api/v1/users/{id}").hasRole(Permissions.DELETE_USER.name());
 
               authorize.requestMatchers("/v1/authenticate", "/v3/api-docs/**", "swagger-ui/**","/swagger-ui.html").permitAll();
 

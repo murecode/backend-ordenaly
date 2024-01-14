@@ -13,9 +13,6 @@ public class Ticket {
   private Integer id;
   @Column(name = "TICKET_TIME", length = 6)
   private LocalTime time;
-
-  //Table_
-
   @OneToOne
   @JoinColumn(name = "ORDER_ASOC")
   private Order order;

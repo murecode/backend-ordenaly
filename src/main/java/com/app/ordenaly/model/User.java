@@ -2,6 +2,7 @@ package com.app.ordenaly.model;
 
 import com.app.ordenaly.utils.Roles;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,14 +18,18 @@ public class User implements UserDetails {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "USER_ID")
   private Integer id;
+  @NotNull
   @Column(name = "USERNAME")
   private String username;
+  @NotNull
   @Column(name = "FULLNAME", length = 45)
   private String fullname;
 //  @Column(name = "EMAIL", length = 45)
 //  private String email;
+  @NotNull
   @Column(name = "PASSWORD")
   private String password;
+  @NotNull
   @Column(name = "ROLE")
   @Enumerated(EnumType.STRING)
   private Roles role;

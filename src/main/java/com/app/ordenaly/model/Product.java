@@ -3,6 +3,7 @@ package com.app.ordenaly.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "PRODUCT")
@@ -11,17 +12,16 @@ public class Product {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "PRODUCT_ID")
   private int id;
-
-  @Column(name = "PRODUCT_NAME", length = 45)
+  @NotNull
+  @Column(name = "PRODUCT_NAME", length = 45, unique = true)
   private String productName;
-
   @Column(name = "\"DESCRIPTION\"", length = 90)
   private String description;
-
+  @NotNull
   @Column(name = "PRICE")
   @DecimalMin(value = "0.01")
   private Double price;
-
+  @NotNull
   @Column(name = "IN_STOCK")
   private Boolean inStock;
 

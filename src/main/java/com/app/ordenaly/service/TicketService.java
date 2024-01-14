@@ -27,7 +27,7 @@ public class TicketService {
     Ticket ticket = new Ticket();
     ticket.setTime(LocalTime.now());
     ticket.setOrder(ticket.getOrder());
-    return ticketRepository.save(ticket);
+    return ticketRepository.save( ticket );
   }
 
   public Ticket getTicketById(int id) {

@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(value = false)
 class ProductRepositoryTest {
-
   @Autowired
   private ProductRepository productRepository;
   @Autowired
@@ -22,15 +21,17 @@ class ProductRepositoryTest {
 
   @Test
   void testCreateNewProduct() {
+
     Product product1 = new Product();
-    product1.setProductName("Sopa");
-    product1.setDescription("De pollo con papita");
+    product1.setProductName("Pizza Hawaii");
+    product1.setDescription("Hawaianaa con piña");
     product1.setPrice(8000.);
     product1.setInStock(true);
 
     Product saveNewProduct = productRepository.save(product1);
 
     assertTrue(saveNewProduct.getId() > 0);
+
   }
 
   @Test

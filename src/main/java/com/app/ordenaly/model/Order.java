@@ -3,6 +3,7 @@ package com.app.ordenaly.model;
 import com.app.ordenaly.utils.OrderStatus;
 import com.app.ordenaly.utils.PaymentStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,20 +15,24 @@ public class Order {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "ORDER_ID")
   private Integer id;
-  @OneToOne
-  @JoinColumn(name = "TICKET")
+  @NotNull
+  @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "TICKET", unique = true)
   private Ticket ticket;
-  @OneToOne(cascade = CascadeType.PERSIST)
+  @NotNull
+  @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "WAITER")
   private User waiter;
-  @Column(name = "\"TABLE\"")
+  @Column(name = "\"TABLE\"", unique = true)
   private int table;
   @ElementCollection
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Item> itemlist = new ArrayList<>();
+  @NotNull
   @Column(name = "ORDER_STATUS")
   @Enumerated(EnumType.STRING)
   private OrderStatus orderStatus;
+  @NotNull
   @Column(name = "PAYMENT_STATUS")
   @Enumerated(EnumType.STRING)
   private PaymentStatus paymentStatus;
@@ -35,11 +40,6 @@ public class Order {
   private String notes = " ";
 
   public Order() {};
-
-  public Order(Ticket ticket, User waiter) {
-    this.ticket = ticket;
-    this.waiter = waiter;
-  };
 
   public Integer getId() {
     return id;

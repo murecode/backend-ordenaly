@@ -52,10 +52,10 @@ public class ProductController {
     return new ResponseEntity<>(productDto, HttpStatus.ACCEPTED);
   }
 
-  @DeleteMapping(value = "/{id}")
+  @DeleteMapping("/{id}")
   public String removeProduct(@PathVariable int id) {
     productService.deleteProduct(id);
-    return "Se eliminó el producto: " + id;
+    return "Producto " + id + " eliminado";
   }
 
 }

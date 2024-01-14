@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(value = false)
 class OrderRepositoryTest {
-
   @Autowired
   private OrderRepository orderRepository;
   @Autowired
@@ -30,15 +29,15 @@ class OrderRepositoryTest {
 
   @Test
   void testGenerateOrder() {
-    Ticket ticket = entityManager.find(Ticket.class, 5);
-    User waiter = entityManager.find(User.class, 1);
+    Ticket ticket = entityManager.find(Ticket.class, 14);
+    User waiter = entityManager.find(User.class, 30);
 
     Order order = new Order();
     order.setTicket(ticket);
     order.setUser(waiter);
     order.setOrderStatus(OrderStatus.PENDIENTE);
     order.setPaymentStatus(PaymentStatus.PENDIENTE);
-    order.setNotes("Esta es para eliminar");
+    order.setNotes("Agregar nota");
 
     Order saveOrder = orderRepository.save(order);
 
