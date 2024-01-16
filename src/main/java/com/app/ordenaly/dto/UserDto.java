@@ -2,6 +2,7 @@ package com.app.ordenaly.dto;
 
 public class UserDto {
   private String user_id;
+  private String username;
   private String name;
   private String rol;
 
@@ -13,6 +14,14 @@ public class UserDto {
 
   public void setUser_id(String user_id) {
     this.user_id = user_id;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public String getName() {

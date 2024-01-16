@@ -10,6 +10,7 @@ import java.util.List;
 public interface UserMapper {
   @Mappings({
           @Mapping(source = "id", target="user_id"),
+          @Mapping(source = "username", target = "username"),
           @Mapping(source = "fullname", target = "name"),
           @Mapping(source = "role", target = "rol")
   })

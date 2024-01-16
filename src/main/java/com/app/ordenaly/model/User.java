@@ -76,12 +76,12 @@ public class User implements UserDetails {
     this.role = role;
   }
 
-  //1.
+  //2.
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
 
-    List<GrantedAuthority> authorities = role.getUserPermissionList().stream()
-            .map(permissions -> new SimpleGrantedAuthority(permissions.name()))
+    List<GrantedAuthority> authorities = role.getUserPermissionList().stream() //3.
+            .map(permissions -> new SimpleGrantedAuthority(permissions.name())) //4.
             .collect(Collectors.toList());
 
     authorities.add(new SimpleGrantedAuthority("ROLE_" + role.name()));
@@ -109,5 +109,13 @@ public class User implements UserDetails {
 
 }
 
-//"GrantedAuthority", Hace referencia a los permisos concedidos al usuario
+//1. Define una restricción única en la columna "USERNAME" de la tabla...
+
+//2. "GrantedAuthority", Hace referencia a los permisos que seran concedidos al usuario
+
+//3. Se obtiene una secuencia (stream) de los permisos asociados al rol del usuario...
+// devuelviendo una lista de enumeraciones (u objetos) que representan permisos.
+
+//4. Cada permiso se mapea a un objeto SimpleGrantedAuthority que...
+// representa una autoridad (rol o permiso).
 

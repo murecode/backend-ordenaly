@@ -1,8 +1,8 @@
 package com.app.ordenaly.controller;
 
-import com.app.ordenaly.dto.UserDetailsDto;
+//import com.app.ordenaly.dto.UserDetailsDto;
 import com.app.ordenaly.dto.UserDto;
-import com.app.ordenaly.dto.mapper.UserDetailsMapper;
+//import com.app.ordenaly.dto.mapper.UserDetailsMapper;
 import com.app.ordenaly.dto.mapper.UserMapper;
 import com.app.ordenaly.model.User;
 import com.app.ordenaly.service.UserService;
@@ -22,7 +22,7 @@ public class UserController {
   @Autowired
   UserMapper userMapper;
   @Autowired
-  UserDetailsMapper userDetailsMapper;
+//  UserDetailsMapper userDetailsMapper;
 
   @GetMapping("")
   public List<UserDto> getAllUsers() {
@@ -42,8 +42,8 @@ public class UserController {
   @PutMapping("/{id}")
   public ResponseEntity<String> updateUser(
           @PathVariable("id") int userId,
-          @RequestBody UserDetailsDto userBody) {
-    User user = userDetailsMapper.UserDetailsDtoToUser( userBody );
+          @RequestBody UserDto userBody) {
+    User user = userMapper.UserDtoToUser( userBody );
     userService.updateUser(userId, user);
     return new ResponseEntity<>("Usuario actualizado", HttpStatus.ACCEPTED);
   }
