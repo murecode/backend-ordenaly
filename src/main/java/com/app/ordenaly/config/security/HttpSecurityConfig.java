@@ -35,18 +35,18 @@ public class HttpSecurityConfig {
 
               authorize.requestMatchers(HttpMethod.GET,    "/api/v1/orders").permitAll();
               authorize.requestMatchers(HttpMethod.GET,    "/api/v1/orders/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,   "/api/v1/orders/{id}/add-item/**").hasAnyRole("ADMIN", "STAFF");
+              authorize.requestMatchers(HttpMethod.POST,   "/api/v1/orders/{id}/add-item/**").permitAll();
               authorize.requestMatchers(HttpMethod.POST,   "/api/v1/orders/**").hasAnyRole("ADMIN", "STAFF");
-              authorize.requestMatchers(HttpMethod.PUT,    "/api/v1/orders/{id}").hasAnyRole("ADMIN", "STAFF");
+              authorize.requestMatchers(HttpMethod.PUT,    "/api/v1/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/orders/{id}").hasAnyRole("ADMIN", "STAFF");
               authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/orders/item/{id}").hasAnyRole("ADMIN", "STAFF");
 
 //              authorize.requestMatchers(HttpMethod.GET, "/api/v1/items/{id}").permitAll();
-//              authorize.requestMatchers(HttpMethod.PUT, "/api/v1/items/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.PUT, "/api/v1/items/{id}").permitAll();
 
               authorize.requestMatchers(HttpMethod.GET, "/api/v1/products").permitAll();
               authorize.requestMatchers(HttpMethod.GET, "/api/v1/products/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,"/api/v1/products").hasRole("ADMIN");
+              authorize.requestMatchers(HttpMethod.POST,"/api/v1/products").permitAll();
               authorize.requestMatchers(HttpMethod.PUT, "/api/v1/products/{id}").hasRole("ADMIN");
               authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/products/{id}").permitAll();
 

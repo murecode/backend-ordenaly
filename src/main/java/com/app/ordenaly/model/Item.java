@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "ITEM")
 public class Item {
-  @Transient
-  private String type = "item";
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "ITEM_ID")
@@ -18,15 +16,6 @@ public class Item {
   private Integer quantity = 1;
 
   public Item() {};
-
-  public Item(Product product, int quantity) {
-    this.product = product;
-    this.quantity = quantity;
-  }
-
-  public String getType() {
-    return type;
-  }
 
   public Integer getId() {
     return id;

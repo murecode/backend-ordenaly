@@ -19,7 +19,9 @@ public class ProductService {
   @Autowired
   ProductMapper productMapper;
 
-  public Product generateProduct(Product productBody) {
+  public Product createProduct(Product productBody) {
+
+
     Product product = new Product();
     product.setProductName(productBody.getProductName());
     product.setDescription(productBody.getDescription());

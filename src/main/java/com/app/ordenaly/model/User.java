@@ -19,7 +19,7 @@ public class User implements UserDetails {
   @Column(name = "USER_ID")
   private Integer id;
   @NotNull
-  @Column(name = "USERNAME")
+  @Column(name = "USERNAME", length = 45)
   private String username;
   @NotNull
   @Column(name = "FULLNAME", length = 45)

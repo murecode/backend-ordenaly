@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/products")
+@RequestMapping("/api/v1/products")
 public class ProductController {
   @Autowired
   private ProductService productService;
@@ -39,7 +39,7 @@ public class ProductController {
   public ResponseEntity<ProductDto> createProduct(
           @RequestBody ProductDto productDto) {
     Product product = productMapper.ProductDtoToProduct( productDto );
-    productService.generateProduct( product );
+    productService.createProduct( product );
     return new ResponseEntity<ProductDto>(productDto, HttpStatus.CREATED);
   }
 
@@ -60,4 +60,3 @@ public class ProductController {
 
 }
 
-//TODO: Novedad en el controlador, actualiza recurso pero crea otro nuevo
