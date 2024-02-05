@@ -4,7 +4,6 @@ Este proyecto es un sistema diseñado para la gestión y la toma de pedidos en e
 
 ## Características
 
-- Registro y gestión de menús y productos.
-- Proceso de toma de pedidos intuitivo.
-- Seguimiento en tiempo real del estado de los pedidos.
-- Generación de informes y estadísticas.
+- Registro y gestión de menús, productos y personal.
+- Proceso de toma de pedidos.
+- Seguimiento del estado de los pedidos.
