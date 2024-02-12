@@ -36,36 +36,17 @@ public class OrderService {
     return orderRepository.findById( orderId ).orElse(null);
   }
 
-//  public Order createOrder(int ticketId, int userId) {
-//    Ticket ticket = ticketRepository.findById(ticketId).get();
-//    User waiter = userRepository.findById(userId).get();
-//
-//    Order order = new Order();
-//    order.setTicket( ticket );
-//    order.setUser( waiter );
-//    order.setOrderStatus(OrderStatus.PENDIENTE);
-//    order.setPaymentStatus(PaymentStatus.PENDIENTE);
-//    order.setItemList(order.getItemList());
-//    order.setNotes(order.getNotes());
-//    //Se asocia el id de la orden con el ticket
-//    ticket.setOrder(order);
-//    Order saveOrder = orderRepository.save(order);
-//    return saveOrder;
-//  }
-
-  public Order createOrder(Order orderBody ) {
-    Ticket ticket = ticketRepository.findById( orderBody.getTicket().getId() ).get();
-    User waiter = userRepository.findByFullname( orderBody.getUser().getFullname() ).get();
+  public Order createOrder(int ticketId, int userId) {
+    Ticket ticket = ticketRepository.findById(ticketId).get();
+    User waiter = userRepository.findById(userId).get();
 
     Order order = new Order();
-    order.setTicket(ticket);
-    order.setUser(waiter);
-    order.setTable(orderBody.getTable());
+    order.setTicket( ticket );
+    order.setUser( waiter );
     order.setOrderStatus(OrderStatus.PENDIENTE);
     order.setPaymentStatus(PaymentStatus.PENDIENTE);
     order.setItemList(order.getItemList());
     order.setNotes(order.getNotes());
-
     //Se asocia el id de la orden con el ticket
     ticket.setOrder(order);
     Order saveOrder = orderRepository.save(order);
@@ -81,10 +62,12 @@ public class OrderService {
     return orderRepository.save(order);
   }
 
-  public Order updateOrderStatus(int orderId, Order orderBody) {
+  public Order updateOrder(int orderId, Order orderBody) {
     Order order = orderRepository.findById( orderId ).get();
+    order.setTable(orderBody.getTable());
     order.setOrderStatus(orderBody.getOrderStatus());
     order.setPaymentStatus(orderBody.getPaymentStatus());
+    order.setNotes(orderBody.getNotes());
     return orderRepository.save(order);
   }
 

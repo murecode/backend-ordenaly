@@ -20,8 +20,6 @@ public class ProductService {
   ProductMapper productMapper;
 
   public Product createProduct(Product productBody) {
-
-
     Product product = new Product();
     product.setProductName(productBody.getProductName());
     product.setDescription(productBody.getDescription());

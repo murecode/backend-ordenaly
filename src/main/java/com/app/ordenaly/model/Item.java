@@ -9,7 +9,7 @@ public class Item {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "ITEM_ID")
   private Integer id;
-  @ManyToOne
+  @OneToOne
   @JoinColumn(name = "PRODUCT")
   private Product product;
   @Column(name = "QUANTITY")

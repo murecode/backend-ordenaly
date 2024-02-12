@@ -44,7 +44,7 @@ public class UserController {
           @PathVariable("id") int userId,
           @RequestBody UserDto userBody) {
     User user = userMapper.UserDtoToUser( userBody );
-    userService.updateUser(userId, user);
+    userService.updateUserInfo(userId, user);
     return new ResponseEntity<>("Usuario actualizado", HttpStatus.ACCEPTED);
   }
 

@@ -21,13 +21,13 @@ public class ItemController {
   @Autowired
   ItemMapper itemMapper;
 
-  @GetMapping("/{id}")
+/*  @GetMapping("/{id}")
   public ResponseEntity<ItemDto> getItemById(
           @PathVariable("id") Integer id) {
     Item item = itemService.getItemById(id);
     ItemDto itemDto = itemMapper.itemToItemDto( item );
     return new ResponseEntity<ItemDto>(itemDto, HttpStatus.OK);
-  }
+  }*/
 
   @PutMapping("/{id}")
   public ResponseEntity<String> updateQuantity(
@@ -37,6 +37,11 @@ public class ItemController {
     itemService.updateQuantity( id, item );
     return new ResponseEntity<>("Item Actualizado", HttpStatus.ACCEPTED);
   }
+
+  /*@DeleteMapping()
+  public ResponseEntity<String> deleteItem() {
+    return null;
+  }*/
 
 
 

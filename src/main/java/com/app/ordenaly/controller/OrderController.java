@@ -45,24 +45,12 @@ public class OrderController {
     }
   }
 
-//  @PostMapping("")
-//  public ResponseEntity<OrderDto> newOrder(
-//          @RequestParam("ticketId") int ticketId,
-//          @RequestParam("userId") int userId) {
-//    Order order = orderService.createOrder( ticketId, userId );
-//    OrderDto orderDto = orderMapper.orderToOrderDto( order );
-//
-//    if(order.getTicket() == null || order.getUser() == null) {
-//      return new ResponseEntity<OrderDto>(HttpStatus.BAD_REQUEST );
-//    }
-//    return new ResponseEntity<OrderDto>(orderDto, HttpStatus.CREATED);
-//  }
-
-  @PostMapping("")
+  @PostMapping("/{ticketId}/{userId}/new-order")
   public ResponseEntity<OrderDto> newOrder(
-          @RequestBody OrderDto orderDto) {
-    Order order = orderMapper.orderDtoToOrder( orderDto );
-    orderService.createOrder( order );
+          @PathVariable("ticketId") int ticketId,
+          @PathVariable("userId") int userId) {
+    Order order = orderService.createOrder( ticketId, userId );
+    OrderDto orderDto = orderMapper.orderToOrderDto( order );
 
     if(order.getTicket() == null || order.getUser() == null) {
       return new ResponseEntity<OrderDto>(HttpStatus.BAD_REQUEST );
@@ -70,26 +58,25 @@ public class OrderController {
     return new ResponseEntity<OrderDto>(orderDto, HttpStatus.CREATED);
   }
 
-  @PostMapping("/{id}/add-item")
+  @PostMapping("/{orderId}/{productId}/add-item")
   public ResponseEntity<String> addItemToOrder(
-          @PathVariable("id") int orderId,
-          @RequestParam(name = "productId") int productId) {
+          @PathVariable("orderId") int orderId,
+          @PathVariable("productId") int productId) {
     orderService.addItemToOrder(orderId, productId);
     return ResponseEntity.ok("Item agregado al pedido");
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<String> updateOrder(
+  public ResponseEntity<String> updateOrderStatus(
           @PathVariable("id") int orderId,
           @RequestBody OrderDto orderDto ) {
     Order orderBody = orderMapper.orderDtoToOrder( orderDto );
-    orderService.updateOrderStatus( orderId, orderBody );
+    orderService.updateOrder( orderId, orderBody );
     if ( orderBody.getId() != null ) {
       return new ResponseEntity<>("Orden Actualizada", HttpStatus.OK);
     }
     return new ResponseEntity<>("No se encontrol la orden", HttpStatus.BAD_REQUEST);
   }
-
 
   @DeleteMapping("/{id}")
   public ResponseEntity<String> removeOrder(@PathVariable("id") Integer id) {

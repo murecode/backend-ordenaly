@@ -8,13 +8,6 @@ public class ItemDto {
 
   public ItemDto() {};
 
-//  public ItemDto(int item_id, String product_name, int precio, int quantity) {
-//    this.item_id = item_id;
-//    this.product_name = product_name;
-//    this.price = price;
-//    this.quantity = quantity;
-//  }
-
   public String getItem_id() {
     return item_id;
   }
