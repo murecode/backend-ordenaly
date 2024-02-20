@@ -1,7 +1,7 @@
 package com.app.ordenaly.dto.mapper;
 
 import com.app.ordenaly.dto.UserDto;
-import com.app.ordenaly.model.User;
+import com.app.ordenaly.models.User;
 import org.mapstruct.*;
 
 import java.util.List;

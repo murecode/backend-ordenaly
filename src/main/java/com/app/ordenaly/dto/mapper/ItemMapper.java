@@ -1,7 +1,7 @@
 package com.app.ordenaly.dto.mapper;
 
 import com.app.ordenaly.dto.ItemDto;
-import com.app.ordenaly.model.Item;
+import com.app.ordenaly.models.Item;
 import org.mapstruct.*;
 
 import java.util.List;
