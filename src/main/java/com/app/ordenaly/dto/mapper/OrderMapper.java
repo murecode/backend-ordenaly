@@ -1,7 +1,7 @@
 package com.app.ordenaly.dto.mapper;
 
 import com.app.ordenaly.dto.OrderDto;
-import com.app.ordenaly.model.Order;
+import com.app.ordenaly.models.Order;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public interface OrderMapper {
   @Mappings({
           @Mapping(source = "id",            target = "order_id"),
           @Mapping(source = "ticket.id",     target = "related_ticket"),
-          @Mapping(source = "user.fullname", target = "waiter"),
+          @Mapping(source = "user.id",       target = "related_waiter"),
           @Mapping(source = "table",         target = "related_table"),
           @Mapping(source = "orderStatus",   target = "order_status"),
           @Mapping(source = "paymentStatus", target = "payment_status"),

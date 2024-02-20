@@ -1,12 +1,19 @@
 package com.app.ordenaly.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class UserDto {
   private String user_id;
+  @JsonIgnore
   private String username;
   private String name;
   private String rol;
 
   public UserDto() {};
+
+  public UserDto(String name) {
+    this.name = name;
+  }
 
   public String getUser_id() {
     return user_id;

@@ -8,7 +8,7 @@ public class OrderDto {
   private int order_id;
   private int related_ticket;
   private int related_table;
-  private String waiter;
+  private int related_waiter;
   private String order_status;
   private String payment_status;
   private List<ItemDto> item_list;
@@ -40,12 +40,12 @@ public class OrderDto {
     this.related_table = related_table;
   }
 
-  public String getWaiter() {
-    return waiter;
+  public int getRelated_waiter() {
+    return related_waiter;
   }
 
-  public void setWaiter(String waiter) {
-    this.waiter = waiter;
+  public void setRelated_waiter(int related_waiter) {
+    this.related_waiter = related_waiter;
   }
 
   public String getOrder_status() {
