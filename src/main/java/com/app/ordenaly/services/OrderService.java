@@ -81,6 +81,10 @@ public class OrderService {
     return orderRepository.save(order);
   }
 
+  public void deleteOrderItem(int itemId) {
+    itemService.deleteItem(itemId);
+  }
+
   public Order updateOrder(int orderId, Order orderBody) {
     Order order = orderRepository.findById( orderId ).get();
     order.setTable(orderBody.getTable());

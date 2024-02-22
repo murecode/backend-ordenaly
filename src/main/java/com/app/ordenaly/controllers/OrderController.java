@@ -52,21 +52,38 @@ public class OrderController {
    /* if(order.getTicket() == null || order.getUser() == null) {
       return new ResponseEntity<OrderDto>(HttpStatus.BAD_REQUEST );
     }*/
-    // TODO: "Manejar exopciones"
+    // TODO: "Manejar exepciones"
     return new ResponseEntity<OrderDto>(orderDto, HttpStatus.CREATED);
   }
 
 
-  @PostMapping("/{order-id}/{product-id}/item")
+  /*@PostMapping("/{order-id}/{product-id}/item")
   public ResponseEntity<String> addItemToOrder(
           @PathVariable("order-id") int orderId,
           @PathVariable("product-id") int productId) {
     orderService.addItemToOrder(orderId, productId);
     return ResponseEntity.ok("Item agregado al pedido");
+  }*/
+
+  @PostMapping("/{order-id}")
+  public ResponseEntity<String> addItemToOrder(
+          @PathVariable("order-id") int orderId,
+          @RequestParam("product") int productId) {
+    orderService.addItemToOrder(orderId, productId);
+    // TODO: "Manejar exepciones"
+    return ResponseEntity.ok("Item agregado al pedido");
+  }
+
+  @DeleteMapping("/item/{item-id}")
+  public ResponseEntity<String> deleteOrderItem(
+          @PathVariable("item-id") int itemId){
+    orderService.deleteOrderItem(itemId);
+    // TODO: "Manejar exepciones"
+    return new ResponseEntity<>("Item eliminado" + itemId, HttpStatus.ACCEPTED);
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<String> updateOrderStatus(
+  public ResponseEntity<String> updateOrder(
           @PathVariable("id") int orderId,
           @RequestBody OrderDto orderDto ) {
     Order orderBody = orderMapper.orderDtoToOrder( orderDto );
