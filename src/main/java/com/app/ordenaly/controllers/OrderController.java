@@ -25,9 +25,7 @@ public class OrderController {
 
   @GetMapping("")
   public List<OrderDto> getOrders() {
-    List<Order> orders = orderService.getOrders();
-    List<OrderDto> ordersDto = orderMapper.ordersDto( orders );
-    return ordersDto;
+    return orderMapper.ordersDto(orderService.getOrders());
   }
 
   @Operation(summary = "Obtiene una Orden por su ID", description = "Retorna una orden especifica")
@@ -49,21 +47,10 @@ public class OrderController {
     Order order = orderMapper.orderDtoToOrder( orderDto );
     orderService.createOrder( order );
 
-   /* if(order.getTicket() == null || order.getUser() == null) {
-      return new ResponseEntity<OrderDto>(HttpStatus.BAD_REQUEST );
-    }*/
     // TODO: "Manejar exepciones"
+
     return new ResponseEntity<OrderDto>(orderDto, HttpStatus.CREATED);
   }
-
-
-  /*@PostMapping("/{order-id}/{product-id}/item")
-  public ResponseEntity<String> addItemToOrder(
-          @PathVariable("order-id") int orderId,
-          @PathVariable("product-id") int productId) {
-    orderService.addItemToOrder(orderId, productId);
-    return ResponseEntity.ok("Item agregado al pedido");
-  }*/
 
   @PostMapping("/{order-id}")
   public ResponseEntity<String> addItemToOrder(

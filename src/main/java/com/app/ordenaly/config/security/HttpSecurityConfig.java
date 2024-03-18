@@ -1,20 +1,19 @@
 package com.app.ordenaly.config.security;
 
-import com.app.ordenaly.utils.Permissions;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
+//import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.config.Customizer;
+//import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
-import java.security.Permission;
+//import java.security.Permission;
 
 @Configuration
 @EnableWebSecurity
@@ -25,7 +24,8 @@ public class HttpSecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
             .csrf(csrfConfig -> csrfConfig.disable()) //1.
-            .sessionManagement( sessionMangConfig -> sessionMangConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //2.
+            //.cors(Customizer.withDefaults()) //2.
+            .sessionManagement( sessionMangConfig -> sessionMangConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //3.
             .authenticationProvider(authenticationProvider)
             .authorizeHttpRequests((authorize) -> {
 
@@ -71,8 +71,13 @@ public class HttpSecurityConfig {
 
 }
 
-//1. Deshabilitar CORS
-//2.[Se encarga de configurar el manejo de sesiones en la aplicación. La aplicación no mantendrá...
-// el estado de la sesión en el servidor y cada solicitud se manejará de manera independiente sin...
-// depender del estado de la sesión. Esto es útil en escenarios donde se prefiere la...
-// arquitectura sin estado, comúnmente asociada con aplicaciones RESTful y servicios web.]
+/*1. Deshabilitar CORS*/
+
+/*2. habilita CORS en tu aplicación de Spring Security con una configuración mínima
+prmitiendo el acceso desde cualquier origen, método y encabezado, lo que
+puede ser apropiado en ciertos casos, como desarrollo local o pruebas.*/
+
+/*3.[Se encarga de configurar el manejo de sesiones en la aplicación. La aplicación no mantendrá...
+el estado de la sesión en el servidor y cada solicitud se manejará de manera independiente sin...
+depender del estado de la sesión. Esto es útil en escenarios donde se prefiere la...
+arquitectura sin estado, comúnmente asociada con aplicaciones RESTful y servicios web.]*/

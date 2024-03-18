@@ -38,8 +38,6 @@ class UserRepositoryTest {
   void testUpdateUser() {
     User user = entityManager.find(User.class, 0);
     user.setUsername("");
-//    user.setFullname("Borrador");
-//    user.setRole();
     userRepository.save(user);
 
     assertTrue(user.getId() == 0);

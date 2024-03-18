@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service // 1.
 public class OrderService {
@@ -23,39 +22,18 @@ public class OrderService {
 
 
   public List<Order> getOrders() {
-    List<Order> orders = orderRepository.findAll();
-    return orders;
+    return orderRepository.findAll();
   }
 
   public Order findOrderById(int orderId) {
     return orderRepository.findById( orderId ).orElse(null);
   }
 
-  /*public Order createOrder(int ticketId, int userId, int table) {
-    Ticket ticket = ticketRepository.findById(ticketId).get();
-    User waiter = userRepository.findById(userId).get();
-
-    Order order = new Order();
-    order.setTicket( ticket );
-    order.setUser( waiter );
-    order.setTable( table );
-    order.setOrderStatus(OrderStatus.PENDIENTE);
-    order.setPaymentStatus(PaymentStatus.PENDIENTE);
-//    order.setItemList(order.getItemList());
-    order.setNotes(order.getNotes());
-    //Se asocia el id de la orden con el ticket
-    ticket.setOrder(order);
-    Order saveOrder = orderRepository.save(order);
-    return saveOrder;
-  }*/
-
-  public Order createOrder(Order orderBody) {
+  public void createOrder(Order orderBody) {
     Ticket ticket = ticketRepository.findById(orderBody.getTicket().getId()).orElse(null);
     User waiter = userRepository.findById(orderBody.getUser().getId()).orElse(null);
 
-    if(ticket.getId() == null && waiter.getId() == null) {
-      return null;
-    }
+    if(ticket.getId() == null && waiter.getId() == null) { }
 
     Order order = new Order();
     order.setTicket( ticket );
@@ -67,39 +45,34 @@ public class OrderService {
     order.setNotes(orderBody.getNotes());
     //Se asocia el id de la orden con el ticket
     ticket.setOrder(order);
-    Order saveOrder = orderRepository.save(order);
-    return saveOrder;
+
+    orderRepository.save(order);
   }
 
 
-  public Order addItemToOrder(int orderId, int productId) {
+  public void addItemToOrder(int orderId, int productId) {
     Order order = orderRepository.findById(orderId).get();
 
     Item item = itemService.generateItem(productId);
     order.addItem(item);
 
-    return orderRepository.save(order);
+    orderRepository.save(order);
   }
 
   public void deleteOrderItem(int itemId) {
     itemService.deleteItem(itemId);
   }
 
-  public Order updateOrder(int orderId, Order orderBody) {
+  public void updateOrder(int orderId, Order orderBody) {
+
     Order order = orderRepository.findById( orderId ).get();
     order.setTable(orderBody.getTable());
     order.setOrderStatus(orderBody.getOrderStatus());
     order.setPaymentStatus(orderBody.getPaymentStatus());
     order.setNotes(orderBody.getNotes());
-    return orderRepository.save(order);
-  }
 
-//  public Order updateOrderInfo(int orderId, Order orderBody) {
-//    Order order = orderRepository.findById( orderId ).get();
-//    order.setTable(orderBody.getTable());
-//    order.setNotes(orderBody.getNotes());
-//    return orderRepository.save(order);
-//  }
+    orderRepository.save(order);
+  }
 
   public void deleteOrder(Integer id) {
     orderRepository.deleteById(id);

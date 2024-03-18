@@ -25,7 +25,7 @@ public class Product {
   @Column(name = "IN_STOCK")
   private Boolean inStock;
 
-  public Product() {};
+  public Product() {}
 
   public int getId() {
     return id;

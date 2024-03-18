@@ -17,8 +17,7 @@ public class TicketService {
   private TicketMapper ticketMapper;
 
   public List<Ticket> getAllTickets() {
-    List<Ticket> tickets = ticketRepository.findAll();
-    return tickets;
+    return ticketRepository.findAll();
   }
 
   public Ticket generateTicket() {
@@ -29,8 +28,7 @@ public class TicketService {
   }
 
   public Ticket getTicketById(int id) {
-    Ticket ticket = ticketRepository.findById(id).get();
-    return ticket;
+    return ticketRepository.findById(id).get();
   }
 
 }

@@ -14,7 +14,7 @@ public class OrderDto {
   private List<ItemDto> item_list;
   private String order_comment;
 
-  public OrderDto() {};
+  public OrderDto() {}
 
   public int getOrder_id() {
     return order_id;

@@ -16,16 +16,17 @@ public class OrdenalyApplication {
 		SpringApplication.run(OrdenalyApplication.class, args);
 	}
 
-//	@Autowired
-//	private PasswordEncoder passwordEncoder;
+/*	@Autowired
+	private PasswordEncoder passwordEncoder;
 
-	// GENERA LA CONTRASEÑA ENCRIPTADA PARA LA BASE DE DATOS
-//	@Bean
-//	public CommandLineRunner createPassword() {
-//		return args -> {
-//			System.out.println(passwordEncoder.encode("miclave123recontraguapa321AA_45-XX654@"));
-// 		    System.out.println(passwordEncoder.encode("qwerty"));
-//		};
-//	}
+	 GENERA LA CONTRASEÑA ENCRIPTADA PARA LA BASE DE DATOS
+	@Bean
+	public CommandLineRunner createPassword() {
+		return args -> {
+			System.out.println(passwordEncoder.encode("miclave123recontraguapa321AA_45-XX654@"));
+ 		    System.out.println(passwordEncoder.encode("qwerty"));
+		};
+	}
+*/
 
 }
