@@ -16,15 +16,15 @@ public class UserService {
   @Autowired
   private UserMapper userMapper;
 
-  public List<User> findAllUsers() {
+  public List<User> getAllUsers() {
     List<User> users = userRepository.findAll();
     return users;
   }
 
-  public User updateUserInfo(int userId, User userBody) {
+  public void updateUserInfo(int userId, User userBody) {
     User user = userRepository.findById(userId).get();
     user.setFullname(userBody.getFullname());
-    return userRepository.save(user);
+    userRepository.save(user);
   }
 
   // UPDATE_USER_CREDENTIALS - autorized only ADMIN

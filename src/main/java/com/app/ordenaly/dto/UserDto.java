@@ -9,7 +9,7 @@ public class UserDto {
   private String name;
   private String rol;
 
-  public UserDto() {};
+  public UserDto() {}
 
   public UserDto(String name) {
     this.name = name;

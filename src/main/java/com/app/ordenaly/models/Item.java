@@ -15,7 +15,7 @@ public class Item {
   @Column(name = "QUANTITY")
   private Integer quantity = 1;
 
-  public Item() {};
+  public Item() {}
 
   public Integer getId() {
     return id;

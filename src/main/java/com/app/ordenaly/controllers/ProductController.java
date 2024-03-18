@@ -6,6 +6,7 @@ import com.app.ordenaly.models.Product;
 import com.app.ordenaly.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,9 +23,7 @@ public class ProductController {
 
   @GetMapping("")
   public List<ProductDto> listAllProducts(){
-    List<Product> products = productService.getProducts();
-    List<ProductDto> productsDto = productMapper.productsDto(products);
-    return productsDto;
+    return productMapper.productsDto(productService.getProducts());
   }
 
   @PostMapping("")

@@ -17,25 +17,26 @@ public class ProductService {
   @Autowired
   ProductMapper productMapper;
 
-  public Product createProduct(Product productBody) {
+  public void createProduct(Product productBody) {
+
     Product product = new Product();
     product.setProductName(productBody.getProductName());
     product.setDescription(productBody.getDescription());
     product.setPrice(productBody.getPrice());
     product.setInStock(productBody.getInStock());
-    return productRepository.save(product);
+
+    productRepository.save(product);
   }
 
   public List<Product> getProducts() {
-    List<Product> products = productRepository.findAll();
-    return products;
+    return productRepository.findAll();
   }
 
   public Product getProduct(int id) {
     return productRepository.findById(id).get();
   }
 
-  public Product updateProduct(int productId, Product productBoby) {
+  public void updateProduct(int productId, Product productBoby) {
     Product product = productRepository.findById(productId).orElse(null);
 
     if( product != null ) {
@@ -43,7 +44,9 @@ public class ProductService {
       product.setDescription(productBoby.getDescription());
       product.setPrice(productBoby.getPrice());
       product.setInStock(productBoby.getInStock());
-      return productRepository.save(product);
+
+      productRepository.save(product);
+
     } else {
       throw new EntityNotFoundException("No se encontró el producto con ID: " + productId);
     }

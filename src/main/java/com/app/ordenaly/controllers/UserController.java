@@ -24,9 +24,7 @@ public class UserController {
 
   @GetMapping("")
   public List<UserDto> getAllUsers() {
-    List<User> users = userService.findAllUsers();
-    List<UserDto> usersDto = userMapper.usersDto( users );
-    return usersDto;
+    return userMapper.usersDto(userService.getAllUsers());
   }
 
   // Solo el ADMIN tiene acceso

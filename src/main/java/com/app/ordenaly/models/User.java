@@ -24,8 +24,6 @@ public class User implements UserDetails {
   @NotNull
   @Column(name = "FULLNAME", length = 45)
   private String fullname;
-//  @Column(name = "EMAIL", length = 45)
-//  private String email;
   @NotNull
   @Column(name = "PASSWORD")
   private String password;
@@ -34,7 +32,7 @@ public class User implements UserDetails {
   @Enumerated(EnumType.STRING)
   private Roles role;
 
-  public User() {};
+  public User() {}
 
   public Integer getId() {
     return id;

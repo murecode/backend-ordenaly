@@ -6,7 +6,7 @@ public class ItemDto {
   private int price;
   private int quantity;
 
-  public ItemDto() {};
+  public ItemDto() {}
 
   public String getItem_id() {
     return item_id;

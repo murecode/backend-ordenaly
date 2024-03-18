@@ -11,14 +11,6 @@ public class ProductDto {
 
   public ProductDto() {}
 
-//  public ProductDto(int product_id, String product_name, String description, Double price, Boolean in_stock) {
-//    this.product_id = product_id;
-//    this.product_name = product_name;
-//    this.description = description;
-//    this.price = price;
-//    this.in_stock = in_stock;
-//  }
-
   public String getProduct_id() {
     return product_id;
   }

@@ -5,7 +5,7 @@ public class SignUpRequest {
   private String username;
   private String password;
 
-  public SignUpRequest() {};
+  public SignUpRequest() {}
 
   public String getFullname() {
     return fullname;

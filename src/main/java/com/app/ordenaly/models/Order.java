@@ -35,7 +35,7 @@ public class Order {
   @Column(name = "NOTES")
   private String notes = " ";
 
-  public Order() {};
+  public Order() {}
 
   public Integer getId() {
     return id;
