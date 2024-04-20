@@ -41,12 +41,29 @@ public class JwtService {
   //3.
   private Key generateKey() {
     byte[] secretKeyAsBytes = Decoders.BASE64.decode(SECRET_KEY);
-    System.out.println(new String( secretKeyAsBytes ));
+    System.out.println("🔐clave: " + new String( secretKeyAsBytes ));
     return Keys.hmacShaKeyFor( secretKeyAsBytes );
+  }
+
+  public String extractUsername(String jwt) {
+    return Jwts.parser().setSigningKey(generateKey())
+            .build()
+            .parseClaimsJws(jwt).getBody().getSubject();
   }
 
 }
 
 //1. Configuracion de tiempos de expedicion y caducidad del token en milisegundos
-//2. Definicion de los claims que contendra la Carga util en el JSON
-//3. Metodo para decodificar la contraseña encriptada en Base64
+
+/*2. Toma una serie de reclamos adicionales (extraClaims) y establece el tipo de token,
+     su firma con una clave secreta generada y devuelve el token JWT como una cadena compacta */
+
+/*3. Decodifica una clave secreta en base64, la imprime en la consola y luego la utiliza para
+     generar una instancia de Key que se utilizará en la firma de tokens JWT. */
+
+// ANOTATIONS
+/* @Value, se utiliza para inyectar valores directamente en campos de una clase desde
+   el entorno de configuración de Spring, como properties files, variables de entorno,
+   valores por defecto, etc. Esta anotación es parte de la inyección de dependencias de
+   Spring y es especialmente útil para inyectar valores simples, como cadenas de texto,
+   números u otros tipos de datos básicos. */

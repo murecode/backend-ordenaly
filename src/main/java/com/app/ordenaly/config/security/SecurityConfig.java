@@ -39,14 +39,19 @@ public class SecurityConfig {
   public UserDetailsService userDetailsService() {
     return username -> {
       return userRepository.findByUsername(username)
-              .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+              .orElseThrow(() -> new RuntimeException("🔴 Usuario no encontrado"));
     };
   }
 
 }
 
 //1. Esta linea genera el ProviderManager que puede coordinar varios provedores de autentificacion
+
 //2. Configura varios proveedores de autenticación en este caso se usará contra base de datos
-//3. Compara y codifica la contraseña traida desde la base de datos
-//4. Recupera informacion del usuario (username y contraseña) de la base de datos
+
+/*3. Compara y codifica la contraseña traida desde la base de datos. */
+
+/*4. La interfaz 'UserserDetailsService' cargar información sobre un usuario dado su nombre
+     de username en la base de datos retornando un objeto 'UserDetails' que contiene info la
+     que representa al usuario. */
 

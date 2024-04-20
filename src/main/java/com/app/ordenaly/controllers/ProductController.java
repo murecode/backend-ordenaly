@@ -31,7 +31,9 @@ public class ProductController {
           @RequestBody ProductDto productDto) {
     Product product = productMapper.ProductDtoToProduct( productDto );
     productService.createProduct( product );
-    // TODO: "manejar casos de error y validar los datos recibidos"
+
+    /*TODO: "manejar casos de error y validar los datos recibidos"*/
+
     return new ResponseEntity<ProductDto>(productDto, HttpStatus.CREATED);
   }
 
@@ -41,7 +43,9 @@ public class ProductController {
           @RequestBody ProductDto productDto) {
     Product product = productMapper.ProductDtoToProduct(productDto);
     productService.updateProduct(productId, product);
-  // TODO: "manejar casos de error y validar los datos recibidos"
+
+  //TODO: "manejar casos de error y validar los datos recibidos"
+
     return new ResponseEntity<>(productDto, HttpStatus.ACCEPTED);
   }
 
