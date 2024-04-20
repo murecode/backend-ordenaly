@@ -20,7 +20,6 @@ public class ProductController {
   @Autowired
   private ProductMapper productMapper;
 
-
   @GetMapping("")
   public List<ProductDto> listAllProducts(){
     return productMapper.productsDto(productService.getProducts());

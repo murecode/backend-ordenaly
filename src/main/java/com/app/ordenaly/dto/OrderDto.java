@@ -1,5 +1,6 @@
 package com.app.ordenaly.dto;
 
+import com.app.ordenaly.models.Item;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class OrderDto {
   private int related_waiter;
   private String order_status;
   private String payment_status;
-  private List<ItemDto> item_list;
+//  private List<ItemDto> item_list;
   private String order_comment;
 
   public OrderDto() {}
@@ -64,13 +65,13 @@ public class OrderDto {
     this.payment_status = payment_status;
   }
 
-  public List<ItemDto> getItem_list() {
-    return item_list;
-  }
+//  public List<Item> getItem_list() {
+//    return item_list;
+//  }
 
-  public void setItem_list(List<ItemDto> item_list) {
-    this.item_list = item_list;
-  }
+//  public void setItem_list(List<ItemDto> item_list) {
+//    this.item_list = item_list;
+//  }
 
   public String getOrder_comment() {
     return order_comment;

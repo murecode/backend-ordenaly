@@ -1,6 +1,6 @@
 package com.app.ordenaly.services;
 
-import com.app.ordenaly.dto.mapper.TicketMapper;
+//import com.app.ordenaly.dto.mapper.TicketMapper;
 import com.app.ordenaly.models.Ticket;
 import com.app.ordenaly.repositories.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ public class TicketService {
   @Autowired
   private TicketRepository ticketRepository;
   @Autowired
-  private TicketMapper ticketMapper;
+//  private TicketMapper ticketMapper;
 
   public List<Ticket> getAllTickets() {
     return ticketRepository.findAll();

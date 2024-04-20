@@ -23,6 +23,15 @@ class ItemRepositoryTest {
   private TestEntityManager entityManager;
 
   @Test
+  void createItem() {
+    Product product = entityManager.find(Product.class, 1);
+
+    Item item = new Item(product, 6);
+    itemRepository.save(item);
+
+  }
+
+  @Test
   void testAddItemToOrder() {
     Order order = entityManager.find(Order.class, 29);
     Product product = entityManager.find(Product.class, 5);

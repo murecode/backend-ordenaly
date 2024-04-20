@@ -1,5 +1,7 @@
 package com.app.ordenaly.models;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,14 +10,39 @@ public class Item {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "ITEM_ID")
+  @JsonProperty("item_id")
   private Integer id;
   @OneToOne
   @JoinColumn(name = "PRODUCT")
   private Product product;
   @Column(name = "QUANTITY")
-  private Integer quantity = 1;
+  private int quantity = 1;
+  @Column(name = "TOTAL")
+  private double total;
 
   public Item() {}
+
+  public Item(Product product, int quantity) {
+    this.product = product;
+    this.quantity = quantity;
+    this.total = calculateTotal();
+  }
+
+  // Getter personalizado para serializar solo el nombre del producto
+  @JsonProperty("product_name")
+  @JsonGetter("product_name")
+  public String getProductName() {
+    return this.product.getProductName(); // Retorna solo el nombre del producto
+  }
+
+  private final double calculateTotal() {
+    total = product.getPrice() * getQuantity();
+    return total;
+
+    // TODO: Pendiente: lograr que funcione Calcular total
+
+  }
+
 
   public Integer getId() {
     return id;
@@ -25,9 +52,9 @@ public class Item {
     this.id = id;
   }
 
-  public Product getProduct() {
-    return product;
-  }
+//  public Product getProduct() {
+//    return product;
+//  }
 
   public void setProduct(Product product) {
     this.product = product;
@@ -39,6 +66,10 @@ public class Item {
 
   public void setQuantity(Integer quantity) {
     this.quantity = quantity;
+  }
+
+  public double getTotal() {
+    return total;
   }
 
 }
