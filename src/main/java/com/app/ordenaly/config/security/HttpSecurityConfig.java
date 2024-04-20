@@ -1,6 +1,7 @@
 package com.app.ordenaly.config.security;
 
 //import org.junit.jupiter.api.Test;
+import com.app.ordenaly.utils.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +26,10 @@ public class HttpSecurityConfig {
     http
             .csrf(csrfConfig -> csrfConfig.disable()) //1.
             //.cors(Customizer.withDefaults()) //2.
-            .sessionManagement( sessionMangConfig -> sessionMangConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //3.
+            .sessionManagement( sessionMangConfig -> sessionMangConfig
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .invalidSessionUrl("/api/v1/auth/login")
+            ) //3.
             .authenticationProvider(authenticationProvider)
             .authorizeHttpRequests((authorize) -> {
 
@@ -44,7 +48,7 @@ public class HttpSecurityConfig {
 //              authorize.requestMatchers(HttpMethod.GET, "/api/v1/items/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.PUT, "/api/v1/items/{id}").permitAll();
 
-              authorize.requestMatchers(HttpMethod.GET, "/api/v1/products").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/api/v1/products").hasAuthority("STAFF");
               authorize.requestMatchers(HttpMethod.POST,"/api/v1/products").permitAll();
               authorize.requestMatchers(HttpMethod.PUT, "/api/v1/products/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/products/{id}").permitAll();
@@ -54,17 +58,14 @@ public class HttpSecurityConfig {
 
               authorize.requestMatchers(HttpMethod.GET,   "/api/v1/users").permitAll();
               authorize.requestMatchers(HttpMethod.POST,  "/api/v1/users").permitAll();
-              authorize.requestMatchers(HttpMethod.PUT,   "/api/v1/users/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.DELETE,"/api/v1/users/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.PUT,   "/api/v1/users/{id}").hasAuthority("ADMIN");
+              authorize.requestMatchers(HttpMethod.DELETE,"/api/v1/users/{id}").hasAuthority("ADMIN");
 
               authorize.requestMatchers("/v1/authenticate", "/v3/api-docs/**", "swagger-ui/**","/swagger-ui.html").permitAll();
 
-              authorize.requestMatchers(HttpMethod.DELETE,"/api/v1/users/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.GET,   "/api/v1/products").permitAll();
-              authorize.requestMatchers(HttpMethod.GET,   "/api/v1/orders").permitAll();
-
               authorize.anyRequest().denyAll();
-            });
+            })
+            .formLogin().permitAll();
 
     return http.build();
   }
