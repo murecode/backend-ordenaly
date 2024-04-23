@@ -18,7 +18,6 @@ public interface OrderMapper {
           @Mapping(source = "table",         target = "related_table"),
           @Mapping(source = "orderStatus",   target = "order_status"),
           @Mapping(source = "paymentStatus", target = "payment_status"),
-          @Mapping(source = "itemList",      target = "item_list"),
           @Mapping(source = "notes",         target = "order_comment")
   })
 

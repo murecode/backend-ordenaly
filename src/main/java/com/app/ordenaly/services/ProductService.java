@@ -1,6 +1,6 @@
 package com.app.ordenaly.services;
 
-import com.app.ordenaly.dto.mapper.ProductMapper;
+//import com.app.ordenaly.dto.mapper.ProductMapper;
 import com.app.ordenaly.models.Product;
 import com.app.ordenaly.repositories.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -14,8 +14,8 @@ public class ProductService {
 
   @Autowired
   ProductRepository productRepository;
-  @Autowired
-  ProductMapper productMapper;
+//  @Autowired
+//  ProductMapper productMapper;
 
   public void createProduct(Product productBody) {
 

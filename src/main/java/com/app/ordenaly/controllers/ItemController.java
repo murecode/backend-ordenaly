@@ -1,8 +1,6 @@
 package com.app.ordenaly.controllers;
 
-//import com.app.ordenaly.dto.ItemDto;
 import com.app.ordenaly.dto.OrderDto;
-//import com.app.ordenaly.dto.mapper.ItemMapper;
 import com.app.ordenaly.models.Ticket;
 import com.app.ordenaly.services.ItemService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,7 +19,6 @@ public class ItemController {
   @Autowired
   ItemService itemService;
   @Autowired
-//  ItemMapper itemMapper;
 
 
   @GetMapping("")
@@ -35,7 +32,6 @@ public class ItemController {
   public ResponseEntity<String> updateQuantity(
           @PathVariable("id") int id,
           @RequestBody Item itemBody) {
-//    Item item = itemMapper.itemDtoToItem( itemBody );
     itemService.updateQuantity( id, itemBody );
     return new ResponseEntity<>("Item Actualizado", HttpStatus.ACCEPTED);
   }

@@ -1,7 +1,5 @@
 package com.app.ordenaly.controllers;
 
-import com.app.ordenaly.dto.ProductDto;
-import com.app.ordenaly.dto.mapper.ProductMapper;
 import com.app.ordenaly.models.Product;
 import com.app.ordenaly.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,35 +15,33 @@ import java.util.List;
 public class ProductController {
   @Autowired
   private ProductService productService;
-  @Autowired
-  private ProductMapper productMapper;
 
   @GetMapping("")
-  public List<ProductDto> listAllProducts(){
-    return productMapper.productsDto(productService.getProducts());
+  public List<Product> listAllProducts(){
+    return productService.getProducts();
   }
 
   @PostMapping("")
-  public ResponseEntity<ProductDto> createProduct(
-          @RequestBody ProductDto productDto) {
-    Product product = productMapper.ProductDtoToProduct( productDto );
+  public ResponseEntity<Product> createProduct(
+          @RequestBody Product product) {
+//    Product product = productMapper.ProductDtoToProduct( productDto );
     productService.createProduct( product );
 
     /*TODO: "manejar casos de error y validar los datos recibidos"*/
 
-    return new ResponseEntity<ProductDto>(productDto, HttpStatus.CREATED);
+    return new ResponseEntity<Product>(product, HttpStatus.CREATED);
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<ProductDto> updateProduct(
+  public ResponseEntity<Product> updateProduct(
           @PathVariable("id") int productId,
-          @RequestBody ProductDto productDto) {
-    Product product = productMapper.ProductDtoToProduct(productDto);
+          @RequestBody Product product) {
+//    Product product = productMapper.ProductDtoToProduct(productDto);
     productService.updateProduct(productId, product);
 
   //TODO: "manejar casos de error y validar los datos recibidos"
 
-    return new ResponseEntity<>(productDto, HttpStatus.ACCEPTED);
+    return new ResponseEntity<>(product, HttpStatus.ACCEPTED);
   }
 
   @DeleteMapping("/{id}")
