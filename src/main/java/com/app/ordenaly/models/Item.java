@@ -25,7 +25,12 @@ public class Item {
   public Item(Product product, int quantity) {
     this.product = product;
     this.quantity = quantity;
-    this.total = calculateTotal();
+    calculateTotal();
+  }
+
+  public double calculateTotal() {
+    total = product.getPrice() * getQuantity();
+    return total;
   }
 
   // Getter personalizado para serializar solo el nombre del producto
@@ -35,22 +40,13 @@ public class Item {
     return this.product.getProductName(); // Retorna solo el nombre del producto
   }
 
-  private final double calculateTotal() {
-    total = product.getPrice() * getQuantity();
-    return total;
-
-    // TODO: Pendiente: lograr que funcione Calcular total
-
-  }
-
-
   public Integer getId() {
     return id;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+//  public void setId(Integer id) {
+//    this.id = id;
+//  }
 
 //  public Product getProduct() {
 //    return product;
@@ -72,6 +68,9 @@ public class Item {
     return total;
   }
 
+  public void setTotal(double total) {
+    this.total = total;
+  }
 }
 
 // GenerationType.IDENTITY,

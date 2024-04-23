@@ -37,6 +37,7 @@ public class ItemService {
     Item item = itemRepository.findById(itemId).get();
     if ( item != null ) {
       item.setQuantity(itemBody.getQuantity());
+      item.setTotal(item.calculateTotal());
       itemRepository.save(item);
     }
   }

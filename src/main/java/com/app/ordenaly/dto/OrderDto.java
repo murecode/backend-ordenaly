@@ -12,7 +12,6 @@ public class OrderDto {
   private int related_waiter;
   private String order_status;
   private String payment_status;
-//  private List<ItemDto> item_list;
   private String order_comment;
 
   public OrderDto() {}
@@ -64,14 +63,6 @@ public class OrderDto {
   public void setPayment_status(String payment_status) {
     this.payment_status = payment_status;
   }
-
-//  public List<Item> getItem_list() {
-//    return item_list;
-//  }
-
-//  public void setItem_list(List<ItemDto> item_list) {
-//    this.item_list = item_list;
-//  }
 
   public String getOrder_comment() {
     return order_comment;

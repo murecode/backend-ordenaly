@@ -35,11 +35,11 @@ class ProductRepositoryTest {
 
   @Test
   void testUpdateProduct() {
-    Product product = entityManager.find(Product.class, 4);
+    Product product = entityManager.find(Product.class, 1);
     assertNotNull(product);
 
-    product.setProductName("Malteada de fresa");
-    product.setDescription("Con fresa frescas y rojas");
+    product.setProductName("Pizza Italiana");
+    product.setDescription("con queso y pasta de tomate");
     product.setPrice(12000.);
     product.setInStock(true);
     productRepository.save(product);
