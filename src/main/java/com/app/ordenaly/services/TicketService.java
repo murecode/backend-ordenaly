@@ -23,7 +23,6 @@ public class TicketService {
   public Ticket generateTicket() {
     Ticket ticket = new Ticket();
     ticket.setTime(LocalTime.now());
-    ticket.setOrder(ticket.getOrder());
     return ticketRepository.save( ticket );
   }
 

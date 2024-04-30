@@ -6,45 +6,46 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 
 public class OrderDto {
-  private int order_id;
-  private int related_ticket;
-  private int related_table;
-  private int related_waiter;
+  private String order_id;
+  private String related_ticket;
+  private String related_table;
+  private String related_waiter;
   private String order_status;
   private String payment_status;
   private String order_comment;
+  private List<Item> item_list;
 
   public OrderDto() {}
 
-  public int getOrder_id() {
+  public String getOrder_id() {
     return order_id;
   }
 
-  public void setOrder_id(int order_id) {
+  public void setOrder_id(String order_id) {
     this.order_id = order_id;
   }
 
-  public int getRelated_ticket() {
+  public String getRelated_ticket() {
     return related_ticket;
   }
 
-  public void setRelated_ticket(int related_ticket) {
+  public void setRelated_ticket(String related_ticket) {
     this.related_ticket = related_ticket;
   }
 
-  public int getRelated_table() {
+  public String getRelated_table() {
     return related_table;
   }
 
-  public void setRelated_table(int related_table) {
+  public void setRelated_table(String related_table) {
     this.related_table = related_table;
   }
 
-  public int getRelated_waiter() {
+  public String getRelated_waiter() {
     return related_waiter;
   }
 
-  public void setRelated_waiter(int related_waiter) {
+  public void setRelated_waiter(String related_waiter) {
     this.related_waiter = related_waiter;
   }
 
@@ -70,5 +71,13 @@ public class OrderDto {
 
   public void setOrder_comment(String order_comment) {
     this.order_comment = order_comment;
+  }
+
+  public List<Item> getItemList() {
+    return item_list;
+  }
+
+  public void setItemList(List<Item> itemList) {
+    this.item_list = itemList;
   }
 }

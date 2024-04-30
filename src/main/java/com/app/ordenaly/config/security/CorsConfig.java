@@ -14,12 +14,12 @@ public class CorsConfig implements WebMvcConfigurer {
     registry.addMapping("/**");
 
     registry.addMapping("/api/v1/orders/**")
-            .allowedOrigins("http://localhost:4200", "http://127.0.0.1:5501", "http://localhost:5000/")
+            .allowedOrigins("http://localhost:4200", "http://127.0.0.1:5501", "http://localhost:5173/")
             .allowedMethods("GET", "POST", "PUT")
             .allowCredentials(true);
 
     registry.addMapping("/api/v1/tickets/**")
-            .allowedOrigins("http://localhost:4200", "http://127.0.0.1:5501", "http://localhost:5000/")
+            .allowedOrigins("http://localhost:4200", "http://127.0.0.1:5501", "http://localhost:5173/")
             .allowedMethods("GET", "POST")
             .allowCredentials(true);
 

@@ -44,7 +44,7 @@ public class OrderService {
 //    order.setItemList(order.getItemList());
     order.setNotes(orderBody.getNotes());
     //Se asocia el id de la orden con el ticket
-    ticket.setOrder(order);
+//    ticket.setOrder(order);
 
     orderRepository.save(order);
   }
