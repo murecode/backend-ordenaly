@@ -25,9 +25,9 @@ class UserRepositoryTest {
   void testCreateUser() {
 
     User user = new User();
-    user.setUsername("");
-    user.setFullname("");
-    user.setPassword("");
+    user.setUsername("cafuel");
+    user.setFullname("Carlos Fuel");
+    user.setPassword("carlos123");
     user.setRole(Roles.STAFF);
 
     userRepository.save(user);

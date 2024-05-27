@@ -9,8 +9,7 @@ import jakarta.persistence.*;
 public class Item {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "ITEM_ID")
-  @JsonProperty("item_id")
+  @Column(name = "ITEM_ID") @JsonProperty("item_id")
   private Integer id;
   @OneToOne
   @JoinColumn(name = "PRODUCT")
@@ -43,14 +42,6 @@ public class Item {
   public Integer getId() {
     return id;
   }
-
-//  public void setId(Integer id) {
-//    this.id = id;
-//  }
-
-//  public Product getProduct() {
-//    return product;
-//  }
 
   public void setProduct(Product product) {
     this.product = product;

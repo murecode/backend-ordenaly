@@ -4,6 +4,7 @@ import com.app.ordenaly.models.Item;
 import com.app.ordenaly.models.Product;
 import com.app.ordenaly.repositories.ItemRepository;
 import com.app.ordenaly.repositories.ProductRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,6 @@ public class ItemService {
   ItemRepository itemRepository;
   @Autowired
   ProductRepository productRepository;
-
 
   public List<Item> getItems() {
     return itemRepository.findAll();
@@ -30,6 +30,7 @@ public class ItemService {
       Item item = new Item();
       item.setProduct(product);
       item.setQuantity(item.getQuantity());
+      item.setTotal(product.getPrice());
       return itemRepository.save(item);
   }
 
@@ -39,6 +40,8 @@ public class ItemService {
       item.setQuantity(itemBody.getQuantity());
       item.setTotal(item.calculateTotal());
       itemRepository.save(item);
+    } else {
+      throw new EntityNotFoundException("No se encontró el item con ID: " + item.getId());
     }
   }
 

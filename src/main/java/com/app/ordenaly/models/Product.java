@@ -20,12 +20,20 @@ public class Product {
   @NotNull
   @Column(name = "PRICE")
   @DecimalMin(value = "0.01")
-  private Double price;
+  private int price;
   @NotNull
   @Column(name = "IN_STOCK")
   private Boolean inStock;
 
   public Product() {}
+
+  public Product(int id, String productName, String description, int price, boolean inStock) {
+    this.id = id;
+    this.productName = productName;
+    this.description = description;
+    this.price = price;
+    this.inStock = inStock;
+  }
 
   public int getId() {
     return id;
@@ -51,11 +59,11 @@ public class Product {
     this.description = description;
   }
 
-  public Double getPrice() {
+  public int getPrice() {
     return price;
   }
 
-  public void setPrice(Double price) {
+  public void setPrice(int price) {
     this.price = price;
   }
 
@@ -67,4 +75,12 @@ public class Product {
     this.inStock = inStock;
   }
 
+  @Override
+  public String toString() {
+    return  "ID: "           + id          + "\n" +
+            "PRODUCT: "      + productName + "\n" +
+            "DESCRIPTION: "  + description + "\n" +
+            "PRICE: "        + price       + "\n" +
+            "INSTOCK: "      + inStock     + "\n" ;
+  }
 }

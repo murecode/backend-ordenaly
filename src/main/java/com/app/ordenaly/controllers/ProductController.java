@@ -24,15 +24,11 @@ public class ProductController {
   @PostMapping("")
   public ResponseEntity<Product> createProduct(
           @RequestBody Product product) {
-//    Product product = productMapper.ProductDtoToProduct( productDto );
     productService.createProduct( product );
-
-    /*TODO: "manejar casos de error y validar los datos recibidos"*/
-
     return new ResponseEntity<Product>(product, HttpStatus.CREATED);
   }
 
-  @PutMapping("/{id}")
+  @PatchMapping("/{id}")
   public ResponseEntity<Product> updateProduct(
           @PathVariable("id") int productId,
           @RequestBody Product product) {

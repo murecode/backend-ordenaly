@@ -9,10 +9,10 @@ import java.util.List;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper {
   @Mappings({
-          @Mapping(source = "id", target="user_id"),
+          @Mapping(source = "id",       target = "id"),
           @Mapping(source = "username", target = "username"),
           @Mapping(source = "fullname", target = "name"),
-          @Mapping(source = "role", target = "rol")
+          @Mapping(source = "role",     target = "rol")
   })
   UserDto UserToUserDto(User user);
   @InheritInverseConfiguration

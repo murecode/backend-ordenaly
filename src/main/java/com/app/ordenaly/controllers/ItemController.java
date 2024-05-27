@@ -18,8 +18,6 @@ import java.util.List;
 public class ItemController {
   @Autowired
   ItemService itemService;
-  @Autowired
-
 
   @GetMapping("")
   public ResponseEntity<List<Item>>  getItems() {

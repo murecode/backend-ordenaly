@@ -13,8 +13,6 @@ import java.util.List;
 public class TicketService {
   @Autowired
   private TicketRepository ticketRepository;
-  @Autowired
-//  private TicketMapper ticketMapper;
 
   public List<Ticket> getAllTickets() {
     return ticketRepository.findAll();

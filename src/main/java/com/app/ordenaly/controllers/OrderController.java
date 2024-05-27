@@ -1,7 +1,7 @@
 package com.app.ordenaly.controllers;
 
 import com.app.ordenaly.dto.OrderDto;
-import com.app.ordenaly.dto.mapper.OrderMapper;
+//import com.app.ordenaly.dto.mapper.OrderMapper;
 import com.app.ordenaly.models.Order;
 import com.app.ordenaly.repositories.OrderRepository;
 import com.app.ordenaly.services.OrderService;
@@ -18,17 +18,17 @@ import java.util.List;
 public class OrderController {
   @Autowired
   OrderService orderService;
-  @Autowired
-  OrderMapper orderMapper;
+//  @Autowired
+//  OrderMapper orderMapper;
   @Autowired
   OrderRepository orderRepository;
 
   @GetMapping("")
-  public List<OrderDto> getOrders() {
+/*  public List<OrderDto> getOrders() {
     return orderMapper.ordersDto(orderService.getOrders());
-  }
+  }*/
 
-  @Operation(summary = "Obtiene una Orden por su ID", description = "Retorna una orden especifica")
+ /* @Operation(summary = "Obtiene una Orden por su ID", description = "Retorna una orden especifica")
   @GetMapping("/{id}")
   public ResponseEntity<OrderDto> getOrder(
           @PathVariable("id") int orderId) {
@@ -39,9 +39,9 @@ public class OrderController {
     } else {
       return ResponseEntity.notFound().build();
     }
-  }
+  }*/
 
-  @PostMapping("")
+  /*@PostMapping("")
   public ResponseEntity<OrderDto> newOrder(
           @RequestBody OrderDto orderDto) {
     Order order = orderMapper.orderDtoToOrder( orderDto );
@@ -50,7 +50,7 @@ public class OrderController {
     // TODO: "Manejar exepciones"
 
     return new ResponseEntity<OrderDto>(orderDto, HttpStatus.CREATED);
-  }
+  }*/
 
   @PostMapping("/{order-id}")
   public ResponseEntity<String> addItemToOrder(
@@ -69,7 +69,7 @@ public class OrderController {
     return new ResponseEntity<>("Item eliminado" + itemId, HttpStatus.ACCEPTED);
   }
 
-  @PutMapping("/{id}")
+  /*@PutMapping("/{id}")
   public ResponseEntity<String> updateOrder(
           @PathVariable("id") int orderId,
           @RequestBody OrderDto orderDto ) {
@@ -79,7 +79,7 @@ public class OrderController {
       return new ResponseEntity<>("Orden Actualizada", HttpStatus.OK);
     }
     return new ResponseEntity<>("No se encontrol la orden", HttpStatus.BAD_REQUEST);
-  }
+  }*/
 
   @DeleteMapping("/{id}")
   public ResponseEntity<String> removeOrder(@PathVariable("id") Integer id) {

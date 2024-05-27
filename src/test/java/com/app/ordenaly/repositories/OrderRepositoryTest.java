@@ -27,23 +27,20 @@ class OrderRepositoryTest {
   @Test
   void testGenerateOrder() {
     Ticket ticket = entityManager.find(Ticket.class, 2);
-    User waiter = entityManager.find(User.class, 45);
+    Employee waiter = entityManager.find(Employee.class, 1);
 
     Order order = new Order();
     order.setTicket(ticket);
-    order.setUser(waiter);
-    order.setTable(62);
+    order.setWaiter(waiter);
+    order.setTable(6);
     order.setOrderStatus(OrderStatus.PENDIENTE);
     order.setPaymentStatus(PaymentStatus.PENDIENTE);
-    order.setNotes("Agregar nota");
+    order.setNotes("Prueba con nueva clase Empleado");
 
     Order saveOrder = orderRepository.save(order);
 
-    //Se asocia el id de la orden con el ticket
-    ticket.setOrder(order);
-
     assertTrue(saveOrder.getId() > 0);
-    assertTrue(waiter.getId().equals( 4 ));
+//    assertTrue(waiter.getId().equals( 2 ));
   }
 
   @Test

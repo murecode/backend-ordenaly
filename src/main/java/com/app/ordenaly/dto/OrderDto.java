@@ -6,78 +6,78 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 
 public class OrderDto {
-  private String order_id;
-  private String related_ticket;
-  private String related_table;
-  private String related_waiter;
-  private String order_status;
-  private String payment_status;
-  private String order_comment;
-  private List<Item> item_list;
+  private String id;
+  private int ticket;
+  private String table;
+  private String waiter;
+  private String orderStatus;
+  private String paymentStatus;
+  private String orderComment;
+  private List<Item> itemList;
 
   public OrderDto() {}
 
-  public String getOrder_id() {
-    return order_id;
+  public String getId() {
+    return id;
   }
 
-  public void setOrder_id(String order_id) {
-    this.order_id = order_id;
+  public void setId(String id) {
+    this.id = id;
   }
 
-  public String getRelated_ticket() {
-    return related_ticket;
+  public int getTicket() {
+    return ticket;
   }
 
-  public void setRelated_ticket(String related_ticket) {
-    this.related_ticket = related_ticket;
+  public void setTicket(int ticket) {
+    this.ticket = ticket;
   }
 
-  public String getRelated_table() {
-    return related_table;
+  public String getTable() {
+    return table;
   }
 
-  public void setRelated_table(String related_table) {
-    this.related_table = related_table;
+  public void setTable(String table) {
+    this.table = table;
   }
 
-  public String getRelated_waiter() {
-    return related_waiter;
+  public String getWaiter() {
+    return waiter;
   }
 
-  public void setRelated_waiter(String related_waiter) {
-    this.related_waiter = related_waiter;
+  public void setWaiter(String waiter) {
+    this.waiter = waiter;
   }
 
-  public String getOrder_status() {
-    return order_status;
+  public String getOrderStatus() {
+    return orderStatus;
   }
 
-  public void setOrder_status(String order_status) {
-    this.order_status = order_status;
+  public void setOrderStatus(String orderStatus) {
+    this.orderStatus = orderStatus;
   }
 
-  public String getPayment_status() {
-    return payment_status;
+  public String getPaymentStatus() {
+    return paymentStatus;
   }
 
-  public void setPayment_status(String payment_status) {
-    this.payment_status = payment_status;
+  public void setPaymentStatus(String paymentStatus) {
+    this.paymentStatus = paymentStatus;
   }
 
-  public String getOrder_comment() {
-    return order_comment;
+  public String getOrderComment() {
+    return orderComment;
   }
 
-  public void setOrder_comment(String order_comment) {
-    this.order_comment = order_comment;
+  public void setOrderComment(String orderComment) {
+    this.orderComment = orderComment;
   }
 
   public List<Item> getItemList() {
-    return item_list;
+    return itemList;
   }
 
   public void setItemList(List<Item> itemList) {
-    this.item_list = itemList;
+    this.itemList = itemList;
   }
 }

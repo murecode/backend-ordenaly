@@ -1,6 +1,7 @@
 package com.app.ordenaly.services;
 
 import com.app.ordenaly.models.*;
+import com.app.ordenaly.models.Employee;
 import com.app.ordenaly.repositories.*;
 import com.app.ordenaly.utils.OrderStatus;
 import com.app.ordenaly.utils.PaymentStatus;
@@ -16,10 +17,9 @@ public class OrderService {
   @Autowired
   TicketRepository ticketRepository;
   @Autowired
-  UserRepository userRepository;
+  EmployeeRepository employeeRepo;
   @Autowired
   ItemService itemService;
-
 
   public List<Order> getOrders() {
     return orderRepository.findAll();
@@ -31,24 +31,20 @@ public class OrderService {
 
   public void createOrder(Order orderBody) {
     Ticket ticket = ticketRepository.findById(orderBody.getTicket().getId()).orElse(null);
-    User waiter = userRepository.findById(orderBody.getUser().getId()).orElse(null);
+//    Employee waiter = employeeRepo.findById(orderBody.getWaiter().getId()).orElse(null);
 
-    if(ticket.getId() == null && waiter.getId() == null) { }
+    if(ticket.getId() == null) { }
 
     Order order = new Order();
     order.setTicket( ticket );
-    order.setUser( waiter );
+//    order.setWaiter( waiter );
     order.setTable( orderBody.getTable() );
     order.setOrderStatus(OrderStatus.PENDIENTE);
     order.setPaymentStatus(PaymentStatus.PENDIENTE);
-//    order.setItemList(order.getItemList());
     order.setNotes(orderBody.getNotes());
-    //Se asocia el id de la orden con el ticket
-//    ticket.setOrder(order);
 
     orderRepository.save(order);
   }
-
 
   public void addItemToOrder(int orderId, int productId) {
     Order order = orderRepository.findById(orderId).get();
@@ -66,10 +62,8 @@ public class OrderService {
   public void updateOrder(int orderId, Order orderBody) {
 
     Order order = orderRepository.findById( orderId ).get();
-    order.setTable(orderBody.getTable());
     order.setOrderStatus(orderBody.getOrderStatus());
     order.setPaymentStatus(orderBody.getPaymentStatus());
-    order.setNotes(orderBody.getNotes());
 
     orderRepository.save(order);
   }

@@ -3,7 +3,7 @@ package com.app.ordenaly.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class UserDto {
-  private String user_id;
+  private String id;
   @JsonIgnore
   private String username;
   private String name;
@@ -15,12 +15,12 @@ public class UserDto {
     this.name = name;
   }
 
-  public String getUser_id() {
-    return user_id;
+  public String getId() {
+    return id;
   }
 
-  public void setUser_id(String user_id) {
-    this.user_id = user_id;
+  public void setId(String id) {
+    this.id = id;
   }
 
   public String getUsername() {

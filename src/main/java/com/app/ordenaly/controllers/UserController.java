@@ -20,7 +20,6 @@ public class UserController {
   UserService userService;
   @Autowired
   UserMapper userMapper;
-  @Autowired
 
   @GetMapping("")
   public List<UserDto> getAllUsers() {

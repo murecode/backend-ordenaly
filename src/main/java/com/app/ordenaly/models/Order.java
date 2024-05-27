@@ -3,7 +3,6 @@ package com.app.ordenaly.models;
 import com.app.ordenaly.utils.OrderStatus;
 import com.app.ordenaly.utils.PaymentStatus;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,29 +12,36 @@ import java.util.List;
 public class Order {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "ORDER_ID")
-  private Integer id;
+  @Column
+  private int id;
   @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
-  @JoinColumn(name = "TICKET", unique = true)
+  @JoinColumn(unique = true)
   private Ticket ticket;
-  @OneToOne()
-  @JoinColumn(name = "WAITER")
-  private User waiter;
-  @Column(name = "\"TABLE\"", unique = true)
+  @ManyToOne()
+  @JoinColumn(name = "waiter_id")
+  private Employee waiter;
+  @Column(name = "mesa", unique = true)
   private int table;
   @ElementCollection
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Item> itemlist = new ArrayList<>();
-  @Column(name = "ORDER_STATUS")
+  @Column
   @Enumerated(EnumType.STRING)
   private OrderStatus orderStatus;
-  @Column(name = "PAYMENT_STATUS")
+  @Column
   @Enumerated(EnumType.STRING)
   private PaymentStatus paymentStatus;
-  @Column(name = "NOTES")
+  @Column
   private String notes = " ";
 
   public Order() {}
+
+  public Order(Ticket ticket, Employee waiter, OrderStatus orderStatus, PaymentStatus paymentStatus) {
+    this.ticket = ticket;
+    this.waiter = waiter;
+    this.orderStatus = orderStatus;
+    this.paymentStatus = paymentStatus;
+  }
 
   public Integer getId() {
     return id;
@@ -53,12 +59,24 @@ public class Order {
     this.ticket = ticket;
   }
 
-  public User getUser() {
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public Employee getWaiter() {
     return waiter;
   }
 
-  public void setUser(User waiter) {
+  public void setWaiter(Employee waiter) {
     this.waiter = waiter;
+  }
+
+  public List<Item> getItemlist() {
+    return itemlist;
+  }
+
+  public void setItemlist(List<Item> itemlist) {
+    this.itemlist = itemlist;
   }
 
   public int getTable() {

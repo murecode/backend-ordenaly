@@ -1,38 +1,34 @@
 package com.app.ordenaly.repositories;
 
-import com.app.ordenaly.models.Ticket;
-
+import com.app.ordenaly.models.Employee;
+import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
-//import org.mockito.junit.jupiter.MockitoExtension;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
-import java.time.LocalTime;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.context.annotation.ConfigurationClassUtils.getOrder;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Rollback(value = false)
-class TicketRepositoryTest {
+@Rollback(false)
+class EmployeeRepositoryTest {
   @Autowired
-  TicketRepository ticketRepository;
+  private EmployeeRepository employeeRepo;
+  @Autowired
+  private EntityManager entityManager;
+
   @Test
-  void testGenerateTicket() {
+  void testCreateEmployee() {
+    Employee employee = new Employee();
+    employee.setName("Ramiro");
 
-    Ticket newTicket = new Ticket();
-    newTicket.setTime(LocalTime.now());
+    employeeRepo.save(employee);
 
-    Ticket generate = ticketRepository.save(newTicket);
-
-    assertTrue(generate.getId() > 0);
+    assertTrue(employee.getId() > 0);
 
   }
-
 
 
 
