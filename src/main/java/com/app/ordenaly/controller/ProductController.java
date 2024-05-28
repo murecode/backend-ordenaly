@@ -1,0 +1,49 @@
+package com.app.ordenaly.controller;
+
+import com.app.ordenaly.model.Product;
+import com.app.ordenaly.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/v1/products")
+public class ProductController {
+  @Autowired
+  private ProductService productService;
+
+  @GetMapping("")
+  public List<Product> listAllProducts(){
+    return productService.getProducts();
+  }
+
+  @PostMapping("")
+  public ResponseEntity<Product> createProduct(
+          @RequestBody Product product) {
+    productService.createProduct( product );
+    return new ResponseEntity<Product>(product, HttpStatus.CREATED);
+  }
+
+  @PatchMapping("/{id}")
+  public ResponseEntity<Product> updateProduct(
+          @PathVariable("id") int productId,
+          @RequestBody Product product) {
+//    Product product = productMapper.ProductDtoToProduct(productDto);
+    productService.updateProduct(productId, product);
+
+  //TODO: "manejar casos de error y validar los datos recibidos"
+
+    return new ResponseEntity<>(product, HttpStatus.ACCEPTED);
+  }
+
+  @DeleteMapping("/{id}")
+  public String removeProduct(@PathVariable int id) {
+    productService.deleteProduct(id);
+    return "Producto " + id + " eliminado";
+  }
+
+}
+
