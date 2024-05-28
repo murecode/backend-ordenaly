@@ -1,9 +1,9 @@
 package com.app.ordenaly.service;
 
 //import com.app.ordenaly.models.dto.mapper.UserMapper;
-import com.app.ordenaly.model.Employee;
+import com.app.ordenaly.model.Staff;
 import com.app.ordenaly.security.model.User;
-import com.app.ordenaly.repository.EmployeeRepository;
+import com.app.ordenaly.repository.StaffRepository;
 import com.app.ordenaly.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,19 +18,19 @@ public class UserService {
   //  @Autowired
 //  private UserMapper userMapper;
   @Autowired
-  private EmployeeRepository employeeRepo;
+  private StaffRepository employeeRepo;
 
   public List<User> getAllUsers() {
     List<User> users = userRepo.findAll();
     return users;
   }
 
-  public Employee createUserEmployee(User user, Employee employee) {
-    user.setEmployee(employee);
-    employee.setUser(user);
+  public Staff createUserEmployee(User user, Staff staff) {
+    user.setEmployee(staff);
+    staff.setUser(user);
 
     userRepo.save(user);
-    return employeeRepo.save(employee);
+    return employeeRepo.save(staff);
   }
 
 //  public void updateUserInfo(int userId, User userBody) {

@@ -1,8 +1,8 @@
 package com.app.ordenaly.service;
 
-import com.app.ordenaly.model.Employee;
+import com.app.ordenaly.model.Staff;
 import com.app.ordenaly.security.model.User;
-import com.app.ordenaly.repository.EmployeeRepository;
+import com.app.ordenaly.repository.StaffRepository;
 import com.app.ordenaly.repository.UserRepository;
 import com.app.ordenaly.security.utils.Roles;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ class UserServiceTest {
   @Mock
   private UserRepository userRepo;
   @Mock
-  private EmployeeRepository employeeRepo;
+  private StaffRepository employeeRepo;
   @InjectMocks
   private UserService userService;
 
@@ -34,12 +34,12 @@ class UserServiceTest {
     user.setUsername("mario22");
     user.setEmail("mario@hotmail");
     user.setPassword("mario123");
-    user.setRole(Roles.STAFF);
+    user.setRole(Roles.USER);
 
-    Employee employee = new Employee();
-    employee.setName("Mario Castaño");
+    Staff staff = new Staff();
+    staff.setName("Mario Castaño");
 
-    userService.createUserEmployee(user, employee);
+    userService.createUserEmployee(user, staff);
 
   }
 

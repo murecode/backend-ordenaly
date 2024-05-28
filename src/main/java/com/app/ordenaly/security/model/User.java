@@ -1,6 +1,6 @@
 package com.app.ordenaly.security.model;
 
-import com.app.ordenaly.model.Employee;
+import com.app.ordenaly.model.Staff;
 import com.app.ordenaly.security.utils.Roles;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,7 +31,7 @@ public class User implements UserDetails {
   @Enumerated(EnumType.STRING)
   private Roles role;
   @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-  private Employee employee;
+  private Staff staff;
 
   public User() {}
 
@@ -75,12 +75,12 @@ public class User implements UserDetails {
     this.role = role;
   }
 
-  public Employee getEmployee() {
-    return employee;
+  public Staff getEmployee() {
+    return staff;
   }
 
-  public void setEmployee(Employee employee) {
-    this.employee = employee;
+  public void setEmployee(Staff staff) {
+    this.staff = staff;
   }
 
   //2.

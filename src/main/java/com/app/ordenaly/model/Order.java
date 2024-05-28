@@ -19,7 +19,7 @@ public class Order {
   private Ticket ticket;
   @ManyToOne()
   @JoinColumn(name = "waiter_id")
-  private Employee waiter;
+  private Staff waiter;
   @Column(name = "mesa", unique = true)
   private int table;
   @ElementCollection
@@ -36,7 +36,7 @@ public class Order {
 
   public Order() {}
 
-  public Order(Ticket ticket, Employee waiter, OrderStatus orderStatus, PaymentStatus paymentStatus) {
+  public Order(Ticket ticket, Staff waiter, OrderStatus orderStatus, PaymentStatus paymentStatus) {
     this.ticket = ticket;
     this.waiter = waiter;
     this.orderStatus = orderStatus;
@@ -63,11 +63,11 @@ public class Order {
     this.id = id;
   }
 
-  public Employee getWaiter() {
+  public Staff getWaiter() {
     return waiter;
   }
 
-  public void setWaiter(Employee waiter) {
+  public void setWaiter(Staff waiter) {
     this.waiter = waiter;
   }
 

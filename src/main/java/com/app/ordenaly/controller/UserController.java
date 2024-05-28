@@ -3,7 +3,7 @@ package com.app.ordenaly.controller;
 //import com.app.ordenaly.models.dto.UserDetailsDto;
 //import com.app.ordenaly.models.dto.mapper.UserDetailsMapper;
 //import com.app.ordenaly.models.dto.mapper.UserMapper;
-import com.app.ordenaly.model.Employee;
+import com.app.ordenaly.model.Staff;
 import com.app.ordenaly.security.model.User;
 import com.app.ordenaly.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +25,8 @@ public class UserController {
 //  }
 
   @PostMapping("")
-  public void newUserEmployee(User user, Employee employee) {
-    userService.createUserEmployee(user, employee);
+  public void newUserEmployee(User user, Staff staff) {
+    userService.createUserEmployee(user, staff);
   }
 
   // Solo el ADMIN tiene acceso

@@ -2,7 +2,7 @@ package com.app.ordenaly.controller;
 
 import com.app.ordenaly.model.Order;
 import com.app.ordenaly.model.Ticket;
-import com.app.ordenaly.model.Employee;
+import com.app.ordenaly.model.Staff;
 import com.app.ordenaly.repository.OrderRepository;
 import com.app.ordenaly.service.OrderService;
 import com.app.ordenaly.utils.OrderStatus;
@@ -26,14 +26,14 @@ class OrderControllerTest {
   @Mock
   private Ticket ticket;
   @Mock
-  private Employee user;
+  private Staff user;
 
 
   @Test
   void testCreateOrder() {
 
     Ticket t = new Ticket();
-    Employee s = new Employee();
+    Staff s = new Staff();
 
     Order order = new Order(t, s, OrderStatus.PENDIENTE, PaymentStatus.PENDIENTE);
 

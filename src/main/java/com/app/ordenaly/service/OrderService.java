@@ -1,7 +1,7 @@
 package com.app.ordenaly.service;
 
 import com.app.ordenaly.model.*;
-import com.app.ordenaly.model.Employee;
+import com.app.ordenaly.model.Staff;
 import com.app.ordenaly.repository.*;
 import com.app.ordenaly.utils.OrderStatus;
 import com.app.ordenaly.utils.PaymentStatus;
@@ -17,7 +17,7 @@ public class OrderService {
   @Autowired
   TicketRepository ticketRepository;
   @Autowired
-  EmployeeRepository employeeRepo;
+  StaffRepository employeeRepo;
   @Autowired
   ItemService itemService;
 
@@ -31,14 +31,14 @@ public class OrderService {
 
   public void createOrder(Order orderBody) {
     Ticket ticket = ticketRepository.findById(orderBody.getTicket().getId()).orElse(null);
-    Employee waiter = employeeRepo.findById(orderBody.getWaiter().getId()).orElse(null);
+    Staff waiter = employeeRepo.findById(orderBody.getWaiter().getId()).orElse(null);
 
     if(ticket.getId() == null) { }
 
     Order order = new Order();
     order.setTicket( ticket );
     order.setWaiter( waiter );
-    order.setTable( orderBody.getTable() );
+    order.setTable(orderBody.getTable());
     order.setOrderStatus(OrderStatus.PENDIENTE);
     order.setPaymentStatus(PaymentStatus.PENDIENTE);
     order.setNotes(orderBody.getNotes());

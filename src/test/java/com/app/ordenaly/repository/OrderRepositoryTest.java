@@ -26,7 +26,7 @@ class OrderRepositoryTest {
   @Test
   void testGenerateOrder() {
     Ticket ticket = entityManager.find(Ticket.class, 2);
-    Employee waiter = entityManager.find(Employee.class, 1);
+    Staff waiter = entityManager.find(Staff.class, 1);
 
     Order order = new Order();
     order.setTicket(ticket);

@@ -1,6 +1,7 @@
 package com.app.ordenaly.controller;
 
 //import com.app.ordenaly.models.dto.mapper.OrderMapper;
+import com.app.ordenaly.model.OrderDto;
 import com.app.ordenaly.repository.OrderRepository;
 import com.app.ordenaly.service.OrderService;
         import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,7 @@ public class OrderController {
   /*@PostMapping("")
   public ResponseEntity<OrderDto> newOrder(
           @RequestBody OrderDto orderDto) {
-    Order order = orderMapper.orderDtoToOrder( orderDto );
-    orderService.createOrder( order );
+    orderService.createOrder( orderDto );
 
     // TODO: "Manejar exepciones"
 

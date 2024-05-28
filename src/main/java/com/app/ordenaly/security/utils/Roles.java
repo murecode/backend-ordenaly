@@ -10,7 +10,7 @@ public enum Roles {
           Permissions.DELETE_USER,
           Permissions.SAVE_USER
   )),
-  STAFF(Arrays.asList(
+  USER(Arrays.asList(
           Permissions.READ_PRODUCTS,
           Permissions.READ_TICKETS,
           Permissions.SAVE_TICKET,
