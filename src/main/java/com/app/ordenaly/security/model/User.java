@@ -75,11 +75,11 @@ public class User implements UserDetails {
     this.role = role;
   }
 
-  public Staff getEmployee() {
+  public Staff getStaff() {
     return staff;
   }
 
-  public void setEmployee(Staff staff) {
+  public void setStaff(Staff staff) {
     this.staff = staff;
   }
 

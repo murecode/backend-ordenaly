@@ -39,7 +39,7 @@ class UserServiceTest {
     Staff staff = new Staff();
     staff.setName("Mario Castaño");
 
-    userService.createUserEmployee(user, staff);
+    userService.createStaff(user, staff);
 
   }
 

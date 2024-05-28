@@ -25,8 +25,8 @@ public class UserService {
     return users;
   }
 
-  public Staff createUserEmployee(User user, Staff staff) {
-    user.setEmployee(staff);
+  public Staff createStaff(User user, Staff staff) {
+    user.setStaff(staff);
     staff.setUser(user);
 
     userRepo.save(user);

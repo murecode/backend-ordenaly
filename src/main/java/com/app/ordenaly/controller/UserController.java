@@ -25,8 +25,8 @@ public class UserController {
 //  }
 
   @PostMapping("")
-  public void newUserEmployee(User user, Staff staff) {
-    userService.createUserEmployee(user, staff);
+  public void createStaff(User user, Staff staff) {
+    userService.createStaff(user, staff);
   }
 
   // Solo el ADMIN tiene acceso
