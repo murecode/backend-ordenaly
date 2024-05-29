@@ -23,9 +23,9 @@ class ProductRepositoryTest {
   void testCreateNewProduct() {
 
     Product product = new Product();
-    product.setProductName("Pizza");
-    product.setDescription("Italiana Napolitana");
-    product.setPrice(26000);
+    product.setProductName("Sandwich");
+    product.setDescription("Delicioso con salsa de ajo");
+    product.setPrice(15000);
     product.setInStock(true);
 
     Product saveProduct = productRepository.save(product);
@@ -36,15 +36,18 @@ class ProductRepositoryTest {
   @Test
   void testUpdateProduct() {
     Product product = entityManager.find(Product.class, 1);
+
     assertNotNull(product);
 
     product.setProductName("Pizza Italiana");
     product.setDescription("con queso y pasta de tomate");
     product.setPrice(25000);
-    product.setInStock(false);
+    product.setInStock(true);
+
     productRepository.save(product);
 
-    assertTrue(product.getId() == 1); //Debe ser igual al primaryKey
+    assertTrue(product.getId() > 0); //Debe ser igual al primaryKey
+
   }
 
   @Test

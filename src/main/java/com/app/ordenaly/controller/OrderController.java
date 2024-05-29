@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
   @Autowired
   OrderService orderService;
-//  @Autowired
-//  OrderMapper orderMapper;
+
   @Autowired
   OrderRepository orderRepository;
 
@@ -55,13 +54,13 @@ public class OrderController {
     return ResponseEntity.ok("Item agregado al pedido");
   }*/
 
-  @DeleteMapping("/item/{item-id}")
+  /*@DeleteMapping("/item/{item-id}")
   public ResponseEntity<String> deleteOrderItem(
           @PathVariable("item-id") int itemId){
     orderService.deleteOrderItem(itemId);
     // TODO: "Manejar exepciones"
     return new ResponseEntity<>("Item eliminado" + itemId, HttpStatus.ACCEPTED);
-  }
+  }*/
 
   /*@PutMapping("/{id}")
   public ResponseEntity<String> updateOrder(

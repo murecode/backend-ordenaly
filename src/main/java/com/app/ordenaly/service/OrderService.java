@@ -18,8 +18,8 @@ public class OrderService {
   TicketRepository ticketRepository;
   @Autowired
   StaffRepository employeeRepo;
-  @Autowired
-  ItemService itemService;
+  /*@Autowired
+  ItemService itemService;*/
 
   public List<Order> getOrders() {
     return orderRepository.findAll();
@@ -41,7 +41,6 @@ public class OrderService {
     order.setTable(orderBody.getTable());
     order.setOrderStatus(OrderStatus.PENDIENTE);
     order.setPaymentStatus(PaymentStatus.PENDIENTE);
-    order.setNotes(orderBody.getNotes());
 
     orderRepository.save(order);
   }
@@ -55,7 +54,7 @@ public class OrderService {
     orderRepository.save(order);
   }*/
 
-  public void deleteOrderItem(int itemId) {
+ /* public void deleteOrderItem(int itemId) {
     itemService.deleteItem(itemId);
   }
 
@@ -66,7 +65,7 @@ public class OrderService {
     order.setPaymentStatus(orderBody.getPaymentStatus());
 
     orderRepository.save(order);
-  }
+  }*/
 
   public void deleteOrder(Integer id) {
     orderRepository.deleteById(id);

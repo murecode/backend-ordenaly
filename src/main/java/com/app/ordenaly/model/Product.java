@@ -6,30 +6,21 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table
+@Table(name = "products")
 public class Product {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column
   private int id;
-  @NotNull
-  @Column(unique = true)
+  @Column(unique = true) @NotNull
   private String productName;
   @Column(name = "\"DESCRIPTION\"")
   private String description;
-  @NotNull
-  @Column
-  @DecimalMin(value = "0")
+  @DecimalMin(value = "0") @NotNull
   private int price;
   @NotNull
-  @Column
   private Boolean inStock;
 
   public Product() {}
-
-  public Product(String productName) {
-    this.productName = productName;
-  }
 
   public Product(int id, String productName, String description, int price, boolean inStock) {
     this.id = id;
@@ -87,4 +78,5 @@ public class Product {
             "PRICE: "        + price       + "\n" +
             "INSTOCK: "      + inStock     + "\n" ;
   }
+
 }

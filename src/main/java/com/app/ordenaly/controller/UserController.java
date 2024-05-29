@@ -18,8 +18,6 @@ import java.util.List;
 public class UserController {
   @Autowired
   UserService userService;
-  /*@Autowired
-  UserMapper userMapper;*/
 
   @GetMapping("")
   public List<User> getAllUsers() {

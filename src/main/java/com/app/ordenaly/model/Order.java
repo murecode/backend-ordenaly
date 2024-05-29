@@ -22,28 +22,14 @@ public class Order {
   private Staff waiter;
   @Column(name = "mesa", unique = true)
   private int table;
-
- /* @ElementCollection
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<Item> itemlist = new ArrayList<>();*/
-
   @Column
   @Enumerated(EnumType.STRING)
   private OrderStatus orderStatus;
   @Column
   @Enumerated(EnumType.STRING)
   private PaymentStatus paymentStatus;
-  @Column
-  private String notes = " ";
 
   public Order() {}
-
-  public Order(Ticket ticket, Staff waiter, OrderStatus orderStatus, PaymentStatus paymentStatus) {
-    this.ticket = ticket;
-    this.waiter = waiter;
-    this.orderStatus = orderStatus;
-    this.paymentStatus = paymentStatus;
-  }
 
   public Integer getId() {
     return id;
@@ -81,18 +67,6 @@ public class Order {
     this.table = table;
   }
 
- /* public List<Item> getItemList() {
-    return itemlist;
-  }
-
-  public void setItemList(List<Item> itemlist) {
-    this.itemlist = itemlist;
-  }
-
-  public void addItem(Item item) {
-    itemlist.add(item);
-  }*/
-
   public OrderStatus getOrderStatus() {
     return orderStatus;
   }
@@ -109,13 +83,6 @@ public class Order {
     this.paymentStatus = paymentStatus;
   }
 
-  public String getNotes() {
-    return notes;
-  }
-
-  public void setNotes(String notes) {
-    this.notes = notes;
-  }
 }
 
 

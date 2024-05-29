@@ -39,6 +39,7 @@ public class HttpSecurityConfig {
               authorize.requestMatchers(HttpMethod.GET,    "/api/v1/orders").permitAll();
               authorize.requestMatchers(HttpMethod.GET,    "/api/v1/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.POST,   "/api/v1/orders/{order-id}").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,   "/api/v1/orders/add/{pid}/{qty}/{oid}").permitAll();
               authorize.requestMatchers(HttpMethod.POST,   "/api/v1/orders").permitAll();
               authorize.requestMatchers(HttpMethod.PUT,    "/api/v1/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/orders/{id}").permitAll();

@@ -24,7 +24,7 @@ class OrderRepositoryTest {
   private TestEntityManager entityManager;
 
   @Test
-  void testGenerateOrder() {
+  void testGenerateNewOrder() {
     Ticket ticket = entityManager.find(Ticket.class, 2);
     Staff waiter = entityManager.find(Staff.class, 1);
 
@@ -34,7 +34,6 @@ class OrderRepositoryTest {
     order.setTable(6);
     order.setOrderStatus(OrderStatus.PENDIENTE);
     order.setPaymentStatus(PaymentStatus.PENDIENTE);
-    order.setNotes("Prueba con nueva clase Empleado");
 
     Order saveOrder = orderRepository.save(order);
 

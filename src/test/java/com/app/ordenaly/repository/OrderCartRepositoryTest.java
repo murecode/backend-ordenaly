@@ -31,7 +31,7 @@ class OrderCartRepositoryTest {
     OrderCart newOrderItem = new OrderCart();
     newOrderItem.setOrder(order);
     newOrderItem.setProduct(product);
-    newOrderItem.setQuantity(2);
+    newOrderItem.setQuantity(4);
 
     OrderCart savedOrderCart = orderCartRepo.save(newOrderItem);
 

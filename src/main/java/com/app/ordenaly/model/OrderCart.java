@@ -16,6 +16,17 @@ public class OrderCart {
   private Order order;
   private int quantity;
 
+  public OrderCart() {}
+
+ /* public OrderCart(Product product, int quantity) {
+    if (product == null) {
+      throw new IllegalArgumentException("Product cannot be null");
+    }
+    this.product = product;
+    this.quantity = quantity;
+    this.subtotal = calculateSubtotal();
+  }*/
+
 
   public int getId() {
     return id;
@@ -47,6 +58,21 @@ public class OrderCart {
 
   public void setQuantity(int quantity) {
     this.quantity = quantity;
+  }
+
+  @Transient
+  public int calculateSubtotal() {
+    return this.product.getPrice() * getQuantity();
+  }
+
+  @Override
+  public String toString() {
+    return "{" +
+            "id="       + id       + "\n" +
+            "product="  + product  + "\n" +
+            "order="    + order    + "\n" +
+            "quantity=" + quantity + "\n" +
+            '}';
   }
 
 }
