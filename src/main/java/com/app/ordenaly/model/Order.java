@@ -8,23 +8,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "\"ORDER\"")
+@Table(name = "orders")
 public class Order {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column
   private int id;
-  @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
-  @JoinColumn(unique = true)
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn
   private Ticket ticket;
   @ManyToOne()
   @JoinColumn(name = "waiter_id")
   private Staff waiter;
   @Column(name = "mesa", unique = true)
   private int table;
-  @ElementCollection
+
+ /* @ElementCollection
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<Item> itemlist = new ArrayList<>();
+  private List<Item> itemlist = new ArrayList<>();*/
+
   @Column
   @Enumerated(EnumType.STRING)
   private OrderStatus orderStatus;
@@ -71,14 +73,6 @@ public class Order {
     this.waiter = waiter;
   }
 
-  public List<Item> getItemlist() {
-    return itemlist;
-  }
-
-  public void setItemlist(List<Item> itemlist) {
-    this.itemlist = itemlist;
-  }
-
   public int getTable() {
     return table;
   }
@@ -87,7 +81,7 @@ public class Order {
     this.table = table;
   }
 
-  public List<Item> getItemList() {
+ /* public List<Item> getItemList() {
     return itemlist;
   }
 
@@ -97,7 +91,7 @@ public class Order {
 
   public void addItem(Item item) {
     itemlist.add(item);
-  }
+  }*/
 
   public OrderStatus getOrderStatus() {
     return orderStatus;

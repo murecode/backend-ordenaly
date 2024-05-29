@@ -27,6 +27,10 @@ public class Product {
 
   public Product() {}
 
+  public Product(String productName) {
+    this.productName = productName;
+  }
+
   public Product(int id, String productName, String description, int price, boolean inStock) {
     this.id = id;
     this.productName = productName;

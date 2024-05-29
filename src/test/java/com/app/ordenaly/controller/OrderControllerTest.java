@@ -15,6 +15,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalTime;
+
 @WebMvcTest
 class OrderControllerTest {
   @Autowired
@@ -32,10 +34,15 @@ class OrderControllerTest {
   @Test
   void testCreateOrder() {
 
-    Ticket t = new Ticket();
-    Staff s = new Staff();
+    Ticket ticket1 = new Ticket();
+    ticket1.setId(23);
+    ticket1.setTime(LocalTime.now());
 
-    Order order = new Order(t, s, OrderStatus.PENDIENTE, PaymentStatus.PENDIENTE);
+    Staff waiter = new Staff();
+    waiter.setId(41);
+    waiter.setName("Raul");
+
+    Order order = new Order(ticket1, waiter, OrderStatus.PENDIENTE, PaymentStatus.PENDIENTE);
 
     Mockito
             .when(orderRepo.save(order)).thenReturn(order);

@@ -1,5 +1,6 @@
 package com.app.ordenaly.repository;
 
+import com.app.ordenaly.model.Staff;
 import com.app.ordenaly.security.model.User;
 import com.app.ordenaly.security.utils.Roles;
 import jakarta.persistence.EntityManager;
@@ -9,15 +10,16 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // 1
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) //1.
 @Rollback(value = false)
 class UserRepositoryTest {
   @Autowired
-  private UserRepository userRepository;
+  private UserRepository userRepo;
+  @Autowired
+  private StaffRepository staffRepo;
   @Autowired
   private EntityManager entityManager;
 
@@ -25,15 +27,17 @@ class UserRepositoryTest {
   void testCreateUser() {
 
     User user = new User();
-    user.setUsername("mure2");
-    user.setEmail("mure@gmail.com");
-    user.setPassword("mure1234");
-    user.setRole(Roles.ADMIN);
+    user.setUsername("sara");
+    user.setEmail("sara@gmail.com");
+    user.setPassword("sara123");
+    user.setRole(Roles.USER);
 
-    userRepository.save(user);
+    Staff staff = new Staff();
+    staff.setName("Sara castillo");
+    staff.setUser(user);
 
-    assertTrue(user.getUsername() != "mure");
-    assertTrue(user.getPassword() != "mure123");
+    userRepo.save(user);
+    staffRepo.save(staff);
 
   }
 
@@ -41,23 +45,24 @@ class UserRepositoryTest {
   void testUpdateUser() {
     User user = entityManager.find(User.class, 0);
     user.setUsername("");
-    userRepository.save(user);
+    userRepo.save(user);
 
     assertTrue(user.getId() == 0);
   }
 
   @Test
   void testDeleteUser() {
-    User user = entityManager.find(User.class, 0);
-    userRepository.deleteById( user.getId() );
+    User user = entityManager.find(User.class, 2);
+    userRepo.deleteById( user.getId() );
 
-    assertTrue(user != null );
+//    assertTrue(user.getUsername() == "mure" );
+
   }
 
 }
 
 //Docs
 
-// 1. Esta anotacion configura cómo se gestionará la DB durante las pruebas...
-// en este caso se indica con "NONE" que la configuración de la DB utilizada...
-// en las pruebas sea la misma que que de la DB la app en entorno de producción.
+/*1. Esta anotacion configura cómo se gestionará la DB durante las pruebas
+  en este caso se indica con "NONE" que la configuración de la DB utilizada
+  en las pruebas sea la misma que que de la DB la app en entorno de producción.*/

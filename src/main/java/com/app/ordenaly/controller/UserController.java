@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
@@ -19,10 +21,10 @@ public class UserController {
   /*@Autowired
   UserMapper userMapper;*/
 
-//  @GetMapping("")
-//  public List<UserDto> getAllUsers() {
-//    return userMapper.usersDto(userService.getAllUsers());
-//  }
+  @GetMapping("")
+  public List<User> getAllUsers() {
+    return userService.getAllUsers();
+  }
 
   @PostMapping("")
   public void createStaff(User user, Staff staff) {

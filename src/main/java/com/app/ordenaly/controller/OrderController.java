@@ -1,7 +1,6 @@
 package com.app.ordenaly.controller;
 
 //import com.app.ordenaly.models.dto.mapper.OrderMapper;
-import com.app.ordenaly.model.OrderDto;
 import com.app.ordenaly.repository.OrderRepository;
 import com.app.ordenaly.service.OrderService;
         import org.springframework.beans.factory.annotation.Autowired;
@@ -47,14 +46,14 @@ public class OrderController {
     return new ResponseEntity<OrderDto>(orderDto, HttpStatus.CREATED);
   }*/
 
-  @PostMapping("/{order-id}")
+/*  @PostMapping("/{order-id}")
   public ResponseEntity<String> addItemToOrder(
           @PathVariable("order-id") int orderId,
           @RequestParam("product") int productId) {
     orderService.addItemToOrder(orderId, productId);
     // TODO: "Manejar exepciones"
     return ResponseEntity.ok("Item agregado al pedido");
-  }
+  }*/
 
   @DeleteMapping("/item/{item-id}")
   public ResponseEntity<String> deleteOrderItem(

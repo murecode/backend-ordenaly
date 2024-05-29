@@ -46,14 +46,14 @@ public class OrderService {
     orderRepository.save(order);
   }
 
-  public void addItemToOrder(int orderId, int productId) {
+  /*public void addItemToOrder(int orderId, int productId) {
     Order order = orderRepository.findById(orderId).get();
 
     Item item = itemService.generateItem(productId);
     order.addItem(item);
 
     orderRepository.save(order);
-  }
+  }*/
 
   public void deleteOrderItem(int itemId) {
     itemService.deleteItem(itemId);

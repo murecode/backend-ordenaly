@@ -31,7 +31,7 @@ class ItemRepositoryTest {
 
   }
 
-  @Test
+/*  @Test
   void testAddItemToOrder() {
     Order order = entityManager.find(Order.class, 29);
     Product product = entityManager.find(Product.class, 5);
@@ -42,7 +42,7 @@ class ItemRepositoryTest {
     itemRepository.save(item);
 
     order.addItem(item);
-  }
+  }*/
 
   @Test
   void testDeleteItem() {

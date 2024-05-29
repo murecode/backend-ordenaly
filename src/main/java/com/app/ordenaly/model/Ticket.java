@@ -7,16 +7,16 @@ import jakarta.persistence.*;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "TICKET")
+@Table(name = "tickets")
 public class Ticket {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "TICKET_ID")
-  @JsonProperty("ticket_id")
+  @Column
   private int id;
-  @Column(name = "TICKET_TIME", length = 6)
-  @JsonProperty("created_at") @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")
+  @Column
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")
   private LocalTime time;
+
   // TODO opcion quitar de la orden el Estado del turno y ponerlo aqui
   // TODO agregar mesero asignado a este turno
   // TODO agregar propiedad Datos del cliente (crear clase cliente)
