@@ -21,7 +21,7 @@ public class Order {
   @JoinColumn(name = "waiter_id")
   private Staff waiter;
   @Column(name = "mesa", unique = true)
-  private int table;
+  private String table;
   @Column
   @Enumerated(EnumType.STRING)
   private OrderStatus orderStatus;
@@ -29,9 +29,11 @@ public class Order {
   @Enumerated(EnumType.STRING)
   private PaymentStatus paymentStatus;
 
+
   public Order() {}
 
-  public Integer getId() {
+
+  public int getId() {
     return id;
   }
 
@@ -59,11 +61,11 @@ public class Order {
     this.waiter = waiter;
   }
 
-  public int getTable() {
+  public String getTable() {
     return table;
   }
 
-  public void setTable(int table) {
+  public void setTable(String table) {
     this.table = table;
   }
 

@@ -31,7 +31,7 @@ class OrderRepositoryTest {
     Order order = new Order();
     order.setTicket(ticket);
     order.setWaiter(waiter);
-    order.setTable(6);
+    order.setTable("6");
     order.setOrderStatus(OrderStatus.PENDIENTE);
     order.setPaymentStatus(PaymentStatus.PENDIENTE);
 

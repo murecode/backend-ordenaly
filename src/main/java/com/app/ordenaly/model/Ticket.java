@@ -1,7 +1,6 @@
 package com.app.ordenaly.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.time.LocalTime;
@@ -24,7 +23,7 @@ public class Ticket {
 
   public Ticket() {}
 
-  public Integer getId() {
+  public int getId() {
     return id;
   }
 

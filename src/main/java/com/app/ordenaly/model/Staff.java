@@ -14,9 +14,9 @@ public class Staff {
   private int id;
   @Column
   private String name;
-  @ElementCollection
+/*  @ElementCollection
   @OneToMany(mappedBy = "waiter")
-  private List<Order> orders;
+  private List<Order> orders;*/
   @OneToOne
   @JoinColumn(name = "user_id")
   private User user;
@@ -39,13 +39,13 @@ public class Staff {
     this.name = name;
   }
 
-  public List<Order> getOrders() {
+ /* public List<Order> getOrders() {
     return orders;
   }
 
   public void setOrders(List<Order> orders) {
     this.orders = orders;
-  }
+  }*/
 
   public User getUser() {
     return user;

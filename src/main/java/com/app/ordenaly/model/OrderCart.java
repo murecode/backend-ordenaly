@@ -18,16 +18,6 @@ public class OrderCart {
 
   public OrderCart() {}
 
- /* public OrderCart(Product product, int quantity) {
-    if (product == null) {
-      throw new IllegalArgumentException("Product cannot be null");
-    }
-    this.product = product;
-    this.quantity = quantity;
-    this.subtotal = calculateSubtotal();
-  }*/
-
-
   public int getId() {
     return id;
   }

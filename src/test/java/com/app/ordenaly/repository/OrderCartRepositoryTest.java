@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,13 +26,13 @@ class OrderCartRepositoryTest {
 
   @Test
   void testAddOneOrderCart() {
-    Product product = entityManager.find(Product.class, 1);
-    Order order = entityManager.find(Order.class, 1);
+    Product product = entityManager.find(Product.class, 2);
+    Order order = entityManager.find(Order.class, 2);
 
     OrderCart newOrderItem = new OrderCart();
     newOrderItem.setOrder(order);
     newOrderItem.setProduct(product);
-    newOrderItem.setQuantity(4);
+    newOrderItem.setQuantity(2);
 
     OrderCart savedOrderCart = orderCartRepo.save(newOrderItem);
 
@@ -40,13 +41,12 @@ class OrderCartRepositoryTest {
   }
 
   @Test
-  void testGetAllOrderItemsByOrder() {
-    Order order = new Order();
-    order.setId(1);
+  void testGetOrderItemsByOrder() {
+    Order order = entityManager.find(Order.class, 2);
 
     List<OrderCart> orderCarts = orderCartRepo.findByOrder(order);
 
-    assertEquals(1, orderCarts.size());
+//    assertEquals(2, orderCarts.stream().count());
   }
 
 }

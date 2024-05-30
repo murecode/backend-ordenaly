@@ -1,22 +1,37 @@
 package com.app.ordenaly.controller;
 
 import com.app.ordenaly.model.Order;
+import com.app.ordenaly.model.OrderCart;
+import com.app.ordenaly.model.OrderCartData;
+import com.app.ordenaly.repository.OrderCartRepository;
 import com.app.ordenaly.service.OrderCartService;
 import com.app.ordenaly.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/orders")
-public class OrderCartRestController {
+@RequestMapping("/api/v1/carts")
+public class OrderCartController {
   @Autowired
   private OrderCartService orderCartService;
   @Autowired
+  private OrderCartRepository orderCartRepo;
+  @Autowired
   private OrderService orderService;
 
+  @GetMapping("/{oid}")
+  public List<OrderCartData> getOrderCart(@PathVariable("oid") int orderId) {
+    return orderCartService.getCartByOrder(orderId);
+  }
+
+  @GetMapping("/order/{oid}")
+  public List<OrderCartData> getOrderCartByOrder(@PathVariable("oid") Order orderId) {
+    Order order = orderService.findOrderById(orderId.getId());
+    List<OrderCartData> orderCarts = orderCartRepo.findByOrder(order).stream().map(OrderCartData::new).toList();
+    return orderCarts;
+  }
 
   @PostMapping("/add/{pid}/{qty}/{oid}")
   public String addProductToCart(
@@ -32,6 +47,8 @@ public class OrderCartRestController {
 
     return addedQuantity + " producto/s agregado/s a la orden";
   }
+
+
 
 
   // +removeProduct()
