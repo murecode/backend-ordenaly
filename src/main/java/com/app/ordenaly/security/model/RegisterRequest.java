@@ -1,11 +1,14 @@
 package com.app.ordenaly.security.model;
 
-public class SignUpRequest {
+import com.app.ordenaly.security.utils.Roles;
+
+public class RegisterRequest {
   private String email;
   private String username;
   private String password;
+  private Roles rol;
 
-  public SignUpRequest() {}
+  public RegisterRequest() {}
 
   public String getEmail() {
     return email;
@@ -29,5 +32,13 @@ public class SignUpRequest {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public Roles getRol() {
+    return rol;
+  }
+
+  public void setRol(Roles rol) {
+    this.rol = rol;
   }
 }

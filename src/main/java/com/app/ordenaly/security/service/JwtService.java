@@ -1,4 +1,4 @@
-package com.app.ordenaly.security.services;
+package com.app.ordenaly.security.service;
 
 import com.app.ordenaly.security.model.User;
 import io.jsonwebtoken.Header;
@@ -25,7 +25,7 @@ public class JwtService {
 
     //1.
     Date issueAt = new Date(System.currentTimeMillis());
-    Date expiration = new Date( issueAt.getTime() + (EXPIRATION_MINUTES * 60 * 1000));
+    Date expiration = new Date(issueAt.getTime() + (EXPIRATION_MINUTES * 60 * 1000));
 
     //2.
     return Jwts.builder()
@@ -41,8 +41,8 @@ public class JwtService {
   //3.
   private Key generateKey() {
     byte[] secretKeyAsBytes = Decoders.BASE64.decode(SECRET_KEY);
-    System.out.println("🔐clave: " + new String( secretKeyAsBytes ));
-    return Keys.hmacShaKeyFor( secretKeyAsBytes );
+    System.out.println("clave: " + new String(secretKeyAsBytes));
+    return Keys.hmacShaKeyFor(secretKeyAsBytes);
   }
 
   public String extractUsername(String jwt) {

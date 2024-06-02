@@ -121,11 +121,11 @@ public class User implements UserDetails {
 /*1. Define una restricción única se aplica en el nivel de la clase de la entidad y
   especifica que una o más columnas deben tener valores únicos*/
 
-/*2. "GrantedAuthority", Hace referencia a los permisos que seran concedidos al usuario.*/
+/*2. "GrantedAuthority", Hace referencia a los permisos o rol que seran concedidos al usuario.*/
 
 /*3. Se obtiene una secuencia (stream) de los permisos asociados al rol del usuario
   devuelviendo una lista de enumeraciones (u objetos) que representan permisos.*/
 
-/*4. Cada permiso se mapea a un objeto SimpleGrantedAuthority que...
-  representa una autoridad (rol o permiso).*/
+/*4. Cada permiso se mapea a un objeto SimpleGrantedAuthority el cual Representa
+  una autoridad o rol que es otorgado a un usuario. */
 

@@ -1,8 +1,8 @@
-package com.app.ordenaly.security.services;
+package com.app.ordenaly.security.service;
 
 import com.app.ordenaly.security.model.AuthRequest;
 import com.app.ordenaly.security.model.AuthResponse;
-import com.app.ordenaly.security.model.SignUpRequest;
+import com.app.ordenaly.security.model.RegisterRequest;
 import com.app.ordenaly.security.model.User;
 import com.app.ordenaly.repository.UserRepository;
 import com.app.ordenaly.security.utils.Roles;
@@ -20,16 +20,16 @@ import java.util.Map;
 @Service
 public class AuthService {
   @Autowired
-  AuthenticationManager authManager;
+  private AuthenticationManager authManager;
   @Autowired
-  PasswordEncoder passwordEncoder;
+  private PasswordEncoder passwordEncoder;
   @Autowired
-  UserRepository userRepository;
+  private UserRepository userRepository;
   @Autowired
-  JwtService jwtService;
+  private JwtService jwtService;
 
   @Transactional
-  public void signup(SignUpRequest registerRequest) {
+  public void register(RegisterRequest registerRequest) {
     User user = new User();
     user.setUsername(registerRequest.getUsername());
     user.setEmail(user.getEmail());
@@ -39,17 +39,17 @@ public class AuthService {
   }
 
   public AuthResponse login(AuthRequest authRequest) {
-    //1
+    //1.
     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken (
             authRequest.getUsername(), authRequest.getPassword()
     );
-    //2
+    //2.
     authManager.authenticate( authToken );
 
-    //3
+    //3.
     User user = userRepository.findByUsername(authRequest.getUsername()).get();
 
-    //4
+    //4.
     String jwt = jwtService.generateToken(user, generateExtraClaims(user));
     return new AuthResponse(jwt);
 

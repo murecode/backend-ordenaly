@@ -24,10 +24,10 @@ public class SecurityConfig {
 
   @Bean //2.
   public AuthenticationProvider authProvider() {
-    DaoAuthenticationProvider daoAuthProvider = new DaoAuthenticationProvider();
-    daoAuthProvider.setUserDetailsService(userDetailsService());
-    daoAuthProvider.setPasswordEncoder(passwordEncoder());
-    return daoAuthProvider;
+    DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+    provider.setUserDetailsService(userDetailsService());
+    provider.setPasswordEncoder(passwordEncoder());
+    return provider;
   }
 
   @Bean   //3.
@@ -47,7 +47,8 @@ public class SecurityConfig {
 
 //1. Esta linea genera el ProviderManager que puede coordinar varios provedores de autentificacion
 
-//2. Configura varios proveedores de autenticación en este caso se usará contra base de datos
+/*2. autentica usuarios contra una base de datos o cualquier otra fuente de datos, cifra y
+  comparar contraseñas, mejorando la seguridad al no almacenar ni transmitir contraseñas en texto plano.*/
 
 /*3. Compara y codifica la contraseña traida desde la base de datos. */
 
