@@ -1,39 +1,47 @@
 package com.app.ordenaly.security.config;
 
-//import org.junit.jupiter.api.Test;
+import com.app.ordenaly.security.utils.Permissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-//import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
-//import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import com.app.ordenaly.config.security.filter.JwtAuthenticationFilter;
+
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Component;
 
 //import java.security.Permission;
 
-@Configuration
+@Component
 @EnableWebSecurity
 public class HttpSecurityConfig {
   @Autowired
   private AuthenticationProvider authenticationProvider; //0.
+  @Autowired
+  private JwtAuthenticationFilter authenticationFilter;
+
+
+
+
   @Bean
+
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
             .csrf(csrfConfig -> csrfConfig.disable()) //1.
             .sessionManagement(sessionMangConfig -> sessionMangConfig
                             .sessionCreationPolicy(SessionCreationPolicy.STATELESS) //2.
-//                    .invalidSessionUrl("/api/v1/auth/login") //4.
             ) //3.
             .authenticationProvider(authenticationProvider)
+            .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
             .authorizeHttpRequests((authorize) -> {
 
               authorize.requestMatchers(HttpMethod.POST, "/api/v1/auth/login").permitAll();
-//              authorize.requestMatchers(HttpMethod.POST,  "/api/v1/auth/signup").permitAll();
-//              authorize.requestMatchers("/error").permitAll();
+              authorize.requestMatchers(HttpMethod.POST, "/api/v1/auth/register").permitAll();
+              authorize.requestMatchers("/error").permitAll();
 //
 //              authorize.requestMatchers(HttpMethod.GET,    "/api/v1/orders").permitAll();
 //              authorize.requestMatchers(HttpMethod.GET,    "/api/v1/orders/{id}").permitAll();
@@ -47,10 +55,10 @@ public class HttpSecurityConfig {
 //              authorize.requestMatchers(HttpMethod.GET,    "/api/v1/carts/order/{oid}").permitAll();
 //              authorize.requestMatchers(HttpMethod.POST,   "/api/v1/carts/add/{pid}/{qty}/{oid}").permitAll();
 //
-//              authorize.requestMatchers(HttpMethod.GET, "/api/v1/products").permitAll();
-              authorize.requestMatchers(HttpMethod.POST, "/api/v1/products").authenticated();
+              authorize.requestMatchers(HttpMethod.GET, "/api/v1/products").hasAuthority(Permissions.READ_PRODUCTS.name());
+              authorize.requestMatchers(HttpMethod.POST, "/api/v1/products").hasAuthority(Permissions.SAVE_PRODUCT.name());
 //              authorize.requestMatchers(HttpMethod.PATCH, "/api/v1/products/{id}").permitAll();
-//              authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/products/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/products/{id}").hasAuthority(Permissions.DELETE_PRODUCT.name());
 //
 //              authorize.requestMatchers(HttpMethod.GET, "/api/v1/tickets").permitAll();
 //              authorize.requestMatchers(HttpMethod.POST,"/api/v1/tickets").permitAll();
@@ -63,8 +71,7 @@ public class HttpSecurityConfig {
               authorize.requestMatchers("/v1/authenticate", "/v3/api-docs/**", "swagger-ui/**", "/swagger-ui.html").permitAll();
 
               authorize.anyRequest().denyAll();
-            })
-            .formLogin().permitAll();
+            });
 
     return http.build();
   }
@@ -82,11 +89,8 @@ public class HttpSecurityConfig {
   política de sesión como STATELESS, se indica a Spring Security que no debe crear ni
   utilizar una sesión HTTP para almacenar información de seguridad.*/
 
-/*4. invalidSessionUrl(), especifica la URL a la que se redirigirá al usuario cuando su
-  sesión sea inválida. Esto puede suceder, por ejemplo, si la sesión expira o si el usuario
-  intenta acceder a la aplicación después de que su sesión ha sido invalidada. */
-
-/*3.Se encarga de configurar el manejo de sesiones en la aplicación. La aplicación no mantendrá
-  el estado de la sesión en el servidor y cada solicitud se manejará de manera independiente sin
-  depender del estado de la sesión. Esto es útil en escenarios donde se prefiere la
-  arquitectura sin estado, comúnmente asociada con aplicaciones RESTful y servicios web.*/
+/*3.sessionManagement, Se encarga de configurar el manejo de sesiones en la aplicación. La
+  aplicación no mantendrá el estado de la sesión en el servidor y cada solicitud se manejará
+  de manera independiente sin depender del estado de la sesión. Esto es útil en escenarios
+  donde se prefiere la arquitectura sin estado, comúnmente asociada con aplicaciones RESTful
+  y servicios web.*/

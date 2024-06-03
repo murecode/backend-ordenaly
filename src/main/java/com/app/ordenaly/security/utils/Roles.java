@@ -6,6 +6,7 @@ import java.util.List;
 public enum Roles {
   ADMIN(Arrays.asList(
           Permissions.SAVE_PRODUCT,
+          Permissions.READ_PRODUCTS,
           Permissions.DELETE_PRODUCT,
           Permissions.DELETE_USER,
           Permissions.SAVE_USER

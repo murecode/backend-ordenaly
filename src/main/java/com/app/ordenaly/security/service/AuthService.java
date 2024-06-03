@@ -24,7 +24,7 @@ public class AuthService {
   @Autowired
   private PasswordEncoder passwordEncoder;
   @Autowired
-  private UserRepository userRepository;
+  private UserRepository userRepo;
   @Autowired
   private JwtService jwtService;
 
@@ -35,7 +35,7 @@ public class AuthService {
     user.setEmail(user.getEmail());
     user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
     user.setRole(Roles.USER);
-    userRepository.save( user );
+    userRepo.save( user );
   }
 
   public AuthResponse login(AuthRequest authRequest) {
@@ -44,15 +44,13 @@ public class AuthService {
             authRequest.getUsername(), authRequest.getPassword()
     );
     //2.
-    authManager.authenticate( authToken );
-
+    authManager.authenticate(authToken);
     //3.
-    User user = userRepository.findByUsername(authRequest.getUsername()).get();
-
+    User user = userRepo.findByUsername(authRequest.getUsername()).get();
     //4.
     String jwt = jwtService.generateToken(user, generateExtraClaims(user));
-    return new AuthResponse(jwt);
 
+    return new AuthResponse(jwt);
   }
 
   private Map<String, Object> generateExtraClaims(User user) {
@@ -66,8 +64,16 @@ public class AuthService {
 
 }
 
-//1. Crea un objeto llamado "authToken" que representea la info del usuario (username, password)
-//2. Realiza la autenticación utilizando la información proporcionada en "authToken".
-//3. Busca el username en la base de datos
-//4. LLama al servicio encargado de generar el JWT crear una respuesta de autenticación "AuthResponse"
+// Paso 1 y 2 Autenticación del Usuario:
+/*1. Representar el token de autenticación basado en el nombre de usuario y la contraseña.
+  este se pasa al AuthenticationManager para que intente autenticar al usuario.*/
+
+/*2. AuthenticationManager, Realiza la autenticación utilizando la información
+  proporcionada en "authToken". Si es exitoso el token se almacena en el contexto
+  de seguridad, para que esté disponible en cualquier parte de la aplicación durante
+  la sesión del usuario. */
+
+//3. Recuperación del usuario, Busca el username en la base de datos
+
+//4. Generacion del token, LLama al servicio encargado de generar el JWT crear una respuesta de autenticación "AuthResponse"
 
