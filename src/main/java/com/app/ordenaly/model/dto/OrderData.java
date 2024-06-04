@@ -1,5 +1,6 @@
-package com.app.ordenaly.model;
+package com.app.ordenaly.model.dto;
 
+import com.app.ordenaly.model.Order;
 import com.app.ordenaly.utils.OrderStatus;
 import com.app.ordenaly.utils.PaymentStatus;
 

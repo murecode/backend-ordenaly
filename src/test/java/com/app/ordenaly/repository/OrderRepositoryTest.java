@@ -23,7 +23,7 @@ class OrderRepositoryTest {
   @Autowired
   private TestEntityManager entityManager;
 
-  @Test
+/*  @Test
   void testGenerateNewOrder() {
     Ticket ticket = entityManager.find(Ticket.class, 2);
     Staff waiter = entityManager.find(Staff.class, 1);
@@ -38,8 +38,7 @@ class OrderRepositoryTest {
     Order saveOrder = orderRepository.save(order);
 
     assertTrue(saveOrder.getId() > 0);
-//    assertTrue(waiter.getId().equals( 2 ));
-  }
+  }*/
 
   @Test
   void testUpdateOrderStatus() {

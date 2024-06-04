@@ -1,6 +1,5 @@
 package com.app.ordenaly.repository;
 
-import com.app.ordenaly.model.Staff;
 import com.app.ordenaly.security.model.User;
 import com.app.ordenaly.security.utils.Roles;
 import jakarta.persistence.EntityManager;
@@ -19,25 +18,20 @@ class UserRepositoryTest {
   @Autowired
   private UserRepository userRepo;
   @Autowired
-  private StaffRepository staffRepo;
-  @Autowired
   private EntityManager entityManager;
 
   @Test
   void testCreateUser() {
 
     User user = new User();
-    user.setUsername("sara");
-    user.setEmail("sara@gmail.com");
-    user.setPassword("sara123");
+    user.setName("Adalber");
+    user.setPhone("3148652");
+    user.setUsername("mure");
+    user.setEmail("mure@gmail.com");
+    user.setPassword("mure123");
     user.setRole(Roles.USER);
 
-    Staff staff = new Staff();
-    staff.setName("Sara castillo");
-    staff.setUser(user);
-
     userRepo.save(user);
-    staffRepo.save(staff);
 
   }
 

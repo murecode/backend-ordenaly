@@ -7,6 +7,8 @@ public class RegisterRequest {
   private String username;
   private String password;
   private Roles rol;
+  private String fullname;
+  private String phone;
 
   public RegisterRequest() {}
 
@@ -40,5 +42,21 @@ public class RegisterRequest {
 
   public void setRol(Roles rol) {
     this.rol = rol;
+  }
+
+  public String getFullname() {
+    return fullname;
+  }
+
+  public void setFullname(String fullname) {
+    this.fullname = fullname;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
   }
 }

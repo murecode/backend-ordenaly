@@ -1,8 +1,7 @@
 package com.app.ordenaly.controller;
 
 import com.app.ordenaly.model.Order;
-import com.app.ordenaly.model.OrderCart;
-import com.app.ordenaly.model.OrderCartData;
+import com.app.ordenaly.model.dto.OrderCartData;
 import com.app.ordenaly.repository.OrderCartRepository;
 import com.app.ordenaly.service.OrderCartService;
 import com.app.ordenaly.service.OrderService;
@@ -47,8 +46,6 @@ public class OrderCartController {
 
     return addedQuantity + " producto/s agregado/s a la orden";
   }
-
-
 
 
   // +removeProduct()

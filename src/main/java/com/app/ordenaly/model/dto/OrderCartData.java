@@ -1,4 +1,6 @@
-package com.app.ordenaly.model;
+package com.app.ordenaly.model.dto;
+
+import com.app.ordenaly.model.OrderCart;
 
 public record OrderCartData(String product, int quantity, int subtotal) {
 

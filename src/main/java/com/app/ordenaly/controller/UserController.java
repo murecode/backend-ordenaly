@@ -1,10 +1,6 @@
 package com.app.ordenaly.controller;
 
-//import com.app.ordenaly.models.dto.UserDetailsDto;
-//import com.app.ordenaly.models.dto.mapper.UserDetailsMapper;
-//import com.app.ordenaly.models.dto.mapper.UserMapper;
-import com.app.ordenaly.model.Staff;
-import com.app.ordenaly.security.model.User;
+import com.app.ordenaly.model.dto.UserInfoData;
 import com.app.ordenaly.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,26 +16,10 @@ public class UserController {
   UserService userService;
 
   @GetMapping("")
-  public List<User> getAllUsers() {
+  public List<UserInfoData> getAllUsers() {
     return userService.getAllUsers();
   }
 
-  @PostMapping("")
-  public void createStaff(User user, Staff staff) {
-    userService.createStaff(user, staff);
-  }
-
-  // Solo el ADMIN tiene acceso
-//  @PutMapping("/{id}")
-//  public ResponseEntity<String> updateUser(
-//          @PathVariable("id") int userId,
-//          @RequestBody UserDto userBody) {
-//    User user = userMapper.UserDtoToUser( userBody );
-//    userService.updateUserInfo(userId, user);
-//    return new ResponseEntity<>("Usuario actualizado", HttpStatus.ACCEPTED);
-//  }
-
-  // Solo el ADMIN tiene acceso
   @DeleteMapping("/{id}")
   public ResponseEntity<String> deleteUser(@PathVariable("id") int id) {
     userService.deleteUser(id);

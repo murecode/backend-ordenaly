@@ -31,10 +31,7 @@ public class ProductController {
   public ResponseEntity<Product> updateProduct(
           @PathVariable("id") int productId,
           @RequestBody Product product) {
-//    Product product = productMapper.ProductDtoToProduct(productDto);
     productService.updateProduct(productId, product);
-
-  //TODO: "manejar casos de error y validar los datos recibidos"
 
     return new ResponseEntity<>(product, HttpStatus.ACCEPTED);
   }

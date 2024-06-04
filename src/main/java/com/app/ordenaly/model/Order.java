@@ -1,5 +1,6 @@
 package com.app.ordenaly.model;
 
+import com.app.ordenaly.security.model.User;
 import com.app.ordenaly.utils.OrderStatus;
 import com.app.ordenaly.utils.PaymentStatus;
 import jakarta.persistence.*;
@@ -19,7 +20,7 @@ public class Order {
   private Ticket ticket;
   @ManyToOne()
   @JoinColumn(name = "waiter_id")
-  private Staff waiter;
+  private User waiter;
   @Column(name = "mesa", unique = true)
   private String table;
   @Column
@@ -53,11 +54,11 @@ public class Order {
     this.id = id;
   }
 
-  public Staff getWaiter() {
+  public User getWaiter() {
     return waiter;
   }
 
-  public void setWaiter(Staff waiter) {
+  public void setWaiter(User waiter) {
     this.waiter = waiter;
   }
 

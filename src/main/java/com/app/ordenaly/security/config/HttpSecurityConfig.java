@@ -14,8 +14,6 @@ import com.app.ordenaly.config.security.filter.JwtAuthenticationFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 
-//import java.security.Permission;
-
 @Component
 @EnableWebSecurity
 public class HttpSecurityConfig {
@@ -23,7 +21,6 @@ public class HttpSecurityConfig {
   private AuthenticationProvider authenticationProvider; //0.
   @Autowired
   private JwtAuthenticationFilter authenticationFilter;
-
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -40,7 +37,7 @@ public class HttpSecurityConfig {
               authorize.requestMatchers(HttpMethod.POST, "/api/v1/auth/register").permitAll();
               authorize.requestMatchers("/error").permitAll();
 //
-//              authorize.requestMatchers(HttpMethod.GET,    "/api/v1/orders").permitAll();
+              authorize.requestMatchers(HttpMethod.GET,    "/api/v1/orders").permitAll();
 //              authorize.requestMatchers(HttpMethod.GET,    "/api/v1/orders/{id}").permitAll();
 //              authorize.requestMatchers(HttpMethod.POST,   "/api/v1/orders/{order-id}").permitAll();
 //              authorize.requestMatchers(HttpMethod.POST,   "/api/v1/orders").permitAll();
@@ -60,8 +57,8 @@ public class HttpSecurityConfig {
 //              authorize.requestMatchers(HttpMethod.GET, "/api/v1/tickets").permitAll();
 //              authorize.requestMatchers(HttpMethod.POST,"/api/v1/tickets").permitAll();
 //
-//              authorize.requestMatchers(HttpMethod.GET,   "/api/v1/users").permitAll();
-//              authorize.requestMatchers(HttpMethod.POST,  "/api/v1/users").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/api/v1/users").permitAll();
+              authorize.requestMatchers(HttpMethod.POST, "/api/v1/users").hasAuthority(Permissions.SAVE_USER.name());
 //              authorize.requestMatchers(HttpMethod.PUT,   "/api/v1/users/{id}").hasAuthority("ADMIN");
 //              authorize.requestMatchers(HttpMethod.DELETE,"/api/v1/users/{id}").hasAuthority("ADMIN");
 
