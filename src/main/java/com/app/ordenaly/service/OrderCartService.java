@@ -2,7 +2,7 @@ package com.app.ordenaly.service;
 
 import com.app.ordenaly.model.Order;
 import com.app.ordenaly.model.OrderCart;
-import com.app.ordenaly.model.OrderCartData;
+import com.app.ordenaly.model.dto.OrderCartData;
 import com.app.ordenaly.model.Product;
 import com.app.ordenaly.repository.OrderCartRepository;
 import com.app.ordenaly.repository.OrderRepository;

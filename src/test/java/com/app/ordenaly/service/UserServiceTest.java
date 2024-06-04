@@ -1,8 +1,6 @@
 package com.app.ordenaly.service;
 
-import com.app.ordenaly.model.Staff;
 import com.app.ordenaly.security.model.User;
-import com.app.ordenaly.repository.StaffRepository;
 import com.app.ordenaly.repository.UserRepository;
 import com.app.ordenaly.security.utils.Roles;
 import org.junit.jupiter.api.Test;
@@ -13,33 +11,31 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-
-
 @SpringBootTest
 @ActiveProfiles("test") //1.
 @ExtendWith(MockitoExtension.class) //2.
 class UserServiceTest {
   @Mock
   private UserRepository userRepo;
-  @Mock
-  private StaffRepository employeeRepo;
   @InjectMocks
   private UserService userService;
-
 
   @Test
   void testCreateUser() {
     //Datos de prueba
     User user = new User();
+    user.setName("Mario Ospina");
+    user.setPhone("31485236");
     user.setUsername("mario22");
     user.setEmail("mario@hotmail");
     user.setPassword("mario123");
     user.setRole(Roles.USER);
 
-    Staff staff = new Staff();
-    staff.setName("Mario Castaño");
+    /*Staff staff = new Staff();
+    staff.setName("Mario Castaño");*/
 
-    userService.createStaff(user, staff);
+    userRepo.save(user);
+
 
   }
 

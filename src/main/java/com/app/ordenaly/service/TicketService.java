@@ -1,6 +1,5 @@
 package com.app.ordenaly.service;
 
-//import com.app.ordenaly.models.dto.mapper.TicketMapper;
 import com.app.ordenaly.model.Ticket;
 import com.app.ordenaly.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
