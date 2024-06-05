@@ -51,11 +51,11 @@ public class HttpSecurityConfig {
 //
               authorize.requestMatchers(HttpMethod.GET, "/api/v1/products").hasAuthority(Permissions.READ_PRODUCTS.name());
               authorize.requestMatchers(HttpMethod.POST, "/api/v1/products").hasAuthority(Permissions.SAVE_PRODUCT.name());
-//              authorize.requestMatchers(HttpMethod.PATCH, "/api/v1/products/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.PUT, "/api/v1/products/{id}").hasAuthority(Permissions.UPDATE_PRODUCT.name());
               authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/products/{id}").hasAuthority(Permissions.DELETE_PRODUCT.name());
 //
 //              authorize.requestMatchers(HttpMethod.GET, "/api/v1/tickets").permitAll();
-//              authorize.requestMatchers(HttpMethod.POST,"/api/v1/tickets").permitAll();
+//              authorize.requestMatchers(HttpMethod.POST, "/api/v1/tickets").permitAll();
 //
               authorize.requestMatchers(HttpMethod.GET, "/api/v1/users").permitAll();
               authorize.requestMatchers(HttpMethod.POST, "/api/v1/users").hasAuthority(Permissions.SAVE_USER.name());

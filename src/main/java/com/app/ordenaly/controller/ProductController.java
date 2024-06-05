@@ -27,19 +27,19 @@ public class ProductController {
     return new ResponseEntity<Product>(product, HttpStatus.CREATED);
   }
 
-  @PatchMapping("/{id}")
+  @PutMapping("/{id}")
   public ResponseEntity<Product> updateProduct(
           @PathVariable("id") int productId,
           @RequestBody Product product) {
     productService.updateProduct(productId, product);
 
-    return new ResponseEntity<>(product, HttpStatus.ACCEPTED);
+    return new ResponseEntity<>(product, HttpStatus.OK);
   }
 
   @DeleteMapping("/{id}")
-  public String removeProduct(@PathVariable int id) {
+  public ResponseEntity removeProduct(@PathVariable int id) {
     productService.deleteProduct(id);
-    return "Producto " + id + " eliminado";
+    return ResponseEntity.noContent().build();
   }
 
 }

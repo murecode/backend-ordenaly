@@ -7,6 +7,7 @@ public enum Roles {
   ADMIN(Arrays.asList(
           Permissions.SAVE_PRODUCT,
           Permissions.READ_PRODUCTS,
+          Permissions.UPDATE_PRODUCT,
           Permissions.DELETE_PRODUCT,
           Permissions.DELETE_USER,
           Permissions.SAVE_USER
