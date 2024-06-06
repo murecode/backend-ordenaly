@@ -1,12 +1,9 @@
 package com.app.ordenaly.model;
 
 import com.app.ordenaly.security.model.User;
-import com.app.ordenaly.utils.OrderStatus;
-import com.app.ordenaly.utils.PaymentStatus;
+import com.app.ordenaly.model.utils.OrderStatus;
+import com.app.ordenaly.model.utils.PaymentStatus;
 import jakarta.persistence.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "orders")

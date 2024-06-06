@@ -10,7 +10,9 @@ import com.app.ordenaly.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderCartService {
@@ -26,7 +28,6 @@ public class OrderCartService {
 
     List<OrderCartData> cartList = orderCartRepo.findById(orderId).stream()
             .map(OrderCartData::new).toList();
-
     return cartList;
   }
 

@@ -28,7 +28,8 @@ public class OrderCartController {
   @GetMapping("/order/{oid}")
   public List<OrderCartData> getOrderCartByOrder(@PathVariable("oid") Order orderId) {
     Order order = orderService.findOrderById(orderId.getId());
-    List<OrderCartData> orderCarts = orderCartRepo.findByOrder(order).stream().map(OrderCartData::new).toList();
+    List<OrderCartData> orderCarts = orderCartRepo.findByOrder(order).stream()
+            .map(OrderCartData::new).toList();
     return orderCarts;
   }
 

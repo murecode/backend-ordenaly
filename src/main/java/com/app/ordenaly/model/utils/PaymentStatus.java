@@ -1,4 +1,4 @@
-package com.app.ordenaly.utils;
+package com.app.ordenaly.model.utils;
 
 public enum PaymentStatus {
   PENDIENTE, REALIZADO

@@ -1,13 +1,19 @@
 package com.app.ordenaly.service;
 
 import com.app.ordenaly.model.*;
+import com.app.ordenaly.model.dto.OrderData;
+import com.app.ordenaly.model.dto.OrderRequest;
+import com.app.ordenaly.model.utils.OrderStatus;
+import com.app.ordenaly.model.utils.PaymentStatus;
 import com.app.ordenaly.repository.*;
-import com.app.ordenaly.utils.OrderStatus;
-import com.app.ordenaly.utils.PaymentStatus;
+import com.app.ordenaly.security.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service // 1.
 public class OrderService {
@@ -15,29 +21,32 @@ public class OrderService {
   private OrderRepository orderRepo;
   @Autowired
   private TicketRepository ticketRepo;
+  @Autowired
+  private UserRepository userRepo;
 
 
-  public List<Order> getOrders() {
-    return orderRepo.findAll();
+  public Page<OrderData> getOrders(Pageable pageable) {
+    return orderRepo.findAll(pageable).map(OrderData::new);
   }
 
   public Order findOrderById(int orderId) {
     return orderRepo.findById( orderId ).orElse(null);
   }
 
-/*  public void createOrder(Order orderBody) {
-    Ticket ticket = ticketRepo.findById(orderBody.getTicket().getId()).orElse(null);
-    UserData waiter = staffRepo.findById(orderBody.getWaiter().getId()).orElse(null);
+  public Order createOrder(OrderRequest orderRequest) {
+    Optional<Ticket> ticket = ticketRepo.findById(orderRequest.ticket());
+    Optional<User> waiter = userRepo.findById(orderRequest.waiter());
 
     Order order = new Order();
-    order.setTicket( ticket );
-    order.setWaiter( waiter );
-    order.setTable(orderBody.getTable());
+    order.setWaiter(waiter.orElseThrow(() -> new RuntimeException("Ticket Not Found")));
+    order.setTicket(ticket.orElseThrow(() -> new RuntimeException("Ticket Not Found")));
+    order.setTable(orderRequest.table());
     order.setOrderStatus(OrderStatus.PENDIENTE);
     order.setPaymentStatus(PaymentStatus.PENDIENTE);
 
-    orderRepo.save(order);
-  }*/
+    return orderRepo.save(order);
+  }
+
 
   public void updateOrder(int orderId, Order orderBody) {
 

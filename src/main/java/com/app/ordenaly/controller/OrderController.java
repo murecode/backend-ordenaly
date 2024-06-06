@@ -1,31 +1,34 @@
 package com.app.ordenaly.controller;
 
+import com.app.ordenaly.model.Order;
 import com.app.ordenaly.model.dto.OrderData;
-import com.app.ordenaly.repository.OrderRepository;
+import com.app.ordenaly.model.dto.OrderRequest;
 import com.app.ordenaly.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/orders")
 public class OrderController {
   @Autowired
   private OrderService orderService;
-  @Autowired
-  private OrderRepository orderRepo;
 
 
   @GetMapping("")
-  public List<OrderData> getOrders() {
-    return orderRepo.findAll().stream().map(OrderData::new).toList();
+  public Page<OrderData> getOrders(Pageable pageable) {
+    return orderService.getOrders(pageable);
   }
 
-  //generateOrder()
-  //updateOrderStatus()
+  @PostMapping("")
+  public Order createOrder(@RequestBody OrderRequest orderRequest) {
+    return orderService.createOrder(orderRequest);
+  }
+
+  //updateOrderStatus() ResponseEntity.status(HttpStatus.CREATED).body(savedOrder)
 
   @DeleteMapping("/{id}")
   public ResponseEntity<String> deleteOrder(@PathVariable("id") int id) {

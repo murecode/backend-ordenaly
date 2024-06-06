@@ -1,19 +1,17 @@
 package com.app.ordenaly.model.dto;
 
 import com.app.ordenaly.model.Order;
-import com.app.ordenaly.utils.OrderStatus;
-import com.app.ordenaly.utils.PaymentStatus;
-
-import java.util.List;
+import com.app.ordenaly.model.utils.OrderStatus;
+import com.app.ordenaly.model.utils.PaymentStatus;
 
 public record OrderData(
-        int order,
-        int ticket,
-        String time,
-        String table ,
-        String waiter,
-        OrderStatus orderStatus,
-        PaymentStatus paymentStatus
+        int orden,
+        int turno,
+        String hora,
+        String mesa,
+        String mesero,
+        OrderStatus estadoDeOrden,
+        PaymentStatus estadoDePago
 
 ) {
 
