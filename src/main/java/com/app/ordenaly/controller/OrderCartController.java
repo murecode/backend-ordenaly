@@ -20,24 +20,24 @@ public class OrderCartController {
   @Autowired
   private OrderService orderService;
 
-  @GetMapping("/{oid}")
-  public List<OrderCartData> getOrderCart(@PathVariable("oid") int orderId) {
+  @GetMapping("/{orderid}")
+  public List<OrderCartData> getOrderCart(@PathVariable("orderid") int orderId) {
     return orderCartService.getCartByOrder(orderId);
   }
 
-  @GetMapping("/order/{oid}")
-  public List<OrderCartData> getOrderCartByOrder(@PathVariable("oid") Order orderId) {
+  @GetMapping("/order/{orderid}")
+  public List<OrderCartData> getOrderCartByOrder(@PathVariable("orderid") Order orderId) {
     Order order = orderService.findOrderById(orderId.getId());
     List<OrderCartData> orderCarts = orderCartRepo.findByOrder(order).stream()
             .map(OrderCartData::new).toList();
     return orderCarts;
   }
 
-  @PostMapping("/add/{pid}/{qty}/{oid}")
+  @PostMapping("/add/{productid}/{qty}/{orderid}")
   public String addProductToCart(
-          @PathVariable("pid") int productId,
+          @PathVariable("productid") int productId,
           @PathVariable("qty") int quantity,
-          @PathVariable("oid") int orderId) {
+          @PathVariable("orderid") int orderId) {
 
     Order order = orderService.findOrderById(orderId);
 

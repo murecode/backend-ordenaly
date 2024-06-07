@@ -1,6 +1,6 @@
 package com.app.ordenaly.controller;
 
-import com.app.ordenaly.model.dto.UserInfoData;
+import com.app.ordenaly.model.dto.UserData;
 import com.app.ordenaly.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ public class UserController {
   UserService userService;
 
   @GetMapping("")
-  public List<UserInfoData> getAllUsers() {
+  public List<UserData> getAllUsers() {
     return userService.getAllUsers();
   }
 

@@ -1,19 +1,17 @@
 package com.app.ordenaly.controller;
 
-import com.app.ordenaly.security.model.RegisterRequest;
-import com.app.ordenaly.security.service.AuthService;
+import com.app.ordenaly.infra.security.model.RegisterRequest;
+import com.app.ordenaly.infra.security.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import com.app.ordenaly.security.model.AuthResponse;
-import com.app.ordenaly.security.model.AuthRequest;
+import com.app.ordenaly.infra.security.model.AuthResponse;
+import com.app.ordenaly.infra.security.model.AuthRequest;
 
 @RestController
 @RequestMapping("/api/v1/auth")

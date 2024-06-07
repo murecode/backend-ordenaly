@@ -1,6 +1,6 @@
-package com.app.ordenaly.security.service;
+package com.app.ordenaly.infra.security.service;
 
-import com.app.ordenaly.security.model.User;
+import com.app.ordenaly.infra.security.model.User;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

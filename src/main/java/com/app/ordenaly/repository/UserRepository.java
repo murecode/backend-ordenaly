@@ -1,6 +1,6 @@
 package com.app.ordenaly.repository;
 
-import com.app.ordenaly.security.model.User;
+import com.app.ordenaly.infra.security.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

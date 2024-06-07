@@ -1,4 +1,4 @@
-package com.app.ordenaly.security.utils;
+package com.app.ordenaly.infra.security.utils;
 
 public enum Permissions {
   READ_ORDERS, UPDATE_ORDER, SAVE_ORDER,

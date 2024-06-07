@@ -1,7 +1,7 @@
 package com.app.ordenaly.repository;
 
-import com.app.ordenaly.security.model.User;
-import com.app.ordenaly.security.utils.Roles;
+import com.app.ordenaly.infra.security.model.User;
+import com.app.ordenaly.infra.security.utils.Roles;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

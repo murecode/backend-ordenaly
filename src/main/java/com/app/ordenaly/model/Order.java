@@ -1,6 +1,6 @@
 package com.app.ordenaly.model;
 
-import com.app.ordenaly.security.model.User;
+import com.app.ordenaly.infra.security.model.User;
 import com.app.ordenaly.model.utils.OrderStatus;
 import com.app.ordenaly.model.utils.PaymentStatus;
 import jakarta.persistence.*;
@@ -12,17 +12,19 @@ public class Order {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column
   private int id;
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn
+  @OneToOne()
+  @JoinColumn(name = "ticket_id")
   private Ticket ticket;
   @ManyToOne()
   @JoinColumn(name = "waiter_id")
   private User waiter;
   @Column(name = "mesa", unique = true)
   private String table;
-  @Column
+  /*@Column
   @Enumerated(EnumType.STRING)
-  private OrderStatus orderStatus;
+  private OrderStatus orderStatus;*/
+  @Column
+  private Boolean isAttended;
   @Column
   @Enumerated(EnumType.STRING)
   private PaymentStatus paymentStatus;
@@ -35,7 +37,7 @@ public class Order {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(int id) {
     this.id = id;
   }
 
@@ -45,10 +47,6 @@ public class Order {
 
   public void setTicket(Ticket ticket) {
     this.ticket = ticket;
-  }
-
-  public void setId(int id) {
-    this.id = id;
   }
 
   public User getWaiter() {
@@ -67,12 +65,20 @@ public class Order {
     this.table = table;
   }
 
-  public OrderStatus getOrderStatus() {
+  /*public OrderStatus getOrderStatus() {
     return orderStatus;
   }
 
   public void setOrderStatus(OrderStatus orderStatus) {
     this.orderStatus = orderStatus;
+  }*/
+
+  public Boolean getAttended() {
+    return isAttended;
+  }
+
+  public void setAttended(Boolean attended) {
+    isAttended = attended;
   }
 
   public PaymentStatus getPaymentStatus() {

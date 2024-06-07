@@ -1,6 +1,6 @@
-package com.app.ordenaly.security.config;
+package com.app.ordenaly.infra.security.config;
 
-import com.app.ordenaly.security.utils.Permissions;
+import com.app.ordenaly.infra.security.utils.Permissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -39,13 +39,14 @@ public class HttpSecurityConfig {
 //
               authorize.requestMatchers(HttpMethod.GET,    "/api/v1/orders").permitAll();
 //              authorize.requestMatchers(HttpMethod.GET,    "/api/v1/orders/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,   "/api/v1/orders/{ticketid}/{userid}").permitAll();
               authorize.requestMatchers(HttpMethod.POST,   "/api/v1/orders").permitAll();
 //              authorize.requestMatchers(HttpMethod.PUT,    "/api/v1/orders/{id}").permitAll();
 //              authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/orders/{id}").permitAll();
 //
-//              authorize.requestMatchers(HttpMethod.GET,    "/api/v1/carts/{oid}").permitAll();
-              authorize.requestMatchers(HttpMethod.GET,    "/api/v1/carts/order/{oid}").permitAll();
-//              authorize.requestMatchers(HttpMethod.POST,   "/api/v1/carts/add/{pid}/{qty}/{oid}").permitAll();
+//              authorize.requestMatchers(HttpMethod.GET,    "/api/v1/carts/{orderid}").permitAll();
+              authorize.requestMatchers(HttpMethod.GET,    "/api/v1/carts/order/{orderid}").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,   "/api/v1/carts/add/{productid}/{qty}/{orderid}").permitAll();
 //
               authorize.requestMatchers(HttpMethod.GET, "/api/v1/products").hasAuthority(Permissions.READ_PRODUCTS.name());
               authorize.requestMatchers(HttpMethod.POST, "/api/v1/products").hasAuthority(Permissions.SAVE_PRODUCT.name());

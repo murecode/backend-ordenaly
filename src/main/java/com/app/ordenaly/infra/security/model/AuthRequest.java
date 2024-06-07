@@ -1,4 +1,4 @@
-package com.app.ordenaly.security.model;
+package com.app.ordenaly.infra.security.model;
 
 public class AuthRequest {
   private String username;

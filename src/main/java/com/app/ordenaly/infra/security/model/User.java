@@ -1,6 +1,6 @@
-package com.app.ordenaly.security.model;
+package com.app.ordenaly.infra.security.model;
 
-import com.app.ordenaly.security.utils.Roles;
+import com.app.ordenaly.infra.security.utils.Roles;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -90,6 +90,19 @@ public class User implements UserDetails {
 
   public void setPhone(String phone) {
     this.phone = phone;
+  }
+
+  @Override
+  public String toString() {
+    return "User{" +
+            "id=" + id +
+            ", username='" + username + '\'' +
+            ", email='" + email + '\'' +
+            ", password='" + password + '\'' +
+            ", role=" + role +
+            ", name='" + name + '\'' +
+            ", phone='" + phone + '\'' +
+            '}';
   }
 
   //2.

@@ -1,17 +1,27 @@
 package com.app.ordenaly.model.dto;
 
-import com.app.ordenaly.model.Order;
-import com.app.ordenaly.model.Ticket;
-import com.app.ordenaly.security.model.User;
+public class OrderRequest {
+  private int ticket;
+  private int waiter;
 
-public record OrderRequest(int ticket, int waiter, String table) {
-
-  public OrderRequest(Order order) {
-    this(
-            order.getTicket().getId(),
-            order.getWaiter().getId(),
-            order.getTable()
-    );
+  public OrderRequest(int ticket, int waiter) {
+    this.ticket = ticket;
+    this.waiter = waiter;
   }
 
+  public int getTicket() {
+    return ticket;
+  }
+
+  public void setTicket(int ticket) {
+    this.ticket = ticket;
+  }
+
+  public int getWaiter() {
+    return waiter;
+  }
+
+  public void setWaiter(int waiter) {
+    this.waiter = waiter;
+  }
 }

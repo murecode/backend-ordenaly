@@ -1,4 +1,4 @@
-package com.app.ordenaly.security.config;
+package com.app.ordenaly.infra.security.config;
 
 import com.app.ordenaly.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

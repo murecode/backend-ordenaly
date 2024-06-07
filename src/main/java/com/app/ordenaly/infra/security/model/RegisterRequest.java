@@ -1,6 +1,6 @@
-package com.app.ordenaly.security.model;
+package com.app.ordenaly.infra.security.model;
 
-import com.app.ordenaly.security.utils.Roles;
+import com.app.ordenaly.infra.security.utils.Roles;
 
 public class RegisterRequest {
   private String email;

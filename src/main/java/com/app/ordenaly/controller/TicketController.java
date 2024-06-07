@@ -16,8 +16,6 @@ import java.util.List;
 public class TicketController {
   @Autowired
   TicketService ticketService;
-  @Autowired
-  OrderService orderService;
 
   @Operation(summary = "Listado de Tickets", description = "Retorna un arreglo con los Tickets")
   @GetMapping("")

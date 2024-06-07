@@ -3,6 +3,7 @@ package com.app.ordenaly.repository;
 import com.app.ordenaly.model.*;
 import com.app.ordenaly.model.utils.OrderStatus;
 import com.app.ordenaly.model.utils.PaymentStatus;
+import com.app.ordenaly.infra.security.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -23,39 +24,48 @@ class OrderRepositoryTest {
   @Autowired
   private TestEntityManager entityManager;
 
-/*  @Test
+  @Test
   void testGenerateNewOrder() {
-    Ticket ticket = entityManager.find(Ticket.class, 2);
-    Staff waiter = entityManager.find(Staff.class, 1);
+    Ticket ticket = entityManager.find(Ticket.class, 9);
+    User waiter = entityManager.find(User.class, 3);
 
     Order order = new Order();
     order.setTicket(ticket);
     order.setWaiter(waiter);
-    order.setTable("6");
-    order.setOrderStatus(OrderStatus.PENDIENTE);
+    order.setTable("Sin defini2");
+    order.setAttended(false);
     order.setPaymentStatus(PaymentStatus.PENDIENTE);
 
     Order saveOrder = orderRepository.save(order);
 
     assertTrue(saveOrder.getId() > 0);
-  }*/
+  }
+
+  @Test
+  void  testFindEntities() {
+    Ticket ticket = entityManager.find(Ticket.class, 4);
+    User waiter = entityManager.find(User.class, 3);
+
+    System.out.println(ticket.toString());
+    System.out.println(waiter.toString());
+  }
 
   @Test
   void testUpdateOrderStatus() {
     Order order = entityManager.find(Order.class, 2);
 
-    order.setOrderStatus(OrderStatus.PENDIENTE);
+    order.setAttended(false);
     order.setPaymentStatus(PaymentStatus.PENDIENTE);
 
     orderRepository.save(order);
 
-    assertTrue( order.getOrderStatus() == OrderStatus.PENDIENTE );
+    assertTrue( order.getAttended() == false );
     assertTrue( order.getPaymentStatus() == PaymentStatus.PENDIENTE );
   }
 
   @Test
   void testDeleteOrder() {
-    Order order = entityManager.find(Order.class, 29);
+    Order order = entityManager.find(Order.class, 11);
     assertNotNull( order );
 
     orderRepository.deleteById(order.getId());

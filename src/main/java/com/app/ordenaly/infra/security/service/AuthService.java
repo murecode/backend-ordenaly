@@ -1,11 +1,11 @@
-package com.app.ordenaly.security.service;
+package com.app.ordenaly.infra.security.service;
 
-import com.app.ordenaly.security.model.AuthRequest;
-import com.app.ordenaly.security.model.AuthResponse;
-import com.app.ordenaly.security.model.RegisterRequest;
-import com.app.ordenaly.security.model.User;
+import com.app.ordenaly.infra.security.model.AuthRequest;
+import com.app.ordenaly.infra.security.model.AuthResponse;
+import com.app.ordenaly.infra.security.model.RegisterRequest;
+import com.app.ordenaly.infra.security.model.User;
 import com.app.ordenaly.repository.UserRepository;
-import com.app.ordenaly.security.utils.Roles;
+import com.app.ordenaly.infra.security.utils.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
