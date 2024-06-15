@@ -9,10 +9,10 @@ public class OrderCart {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
   @ManyToOne
-  @JoinColumn(name = "product_id")
+  @JoinColumn(name = "productId")
   private Product product;
   @ManyToOne
-  @JoinColumn(name = "order_id")
+  @JoinColumn(name = "orderId")
   private Order order;
   private int quantity;
 

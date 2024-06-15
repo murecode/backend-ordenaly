@@ -1,7 +1,7 @@
 package com.app.ordenaly.service;
 
 import com.app.ordenaly.model.Ticket;
-import com.app.ordenaly.repository.TicketRepository;
+import com.app.ordenaly.infra.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

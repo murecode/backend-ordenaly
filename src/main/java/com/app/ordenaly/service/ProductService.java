@@ -1,7 +1,7 @@
 package com.app.ordenaly.service;
 
 import com.app.ordenaly.model.Product;
-import com.app.ordenaly.repository.ProductRepository;
+import com.app.ordenaly.infra.repository.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

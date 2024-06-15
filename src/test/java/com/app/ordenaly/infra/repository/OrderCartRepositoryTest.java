@@ -1,4 +1,4 @@
-package com.app.ordenaly.repository;
+package com.app.ordenaly.infra.repository;
 
 import com.app.ordenaly.model.Order;
 import com.app.ordenaly.model.OrderCart;
@@ -11,7 +11,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 

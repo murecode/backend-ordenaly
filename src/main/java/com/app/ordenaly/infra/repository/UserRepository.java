@@ -1,4 +1,4 @@
-package com.app.ordenaly.repository;
+package com.app.ordenaly.infra.repository;
 
 import com.app.ordenaly.infra.security.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

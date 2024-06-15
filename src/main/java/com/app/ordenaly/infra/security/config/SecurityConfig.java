@@ -1,6 +1,6 @@
 package com.app.ordenaly.infra.security.config;
 
-import com.app.ordenaly.repository.UserRepository;
+import com.app.ordenaly.infra.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;

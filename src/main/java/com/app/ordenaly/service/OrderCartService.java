@@ -4,15 +4,13 @@ import com.app.ordenaly.model.Order;
 import com.app.ordenaly.model.OrderCart;
 import com.app.ordenaly.model.dto.OrderCartData;
 import com.app.ordenaly.model.Product;
-import com.app.ordenaly.repository.OrderCartRepository;
-import com.app.ordenaly.repository.OrderRepository;
-import com.app.ordenaly.repository.ProductRepository;
+import com.app.ordenaly.infra.repository.OrderCartRepository;
+import com.app.ordenaly.infra.repository.OrderRepository;
+import com.app.ordenaly.infra.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.DoubleSummaryStatistics;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class OrderCartService {

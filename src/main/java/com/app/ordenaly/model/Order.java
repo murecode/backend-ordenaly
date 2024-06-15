@@ -13,10 +13,10 @@ public class Order {
   @Column
   private int id;
   @OneToOne()
-  @JoinColumn(name = "ticket_id")
+  @JoinColumn(name = "ticketId")
   private Ticket ticket;
   @ManyToOne()
-  @JoinColumn(name = "waiter_id")
+  @JoinColumn(name = "waiterId")
   private User waiter;
   @Column(name = "mesa", unique = true)
   private String table;

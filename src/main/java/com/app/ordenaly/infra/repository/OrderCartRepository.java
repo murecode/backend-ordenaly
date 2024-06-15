@@ -1,4 +1,4 @@
-package com.app.ordenaly.repository;
+package com.app.ordenaly.infra.repository;
 
 import com.app.ordenaly.model.Order;
 import com.app.ordenaly.model.OrderCart;

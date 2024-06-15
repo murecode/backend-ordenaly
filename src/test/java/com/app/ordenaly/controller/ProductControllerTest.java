@@ -1,7 +1,7 @@
 package com.app.ordenaly.controller;
 
 import com.app.ordenaly.model.Product;
-import com.app.ordenaly.repository.ProductRepository;
+import com.app.ordenaly.infra.repository.ProductRepository;
 import com.app.ordenaly.service.ProductService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

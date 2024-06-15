@@ -4,8 +4,8 @@ package com.app.ordenaly.service;
 //import com.app.ordenaly.model.Staff;
 import com.app.ordenaly.model.dto.UserData;
 import com.app.ordenaly.infra.security.model.User;
-//import com.app.ordenaly.repository.StaffRepository;
-import com.app.ordenaly.repository.UserRepository;
+//import com.app.ordenaly.infra.repository.StaffRepository;
+import com.app.ordenaly.infra.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;

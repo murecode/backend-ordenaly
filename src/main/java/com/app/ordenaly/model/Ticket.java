@@ -51,6 +51,6 @@ public class Ticket {
 }
 
 //DOCS
-/*1. Indica que esta entidad no es la propietaria de la relación. El valor de mappedBy
+/* 1. mappedBy, indica que Ticket no es la propietaria de la relación. El valor de mappedBy
   debe ser el nombre del atributo en la otra entidad que hace referencia a esta
-  entidad (ticket en Order).*/
+  entidad en este caso (ticket en Order). */

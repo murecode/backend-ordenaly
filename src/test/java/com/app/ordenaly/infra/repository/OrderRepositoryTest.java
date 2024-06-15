@@ -1,7 +1,6 @@
-package com.app.ordenaly.repository;
+package com.app.ordenaly.infra.repository;
 
 import com.app.ordenaly.model.*;
-import com.app.ordenaly.model.utils.OrderStatus;
 import com.app.ordenaly.model.utils.PaymentStatus;
 import com.app.ordenaly.infra.security.model.User;
 import org.junit.jupiter.api.Test;

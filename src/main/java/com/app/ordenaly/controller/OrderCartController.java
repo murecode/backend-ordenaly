@@ -2,7 +2,7 @@ package com.app.ordenaly.controller;
 
 import com.app.ordenaly.model.Order;
 import com.app.ordenaly.model.dto.OrderCartData;
-import com.app.ordenaly.repository.OrderCartRepository;
+import com.app.ordenaly.infra.repository.OrderCartRepository;
 import com.app.ordenaly.service.OrderCartService;
 import com.app.ordenaly.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +20,13 @@ public class OrderCartController {
   @Autowired
   private OrderService orderService;
 
-  @GetMapping("/{orderid}")
-  public List<OrderCartData> getOrderCart(@PathVariable("orderid") int orderId) {
+  /*@GetMapping("/{id}")
+  public List<OrderCartData> getCartByOrder(@PathVariable("id") int orderId) {
     return orderCartService.getCartByOrder(orderId);
-  }
+  }*/
 
-  @GetMapping("/order/{orderid}")
-  public List<OrderCartData> getOrderCartByOrder(@PathVariable("orderid") Order orderId) {
+  @GetMapping("/order/{id}")
+  public List<OrderCartData> getOrderCartByOrder(@PathVariable("id") Order orderId) {
     Order order = orderService.findOrderById(orderId.getId());
     List<OrderCartData> orderCarts = orderCartRepo.findByOrder(order).stream()
             .map(OrderCartData::new).toList();
