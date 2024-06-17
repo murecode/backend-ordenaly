@@ -32,11 +32,11 @@ public class AuthService {
   public void register(RegisterRequest registerRequest) {
     User user = new User();
     user.setUsername(registerRequest.getUsername());
-    user.setEmail(user.getEmail());
+    user.setEmail(registerRequest.getEmail());
     user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
     user.setRole(Roles.USER);
-    user.setName(user.getName());
-    user.setPhone(user.getPhone());
+    user.setName(registerRequest.getFullname());
+    user.setPhone(registerRequest.getPhone());
     userRepo.save( user );
   }
 

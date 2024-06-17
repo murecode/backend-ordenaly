@@ -1,16 +1,35 @@
 package com.app.ordenaly.infra.security.model;
 
 import com.app.ordenaly.infra.security.utils.Roles;
+import jakarta.validation.constraints.NotBlank;
 
 public class RegisterRequest {
-  private String email;
-  private String username;
-  private String password;
-  private Roles rol;
+  @NotBlank
   private String fullname;
+  @NotBlank
   private String phone;
+  @NotBlank
+  private String email;
+  @NotBlank
+  private String username;
+  @NotBlank
+  private String password;
 
-  public RegisterRequest() {}
+  public String getFullname() {
+    return fullname;
+  }
+
+  public void setFullname(String fullname) {
+    this.fullname = fullname;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
 
   public String getEmail() {
     return email;
@@ -36,27 +55,4 @@ public class RegisterRequest {
     this.password = password;
   }
 
-  public Roles getRol() {
-    return rol;
-  }
-
-  public void setRol(Roles rol) {
-    this.rol = rol;
-  }
-
-  public String getFullname() {
-    return fullname;
-  }
-
-  public void setFullname(String fullname) {
-    this.fullname = fullname;
-  }
-
-  public String getPhone() {
-    return phone;
-  }
-
-  public void setPhone(String phone) {
-    this.phone = phone;
-  }
 }

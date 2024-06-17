@@ -1,7 +1,11 @@
 package com.app.ordenaly.infra.security.model;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class AuthRequest {
+  @NotBlank
   private String username;
+  @NotBlank
   private String password;
 
   public String getUsername() {

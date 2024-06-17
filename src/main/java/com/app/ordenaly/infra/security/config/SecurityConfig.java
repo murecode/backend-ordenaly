@@ -45,9 +45,10 @@ public class SecurityConfig {
 
 }
 
-//1. Esta linea genera el ProviderManager que puede coordinar varios provedores de autentificacion
+//DOCS:
+/*1. Esta sentencia genera el ProviderManager que puede coordinar varios provedores de autentificacion*/
 
-/*2. autentica usuarios contra una base de datos o cualquier otra fuente de datos, cifra y
+/*2. Autentica usuarios contra una base de datos o cualquier otra fuente de datos, cifra y
   comparar contraseñas, mejorando la seguridad al no almacenar ni transmitir contraseñas en texto plano.*/
 
 /*3. Compara y codifica la contraseña traida desde la base de datos. */

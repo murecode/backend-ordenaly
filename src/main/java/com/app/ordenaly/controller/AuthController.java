@@ -21,7 +21,7 @@ public class AuthController {
   AuthService authService;
 
   @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public void resgister(@RequestBody RegisterRequest registerRequest){
+  public void resgister(@RequestBody @Valid RegisterRequest registerRequest){
     authService.register(registerRequest);
   }
 
