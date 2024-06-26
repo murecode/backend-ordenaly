@@ -1,8 +1,8 @@
 package com.app.ordenaly.service;
 
 import com.app.ordenaly.model.*;
-import com.app.ordenaly.model.dto.OrderData;
-import com.app.ordenaly.model.dto.OrderRequest;
+import com.app.ordenaly.model.dtos.OrderData;
+import com.app.ordenaly.model.dtos.OrderCreateData;
 import com.app.ordenaly.model.utils.PaymentStatus;
 import com.app.ordenaly.infra.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class OrderService {
     return orderRepo.save(order);
   }*/
 
-  public Order createOrder(OrderRequest orderRequest) {
+  public OrderData createOrder(OrderCreateData orderRequest) {
     var ticket = ticketRepo.findById(orderRequest.getTicket());
     var waiter = userRepo.findById(orderRequest.getWaiter());
 
@@ -53,17 +53,27 @@ public class OrderService {
     Order order = new Order();
     order.setTicket(ticket.get());
     order.setWaiter(waiter.get());
-    order.setTable(order.getTable());
-//    order.setOrderStatus(OrderStatus.PENDIENTE);
-    order.setAttended(false);
-    order.setPaymentStatus(PaymentStatus.PENDIENTE);
+    order.setTable(orderRequest.getTable());
+    order.setOrderComplete(false);
+    order.setPaymentStatus(PaymentStatus.PENDING);
+    //Se relaciona la orden con el Ticket y asi se actualiza el estado del Ticket
+    ticket.get().relateToTheOrder(order);
 
-    return orderRepo.save(order);
+    Order o = orderRepo.save(order);
+
+    return new OrderData(
+            o.getId(),
+            o.getTicket().getId(),
+            o.getTicket().getCreatedAt(),
+            o.getWaiter().getName(),
+            o.getTable(),
+            o.getOrderComplete(),
+            o.getPaymentStatus()
+    );
   }
 
 
   public void updateOrder(int orderId, Order orderBody) {
-
     Order order = orderRepo.findById( orderId ).get();
 //    order.setOrderStatus(orderBody.getOrderStatus());
     order.setPaymentStatus(orderBody.getPaymentStatus());
@@ -71,8 +81,10 @@ public class OrderService {
     orderRepo.save(order);
   }
 
-  public void deleteOrder(Integer id) {
-    orderRepo.deleteById(id);
+  public void deleteOrder(int id) {
+    Order order = orderRepo.findById(id).get();
+    // Validaciones
+    orderRepo.deleteById(order.getId());
   }
 
 }

@@ -1,13 +1,9 @@
-package com.app.ordenaly.model.dto;
+package com.app.ordenaly.model.dtos;
 
-public class OrderRequest {
+public class OrderCreateData {
   private int ticket;
   private int waiter;
-
-  public OrderRequest(int ticket, int waiter) {
-    this.ticket = ticket;
-    this.waiter = waiter;
-  }
+  private String table;
 
   public int getTicket() {
     return ticket;
@@ -23,5 +19,13 @@ public class OrderRequest {
 
   public void setWaiter(int waiter) {
     this.waiter = waiter;
+  }
+
+  public String getTable() {
+    return table;
+  }
+
+  public void setTable(String table) {
+    this.table = table;
   }
 }

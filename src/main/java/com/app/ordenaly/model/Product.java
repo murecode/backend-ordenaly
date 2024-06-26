@@ -13,7 +13,7 @@ public class Product {
   private int id;
   @Column(unique = true) @NotNull
   private String productName;
-  @Column(name = "\"DESCRIPTION\"")
+  @Column(name = "\"description\"")
   private String description;
   @DecimalMin(value = "0") @NotNull
   private int price;

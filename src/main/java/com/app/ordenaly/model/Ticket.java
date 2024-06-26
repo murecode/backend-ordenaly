@@ -1,6 +1,6 @@
 package com.app.ordenaly.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.app.ordenaly.model.utils.TicketStatus;
 import jakarta.persistence.*;
 
 import java.time.LocalTime;
@@ -13,13 +13,14 @@ public class Ticket {
   @Column
   private int id;
   @Column
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")
-  private LocalTime time;
-
-  /*@OneToOne(mappedBy = "ticket") //1.
-  private Order order;*/
-
-  public Ticket() {}
+  private LocalTime createdAt;
+  @Column
+  private int numberOfPeople;
+  @Column
+  @Enumerated(EnumType.STRING)
+  private TicketStatus status;
+  @OneToOne(mappedBy = "ticket")
+  private Order relatedOrder = null;
 
   public int getId() {
     return id;
@@ -29,28 +30,40 @@ public class Ticket {
     this.id = id;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public LocalTime getCreatedAt() {
+    return createdAt;
   }
 
-  public LocalTime getTime() {
-    return time;
+  public void setCreatedAt(LocalTime createdAt) {
+    this.createdAt = createdAt;
   }
 
-  public void setTime(LocalTime time) {
-    this.time = time;
+  public int getNumberOfPeople() {
+    return numberOfPeople;
   }
 
-  @Override
-  public String toString() {
-    return "Ticket{" +
-            "id=" + id +
-            ", time=" + time +
-            '}';
+  public void setNumberOfPeople(int numberOfPeople) {
+    this.numberOfPeople = numberOfPeople;
   }
+
+  public TicketStatus getStatus() {
+    return status;
+  }
+
+  public void setStatus(TicketStatus status) {
+    this.status = status;
+  }
+
+  public void relateToTheOrder(Order order) {
+    this.relatedOrder = order;
+    this.status = TicketStatus.ATTENDED;
+  }
+
 }
 
 //DOCS
 /* 1. mappedBy, indica que Ticket no es la propietaria de la relación. El valor de mappedBy
   debe ser el nombre del atributo en la otra entidad que hace referencia a esta
   entidad en este caso (ticket en Order). */
+
+/*Linea para formatear hora: @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")*/

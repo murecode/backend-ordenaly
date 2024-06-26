@@ -1,8 +1,11 @@
-package com.app.ordenaly.model.dto;
+package com.app.ordenaly.model.dtos;
 
 import com.app.ordenaly.model.OrderCart;
 
-public record OrderCartData(String product, int quantity, int subtotal) {
+public record OrderCartData(
+        String product,
+        int quantity,
+        int subtotal) {
 
   public OrderCartData(OrderCart orderCart) {
     this(

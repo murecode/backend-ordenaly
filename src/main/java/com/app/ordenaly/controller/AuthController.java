@@ -14,7 +14,7 @@ import com.app.ordenaly.infra.security.model.AuthResponse;
 import com.app.ordenaly.infra.security.model.AuthRequest;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/auth")
 public class AuthController {
 
   @Autowired

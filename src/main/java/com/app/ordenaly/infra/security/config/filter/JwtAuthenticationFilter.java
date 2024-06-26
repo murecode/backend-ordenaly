@@ -18,7 +18,6 @@ import java.io.IOException;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-
   @Autowired
   private JwtService jwtService;
   @Autowired
@@ -29,10 +28,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                   HttpServletResponse response,
                                   FilterChain filterChain) throws ServletException, IOException {
 
-    //1. Obtener el Header que contiene el jwt
+    //1.1 Obtener el Header que contiene el jwt
     String authHeader = request.getHeader("Authorization"); // Bearer jwt
-
-    //Validar si el Auth de Header existe
+    //1.2 Validar si el Auth de Header existe
     if(authHeader == null || !authHeader.startsWith("Bearer ")) {
       filterChain.doFilter(request, response);
       return;

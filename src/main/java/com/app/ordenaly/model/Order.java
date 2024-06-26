@@ -1,7 +1,7 @@
 package com.app.ordenaly.model;
 
 import com.app.ordenaly.infra.security.model.User;
-import com.app.ordenaly.model.utils.OrderStatus;
+//import com.app.ordenaly.model.utils.OrderStatus;
 import com.app.ordenaly.model.utils.PaymentStatus;
 import jakarta.persistence.*;
 
@@ -20,18 +20,11 @@ public class Order {
   private User waiter;
   @Column(name = "mesa", unique = true)
   private String table;
-  /*@Column
-  @Enumerated(EnumType.STRING)
-  private OrderStatus orderStatus;*/
   @Column
-  private Boolean isAttended;
+  private Boolean isOrderComplete;
   @Column
   @Enumerated(EnumType.STRING)
   private PaymentStatus paymentStatus;
-
-
-  public Order() {}
-
 
   public int getId() {
     return id;
@@ -65,20 +58,12 @@ public class Order {
     this.table = table;
   }
 
-  /*public OrderStatus getOrderStatus() {
-    return orderStatus;
+  public Boolean getOrderComplete() {
+    return isOrderComplete;
   }
 
-  public void setOrderStatus(OrderStatus orderStatus) {
-    this.orderStatus = orderStatus;
-  }*/
-
-  public Boolean getAttended() {
-    return isAttended;
-  }
-
-  public void setAttended(Boolean attended) {
-    isAttended = attended;
+  public void setOrderComplete(Boolean orderComplete) {
+    isOrderComplete = orderComplete;
   }
 
   public PaymentStatus getPaymentStatus() {

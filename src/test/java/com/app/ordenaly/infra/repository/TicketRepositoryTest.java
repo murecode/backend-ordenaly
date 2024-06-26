@@ -3,7 +3,6 @@ package com.app.ordenaly.infra.repository;
 import com.app.ordenaly.model.Ticket;
 
 import org.junit.jupiter.api.Test;
-//import org.mockito.junit.jupiter.MockitoExtension;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -25,7 +24,7 @@ class TicketRepositoryTest {
   void testGenerateTicket() {
 
     Ticket newTicket = new Ticket();
-    newTicket.setTime(LocalTime.now());
+    newTicket.setCreatedAt(LocalTime.now());
 
     Ticket generate = ticketRepository.save(newTicket);
 

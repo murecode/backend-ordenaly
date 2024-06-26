@@ -45,6 +45,7 @@ public class JwtService {
     return Keys.hmacShaKeyFor(secretKeyAsBytes);
   }
 
+  //4.
   public String extractUsername(String jwt) {
     return Jwts.parser().setSigningKey(generateKey())
             .build()
@@ -60,6 +61,18 @@ public class JwtService {
 
 /*3. Decodifica una clave secreta en base64, la imprime en la consola y luego la utiliza para
      generar una instancia de Key que se utilizará en la firma de tokens JWT. */
+
+/*4. - Metodo que recibe un parámetro jwt de tipo String y devuelve un String. El parámetro jwt
+       representa el JSON Web Token del cual queremos extraer el nombre de usuario.
+     - Jwts.parser(): Llama al método estático parser de la clase Jwts, que crea una instancia de JwtParser.
+     - .setSigningKey(generateKey()): Configura la clave de firma que se utilizará para verificar el JWT.
+     - generateKey() debe ser implementado en otro lugar del código y debe devolver la clave de firma
+       correcta (por ejemplo, una SecretKey o un String que representa la clave secreta).
+     - .build(): Construye el JwtParser con la configuración proporcionada (en este caso, la clave de firma).
+     - .parseClaimsJws(jwt): Parsea el JWT y lo valida usando la clave de firma. Si el token es válido
+       y está correctamente firmado, este método devolverá un Jws<Claims> que contiene las claims (información) del JWT.
+     - .getBody(): Obtiene el cuerpo (claims) del JWT, que es un objeto de tipo Claims.
+     - .getSubject(): Obtiene el "subject" de las claims, que normalmente es el nombre de usuario o identificador del usuario.*/
 
 // ANOTATIONS
 /* @Value, se utiliza para inyectar valores directamente en campos de una clase desde

@@ -1,8 +1,8 @@
 package com.app.ordenaly.controller;
 
 import com.app.ordenaly.model.Order;
-import com.app.ordenaly.model.dto.OrderData;
-import com.app.ordenaly.model.dto.OrderRequest;
+import com.app.ordenaly.model.dtos.OrderData;
+import com.app.ordenaly.model.dtos.OrderCreateData;
 import com.app.ordenaly.service.OrderService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.format.DateTimeFormatter;
-
 @RestController
-@RequestMapping("/api/v1/orders")
+@RequestMapping("/orders")
 public class OrderController {
   @Autowired
   private OrderService orderService;
@@ -43,17 +41,9 @@ public class OrderController {
   }*/
 
   @PostMapping("")
-  public ResponseEntity<OrderData> createOrder(@RequestBody OrderRequest orderRequest) {
-    Order order = orderService.createOrder(orderRequest);
-    OrderData orderData = new OrderData(
-            order.getId(),
-            order.getTicket().getId(),
-            order.getTicket().getTime(),
-            order.getWaiter().getName(),
-            order.getTable(),
-            order.getAttended(),
-            order.getPaymentStatus());
-    return new ResponseEntity<>(orderData, HttpStatus.CREATED);
+  public ResponseEntity<OrderData> createOrder(@RequestBody OrderCreateData orderRequest) {
+    OrderData order = orderService.createOrder(orderRequest);
+    return new ResponseEntity<>(order, HttpStatus.CREATED);
   }
 
   //updateOrderStatus() ResponseEntity.status(HttpStatus.CREATED).body(savedOrder)

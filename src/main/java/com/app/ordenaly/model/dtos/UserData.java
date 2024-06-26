@@ -1,4 +1,4 @@
-package com.app.ordenaly.model.dto;
+package com.app.ordenaly.model.dtos;
 
 import com.app.ordenaly.infra.security.model.User;
 

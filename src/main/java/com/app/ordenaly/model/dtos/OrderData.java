@@ -1,12 +1,11 @@
-package com.app.ordenaly.model.dto;
+package com.app.ordenaly.model.dtos;
 
 import com.app.ordenaly.model.Order;
-import com.app.ordenaly.model.utils.OrderStatus;
+//import com.app.ordenaly.model.utils.OrderStatus;
 import com.app.ordenaly.model.utils.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 public record OrderData(
         int order,
@@ -15,7 +14,7 @@ public record OrderData(
         LocalTime time,
         String waiter,
         String table,
-        Boolean isAttended,
+        Boolean isOrderComplete,
         PaymentStatus paymentStatus
 
 ) {
@@ -24,10 +23,10 @@ public record OrderData(
     this(
             order.getId(),
             order.getTicket().getId(),
-            order.getTicket().getTime(),
+            order.getTicket().getCreatedAt(),
             order.getWaiter().getName(),
             order.getTable(),
-            order.getAttended(),
+            order.getOrderComplete(),
             order.getPaymentStatus()
     );
   }

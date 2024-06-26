@@ -1,7 +1,7 @@
 package com.app.ordenaly.controller;
 
 import com.app.ordenaly.model.Order;
-import com.app.ordenaly.model.dto.OrderCartData;
+import com.app.ordenaly.model.dtos.OrderCartData;
 import com.app.ordenaly.infra.repository.OrderCartRepository;
 import com.app.ordenaly.service.OrderCartService;
 import com.app.ordenaly.service.OrderService;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/carts")
+@RequestMapping("/carts")
 public class OrderCartController {
   @Autowired
   private OrderCartService orderCartService;
