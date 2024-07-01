@@ -1,10 +1,10 @@
 package com.app.ordenaly.controller;
 
-import com.app.ordenaly.model.Order;
-import com.app.ordenaly.model.dtos.OrderData;
-import com.app.ordenaly.model.dtos.OrderCreateData;
+import com.app.ordenaly.model.dtos.order.OrderData;
+import com.app.ordenaly.model.dtos.order.OrderCreateData;
 import com.app.ordenaly.service.OrderService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,8 +41,8 @@ public class OrderController {
   }*/
 
   @PostMapping("")
-  public ResponseEntity<OrderData> createOrder(@RequestBody OrderCreateData orderRequest) {
-    OrderData order = orderService.createOrder(orderRequest);
+  public ResponseEntity<OrderData> createOrder(@RequestBody @Valid OrderCreateData orderBody) {
+    OrderData order = orderService.createOrder(orderBody);
     return new ResponseEntity<>(order, HttpStatus.CREATED);
   }
 

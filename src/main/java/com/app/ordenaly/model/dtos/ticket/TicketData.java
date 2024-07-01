@@ -1,4 +1,4 @@
-package com.app.ordenaly.model.dtos;
+package com.app.ordenaly.model.dtos.ticket;
 
 import com.app.ordenaly.model.Ticket;
 import com.app.ordenaly.model.utils.TicketStatus;

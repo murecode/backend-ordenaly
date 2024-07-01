@@ -1,13 +1,16 @@
 package com.app.ordenaly.controller;
 
 import com.app.ordenaly.model.Product;
+import com.app.ordenaly.model.dtos.product.ProductCreateData;
+import com.app.ordenaly.model.dtos.product.ProductData;
 import com.app.ordenaly.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -16,15 +19,16 @@ public class ProductController {
   private ProductService productService;
 
   @GetMapping
-  public List<Product> listAllProducts(){
-    return productService.getProducts();
+  public ResponseEntity<Page<ProductData>> listAllProducts(Pageable pageable){
+    Page<ProductData> products = productService.getProducts(pageable);
+    return ResponseEntity.ok(products);
   }
 
   @PostMapping
-  public ResponseEntity<Product> createProduct(
-          @RequestBody Product product) {
-    productService.createProduct( product );
-    return new ResponseEntity<Product>(product, HttpStatus.CREATED);
+  public ResponseEntity<ProductData> createProduct(
+          @RequestBody @Valid ProductCreateData productData) {
+    ProductData product = productService.createProduct(productData);
+    return new ResponseEntity<>(product, HttpStatus.CREATED);
   }
 
   @PutMapping("/{id}")

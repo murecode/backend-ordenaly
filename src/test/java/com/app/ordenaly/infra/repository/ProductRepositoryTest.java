@@ -23,7 +23,7 @@ class ProductRepositoryTest {
   void testCreateNewProduct() {
 
     Product product = new Product();
-    product.setProductName("Sandwich");
+    product.setTitle("Sandwich");
     product.setDescription("Delicioso con salsa de ajo");
     product.setPrice(15000);
     product.setInStock(true);
@@ -39,7 +39,7 @@ class ProductRepositoryTest {
 
     assertNotNull(product);
 
-    product.setProductName("Pizza Italiana");
+    product.setTitle("Pizza Italiana");
     product.setDescription("con queso y pasta de tomate");
     product.setPrice(25000);
     product.setInStock(true);

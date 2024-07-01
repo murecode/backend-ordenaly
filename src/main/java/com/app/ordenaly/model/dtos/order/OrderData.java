@@ -1,4 +1,4 @@
-package com.app.ordenaly.model.dtos;
+package com.app.ordenaly.model.dtos.order;
 
 import com.app.ordenaly.model.Order;
 //import com.app.ordenaly.model.utils.OrderStatus;
@@ -11,14 +11,12 @@ public record OrderData(
         int order,
         int ticket,
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")
-        LocalTime time,
+        LocalTime createdAt,
         String waiter,
         String table,
         Boolean isOrderComplete,
         PaymentStatus paymentStatus
-
 ) {
-
   public OrderData(Order order) {
     this(
             order.getId(),
@@ -30,5 +28,4 @@ public record OrderData(
             order.getPaymentStatus()
     );
   }
-
 }

@@ -39,7 +39,7 @@ public class HttpSecurityConfig {
 //
               authorize.requestMatchers(HttpMethod.GET,    "/orders").permitAll();
 //              authorize.requestMatchers(HttpMethod.GET,    "/orders/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,   "/orders/{ticketid}/{userid}").permitAll();
+//              authorize.requestMatchers(HttpMethod.POST,   "/orders/{ticketid}/{userid}").permitAll();
               authorize.requestMatchers(HttpMethod.POST,   "/orders").permitAll();
 //              authorize.requestMatchers(HttpMethod.PUT,    "/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/orders/{id}").authenticated();
@@ -48,8 +48,8 @@ public class HttpSecurityConfig {
               authorize.requestMatchers(HttpMethod.GET,    "/carts/order/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.POST,   "/carts/add/{productid}/{qty}/{orderid}").permitAll();
 //
-              authorize.requestMatchers(HttpMethod.GET, "/products").hasAuthority(Permissions.READ_PRODUCTS.name());
-              authorize.requestMatchers(HttpMethod.POST, "/products").hasAuthority(Permissions.SAVE_PRODUCT.name());
+              authorize.requestMatchers(HttpMethod.GET, "/products").permitAll();
+              authorize.requestMatchers(HttpMethod.POST, "/products").permitAll();
               authorize.requestMatchers(HttpMethod.PUT, "/products/{id}").hasAuthority(Permissions.UPDATE_PRODUCT.name());
               authorize.requestMatchers(HttpMethod.DELETE, "/products/{id}").hasAuthority(Permissions.DELETE_PRODUCT.name());
 //

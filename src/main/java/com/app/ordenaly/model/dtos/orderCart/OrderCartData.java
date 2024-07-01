@@ -1,15 +1,16 @@
-package com.app.ordenaly.model.dtos;
+package com.app.ordenaly.model.dtos.orderCart;
 
 import com.app.ordenaly.model.OrderCart;
 
 public record OrderCartData(
         String product,
         int quantity,
-        int subtotal) {
+        int subtotal
+) {
 
   public OrderCartData(OrderCart orderCart) {
     this(
-            orderCart.getProduct().getProductName(),
+            orderCart.getProduct().getTitle(),
             orderCart.getQuantity(),
             orderCart.calculateSubtotal()
     );

@@ -1,14 +1,18 @@
 package com.app.ordenaly.service;
 
+import com.app.ordenaly.infra.security.model.User;
 import com.app.ordenaly.model.*;
-import com.app.ordenaly.model.dtos.OrderData;
-import com.app.ordenaly.model.dtos.OrderCreateData;
+import com.app.ordenaly.model.dtos.order.OrderData;
+import com.app.ordenaly.model.dtos.order.OrderCreateData;
 import com.app.ordenaly.model.utils.PaymentStatus;
 import com.app.ordenaly.infra.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalTime;
+import java.util.Optional;
 
 @Service // 1.
 public class OrderService {
@@ -42,18 +46,20 @@ public class OrderService {
     return orderRepo.save(order);
   }*/
 
-  public OrderData createOrder(OrderCreateData orderRequest) {
-    var ticket = ticketRepo.findById(orderRequest.getTicket());
-    var waiter = userRepo.findById(orderRequest.getWaiter());
+  public OrderData createOrder(OrderCreateData orderBody) {
 
-    /*if (ticket.isEmpty() || user.isEmpty()) {
-      throw new RuntimeException("Ticket or waiter not found");
-    }*/
+    if (orderBody.getTicket() == null) {
+      throw new IllegalArgumentException("Ticket cannot be null");
+    }
+
+    Optional<Ticket> ticket = Optional.of(ticketRepo.getReferenceById(orderBody.getTicket().getId()));
+    Optional<User> waiter = Optional.of(userRepo.getReferenceById(orderBody.getWaiter().getId()));
 
     Order order = new Order();
     order.setTicket(ticket.get());
     order.setWaiter(waiter.get());
-    order.setTable(orderRequest.getTable());
+    order.setCreatedAt(LocalTime.now());
+    order.setTable(orderBody.getTable());
     order.setOrderComplete(false);
     order.setPaymentStatus(PaymentStatus.PENDING);
     //Se relaciona la orden con el Ticket y asi se actualiza el estado del Ticket

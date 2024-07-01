@@ -2,23 +2,23 @@ package com.app.ordenaly.service;
 
 import com.app.ordenaly.model.Ticket;
 import com.app.ordenaly.infra.repository.TicketRepository;
-import com.app.ordenaly.model.dtos.TicketCreateData;
-import com.app.ordenaly.model.dtos.TicketData;
+import com.app.ordenaly.model.dtos.ticket.TicketCreateData;
+import com.app.ordenaly.model.dtos.ticket.TicketData;
 import com.app.ordenaly.model.utils.TicketStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.List;
 
 @Service
 public class TicketService {
   @Autowired
   private TicketRepository ticketRepo;
 
-  public List<Ticket> getAllTickets() {
-    return ticketRepo.findAll();
+  public Page<TicketData> findAllTickets(Pageable pageable) {
+    return ticketRepo.findAll(pageable).map(TicketData::new);
   }
 
   public TicketData createTicket(TicketCreateData ticketData) {

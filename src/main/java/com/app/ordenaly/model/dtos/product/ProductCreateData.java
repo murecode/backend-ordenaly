@@ -1,33 +1,18 @@
+package com.app.ordenaly.model.dtos.product;
 
-package com.app.ordenaly.model;
+import jakarta.validation.constraints.NotBlank;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotNull;
-
-@Entity
-@Table(name = "products")
-public class Product {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
-  @Column(unique = true)
+public class ProductCreateData {
+  @NotBlank
   private String title;
-  @Column(name = "\"description\"")
+  @NotBlank
   private String description;
-  @Column
+  @NotBlank
   private String imageUrl;
-  @DecimalMin(value = "0")
+  @NotBlank
   private int price;
+  @NotBlank
   private Boolean inStock;
-
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
 
   public String getTitle() {
     return title;
@@ -68,14 +53,4 @@ public class Product {
   public void setInStock(Boolean inStock) {
     this.inStock = inStock;
   }
-
-  @Override
-  public String toString() {
-    return  "ID: "           + id          + "\n" +
-            "PRODUCT: "      + title + "\n" +
-            "DESCRIPTION: "  + description + "\n" +
-            "PRICE: "        + price       + "\n" +
-            "INSTOCK: "      + inStock     + "\n" ;
-  }
-
 }

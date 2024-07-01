@@ -1,25 +1,16 @@
 package com.app.ordenaly.service;
 
-import com.app.ordenaly.model.Order;
-import com.app.ordenaly.model.Ticket;
-import com.app.ordenaly.model.dtos.OrderCreateData;
 import com.app.ordenaly.infra.repository.OrderRepository;
 import com.app.ordenaly.infra.repository.TicketRepository;
 import com.app.ordenaly.infra.repository.UserRepository;
-import com.app.ordenaly.infra.security.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest

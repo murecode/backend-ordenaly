@@ -2,6 +2,8 @@ package com.app.ordenaly.infra.repository;
 
 import com.app.ordenaly.model.Ticket;
 
+import com.app.ordenaly.model.utils.TicketStatus;
+import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +21,27 @@ import static org.springframework.context.annotation.ConfigurationClassUtils.get
 @Rollback(value = false)
 class TicketRepositoryTest {
   @Autowired
-  TicketRepository ticketRepository;
+  private TicketRepository ticketRepository;
+  @Autowired
+  private EntityManager entityManager;
   @Test
   void testGenerateTicket() {
 
     Ticket newTicket = new Ticket();
     newTicket.setCreatedAt(LocalTime.now());
+    newTicket.setNumberOfPeople(6);
+    newTicket.setStatus(TicketStatus.WAITING);
 
     Ticket generate = ticketRepository.save(newTicket);
 
     assertTrue(generate.getId() > 0);
+  }
 
+  @Test
+  void testFindTicketById() {
+    Ticket ticket = entityManager.find(Ticket.class, 17);
+
+    assertTrue(ticket.getId() == 17);
   }
 
 

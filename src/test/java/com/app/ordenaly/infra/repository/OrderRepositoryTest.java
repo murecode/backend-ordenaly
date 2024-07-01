@@ -10,6 +10,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
+import java.time.LocalTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest //(*)
@@ -25,15 +27,16 @@ class OrderRepositoryTest {
 
   @Test
   void testGenerateNewOrder() {
-    Ticket ticket = entityManager.find(Ticket.class, 9);
-    User waiter = entityManager.find(User.class, 3);
+    Ticket ticket = entityManager.find(Ticket.class, 18);
+    User waiter = entityManager.find(User.class, 7);
 
     Order order = new Order();
     order.setTicket(ticket);
     order.setWaiter(waiter);
-    order.setTable("Sin defini2");
-    order.setOrderComplete(false);
-    order.setPaymentStatus(PaymentStatus.PENDING);
+    order.setCreatedAt(LocalTime.now());
+    order.setTable("Sin defini3");
+    order.setOrderComplete(true);
+    order.setPaymentStatus(PaymentStatus.PAID);
 
     Order saveOrder = orderRepository.save(order);
 
@@ -42,7 +45,7 @@ class OrderRepositoryTest {
 
   @Test
   void  testFindEntities() {
-    Ticket ticket = entityManager.find(Ticket.class, 4);
+    Ticket ticket = entityManager.find(Ticket.class, 17);
     User waiter = entityManager.find(User.class, 3);
 
     System.out.println(ticket.toString());

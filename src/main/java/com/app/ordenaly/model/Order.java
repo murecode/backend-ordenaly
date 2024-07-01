@@ -5,6 +5,8 @@ import com.app.ordenaly.infra.security.model.User;
 import com.app.ordenaly.model.utils.PaymentStatus;
 import jakarta.persistence.*;
 
+import java.time.LocalTime;
+
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -15,6 +17,8 @@ public class Order {
   @OneToOne()
   @JoinColumn(name = "ticketId")
   private Ticket ticket;
+  @Column
+  private LocalTime createdAt;
   @ManyToOne()
   @JoinColumn(name = "waiterId")
   private User waiter;
@@ -40,6 +44,14 @@ public class Order {
 
   public void setTicket(Ticket ticket) {
     this.ticket = ticket;
+  }
+
+  public LocalTime getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(LocalTime createdAt) {
+    this.createdAt = createdAt;
   }
 
   public User getWaiter() {
