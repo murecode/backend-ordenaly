@@ -10,9 +10,19 @@ public class ProductCreateData {
   @NotBlank
   private String imageUrl;
   @NotBlank
-  private int price;
+  private Integer price;
   @NotBlank
   private Boolean inStock;
+
+  public ProductCreateData() {}
+
+  public ProductCreateData(
+          String title,
+          String description,
+          String imageUrl,
+          Integer price,
+          Boolean inStock) {
+  }
 
   public String getTitle() {
     return title;
@@ -38,11 +48,11 @@ public class ProductCreateData {
     this.imageUrl = imageUrl;
   }
 
-  public int getPrice() {
+  public Integer getPrice() {
     return price;
   }
 
-  public void setPrice(int price) {
+  public void setPrice(Integer price) {
     this.price = price;
   }
 

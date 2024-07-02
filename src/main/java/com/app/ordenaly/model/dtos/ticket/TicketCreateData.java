@@ -2,7 +2,9 @@ package com.app.ordenaly.model.dtos.ticket;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class TicketCreateData {
+import java.io.Serializable;
+
+public class TicketCreateData implements Serializable {
   @NotBlank
   private int numberOfPeople;
 

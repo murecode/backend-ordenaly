@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalTime;
 import java.util.Optional;
@@ -46,14 +47,14 @@ public class OrderService {
     return orderRepo.save(order);
   }*/
 
+  @Transactional
   public OrderData createOrder(OrderCreateData orderBody) {
+    Optional<Ticket> ticket = ticketRepo.findById(orderBody.getTicket());
+    Optional<User> waiter = userRepo.findById(orderBody.getTicket());
 
-    if (orderBody.getTicket() == null) {
-      throw new IllegalArgumentException("Ticket cannot be null");
+    if (ticket.isEmpty() || waiter.isEmpty()) {
+      throw new IllegalArgumentException("Ticket or Waiter cannot be null");
     }
-
-    Optional<Ticket> ticket = Optional.of(ticketRepo.getReferenceById(orderBody.getTicket().getId()));
-    Optional<User> waiter = Optional.of(userRepo.getReferenceById(orderBody.getWaiter().getId()));
 
     Order order = new Order();
     order.setTicket(ticket.get());

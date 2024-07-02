@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductService {
@@ -44,20 +45,35 @@ public class ProductService {
     return productRepo.findById(id).get();
   }
 
-  public void updateProduct(int productId, Product productBoby) {
-    Product product = productRepo.findById(productId).orElse(null);
+  @Transactional
+  public ProductCreateData updateProduct(int productId, ProductCreateData productBoby) {
+    Product product = productRepo.getReferenceById(productId);
 
-    if( product != null ) {
+    if (productBoby.getTitle() != null) {
       product.setTitle(productBoby.getTitle());
-      product.setDescription(productBoby.getDescription());
-      product.setPrice(productBoby.getPrice());
-      product.setInStock(productBoby.getInStock());
-
-      productRepo.save(product);
-
-    } else {
-      throw new EntityNotFoundException("No se encontró el producto con ID: " + productId);
     }
+    if (productBoby.getDescription() != null) {
+      product.setDescription(productBoby.getDescription());
+    }
+    if (productBoby.getImageUrl() != null) {
+      product.setImageUrl(productBoby.getImageUrl());
+    }
+    if (productBoby.getPrice() != null) {
+      product.setPrice(productBoby.getPrice());
+    }
+    if (productBoby.getInStock() != null) {
+      product.setInStock(productBoby.getInStock());
+    }
+
+    productRepo.save(product);
+
+    return new ProductCreateData(
+            productBoby.getTitle(),
+            productBoby.getDescription(),
+            productBoby.getImageUrl(),
+            productBoby.getPrice(),
+            productBoby.getInStock()
+    );
   }
 
   public void deleteProduct(int id) {

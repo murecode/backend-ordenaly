@@ -6,25 +6,33 @@ import jakarta.validation.constraints.NotBlank;
 
 public class OrderCreateData {
   @NotBlank
-  private Ticket ticket;
+  private Integer ticket;
   @NotBlank
-  private User waiter;
+  private Integer waiter;
   @NotBlank
   private String table;
 
-  public Ticket getTicket() {
+  public OrderCreateData() {}
+
+  public OrderCreateData(Integer ticket, Integer waiter, String table) {
+    this.ticket = ticket;
+    this.waiter = waiter;
+    this.table = table;
+  }
+
+  public Integer getTicket() {
     return ticket;
   }
 
-  public void setTicket(Ticket ticket) {
+  public void setTicket(Integer ticket) {
     this.ticket = ticket;
   }
 
-  public User getWaiter() {
+  public Integer getWaiter() {
     return waiter;
   }
 
-  public void setWaiter(User waiter) {
+  public void setWaiter(Integer waiter) {
     this.waiter = waiter;
   }
 

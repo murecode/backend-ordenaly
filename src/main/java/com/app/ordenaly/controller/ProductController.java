@@ -31,10 +31,10 @@ public class ProductController {
     return new ResponseEntity<>(product, HttpStatus.CREATED);
   }
 
-  @PutMapping("/{id}")
-  public ResponseEntity<Product> updateProduct(
+  @PatchMapping("/{id}")
+  public ResponseEntity<ProductCreateData> updateProduct(
           @PathVariable("id") int productId,
-          @RequestBody Product product) {
+          @RequestBody @Valid ProductCreateData product) {
     productService.updateProduct(productId, product);
 
     return new ResponseEntity<>(product, HttpStatus.OK);
