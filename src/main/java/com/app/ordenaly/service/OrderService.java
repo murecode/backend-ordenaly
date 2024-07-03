@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalTime;
 import java.util.Optional;
 
-@Service // 1.
+@Service //1.
 public class OrderService {
   @Autowired
   private OrderRepository orderRepo;
@@ -49,22 +49,30 @@ public class OrderService {
 
   @Transactional
   public OrderData createOrder(OrderCreateData orderBody) {
-    Optional<Ticket> ticket = ticketRepo.findById(orderBody.getTicket());
-    Optional<User> waiter = userRepo.findById(orderBody.getTicket());
 
-    if (ticket.isEmpty() || waiter.isEmpty()) {
-      throw new IllegalArgumentException("Ticket or Waiter cannot be null");
+    Ticket ticket = ticketRepo.findById(orderBody.getTicket()).get();
+    if (ticket == null) {
+      throw new IllegalArgumentException("Ticket cannot be null");
     }
 
+    System.out.println(ticket.toString());
+
+    User waiter = userRepo.findById(orderBody.getWaiter()).get();
+    if (waiter == null) {
+      throw new IllegalArgumentException("Waiter cannot be null");
+    }
+
+    System.out.println(waiter.toString());
+
     Order order = new Order();
-    order.setTicket(ticket.get());
-    order.setWaiter(waiter.get());
-    order.setCreatedAt(LocalTime.now());
+    order.setTicket(ticket);
+    order.setWaiter(waiter);
+    order.setCreatedAt(ticket.getCreatedAt());
     order.setTable(orderBody.getTable());
     order.setOrderComplete(false);
     order.setPaymentStatus(PaymentStatus.PENDING);
     //Se relaciona la orden con el Ticket y asi se actualiza el estado del Ticket
-    ticket.get().relateToTheOrder(order);
+    ticket.relateToTheOrder(order);
 
     Order o = orderRepo.save(order);
 

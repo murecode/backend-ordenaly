@@ -3,22 +3,15 @@ package com.app.ordenaly.model.dtos.order;
 import com.app.ordenaly.infra.security.model.User;
 import com.app.ordenaly.model.Ticket;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+import java.io.Serializable;
 
 public class OrderCreateData {
-  @NotBlank
   private Integer ticket;
-  @NotBlank
   private Integer waiter;
   @NotBlank
   private String table;
-
-  public OrderCreateData() {}
-
-  public OrderCreateData(Integer ticket, Integer waiter, String table) {
-    this.ticket = ticket;
-    this.waiter = waiter;
-    this.table = table;
-  }
 
   public Integer getTicket() {
     return ticket;

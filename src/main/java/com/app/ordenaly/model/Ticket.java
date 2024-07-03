@@ -59,6 +59,16 @@ public class Ticket {
     this.status = TicketStatus.ATTENDED;
   }
 
+  @Override
+  public String toString() {
+    return "Ticket{" +
+            "id=" + id +
+            ", createdAt=" + createdAt +
+            ", numberOfPeople=" + numberOfPeople +
+            ", status=" + status +
+            ", relatedOrder=" + relatedOrder +
+            '}';
+  }
 }
 
 //DOCS

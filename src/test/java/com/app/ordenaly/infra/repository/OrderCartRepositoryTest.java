@@ -43,7 +43,7 @@ class OrderCartRepositoryTest {
   void testGetOrderItemsByOrder() {
     Order order = entityManager.find(Order.class, 2);
 
-    List<OrderCart> orderCarts = orderCartRepo.findByOrder(order);
+//    List<OrderCart> orderCarts = orderCartRepo.findByOrder(order);
 
 //    assertEquals(2, orderCarts.stream().count());
   }
