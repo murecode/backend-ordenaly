@@ -2,7 +2,7 @@ package com.app.ordenaly.service;
 
 import com.app.ordenaly.model.entities.Order;
 import com.app.ordenaly.model.entities.OrderCart;
-import com.app.ordenaly.model.request.OrderCartCreateData;
+import com.app.ordenaly.model.request.CreateOrderCart;
 import com.app.ordenaly.model.response.OrderCartData;
 import com.app.ordenaly.model.entities.Product;
 import com.app.ordenaly.infra.repository.OrderCartRepository;
@@ -31,7 +31,7 @@ public class OrderCartService {
     return cartList;
   }
 
-  public OrderCartData addProductToCart(int orderId, OrderCartCreateData orderCartBody) {
+  public OrderCartData addProductToCart(int orderId, CreateOrderCart orderCartBody) {
 
     Optional<Order> orderOptional = orderRepo.findById(orderId);
     if (orderOptional.isEmpty()) {

@@ -1,7 +1,7 @@
 package com.app.ordenaly.controller;
 
 import com.app.ordenaly.model.entities.Order;
-import com.app.ordenaly.model.request.OrderCartCreateData;
+import com.app.ordenaly.model.request.CreateOrderCart;
 import com.app.ordenaly.model.response.OrderCartData;
 import com.app.ordenaly.infra.repository.OrderCartRepository;
 import com.app.ordenaly.service.OrderCartService;
@@ -40,7 +40,7 @@ public class OrderCartController {
   @PostMapping("/{id}")
   public ResponseEntity<OrderCartData> addProductToCart(
           @PathVariable("id") int orderId,
-          @RequestBody OrderCartCreateData orderCartBody) {
+          @RequestBody CreateOrderCart orderCartBody) {
     OrderCartData orderCartData = orderCartService.addProductToCart(orderId, orderCartBody);
     return new ResponseEntity<>(orderCartData, HttpStatus.CREATED);
   }

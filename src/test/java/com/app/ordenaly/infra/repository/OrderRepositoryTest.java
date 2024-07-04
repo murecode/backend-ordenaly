@@ -3,7 +3,7 @@ package com.app.ordenaly.infra.repository;
 import com.app.ordenaly.model.entities.Order;
 import com.app.ordenaly.model.entities.Ticket;
 import com.app.ordenaly.model.enums.PaymentStatus;
-import com.app.ordenaly.infra.security.model.User;
+import com.app.ordenaly.model.entities.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

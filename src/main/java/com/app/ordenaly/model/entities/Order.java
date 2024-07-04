@@ -1,7 +1,5 @@
 package com.app.ordenaly.model.entities;
 
-import com.app.ordenaly.infra.security.model.User;
-//import com.app.ordenaly.model.utils.OrderStatus;
 import com.app.ordenaly.model.enums.PaymentStatus;
 import jakarta.persistence.*;
 
@@ -15,7 +13,7 @@ public class Order {
   @Column
   private int id;
   @OneToOne()
-  @JoinColumn(name = "ticketId")
+  @JoinColumn(name = "ticketId", unique = true)
   private Ticket ticket;
   @Column
   private LocalTime createdAt;

@@ -1,8 +1,9 @@
 package com.app.ordenaly.service;
 
-import com.app.ordenaly.infra.security.model.User;
+import com.app.ordenaly.model.entities.User;
+import com.app.ordenaly.model.enums.TicketStatus;
 import com.app.ordenaly.model.response.OrderData;
-import com.app.ordenaly.model.request.OrderCreateData;
+import com.app.ordenaly.model.request.CreateOrder;
 import com.app.ordenaly.model.entities.Order;
 import com.app.ordenaly.model.entities.Ticket;
 import com.app.ordenaly.model.enums.PaymentStatus;
@@ -46,7 +47,7 @@ public class OrderService {
   }*/
 
   @Transactional
-  public OrderData createOrder(OrderCreateData orderBody) {
+  public OrderData createOrder(CreateOrder orderBody) {
 
     Ticket ticket = ticketRepo.findById(orderBody.getTicket()).get();
     if (ticket == null) {
@@ -65,8 +66,9 @@ public class OrderService {
     order.setTable(orderBody.getTable());
     order.setOrderComplete(false);
     order.setPaymentStatus(PaymentStatus.PENDING);
-    //Se relaciona la orden con el Ticket y asi se actualiza el estado del Ticket
-//    ticket.relateToTheOrder(order);
+
+    // Actualizar el estado del ticket
+    ticketRepo.updateTicketStatus(orderBody.getTicket(), TicketStatus.ATTENDED);
 
     Order o = orderRepo.save(order);
 

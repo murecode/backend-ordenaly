@@ -1,6 +1,6 @@
 package com.app.ordenaly.controller;
 
-import com.app.ordenaly.model.request.TicketCreateData;
+import com.app.ordenaly.model.request.CreateTicket;
 import com.app.ordenaly.model.response.TicketData;
 import com.app.ordenaly.service.TicketService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,7 +27,7 @@ public class TicketController {
 
   @PostMapping("")
   public ResponseEntity<TicketData> createTicket(
-          @RequestBody @Valid TicketCreateData ticketData) {
+          @RequestBody @Valid CreateTicket ticketData) {
     TicketData ticket = ticketService.createTicket(ticketData);
     return new ResponseEntity<>(ticket, HttpStatus.CREATED);
   }

@@ -1,4 +1,4 @@
-package com.app.ordenaly.infra.security.model;
+package com.app.ordenaly.model.response;
 
 public class AuthResponse {
   private String jwt;

@@ -1,6 +1,6 @@
-package com.app.ordenaly.infra.security.model;
+package com.app.ordenaly.model.entities;
 
-import com.app.ordenaly.infra.security.utils.Roles;
+import com.app.ordenaly.model.enums.Roles;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

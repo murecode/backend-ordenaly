@@ -3,7 +3,7 @@ package com.app.ordenaly.service;
 //import com.app.ordenaly.models.dto.mapper.UserMapper;
 //import com.app.ordenaly.model.Staff;
 import com.app.ordenaly.model.response.UserData;
-import com.app.ordenaly.infra.security.model.User;
+import com.app.ordenaly.model.entities.User;
 //import com.app.ordenaly.infra.repository.StaffRepository;
 import com.app.ordenaly.infra.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

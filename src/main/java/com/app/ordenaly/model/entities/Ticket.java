@@ -21,7 +21,7 @@ public class Ticket {
   @Enumerated(EnumType.STRING)
   private TicketStatus status;
   @OneToOne(mappedBy = "ticket")
-  private Order relatedOrder = null;
+  private Order relatedOrder;
 
   public int getId() {
     return id;
@@ -54,11 +54,6 @@ public class Ticket {
   public void setStatus(TicketStatus status) {
     this.status = status;
   }
-
-//  public void relateToTheOrder(Order order) {
-//    this.relatedOrder = order;
-//    this.status = TicketStatus.ATTENDED;
-//  }
 
   @Override
   public String toString() {

@@ -1,4 +1,4 @@
-package com.app.ordenaly.infra.security.model;
+package com.app.ordenaly.model.request;
 
 import jakarta.validation.constraints.NotBlank;
 

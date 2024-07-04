@@ -1,6 +1,6 @@
 package com.app.ordenaly.model.request;
 
-public class OrderCartCreateData {
+public class CreateOrderCart {
   private Integer product;
   private int quantity;
 

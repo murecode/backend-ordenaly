@@ -1,8 +1,8 @@
-package com.app.ordenaly.config.security.filter;
+package com.app.ordenaly.infra.security.filter;
 
-import com.app.ordenaly.infra.security.model.User;
+import com.app.ordenaly.model.entities.User;
 import com.app.ordenaly.infra.repository.UserRepository;
-import com.app.ordenaly.infra.security.service.JwtService;
+import com.app.ordenaly.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

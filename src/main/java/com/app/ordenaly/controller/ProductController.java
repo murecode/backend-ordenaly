@@ -1,6 +1,6 @@
 package com.app.ordenaly.controller;
 
-import com.app.ordenaly.model.request.ProductCreateData;
+import com.app.ordenaly.model.request.CreateProduct;
 import com.app.ordenaly.model.response.ProductData;
 import com.app.ordenaly.service.ProductService;
 import jakarta.validation.Valid;
@@ -25,15 +25,15 @@ public class ProductController {
 
   @PostMapping
   public ResponseEntity<ProductData> createProduct(
-          @RequestBody @Valid ProductCreateData productData) {
+          @RequestBody @Valid CreateProduct productData) {
     ProductData product = productService.createProduct(productData);
     return new ResponseEntity<>(product, HttpStatus.CREATED);
   }
 
   @PatchMapping("/{id}")
-  public ResponseEntity<ProductCreateData> updateProduct(
+  public ResponseEntity<CreateProduct> updateProduct(
           @PathVariable("id") int productId,
-          @RequestBody @Valid ProductCreateData product) {
+          @RequestBody @Valid CreateProduct product) {
     productService.updateProduct(productId, product);
 
     return new ResponseEntity<>(product, HttpStatus.OK);

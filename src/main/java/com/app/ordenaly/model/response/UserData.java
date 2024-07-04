@@ -1,6 +1,6 @@
 package com.app.ordenaly.model.response;
 
-import com.app.ordenaly.infra.security.model.User;
+import com.app.ordenaly.model.entities.User;
 
 public record UserData(int id, String name, String phone) {
 
