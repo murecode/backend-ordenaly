@@ -28,7 +28,7 @@ public class OrderCartController {
     return orderCartService.getCartByOrder(orderId);
   }*/
 
-  @GetMapping("/{id}")
+  @GetMapping("/orders/{id}")
   public List<OrderCartData> getOrderCartByOrder(
           @PathVariable("id") Order orderId) {
     Order order = orderService.findOrderById(orderId.getId());
