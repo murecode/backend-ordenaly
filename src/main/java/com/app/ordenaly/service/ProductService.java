@@ -1,10 +1,9 @@
 package com.app.ordenaly.service;
 
-import com.app.ordenaly.model.Product;
+import com.app.ordenaly.model.entities.Product;
 import com.app.ordenaly.infra.repository.ProductRepository;
-import com.app.ordenaly.model.dtos.product.ProductCreateData;
-import com.app.ordenaly.model.dtos.product.ProductData;
-import jakarta.persistence.EntityNotFoundException;
+import com.app.ordenaly.model.request.ProductCreateData;
+import com.app.ordenaly.model.response.ProductData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

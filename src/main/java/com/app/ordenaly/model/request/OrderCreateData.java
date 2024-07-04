@@ -1,11 +1,6 @@
-package com.app.ordenaly.model.dtos.order;
+package com.app.ordenaly.model.request;
 
-import com.app.ordenaly.infra.security.model.User;
-import com.app.ordenaly.model.Ticket;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
-import java.io.Serializable;
 
 public class OrderCreateData {
   private Integer ticket;

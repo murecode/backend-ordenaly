@@ -1,6 +1,7 @@
-package com.app.ordenaly.model;
+package com.app.ordenaly.model.entities;
 
-import com.app.ordenaly.model.utils.TicketStatus;
+import com.app.ordenaly.model.entities.Order;
+import com.app.ordenaly.model.enums.TicketStatus;
 import jakarta.persistence.*;
 
 import java.time.LocalTime;
@@ -54,10 +55,10 @@ public class Ticket {
     this.status = status;
   }
 
-  public void relateToTheOrder(Order order) {
-    this.relatedOrder = order;
-    this.status = TicketStatus.ATTENDED;
-  }
+//  public void relateToTheOrder(Order order) {
+//    this.relatedOrder = order;
+//    this.status = TicketStatus.ATTENDED;
+//  }
 
   @Override
   public String toString() {

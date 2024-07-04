@@ -1,4 +1,4 @@
-package com.app.ordenaly.model.utils;
+package com.app.ordenaly.model.enums;
 
 public enum TicketStatus {
   WAITING,

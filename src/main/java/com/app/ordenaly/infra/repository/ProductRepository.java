@@ -1,6 +1,6 @@
 package com.app.ordenaly.infra.repository;
 
-import com.app.ordenaly.model.Product;
+import com.app.ordenaly.model.entities.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

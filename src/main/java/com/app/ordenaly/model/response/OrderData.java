@@ -1,8 +1,8 @@
-package com.app.ordenaly.model.dtos.order;
+package com.app.ordenaly.model.response;
 
-import com.app.ordenaly.model.Order;
+import com.app.ordenaly.model.entities.Order;
 //import com.app.ordenaly.model.utils.OrderStatus;
-import com.app.ordenaly.model.utils.PaymentStatus;
+import com.app.ordenaly.model.enums.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalTime;

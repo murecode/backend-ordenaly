@@ -1,6 +1,6 @@
-package com.app.ordenaly.model.dtos.product;
+package com.app.ordenaly.model.response;
 
-import com.app.ordenaly.model.Product;
+import com.app.ordenaly.model.entities.Product;
 
 public record ProductData(
         int id,

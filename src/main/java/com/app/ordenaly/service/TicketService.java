@@ -1,10 +1,10 @@
 package com.app.ordenaly.service;
 
-import com.app.ordenaly.model.Ticket;
+import com.app.ordenaly.model.entities.Ticket;
 import com.app.ordenaly.infra.repository.TicketRepository;
-import com.app.ordenaly.model.dtos.ticket.TicketCreateData;
-import com.app.ordenaly.model.dtos.ticket.TicketData;
-import com.app.ordenaly.model.utils.TicketStatus;
+import com.app.ordenaly.model.request.TicketCreateData;
+import com.app.ordenaly.model.response.TicketData;
+import com.app.ordenaly.model.enums.TicketStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

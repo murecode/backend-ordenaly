@@ -1,6 +1,6 @@
 package com.app.ordenaly.infra.repository;
 
-import com.app.ordenaly.model.Product;
+import com.app.ordenaly.model.entities.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

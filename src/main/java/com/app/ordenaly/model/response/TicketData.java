@@ -1,7 +1,7 @@
-package com.app.ordenaly.model.dtos.ticket;
+package com.app.ordenaly.model.response;
 
-import com.app.ordenaly.model.Ticket;
-import com.app.ordenaly.model.utils.TicketStatus;
+import com.app.ordenaly.model.entities.Ticket;
+import com.app.ordenaly.model.enums.TicketStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalTime;

@@ -1,19 +1,17 @@
 package com.app.ordenaly.service;
 
 import com.app.ordenaly.infra.security.model.User;
-import com.app.ordenaly.model.*;
-import com.app.ordenaly.model.dtos.order.OrderData;
-import com.app.ordenaly.model.dtos.order.OrderCreateData;
-import com.app.ordenaly.model.utils.PaymentStatus;
+import com.app.ordenaly.model.response.OrderData;
+import com.app.ordenaly.model.request.OrderCreateData;
+import com.app.ordenaly.model.entities.Order;
+import com.app.ordenaly.model.entities.Ticket;
+import com.app.ordenaly.model.enums.PaymentStatus;
 import com.app.ordenaly.infra.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalTime;
-import java.util.Optional;
 
 @Service //1.
 public class OrderService {
@@ -55,14 +53,10 @@ public class OrderService {
       throw new IllegalArgumentException("Ticket cannot be null");
     }
 
-    System.out.println(ticket.toString());
-
     User waiter = userRepo.findById(orderBody.getWaiter()).get();
     if (waiter == null) {
       throw new IllegalArgumentException("Waiter cannot be null");
     }
-
-    System.out.println(waiter.toString());
 
     Order order = new Order();
     order.setTicket(ticket);
@@ -72,7 +66,7 @@ public class OrderService {
     order.setOrderComplete(false);
     order.setPaymentStatus(PaymentStatus.PENDING);
     //Se relaciona la orden con el Ticket y asi se actualiza el estado del Ticket
-    ticket.relateToTheOrder(order);
+//    ticket.relateToTheOrder(order);
 
     Order o = orderRepo.save(order);
 

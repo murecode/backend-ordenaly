@@ -1,7 +1,7 @@
 package com.app.ordenaly.controller;
 
-import com.app.ordenaly.model.dtos.ticket.TicketCreateData;
-import com.app.ordenaly.model.dtos.ticket.TicketData;
+import com.app.ordenaly.model.request.TicketCreateData;
+import com.app.ordenaly.model.response.TicketData;
 import com.app.ordenaly.service.TicketService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;

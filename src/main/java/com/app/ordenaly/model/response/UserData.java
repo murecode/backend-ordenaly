@@ -1,4 +1,4 @@
-package com.app.ordenaly.model.dtos.user;
+package com.app.ordenaly.model.response;
 
 import com.app.ordenaly.infra.security.model.User;
 

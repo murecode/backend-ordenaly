@@ -1,8 +1,7 @@
 package com.app.ordenaly.controller;
 
-import com.app.ordenaly.model.Product;
-import com.app.ordenaly.model.dtos.product.ProductCreateData;
-import com.app.ordenaly.model.dtos.product.ProductData;
+import com.app.ordenaly.model.request.ProductCreateData;
+import com.app.ordenaly.model.response.ProductData;
 import com.app.ordenaly.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

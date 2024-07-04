@@ -1,4 +1,4 @@
-package com.app.ordenaly.model.dtos.ticket;
+package com.app.ordenaly.model.request;
 
 import jakarta.validation.constraints.NotBlank;
 

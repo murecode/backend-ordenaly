@@ -1,6 +1,6 @@
-package com.app.ordenaly.model.dtos.orderCart;
+package com.app.ordenaly.model.response;
 
-import com.app.ordenaly.model.OrderCart;
+import com.app.ordenaly.model.entities.OrderCart;
 
 public record OrderCartData(
         String product,

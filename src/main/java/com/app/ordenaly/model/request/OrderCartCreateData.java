@@ -1,4 +1,4 @@
-package com.app.ordenaly.model.dtos.orderCart;
+package com.app.ordenaly.model.request;
 
 public class OrderCartCreateData {
   private Integer product;

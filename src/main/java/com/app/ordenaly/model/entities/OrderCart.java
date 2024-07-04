@@ -1,4 +1,4 @@
-package com.app.ordenaly.model;
+package com.app.ordenaly.model.entities;
 
 import jakarta.persistence.*;
 

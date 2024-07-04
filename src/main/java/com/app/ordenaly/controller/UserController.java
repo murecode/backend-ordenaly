@@ -1,6 +1,6 @@
 package com.app.ordenaly.controller;
 
-import com.app.ordenaly.model.dtos.user.UserData;
+import com.app.ordenaly.model.response.UserData;
 import com.app.ordenaly.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

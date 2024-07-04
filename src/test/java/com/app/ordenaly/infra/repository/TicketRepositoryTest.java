@@ -1,8 +1,8 @@
 package com.app.ordenaly.infra.repository;
 
-import com.app.ordenaly.model.Ticket;
+import com.app.ordenaly.model.entities.Ticket;
 
-import com.app.ordenaly.model.utils.TicketStatus;
+import com.app.ordenaly.model.enums.TicketStatus;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 

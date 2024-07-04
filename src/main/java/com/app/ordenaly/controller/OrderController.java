@@ -1,9 +1,8 @@
 package com.app.ordenaly.controller;
 
-import com.app.ordenaly.model.dtos.order.OrderData;
-import com.app.ordenaly.model.dtos.order.OrderCreateData;
+import com.app.ordenaly.model.response.OrderData;
+import com.app.ordenaly.model.request.OrderCreateData;
 import com.app.ordenaly.service.OrderService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

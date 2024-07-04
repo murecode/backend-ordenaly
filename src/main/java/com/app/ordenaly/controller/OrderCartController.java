@@ -1,8 +1,8 @@
 package com.app.ordenaly.controller;
 
-import com.app.ordenaly.model.Order;
-import com.app.ordenaly.model.dtos.orderCart.OrderCartCreateData;
-import com.app.ordenaly.model.dtos.orderCart.OrderCartData;
+import com.app.ordenaly.model.entities.Order;
+import com.app.ordenaly.model.request.OrderCartCreateData;
+import com.app.ordenaly.model.response.OrderCartData;
 import com.app.ordenaly.infra.repository.OrderCartRepository;
 import com.app.ordenaly.service.OrderCartService;
 import com.app.ordenaly.service.OrderService;
