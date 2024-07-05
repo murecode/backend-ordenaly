@@ -39,16 +39,15 @@ public class HttpSecurityConfig {
 //
               authorize.requestMatchers(HttpMethod.GET,    "/orders").permitAll();
 //              authorize.requestMatchers(HttpMethod.GET,    "/orders/{id}").permitAll();
-//              authorize.requestMatchers(HttpMethod.POST,   "/orders/{ticketid}/{userid}").permitAll();
               authorize.requestMatchers(HttpMethod.POST,   "/orders").permitAll();
 //              authorize.requestMatchers(HttpMethod.PUT,    "/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/orders/{id}").authenticated();
 //
-//              authorize.requestMatchers(HttpMethod.GET,    "/api/v1/carts/{orderid}").permitAll();
               authorize.requestMatchers(HttpMethod.GET,    "/carts/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.POST,   "/carts/{id}").permitAll();
 //
               authorize.requestMatchers(HttpMethod.GET, "/products").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/products/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.POST, "/products").permitAll();
               authorize.requestMatchers(HttpMethod.PATCH, "/products/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/products/{id}").hasAuthority(Permissions.DELETE_PRODUCT.name());

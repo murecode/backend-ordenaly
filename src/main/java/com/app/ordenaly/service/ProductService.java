@@ -1,5 +1,6 @@
 package com.app.ordenaly.service;
 
+import com.app.ordenaly.infra.exceptions.ResourceNotFoundExeption;
 import com.app.ordenaly.model.entities.Product;
 import com.app.ordenaly.infra.repository.ProductRepository;
 import com.app.ordenaly.model.request.CreateProduct;
@@ -9,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -40,8 +43,17 @@ public class ProductService {
     );
   }
 
-  public Product getProduct(int id) {
-    return productRepo.findById(id).get();
+  public ProductData getProduct(int id) {
+    Optional<Product> product = productRepo.findById(id);
+
+    return product.map(p -> new ProductData(
+            p.getId(),
+            p.getTitle(),
+            p.getDescription(),
+            p.getImageUrl(),
+            p.getPrice(),
+            p.getInStock()
+    )).orElseThrow(() -> new ResourceNotFoundExeption("El producto" + product.get().getId() + "no fue encontrado"));
   }
 
   @Transactional

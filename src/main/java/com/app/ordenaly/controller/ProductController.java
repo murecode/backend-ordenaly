@@ -1,5 +1,6 @@
 package com.app.ordenaly.controller;
 
+import com.app.ordenaly.infra.exceptions.ResourceNotFoundExeption;
 import com.app.ordenaly.model.request.CreateProduct;
 import com.app.ordenaly.model.response.ProductData;
 import com.app.ordenaly.service.ProductService;
@@ -18,9 +19,16 @@ public class ProductController {
   private ProductService productService;
 
   @GetMapping
-  public ResponseEntity<Page<ProductData>> listAllProducts(Pageable pageable){
+  public ResponseEntity<Page<ProductData>> listAllProducts(Pageable pageable) {
     Page<ProductData> products = productService.getProducts(pageable);
     return ResponseEntity.ok(products);
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<ProductData> getProduct(
+          @PathVariable("id") Integer id ) {
+    ProductData product = productService.getProduct(id);
+    return new ResponseEntity<>(product, HttpStatus.OK);
   }
 
   @PostMapping
