@@ -1,5 +1,6 @@
 package com.app.ordenaly.service;
 
+import com.app.ordenaly.infra.exceptions.ResourceNotFoundExeption;
 import com.app.ordenaly.model.entities.User;
 import com.app.ordenaly.model.enums.TicketStatus;
 import com.app.ordenaly.model.response.OrderData;
@@ -13,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service //1.
 public class OrderService {
@@ -28,23 +31,21 @@ public class OrderService {
     return orderRepo.findAll(pageable).map(OrderData::new);
   }
 
-  public Order findOrderById(int orderId) {
-    return orderRepo.findById( orderId ).orElse(null);
+  public OrderData getOrderById(int orderId) {
+
+    Optional<Order> order = orderRepo.findById(orderId);
+
+    return order.map(o -> new OrderData(
+            o.getId(),
+            o.getTicket().getId(),
+            o.getTicket().getCreatedAt(),
+            o.getWaiter().getName(),
+            o.getTable(),
+            o.getTicket().getNumberOfPeople(),
+            o.getOrderComplete(),
+            o.getPaymentStatus()
+    )).orElseThrow(() -> new ResourceNotFoundExeption("La orden no fue encontrada"));
   }
-
-/*  public Order createOrder(int ticketId, int userId) {
-    Optional<Ticket> ticket = ticketRepo.findById(ticketId);
-    Optional<User> user = userRepo.findById(userId);
-
-    Order order = new Order();
-    order.setTicket(ticket.get());
-    order.setWaiter(user.get());
-    order.setTable(order.getTable());
-    order.setOrderStatus(OrderStatus.PENDIENTE);
-    order.setPaymentStatus(PaymentStatus.PENDIENTE);
-
-    return orderRepo.save(order);
-  }*/
 
   @Transactional
   public OrderData createOrder(CreateOrder orderBody) {
@@ -78,11 +79,11 @@ public class OrderService {
             o.getTicket().getCreatedAt(),
             o.getWaiter().getName(),
             o.getTable(),
+            o.getTicket().getNumberOfPeople(),
             o.getOrderComplete(),
             o.getPaymentStatus()
     );
   }
-
 
   public void updateOrder(int orderId, Order orderBody) {
     Order order = orderRepo.findById( orderId ).get();

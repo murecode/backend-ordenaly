@@ -4,6 +4,7 @@ import com.app.ordenaly.model.entities.Order;
 import com.app.ordenaly.model.request.CreateOrderCart;
 import com.app.ordenaly.model.response.OrderCartData;
 import com.app.ordenaly.infra.repository.OrderCartRepository;
+import com.app.ordenaly.model.response.OrderData;
 import com.app.ordenaly.service.OrderCartService;
 import com.app.ordenaly.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +24,19 @@ public class OrderCartController {
   @Autowired
   private OrderService orderService;
 
-  /*@GetMapping("/{id}")
-  public List<OrderCartData> getCartByOrder(@PathVariable("id") int orderId) {
+/*
+  @GetMapping("/{id}")
+  public List<OrderCartData> getCartByOrder(
+          @PathVariable("id") int orderId) {
+    return orderCartService.getCartByOrder(orderId);
+  }
+*/
+
+/*  @GetMapping("/orders/{id}")
+  public List<OrderCartData> getOrderCartByOrder(
+          @PathVariable("id") int orderId) {
     return orderCartService.getCartByOrder(orderId);
   }*/
-
-  @GetMapping("/orders/{id}")
-  public List<OrderCartData> getOrderCartByOrder(
-          @PathVariable("id") Order orderId) {
-    Order order = orderService.findOrderById(orderId.getId());
-    List<OrderCartData> orderCarts = orderCartRepo.findByOrder(order).stream()
-            .map(OrderCartData::new).toList();
-    return orderCarts;
-  }
 
   @PostMapping("/{id}")
   public ResponseEntity<OrderCartData> addProductToCart(
@@ -45,8 +46,12 @@ public class OrderCartController {
     return new ResponseEntity<>(orderCartData, HttpStatus.CREATED);
   }
 
-
-  // +removeProduct()
+  @DeleteMapping("/product/{id}")
+  public ResponseEntity removeProductFromCart(
+          @PathVariable("id") int id) {
+    orderCartService.deleteProductFromCart(id);
+    return ResponseEntity.noContent().build();
+  }
   // +updateQuantity()
 
 }

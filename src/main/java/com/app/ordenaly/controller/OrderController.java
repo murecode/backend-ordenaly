@@ -22,21 +22,14 @@ public class OrderController {
     return orderService.getOrders(pageable);
   }
 
-  /*@PostMapping("/{ticketid}/{userid}")
-  public ResponseEntity<OrderData> createOrder(
-          @PathVariable("ticketid") int ticketId,
-          @PathVariable("userid") int userId) {
-    Order order = orderService.createOrder(ticketId, userId);
-    OrderData orderData = new OrderData(
-            order.getId(),
-            order.getTicket().getId(),
-            order.getTicket().getTime().toString(),
-            order.getWaiter().getName(),
-            order.getTable(),
-            order.getOrderStatus(),
-            order.getPaymentStatus());
-    return new ResponseEntity<>(orderData, HttpStatus.CREATED);
-  }*/
+  @GetMapping("/{id}")
+  public ResponseEntity<OrderData> getOrder(
+          @PathVariable("id") int orderId ) {
+    OrderData order = orderService.getOrderById(orderId);
+    return new ResponseEntity<>(order, HttpStatus.OK);
+  }
+
+
 
   @PostMapping("")
   public ResponseEntity<OrderData> createOrder(

@@ -14,6 +14,7 @@ public record OrderData(
         LocalTime createdAt,
         String waiter,
         String table,
+        int numberOfPeople,
         Boolean isOrderComplete,
         PaymentStatus paymentStatus
 ) {
@@ -24,6 +25,7 @@ public record OrderData(
             order.getTicket().getCreatedAt(),
             order.getWaiter().getName(),
             order.getTable(),
+            order.getTicket().getNumberOfPeople(),
             order.getOrderComplete(),
             order.getPaymentStatus()
     );

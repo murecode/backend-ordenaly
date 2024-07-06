@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderCartService {
@@ -23,13 +24,12 @@ public class OrderCartService {
   @Autowired
   private OrderRepository orderRepo;
 
-  public List<OrderCartData> getCartByOrder(int orderId) {
-    Order order = orderRepo.findById(orderId).orElse(null);
+/*  public List<OrderCartData> getCartByOrder(int orderId) {
 
-    List<OrderCartData> cartList = orderCartRepo.findById(orderId).stream()
-            .map(OrderCartData::new).toList();
-    return cartList;
-  }
+    List<OrderCartData> orderCart = orderCartRepo.findByOrder(orderId);
+
+    return orderCart.stream().collect(Collectors.toList());
+  }*/
 
   public OrderCartData addProductToCart(int orderId, CreateOrderCart orderCartBody) {
 
@@ -65,13 +65,17 @@ public class OrderCartService {
     OrderCart oc = orderCartRepo.save(orderCart);
 
     return new OrderCartData(
+            oc.getId(),
             oc.getProduct().getTitle(),
             oc.getQuantity(),
             oc.calculateSubtotal()
     );
   }
 
-  // +removeProduct(productId, order)
+  public void deleteProductFromCart(int id) {
+    orderCartRepo.deleteById(id);
+  }
+
   // +updateQuantity(productId, quantity, order)
 
 }
