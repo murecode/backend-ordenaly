@@ -1,5 +1,6 @@
 package com.app.ordenaly.controller;
 
+import com.app.ordenaly.model.enums.PaymentStatus;
 import com.app.ordenaly.model.response.OrderData;
 import com.app.ordenaly.model.request.CreateOrder;
 import com.app.ordenaly.service.OrderService;
@@ -29,7 +30,12 @@ public class OrderController {
     return new ResponseEntity<>(order, HttpStatus.OK);
   }
 
-
+  @GetMapping("/status/{status}")
+  public Page<OrderData> getOrdersByPayment(
+          @PathVariable("status") PaymentStatus status,
+          Pageable pageable) {
+    return orderService.getOrdersByPaymentStatus(status, pageable);
+  }
 
   @PostMapping("")
   public ResponseEntity<OrderData> createOrder(

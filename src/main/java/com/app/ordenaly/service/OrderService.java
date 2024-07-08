@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service //1.
@@ -33,9 +34,9 @@ public class OrderService {
 
   public OrderData getOrderById(int orderId) {
 
-    Optional<Order> order = orderRepo.findById(orderId);
+    Optional<Order> orders = orderRepo.findById(orderId);
 
-    return order.map(o -> new OrderData(
+    return orders.map(o -> new OrderData(
             o.getId(),
             o.getTicket().getId(),
             o.getTicket().getCreatedAt(),
@@ -45,6 +46,23 @@ public class OrderService {
             o.getOrderComplete(),
             o.getPaymentStatus()
     )).orElseThrow(() -> new ResourceNotFoundExeption("La orden no fue encontrada"));
+  }
+
+  public Page<OrderData> getOrdersByPaymentStatus(
+          PaymentStatus status, Pageable pageable) {
+
+    Page<Order> orders = orderRepo.findByPaymentStatus(status, pageable);
+
+    return orders.map(o -> new OrderData(
+            o.getId(),
+            o.getTicket().getId(),
+            o.getTicket().getCreatedAt(),
+            o.getWaiter().getName(),
+            o.getTable(),
+            o.getTicket().getNumberOfPeople(),
+            o.getOrderComplete(),
+            o.getPaymentStatus()
+    ));
   }
 
   @Transactional
