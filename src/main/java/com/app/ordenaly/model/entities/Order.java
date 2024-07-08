@@ -16,7 +16,7 @@ public class Order {
   @JoinColumn(name = "ticketId", unique = true)
   private Ticket ticket;
   @Column
-  private LocalTime createdAt;
+  private String createdAt;
   @ManyToOne()
   @JoinColumn(name = "waiterId")
   private User waiter;
@@ -44,11 +44,20 @@ public class Order {
     this.ticket = ticket;
   }
 
-  public LocalTime getCreatedAt() {
+//  public LocalTime getCreatedAt() {
+//    return createdAt;
+//  }
+//
+//  public void setCreatedAt(LocalTime createdAt) {
+//    this.createdAt = createdAt;
+//  }
+
+
+  public String getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(LocalTime createdAt) {
+  public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
   }
 

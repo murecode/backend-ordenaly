@@ -81,7 +81,7 @@ public class OrderService {
     Order order = new Order();
     order.setTicket(ticket);
     order.setWaiter(waiter);
-    order.setCreatedAt(ticket.getCreatedAt());
+    order.setCreatedAt(ticket.getCreatedAt().toString());
     order.setTable(orderBody.getTable());
     order.setOrderComplete(false);
     order.setPaymentStatus(PaymentStatus.PENDING);

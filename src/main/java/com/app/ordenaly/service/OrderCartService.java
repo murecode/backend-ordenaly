@@ -24,12 +24,23 @@ public class OrderCartService {
   @Autowired
   private OrderRepository orderRepo;
 
-/*  public List<OrderCartData> getCartByOrder(int orderId) {
 
-    List<OrderCartData> orderCart = orderCartRepo.findByOrder(orderId);
+  public List<OrderCartData> getCartByOrder(int orderId) {
 
-    return orderCart.stream().collect(Collectors.toList());
-  }*/
+    Optional<Order> order = orderRepo.findById(orderId);
+    if (order.isEmpty()) {
+      throw new IllegalArgumentException("Order cannot be null");
+    }
+
+    List<OrderCart> orderCart = orderCartRepo.findAllByOrder(order.get());
+
+    return orderCart.stream().map(oc -> new OrderCartData(
+            oc.getId(),
+            oc.getProduct().getTitle(),
+            oc.getQuantity(),
+            oc.calculateSubtotal()
+    )).collect(Collectors.toList());
+  }
 
   public OrderCartData addProductToCart(int orderId, CreateOrderCart orderCartBody) {
 

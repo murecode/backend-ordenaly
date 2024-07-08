@@ -34,7 +34,7 @@ class OrderRepositoryTest {
     Order order = new Order();
     order.setTicket(ticket);
     order.setWaiter(waiter);
-    order.setCreatedAt(LocalTime.now());
+//    order.setCreatedAt(LocalTime.now());
     order.setTable("Sin defini3");
     order.setOrderComplete(true);
     order.setPaymentStatus(PaymentStatus.PAID);

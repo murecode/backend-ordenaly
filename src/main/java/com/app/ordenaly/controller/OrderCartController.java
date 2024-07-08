@@ -32,11 +32,11 @@ public class OrderCartController {
   }
 */
 
-/*  @GetMapping("/orders/{id}")
+  @GetMapping("/orders/{id}")
   public List<OrderCartData> getOrderCartByOrder(
           @PathVariable("id") int orderId) {
     return orderCartService.getCartByOrder(orderId);
-  }*/
+  }
 
   @PostMapping("/{id}")
   public ResponseEntity<OrderCartData> addProductToCart(
