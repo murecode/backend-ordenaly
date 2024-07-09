@@ -38,10 +38,10 @@ public class HttpSecurityConfig {
               authorize.requestMatchers("/error").permitAll();
 //
               authorize.requestMatchers(HttpMethod.GET,    "/orders").permitAll();
-//              authorize.requestMatchers(HttpMethod.GET,    "/orders/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.GET,    "/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.GET,    "/orders/status/{status}").permitAll();
+              authorize.requestMatchers(HttpMethod.GET,    "/orders/completed/{is}").permitAll();
               authorize.requestMatchers(HttpMethod.POST,   "/orders").permitAll();
-//              authorize.requestMatchers(HttpMethod.PUT,    "/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/orders/{id}").authenticated();
 //
               authorize.requestMatchers(HttpMethod.GET,    "/carts/orders/{id}").permitAll();

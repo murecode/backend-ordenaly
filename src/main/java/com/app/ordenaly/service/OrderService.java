@@ -65,6 +65,23 @@ public class OrderService {
     ));
   }
 
+  public Page<OrderData> getOrdersByIsComplete(
+          Boolean iscomplete, Pageable pageable) {
+
+    Page<Order> orders = orderRepo.findByIsComplete(iscomplete, pageable);
+
+    return orders.map(o -> new OrderData(
+            o.getId(),
+            o.getTicket().getId(),
+            o.getTicket().getCreatedAt(),
+            o.getWaiter().getName(),
+            o.getTable(),
+            o.getTicket().getNumberOfPeople(),
+            o.getOrderComplete(),
+            o.getPaymentStatus()
+    ));
+  }
+
   @Transactional
   public OrderData createOrder(CreateOrder orderBody) {
 

@@ -12,10 +12,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
   @Query("SELECT o FROM Order o WHERE o.paymentStatus = :status")
-  Page<Order> findByPaymentStatus (
+  Page<Order> findByPaymentStatus(
           @Param("status") PaymentStatus status,
           Pageable pageable
   );
 
+  @Query("SELECT o FROM Order o WHERE o.isOrderComplete = :is")
+  Page<Order> findByIsComplete(
+          @Param("is") Boolean iscomplete,
+          Pageable pageable
+  );
 
 }

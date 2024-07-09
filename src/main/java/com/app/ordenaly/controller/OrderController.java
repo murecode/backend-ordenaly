@@ -37,6 +37,13 @@ public class OrderController {
     return orderService.getOrdersByPaymentStatus(status, pageable);
   }
 
+  @GetMapping("/completed/{is}")
+  public  Page<OrderData> getOrdersByIsComplete(
+          @PathVariable("is") Boolean iscomplete,
+          Pageable pageable) {
+    return orderService.getOrdersByIsComplete(iscomplete, pageable);
+  }
+
   @PostMapping("")
   public ResponseEntity<OrderData> createOrder(
           @RequestBody CreateOrder orderBody) {
