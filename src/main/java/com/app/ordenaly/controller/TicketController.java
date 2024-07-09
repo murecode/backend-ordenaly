@@ -1,5 +1,6 @@
 package com.app.ordenaly.controller;
 
+import com.app.ordenaly.model.enums.TicketStatus;
 import com.app.ordenaly.model.request.CreateTicket;
 import com.app.ordenaly.model.response.TicketData;
 import com.app.ordenaly.service.TicketService;
@@ -22,6 +23,14 @@ public class TicketController {
   @GetMapping("")
   public ResponseEntity<Page<TicketData>> getAllTickets(Pageable pageable) {
     Page<TicketData> tickets = ticketService.findAllTickets(pageable);
+    return ResponseEntity.ok(tickets);
+  }
+
+  @GetMapping("/status/{status}")
+  public ResponseEntity<Page<TicketData>> getAllTicketsByStatus(
+          @PathVariable("status") TicketStatus status,
+          Pageable pageable ) {
+    Page<TicketData> tickets = ticketService.findAllTicketsByStatus(status, pageable);
     return ResponseEntity.ok(tickets);
   }
 

@@ -21,6 +21,11 @@ public class TicketService {
     return ticketRepo.findAll(pageable).map(TicketData::new);
   }
 
+  public Page<TicketData> findAllTicketsByStatus(
+          TicketStatus status, Pageable pageable) {
+    return ticketRepo.findByStatus(status, pageable).map(TicketData::new);
+  }
+
   public TicketData createTicket(CreateTicket ticketData) {
 
     Ticket ticket = new Ticket();
@@ -38,8 +43,8 @@ public class TicketService {
     );
   }
 
-  public Ticket getTicketById(int id) {
-    return ticketRepo.findById(id).get();
-  }
+//  public Ticket getTicketById(int id) {
+//    return ticketRepo.findById(id).get();
+//  }
 
 }
