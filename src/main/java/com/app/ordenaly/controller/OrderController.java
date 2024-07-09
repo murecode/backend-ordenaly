@@ -44,8 +44,6 @@ public class OrderController {
     return new ResponseEntity<>(order, HttpStatus.CREATED);
   }
 
-  //updateOrderStatus() ResponseEntity.status(HttpStatus.CREATED).body(savedOrder)
-
   @DeleteMapping("/{id}")
   public ResponseEntity<String> deleteOrder(@PathVariable("id") int id) {
     orderService.deleteOrder(id);

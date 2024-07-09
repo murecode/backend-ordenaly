@@ -103,17 +103,14 @@ public class OrderService {
     );
   }
 
-  public void updateOrder(int orderId, Order orderBody) {
-    Order order = orderRepo.findById( orderId ).get();
-//    order.setOrderStatus(orderBody.getOrderStatus());
-    order.setPaymentStatus(orderBody.getPaymentStatus());
-
-    orderRepo.save(order);
-  }
-
   public void deleteOrder(int id) {
-    Order order = orderRepo.findById(id).get();
-    // Validaciones
+    Optional<Order> orderOptional = orderRepo.findById(id);
+    if (!orderOptional.isPresent()) {
+      throw new RuntimeException("Orden no encontrada");
+    }
+
+    Order order = orderOptional.get();
+
     orderRepo.deleteById(order.getId());
   }
 
