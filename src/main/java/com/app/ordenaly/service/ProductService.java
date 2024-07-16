@@ -3,7 +3,7 @@ package com.app.ordenaly.service;
 import com.app.ordenaly.infra.exceptions.ResourceNotFoundExeption;
 import com.app.ordenaly.model.entities.Product;
 import com.app.ordenaly.infra.repository.ProductRepository;
-import com.app.ordenaly.model.request.CreateProduct;
+import com.app.ordenaly.model.request.ProductRequest;
 import com.app.ordenaly.model.response.ProductData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,7 +22,7 @@ public class ProductService {
     return productRepo.findAll(pageable).map(ProductData::new);
   }
 
-  public ProductData createProduct(CreateProduct productBody) {
+  public ProductData createProduct(ProductRequest productBody) {
 
     Product product = new Product();
     product.setTitle(productBody.getTitle());
@@ -57,7 +57,7 @@ public class ProductService {
   }
 
   @Transactional
-  public CreateProduct updateProduct(int productId, CreateProduct productBoby) {
+  public ProductRequest updateProduct(int productId, ProductRequest productBoby) {
     Product product = productRepo.getReferenceById(productId);
 
     if (productBoby.getTitle() != null) {
@@ -78,7 +78,7 @@ public class ProductService {
 
     productRepo.save(product);
 
-    return new CreateProduct(
+    return new ProductRequest(
             productBoby.getTitle(),
             productBoby.getDescription(),
             productBoby.getImageUrl(),

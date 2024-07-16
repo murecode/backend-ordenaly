@@ -2,7 +2,7 @@ package com.app.ordenaly.model.request;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class CreateOrder {
+public class OrderRequest {
   private Integer ticket;
   private Integer waiter;
   @NotBlank

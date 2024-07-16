@@ -2,7 +2,7 @@ package com.app.ordenaly.service;
 
 import com.app.ordenaly.model.entities.Order;
 import com.app.ordenaly.model.entities.OrderCart;
-import com.app.ordenaly.model.request.CreateOrderCart;
+import com.app.ordenaly.model.request.OrderCartRequest;
 import com.app.ordenaly.model.response.OrderCartData;
 import com.app.ordenaly.model.entities.Product;
 import com.app.ordenaly.infra.repository.OrderCartRepository;
@@ -42,7 +42,7 @@ public class OrderCartService {
     )).collect(Collectors.toList());
   }
 
-  public OrderCartData addProductToCart(int orderId, CreateOrderCart orderCartBody) {
+  public OrderCartData addProductToCart(int orderId, OrderCartRequest orderCartBody) {
 
     Optional<Order> orderOptional = orderRepo.findById(orderId);
     if (orderOptional.isEmpty()) {
@@ -87,6 +87,21 @@ public class OrderCartService {
     orderCartRepo.deleteById(id);
   }
 
-  // +updateQuantity(productId, quantity, order)
+  public OrderCartData updateQuantity(int orderCartId, OrderCartRequest orderCartBody) {
+    Optional<OrderCart> orderCart = orderCartRepo.findById(orderCartId);
+
+    if (orderCartBody.getQuantity() != 0) {
+      orderCart.get().setQuantity(orderCartBody.getQuantity());
+    }
+
+    OrderCart oc = orderCartRepo.save(orderCart.get());
+
+    return new OrderCartData(
+            oc.getId(),
+            oc.getProduct().getTitle(),
+            oc.getQuantity(),
+            oc.calculateSubtotal()
+    );
+  }
 
 }

@@ -1,7 +1,6 @@
 package com.app.ordenaly.controller;
 
-import com.app.ordenaly.infra.exceptions.ResourceNotFoundExeption;
-import com.app.ordenaly.model.request.CreateProduct;
+import com.app.ordenaly.model.request.ProductRequest;
 import com.app.ordenaly.model.response.ProductData;
 import com.app.ordenaly.service.ProductService;
 import jakarta.validation.Valid;
@@ -33,15 +32,15 @@ public class ProductController {
 
   @PostMapping
   public ResponseEntity<ProductData> createProduct(
-          @RequestBody @Valid CreateProduct productData) {
+          @RequestBody @Valid ProductRequest productData) {
     ProductData product = productService.createProduct(productData);
     return new ResponseEntity<>(product, HttpStatus.CREATED);
   }
 
   @PatchMapping("/{id}")
-  public ResponseEntity<CreateProduct> updateProduct(
+  public ResponseEntity<ProductRequest> updateProduct(
           @PathVariable("id") int productId,
-          @RequestBody @Valid CreateProduct product) {
+          @RequestBody @Valid ProductRequest product) {
     productService.updateProduct(productId, product);
 
     return new ResponseEntity<>(product, HttpStatus.OK);

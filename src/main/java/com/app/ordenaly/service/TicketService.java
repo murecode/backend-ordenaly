@@ -2,7 +2,7 @@ package com.app.ordenaly.service;
 
 import com.app.ordenaly.model.entities.Ticket;
 import com.app.ordenaly.infra.repository.TicketRepository;
-import com.app.ordenaly.model.request.CreateTicket;
+import com.app.ordenaly.model.request.TicketRequest;
 import com.app.ordenaly.model.response.TicketData;
 import com.app.ordenaly.model.enums.TicketStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class TicketService {
     return ticketRepo.findByStatus(status, pageable).map(TicketData::new);
   }
 
-  public TicketData createTicket(CreateTicket ticketData) {
+  public TicketData createTicket(TicketRequest ticketData) {
 
     Ticket ticket = new Ticket();
     ticket.setCreatedAt(LocalTime.now());

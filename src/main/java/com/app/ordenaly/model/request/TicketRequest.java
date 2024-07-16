@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
 
-public class CreateTicket implements Serializable {
+public class TicketRequest implements Serializable {
   @NotBlank
   private int numberOfPeople;
 

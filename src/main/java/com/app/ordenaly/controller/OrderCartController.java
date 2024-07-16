@@ -1,10 +1,8 @@
 package com.app.ordenaly.controller;
 
-import com.app.ordenaly.model.entities.Order;
-import com.app.ordenaly.model.request.CreateOrderCart;
+import com.app.ordenaly.model.request.OrderCartRequest;
 import com.app.ordenaly.model.response.OrderCartData;
 import com.app.ordenaly.infra.repository.OrderCartRepository;
-import com.app.ordenaly.model.response.OrderData;
 import com.app.ordenaly.service.OrderCartService;
 import com.app.ordenaly.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +39,7 @@ public class OrderCartController {
   @PostMapping("/{id}")
   public ResponseEntity<OrderCartData> addProductToCart(
           @PathVariable("id") int orderId,
-          @RequestBody CreateOrderCart orderCartBody) {
+          @RequestBody OrderCartRequest orderCartBody) {
     OrderCartData orderCartData = orderCartService.addProductToCart(orderId, orderCartBody);
     return new ResponseEntity<>(orderCartData, HttpStatus.CREATED);
   }
@@ -52,6 +50,13 @@ public class OrderCartController {
     orderCartService.deleteProductFromCart(id);
     return ResponseEntity.noContent().build();
   }
-  // +updateQuantity()
+
+  @PatchMapping("/{id}")
+  public ResponseEntity<OrderCartData> updateQuantity(
+          @PathVariable("id") int ordercartId,
+          @RequestBody OrderCartRequest orderCartBody) {
+    OrderCartData updatedOrderCart = orderCartService.updateQuantity(ordercartId, orderCartBody);
+    return new ResponseEntity<>(updatedOrderCart, HttpStatus.ACCEPTED);
+  }
 
 }

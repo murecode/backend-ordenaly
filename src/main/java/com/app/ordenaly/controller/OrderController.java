@@ -2,7 +2,7 @@ package com.app.ordenaly.controller;
 
 import com.app.ordenaly.model.enums.PaymentStatus;
 import com.app.ordenaly.model.response.OrderData;
-import com.app.ordenaly.model.request.CreateOrder;
+import com.app.ordenaly.model.request.OrderRequest;
 import com.app.ordenaly.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -46,7 +46,7 @@ public class OrderController {
 
   @PostMapping("")
   public ResponseEntity<OrderData> createOrder(
-          @RequestBody CreateOrder orderBody) {
+          @RequestBody OrderRequest orderBody) {
     OrderData order = orderService.createOrder(orderBody);
     return new ResponseEntity<>(order, HttpStatus.CREATED);
   }

@@ -2,7 +2,7 @@ package com.app.ordenaly.model.request;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class CreateProduct {
+public class ProductRequest {
   @NotBlank
   private String title;
   @NotBlank
@@ -14,9 +14,9 @@ public class CreateProduct {
   @NotBlank
   private Boolean inStock;
 
-  public CreateProduct() {}
+  public ProductRequest() {}
 
-  public CreateProduct(
+  public ProductRequest(
           String title,
           String description,
           String imageUrl,
