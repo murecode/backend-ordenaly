@@ -25,6 +25,7 @@ public class HttpSecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
+            .cors(cors -> cors.configure(http)) //4.
             .csrf(csrfConfig -> csrfConfig.disable()) //1.
             .sessionManagement(sessionMangConfig -> sessionMangConfig
                             .sessionCreationPolicy(SessionCreationPolicy.STATELESS) //2.
@@ -33,8 +34,7 @@ public class HttpSecurityConfig {
             .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
             .authorizeHttpRequests((authorize) -> {
 
-              authorize.requestMatchers(HttpMethod.POST, "/auth/login").permitAll();
-              authorize.requestMatchers(HttpMethod.POST, "/auth/register").permitAll();
+              authorize.requestMatchers(HttpMethod.POST, "/auth/**").permitAll();
               authorize.requestMatchers("/error").permitAll();
 //
               authorize.requestMatchers(HttpMethod.GET,    "/orders").permitAll();
@@ -85,8 +85,11 @@ public class HttpSecurityConfig {
   política de sesión como STATELESS, se indica a Spring Security que no debe crear ni
   utilizar una sesión HTTP para almacenar información de seguridad.*/
 
-/*3.sessionManagement, Se encarga de configurar el manejo de sesiones en la aplicación. La
+/*3. sessionManagement, Se encarga de configurar el manejo de sesiones en la aplicación. La
   aplicación no mantendrá el estado de la sesión en el servidor y cada solicitud se manejará
   de manera independiente sin depender del estado de la sesión. Esto es útil en escenarios
   donde se prefiere la arquitectura sin estado, comúnmente asociada con aplicaciones RESTful
   y servicios web.*/
+
+/*4. Asegura que las configuraciones de CORS definidas globalmente se apliquen. Esto es
+  importante para manejar solicitudes CORS correctamente.*/
