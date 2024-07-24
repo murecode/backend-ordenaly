@@ -9,6 +9,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +23,13 @@ public class TicketController {
 
   @Operation(summary = "Listado de Tickets", description = "Retorna un arreglo con los Tickets")
   @GetMapping("")
-  public ResponseEntity<Page<TicketData>> getAllTickets(Pageable pageable) {
+  public ResponseEntity<Page<TicketData>> getAllTickets(
+          @PageableDefault(
+                  page = 0,
+                  size = 10,
+                  sort = {"createdAt"},
+                  direction = Sort.Direction.ASC)
+          Pageable pageable) {
     Page<TicketData> tickets = ticketService.findAllTickets(pageable);
     return ResponseEntity.ok(tickets);
   }
@@ -29,6 +37,11 @@ public class TicketController {
   @GetMapping("/status/{status}")
   public ResponseEntity<Page<TicketData>> getAllTicketsByStatus(
           @PathVariable("status") TicketStatus status,
+          @PageableDefault(
+                  page = 0,
+                  size = 10,
+                  sort = {"createdAt"},
+                  direction = Sort.Direction.ASC)
           Pageable pageable ) {
     Page<TicketData> tickets = ticketService.findAllTicketsByStatus(status, pageable);
     return ResponseEntity.ok(tickets);
@@ -40,5 +53,7 @@ public class TicketController {
     TicketData ticket = ticketService.createTicket(ticketData);
     return new ResponseEntity<>(ticket, HttpStatus.CREATED);
   }
+
+  // Actualizar estado del ticket
 
 }
