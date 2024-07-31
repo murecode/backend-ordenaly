@@ -3,8 +3,8 @@ package com.app.ordenaly.model.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "order_cart")
-public class OrderCart {
+@Table(name = "order_item")
+public class OrderItem {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
@@ -16,7 +16,7 @@ public class OrderCart {
   private Order order;
   private int quantity;
 
-  public OrderCart() {}
+  public OrderItem() {}
 
   public int getId() {
     return id;

@@ -44,10 +44,10 @@ public class HttpSecurityConfig {
               authorize.requestMatchers(HttpMethod.POST,   "/orders").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/orders/{id}").authenticated();
 //
-              authorize.requestMatchers(HttpMethod.GET,    "/carts/orders/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.POST,   "/carts/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.PATCH,  "/carts/{id}").permitAll();
-              authorize.requestMatchers(HttpMethod.DELETE, "/carts/product/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.GET,    "/items/orders/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.POST,   "/items/orders/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.PATCH,  "/items/{id}").permitAll();
+              authorize.requestMatchers(HttpMethod.DELETE, "/items/{id}").permitAll();
 //
               authorize.requestMatchers(HttpMethod.GET, "/products").permitAll();
               authorize.requestMatchers(HttpMethod.GET, "/products/{id}").permitAll();

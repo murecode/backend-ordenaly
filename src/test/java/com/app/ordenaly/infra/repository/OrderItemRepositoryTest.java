@@ -1,7 +1,7 @@
 package com.app.ordenaly.infra.repository;
 
 import com.app.ordenaly.model.entities.Order;
-import com.app.ordenaly.model.entities.OrderCart;
+import com.app.ordenaly.model.entities.OrderItem;
 import com.app.ordenaly.model.entities.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(false)
-class OrderCartRepositoryTest {
+class OrderItemRepositoryTest {
   @Autowired
-  private OrderCartRepository orderCartRepo;
+  private OrderItemRepository orderCartRepo;
   @Autowired
   private TestEntityManager entityManager;
 
@@ -26,14 +26,14 @@ class OrderCartRepositoryTest {
     Product product = entityManager.find(Product.class, 2);
     Order order = entityManager.find(Order.class, 2);
 
-    OrderCart newOrderItem = new OrderCart();
+    OrderItem newOrderItem = new OrderItem();
     newOrderItem.setOrder(order);
     newOrderItem.setProduct(product);
     newOrderItem.setQuantity(2);
 
-    OrderCart savedOrderCart = orderCartRepo.save(newOrderItem);
+    OrderItem savedOrderItem = orderCartRepo.save(newOrderItem);
 
-    assertTrue(savedOrderCart.getId() > 0);
+    assertTrue(savedOrderItem.getId() > 0);
 
   }
 

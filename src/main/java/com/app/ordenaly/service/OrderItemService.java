@@ -1,11 +1,11 @@
 package com.app.ordenaly.service;
 
 import com.app.ordenaly.model.entities.Order;
-import com.app.ordenaly.model.entities.OrderCart;
+import com.app.ordenaly.model.entities.OrderItem;
 import com.app.ordenaly.model.request.OrderCartRequest;
-import com.app.ordenaly.model.response.OrderCartData;
+import com.app.ordenaly.model.response.OrderItemData;
 import com.app.ordenaly.model.entities.Product;
-import com.app.ordenaly.infra.repository.OrderCartRepository;
+import com.app.ordenaly.infra.repository.OrderItemRepository;
 import com.app.ordenaly.infra.repository.OrderRepository;
 import com.app.ordenaly.infra.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,29 +15,26 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
-
 @Service
-public class OrderCartService {
+public class OrderItemService {
   @Autowired
-  private OrderCartRepository orderCartRepo;
+  private OrderItemRepository orderCartRepo;
   @Autowired
   private ProductRepository productRepo;
   @Autowired
   private OrderRepository orderRepo;
 
 
-  public List<OrderCartData> getCartByOrder(int orderId) {
+  public List<OrderItemData> getCartByOrder(int orderId) {
 
     Optional<Order> order = orderRepo.findById(orderId);
     if (order.isEmpty()) {
       throw new IllegalArgumentException("Order cannot be null");
     }
 
-    List<OrderCart> orderCart = orderCartRepo.findAllByOrder(order.get());
+    List<OrderItem> orderItem = orderCartRepo.findAllByOrder(order.get());
 
-    return orderCart.stream().map(oc -> new OrderCartData(
+    return orderItem.stream().map(oc -> new OrderItemData(
             oc.getId(),
             oc.getProduct().getTitle(),
             oc.getQuantity(),
@@ -45,7 +42,7 @@ public class OrderCartService {
     )).collect(Collectors.toList());
   }
 
-  public OrderCartData addProductToCart(int orderId, OrderCartRequest orderCartBody) {
+  public OrderItemData addProductToCart(int orderId, OrderCartRequest orderCartBody) {
 
     Optional<Order> orderOptional = orderRepo.findById(orderId);
     if (orderOptional.isEmpty()) {
@@ -60,25 +57,25 @@ public class OrderCartService {
     Product product = productOptional.get();
 
     // Verificar si el producto ya está en el carrito de la orden
-    Optional<OrderCart> existingOrderCartOptional = orderCartRepo
+    Optional<OrderItem> existingOrderCartOptional = orderCartRepo
             .findByOrderAndProduct(order, product);
 
-    OrderCart orderCart;
+    OrderItem orderItem;
     if (existingOrderCartOptional.isPresent()) {
       // Si el producto ya está en el carrito, sumar la cantidad
-      orderCart = existingOrderCartOptional.get();
-      orderCart.setQuantity(orderCart.getQuantity() + orderCartBody.getQuantity());
+      orderItem = existingOrderCartOptional.get();
+      orderItem.setQuantity(orderItem.getQuantity() + orderCartBody.getQuantity());
     } else {
       // Si el producto no está en el carrito, crear una nueva entrada
-      orderCart = new OrderCart();
-      orderCart.setOrder(order);
-      orderCart.setProduct(product);
-      orderCart.setQuantity(orderCartBody.getQuantity());
+      orderItem = new OrderItem();
+      orderItem.setOrder(order);
+      orderItem.setProduct(product);
+      orderItem.setQuantity(orderCartBody.getQuantity());
     }
 
-    OrderCart oc = orderCartRepo.save(orderCart);
+    OrderItem oc = orderCartRepo.save(orderItem);
 
-    return new OrderCartData(
+    return new OrderItemData(
             oc.getId(),
             oc.getProduct().getTitle(),
             oc.getQuantity(),
@@ -90,16 +87,16 @@ public class OrderCartService {
     orderCartRepo.deleteById(id);
   }
 
-  public OrderCartData updateQuantity(int orderCartId, OrderCartRequest orderCartBody) {
-    Optional<OrderCart> orderCart = orderCartRepo.findById(orderCartId);
+  public OrderItemData updateQuantity(int orderCartId, OrderCartRequest orderCartBody) {
+    Optional<OrderItem> orderCart = orderCartRepo.findById(orderCartId);
 
     if (orderCartBody.getQuantity() != 0) {
       orderCart.get().setQuantity(orderCartBody.getQuantity());
     }
 
-    OrderCart oc = orderCartRepo.save(orderCart.get());
+    OrderItem oc = orderCartRepo.save(orderCart.get());
 
-    return new OrderCartData(
+    return new OrderItemData(
             oc.getId(),
             oc.getProduct().getTitle(),
             oc.getQuantity(),
