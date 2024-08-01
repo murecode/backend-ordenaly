@@ -57,7 +57,9 @@ public class AuthService {
 
   private Map<String, Object> generateExtraClaims(User user) {
     Map<String, Object> extraClaims = new HashMap<>();
-    extraClaims.put("name", user.getUsername());
+    extraClaims.put("id", user.getId());
+    extraClaims.put("username", user.getUsername());
+    extraClaims.put("fullname", user.getName());
     extraClaims.put("email", user.getEmail());
     extraClaims.put("role", user.getRole());
     extraClaims.put("permissions", user.getAuthorities());
