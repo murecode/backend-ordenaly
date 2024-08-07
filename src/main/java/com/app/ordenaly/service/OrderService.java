@@ -1,6 +1,6 @@
 package com.app.ordenaly.service;
 
-import com.app.ordenaly.infra.exceptions.ResourceNotFoundExeption;
+import com.app.ordenaly.infra.exceptions.custom_exceptions.ResourceNotFoundExeption;
 import com.app.ordenaly.model.entities.User;
 import com.app.ordenaly.model.enums.TicketStatus;
 import com.app.ordenaly.model.response.OrderData;

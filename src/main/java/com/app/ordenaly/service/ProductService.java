@@ -1,6 +1,6 @@
 package com.app.ordenaly.service;
 
-import com.app.ordenaly.infra.exceptions.ResourceNotFoundExeption;
+import com.app.ordenaly.infra.exceptions.custom_exceptions.ResourceNotFoundExeption;
 import com.app.ordenaly.model.entities.Product;
 import com.app.ordenaly.infra.repository.ProductRepository;
 import com.app.ordenaly.model.request.ProductRequest;

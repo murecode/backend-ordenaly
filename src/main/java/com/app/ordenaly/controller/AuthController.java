@@ -15,15 +15,15 @@ import com.app.ordenaly.model.request.AuthRequest;
 
 @RestController
 @RequestMapping("/auth")
-//@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class AuthController {
 
   @Autowired
   AuthService authService;
 
   @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public void resgister(@RequestBody @Valid RegisterRequest registerRequest){
+  public ResponseEntity<String> resgister(@RequestBody @Valid RegisterRequest registerRequest){
     authService.register(registerRequest);
+    return new ResponseEntity<>("User created successfully", HttpStatus.OK);
   }
 
   @PostMapping("/login")

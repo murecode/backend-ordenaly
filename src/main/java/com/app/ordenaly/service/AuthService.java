@@ -1,5 +1,6 @@
 package com.app.ordenaly.service;
 
+import com.app.ordenaly.infra.exceptions.custom_exceptions.UserAlreadyExistException;
 import com.app.ordenaly.model.request.AuthRequest;
 import com.app.ordenaly.model.response.AuthResponse;
 import com.app.ordenaly.model.request.RegisterRequest;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 
 @Service
@@ -30,6 +32,15 @@ public class AuthService {
 
   @Transactional
   public void register(RegisterRequest registerRequest) {
+
+    //Validacion: si existe el usuario lanzar excepcion
+    Optional<User> userOptional = userRepo.findByUsername(registerRequest.getUsername());
+    if (userOptional.isPresent()) {
+      throw new UserAlreadyExistException("El usuario " + registerRequest.getUsername() + " ya existe");
+    }
+
+    //Validacion: si existe el email lanzar excepcion
+
     User user = new User();
     user.setUsername(registerRequest.getUsername());
     user.setEmail(registerRequest.getEmail());
