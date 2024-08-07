@@ -6,17 +6,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
 
 @ControllerAdvice
-public class HttpExceptionHandler {
+public class GlobalExceptionHandler {
 
   @ExceptionHandler({
           ResourceNotFoundExeption.class,
   })
-  public ResponseEntity<ExceptionMessage> handleNotfound(Exception exeption) {
+  public ResponseEntity<ExceptionMessage> handleNotfound(Exception exeption, WebRequest request) {
+    String path = request.getDescription(false).replace("uri=", "");
     ExceptionMessage exceptionMessage = new ExceptionMessage(
             exeption,
-            exeption.getMessage()
+            path
     );
     return new ResponseEntity<>(exceptionMessage, HttpStatus.NOT_FOUND);
   }
@@ -24,12 +26,25 @@ public class HttpExceptionHandler {
   @ExceptionHandler({
           UserAlreadyExistException.class,
   })
-  public ResponseEntity<ExceptionMessage> handleBadRequest(Exception exception) {
+  public ResponseEntity<ExceptionMessage> handleBadRequest(Exception exception, WebRequest request) {
+    String path = request.getDescription(false).replace("uri=", "");
     ExceptionMessage exceptionMessage = new ExceptionMessage(
             exception,
-            exception.getMessage()
+            path
     );
     return new ResponseEntity<>(exceptionMessage, HttpStatus.BAD_REQUEST);
   }
+
+  @ExceptionHandler({})
+  public ResponseEntity<ExceptionMessage> handleForbiddenRequest() {
+    return null;
+  }
+
+  @ExceptionHandler({})
+  public ResponseEntity<ExceptionMessage> handleUnauthorizedRequest() {
+    return null;
+  }
+
+
 
 }

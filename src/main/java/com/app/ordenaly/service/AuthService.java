@@ -33,13 +33,14 @@ public class AuthService {
   @Transactional
   public void register(RegisterRequest registerRequest) {
 
-    //Validacion: si existe el usuario lanzar excepcion
-    Optional<User> userOptional = userRepo.findByUsername(registerRequest.getUsername());
-    if (userOptional.isPresent()) {
-      throw new UserAlreadyExistException("El usuario " + registerRequest.getUsername() + " ya existe");
-    }
+    String username = registerRequest.getUsername();
+    String email = registerRequest.getEmail();
 
-    //Validacion: si existe el email lanzar excepcion
+    //Validar: si existe el usuario y contraseña en la base de datos
+    Optional<User> usernameAndEmail = userRepo.findByUsernameAndEmail(username, email);
+    if (usernameAndEmail.isPresent()) {
+      throw new UserAlreadyExistException("El usuario " + username + " o el email " + email + " ya estan registrados");
+    }
 
     User user = new User();
     user.setUsername(registerRequest.getUsername());
