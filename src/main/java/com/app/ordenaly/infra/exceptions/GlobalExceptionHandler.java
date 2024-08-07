@@ -16,10 +16,7 @@ public class GlobalExceptionHandler {
   })
   public ResponseEntity<ExceptionMessage> handleNotfound(Exception exeption, WebRequest request) {
     String path = request.getDescription(false).replace("uri=", "");
-    ExceptionMessage exceptionMessage = new ExceptionMessage(
-            exeption,
-            path
-    );
+    ExceptionMessage exceptionMessage = new ExceptionMessage(exeption, path);
     return new ResponseEntity<>(exceptionMessage, HttpStatus.NOT_FOUND);
   }
 
@@ -28,22 +25,19 @@ public class GlobalExceptionHandler {
   })
   public ResponseEntity<ExceptionMessage> handleBadRequest(Exception exception, WebRequest request) {
     String path = request.getDescription(false).replace("uri=", "");
-    ExceptionMessage exceptionMessage = new ExceptionMessage(
-            exception,
-            path
-    );
+    ExceptionMessage exceptionMessage = new ExceptionMessage(exception, path);
     return new ResponseEntity<>(exceptionMessage, HttpStatus.BAD_REQUEST);
   }
 
-  @ExceptionHandler({})
-  public ResponseEntity<ExceptionMessage> handleForbiddenRequest() {
-    return null;
-  }
-
-  @ExceptionHandler({})
-  public ResponseEntity<ExceptionMessage> handleUnauthorizedRequest() {
-    return null;
-  }
+//  @ExceptionHandler({})
+//  public ResponseEntity<ExceptionMessage> handleForbiddenRequest() {
+//    return null;
+//  }
+//
+//  @ExceptionHandler({})
+//  public ResponseEntity<ExceptionMessage> handleUnauthorizedRequest() {
+//    return null;
+//  }
 
 
 
