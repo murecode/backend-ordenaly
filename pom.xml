@@ -13,6 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ordenaly</name>
 	<description>Aplicación para gestion y toma de ordenes en restaurantes</description>
+	<packaging>jar</packaging>
 	<properties>
 		<java.version>20</java.version>
 	</properties>
