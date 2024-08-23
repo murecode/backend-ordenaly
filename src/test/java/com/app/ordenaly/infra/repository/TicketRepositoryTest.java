@@ -24,6 +24,7 @@ class TicketRepositoryTest {
   private TicketRepository ticketRepository;
   @Autowired
   private EntityManager entityManager;
+
   @Test
   void testGenerateTicket() {
 

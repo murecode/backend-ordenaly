@@ -4,6 +4,7 @@ import com.app.ordenaly.infra.security.filter.JwtAuthenticationFilter;
 import com.app.ordenaly.model.enums.Permissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,7 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 
-@Component
+@Configuration
 @EnableWebSecurity
 public class HttpSecurityConfig {
   @Autowired
@@ -23,7 +24,7 @@ public class HttpSecurityConfig {
   private JwtAuthenticationFilter authenticationFilter;
 
   @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
             .cors(cors -> cors.configure(http)) //4.
             .csrf(csrfConfig -> csrfConfig.disable()) //1.
@@ -36,33 +37,28 @@ public class HttpSecurityConfig {
 
               authorize.requestMatchers(HttpMethod.POST, "/auth/**").permitAll();
               authorize.requestMatchers("/error").permitAll();
-//
+
               authorize.requestMatchers(HttpMethod.GET,    "/orders").permitAll();
               authorize.requestMatchers(HttpMethod.GET,    "/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.GET,    "/orders/status/{status}").permitAll();
               authorize.requestMatchers(HttpMethod.GET,    "/orders/completed/{is}").permitAll();
               authorize.requestMatchers(HttpMethod.POST,   "/orders").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/orders/{id}").authenticated();
-//
+
               authorize.requestMatchers(HttpMethod.GET,    "/items/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.POST,   "/items/orders/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.PATCH,  "/items/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/items/{id}").permitAll();
-//
+
               authorize.requestMatchers(HttpMethod.GET, "/products").permitAll();
               authorize.requestMatchers(HttpMethod.GET, "/products/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.POST, "/products").permitAll();
               authorize.requestMatchers(HttpMethod.PATCH, "/products/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/products/{id}").hasAuthority(Permissions.DELETE_PRODUCT.name());
-//
+
               authorize.requestMatchers(HttpMethod.GET, "/tickets").permitAll();
               authorize.requestMatchers(HttpMethod.GET, "/tickets/status/{status}").permitAll();
               authorize.requestMatchers(HttpMethod.POST, "/tickets").permitAll();
-//
-//              authorize.requestMatchers(HttpMethod.GET, "/users").permitAll();
-//              authorize.requestMatchers(HttpMethod.POST, "/users").hasAuthority(Permissions.SAVE_USER.name());
-//              authorize.requestMatchers(HttpMethod.PUT,   "/users/{id}").hasAuthority("ADMIN");
-//              authorize.requestMatchers(HttpMethod.DELETE,"/users/{id}").hasAuthority("ADMIN");
 
               authorize.requestMatchers("/v1/authenticate", "/v3/api-docs/**", "swagger-ui/**", "/swagger-ui.html").permitAll();
 
