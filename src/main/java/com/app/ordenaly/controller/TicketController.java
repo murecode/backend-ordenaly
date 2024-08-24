@@ -27,7 +27,7 @@ public class TicketController {
           @PageableDefault(
                   page = 0,
                   size = 10,
-                  sort = {"createdAt"},
+                  sort = {"id"},
                   direction = Sort.Direction.ASC)
           Pageable pageable) {
     Page<TicketData> tickets = ticketService.findAllTickets(pageable);

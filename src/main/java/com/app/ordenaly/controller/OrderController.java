@@ -25,7 +25,7 @@ public class OrderController {
           @PageableDefault(
                   page = 0,
                   size = 10,
-                  sort = {"paymentStatus"},
+                  sort = {"ticketId"},
                   direction = Sort.Direction.ASC)
           Pageable pageable) {
     return orderService.getOrders(pageable);

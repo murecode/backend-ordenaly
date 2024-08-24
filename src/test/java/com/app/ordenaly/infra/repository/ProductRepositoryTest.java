@@ -23,9 +23,9 @@ class ProductRepositoryTest {
   void testCreateNewProduct() {
 
     Product product = new Product();
-    product.setTitle("Sandwich");
-    product.setDescription("Delicioso con salsa de ajo");
-    product.setPrice(15000);
+    product.setTitle("Pan Tolima");
+    product.setDescription("Grande de 4000");
+    product.setPrice(4000);
     product.setInStock(true);
 
     Product saveProduct = productRepository.save(product);
