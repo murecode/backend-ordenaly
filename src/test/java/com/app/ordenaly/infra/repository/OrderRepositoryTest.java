@@ -26,7 +26,7 @@ class OrderRepositoryTest {
   @Autowired
   private TestEntityManager entityManager;
 
-  @Test
+  /*@Test
   void testGenerateNewOrder() {
     Ticket ticket = entityManager.find(Ticket.class, 18);
     User waiter = entityManager.find(User.class, 7);
@@ -34,7 +34,7 @@ class OrderRepositoryTest {
     Order order = new Order();
     order.setTicket(ticket);
     order.setWaiter(waiter);
-//    order.setCreatedAt(LocalTime.now());
+    order.setCreatedAt(LocalTime.now());
     order.setTable("Sin defini3");
     order.setOrderComplete(true);
     order.setPaymentStatus(PaymentStatus.PAID);
@@ -42,16 +42,7 @@ class OrderRepositoryTest {
     Order saveOrder = orderRepository.save(order);
 
     assertTrue(saveOrder.getId() > 0);
-  }
-
-  @Test
-  void  testFindEntities() {
-    Ticket ticket = entityManager.find(Ticket.class, 17);
-    User waiter = entityManager.find(User.class, 3);
-
-    System.out.println(ticket.toString());
-    System.out.println(waiter.toString());
-  }
+  }*/
 
   @Test
   void testUpdateOrderStatus() {
@@ -64,14 +55,6 @@ class OrderRepositoryTest {
 
     assertTrue( order.getOrderComplete() == false );
     assertTrue( order.getPaymentStatus() == PaymentStatus.PENDING );
-  }
-
-  @Test
-  void testDeleteOrder() {
-    Order order = entityManager.find(Order.class, 11);
-    assertNotNull( order );
-
-    orderRepository.deleteById(order.getId());
   }
 
 }

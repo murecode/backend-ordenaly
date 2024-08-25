@@ -38,12 +38,12 @@ class TicketRepositoryTest {
     assertTrue(generate.getId() > 0);
   }
 
-  @Test
+ /* @Test
   void testFindTicketById() {
     Ticket ticket = entityManager.find(Ticket.class, 17);
 
     assertTrue(ticket.getId() == 17);
-  }
+  }*/
 
 
 

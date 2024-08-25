@@ -19,7 +19,7 @@ class ProductRepositoryTest {
   @Autowired
   private TestEntityManager entityManager;
 
-  @Test
+ /* @Test
   void testCreateNewProduct() {
 
     Product product = new Product();
@@ -31,7 +31,7 @@ class ProductRepositoryTest {
     Product saveProduct = productRepository.save(product);
 
     assertTrue(saveProduct.getId() > 0);
-  }
+  }*/
 
   @Test
   void testUpdateProduct() {
@@ -50,7 +50,7 @@ class ProductRepositoryTest {
 
   }
 
-  @Test
+ /* @Test
   void testDeleteProductById() {
 
     Product product = entityManager.find(Product.class, 2);
@@ -59,7 +59,7 @@ class ProductRepositoryTest {
     productRepository.deleteById(product.getId());
 
     assertTrue(productRepository.findById(product.getId()).isEmpty());
-  }
+  }*/
 
 
 

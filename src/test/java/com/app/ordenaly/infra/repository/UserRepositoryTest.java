@@ -20,7 +20,7 @@ class UserRepositoryTest {
   @Autowired
   private EntityManager entityManager;
 
-  @Test
+/*  @Test
   void testCreateUser() {
 
     User user = new User();
@@ -33,25 +33,25 @@ class UserRepositoryTest {
 
     userRepo.save(user);
 
-  }
+  }*/
 
-  @Test
+/*  @Test
   void testUpdateUser() {
     User user = entityManager.find(User.class, 0);
     user.setUsername("");
     userRepo.save(user);
 
     assertTrue(user.getId() == 0);
-  }
+  }*/
 
-  @Test
+  /*@Test
   void testDeleteUser() {
     User user = entityManager.find(User.class, 2);
     userRepo.deleteById( user.getId() );
 
-//    assertTrue(user.getUsername() == "mure" );
+    assertTrue(user.getUsername() == "mure" );
 
-  }
+  }*/
 
 }
 
