@@ -60,6 +60,8 @@ public class HttpSecurityConfig {
               authorize.requestMatchers(HttpMethod.GET, "/tickets/status/{status}").permitAll();
               authorize.requestMatchers(HttpMethod.POST, "/tickets").permitAll();
 
+              authorize.requestMatchers(HttpMethod.GET, "/users").permitAll();
+
               authorize.requestMatchers("/v1/authenticate", "/v3/api-docs/**", "swagger-ui/**", "/swagger-ui.html").permitAll();
 
               authorize.anyRequest().denyAll();

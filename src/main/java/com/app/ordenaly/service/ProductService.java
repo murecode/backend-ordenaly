@@ -1,10 +1,6 @@
 package com.app.ordenaly.service;
 
-import com.app.ordenaly.infra.exceptions.custom_exceptions.ResourceNotFoundExeption;
-import com.app.ordenaly.model.entities.Product;
-import com.app.ordenaly.infra.repository.ProductRepository;
-import com.app.ordenaly.model.request.ProductRequest;
-import com.app.ordenaly.model.response.ProductData;
+import com.app.ordenaly.infra.exceptions.product_exceptions.ProductInvalidPriceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+
+import com.app.ordenaly.infra.exceptions.product_exceptions.ProductAlreadyExistException;
+import com.app.ordenaly.infra.exceptions.product_exceptions.ProductNotFoundException;
+import com.app.ordenaly.model.entities.Product;
+import com.app.ordenaly.infra.repository.ProductRepository;
+import com.app.ordenaly.model.request.ProductRequest;
+import com.app.ordenaly.model.response.ProductData;
 
 @Service
 public class ProductService {
@@ -23,6 +26,18 @@ public class ProductService {
   }
 
   public ProductData createProduct(ProductRequest productBody) {
+
+    String productTitle = productBody.getTitle();
+    Integer productPrice = productBody.getPrice();
+
+    Optional<Product> productOptional = productRepo.findByTitle(productTitle);
+    if (productOptional.isPresent()) {
+      throw new ProductAlreadyExistException("El producto ya existe, intenta de nuevo");
+    }
+
+    if (productPrice <= 0) {
+      throw new ProductInvalidPriceException("Ingresa un valor valido, superior a cero");
+    }
 
     Product product = new Product();
     product.setTitle(productBody.getTitle());
@@ -53,7 +68,7 @@ public class ProductService {
             p.getImageUrl(),
             p.getPrice(),
             p.getInStock()
-    )).orElseThrow(() -> new ResourceNotFoundExeption("El producto" + product.get().getId() + "no fue encontrado"));
+    )).orElseThrow(() -> new ProductNotFoundException("El producto" + product.get().getId() + "no fue encontrado"));
   }
 
   @Transactional

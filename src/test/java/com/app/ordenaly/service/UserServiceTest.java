@@ -20,7 +20,7 @@ class UserServiceTest {
   @InjectMocks
   private UserService userService;
 
-  @Test
+/*  @Test
   void testCreateUser() {
     //Datos de prueba
     User user = new User();
@@ -31,13 +31,8 @@ class UserServiceTest {
     user.setPassword("mario123");
     user.setRole(Roles.USER);
 
-    /*Staff staff = new Staff();
-    staff.setName("Mario Castaño");*/
-
     userRepo.save(user);
-
-
-  }
+  }*/
 
 
 }

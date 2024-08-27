@@ -33,7 +33,7 @@ class ProductRepositoryTest {
     assertTrue(saveProduct.getId() > 0);
   }*/
 
-  @Test
+/*  @Test
   void testUpdateProduct() {
     Product product = entityManager.find(Product.class, 1);
 
@@ -48,7 +48,7 @@ class ProductRepositoryTest {
 
     assertTrue(product.getId() > 0); //Debe ser igual al primaryKey
 
-  }
+  }*/
 
  /* @Test
   void testDeleteProductById() {

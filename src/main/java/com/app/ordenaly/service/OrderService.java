@@ -1,6 +1,14 @@
 package com.app.ordenaly.service;
 
-import com.app.ordenaly.infra.exceptions.custom_exceptions.ResourceNotFoundExeption;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
+
+import com.app.ordenaly.infra.exceptions.order_exceptions.OrderNotFoundException;
 import com.app.ordenaly.model.entities.User;
 import com.app.ordenaly.model.enums.TicketStatus;
 import com.app.ordenaly.model.response.OrderData;
@@ -9,13 +17,6 @@ import com.app.ordenaly.model.entities.Order;
 import com.app.ordenaly.model.entities.Ticket;
 import com.app.ordenaly.model.enums.PaymentStatus;
 import com.app.ordenaly.infra.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service //1.
 public class OrderService {
@@ -44,7 +45,7 @@ public class OrderService {
             o.getTicket().getNumberOfPeople(),
             o.getOrderComplete(),
             o.getPaymentStatus()
-    )).orElseThrow(() -> new ResourceNotFoundExeption("La orden no fue encontrada"));
+    )).orElseThrow(() -> new OrderNotFoundException("La orden no fue encontrada"));
   }
 
   public Page<OrderData> getOrdersByPaymentStatus(

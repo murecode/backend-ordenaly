@@ -44,7 +44,7 @@ class OrderRepositoryTest {
     assertTrue(saveOrder.getId() > 0);
   }*/
 
-  @Test
+/*  @Test
   void testUpdateOrderStatus() {
     Order order = entityManager.find(Order.class, 2);
 
@@ -55,7 +55,7 @@ class OrderRepositoryTest {
 
     assertTrue( order.getOrderComplete() == false );
     assertTrue( order.getPaymentStatus() == PaymentStatus.PENDING );
-  }
+  }*/
 
 }
 

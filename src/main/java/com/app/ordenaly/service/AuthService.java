@@ -1,12 +1,6 @@
 package com.app.ordenaly.service;
 
-import com.app.ordenaly.infra.exceptions.custom_exceptions.UserAlreadyExistException;
-import com.app.ordenaly.model.request.AuthRequest;
-import com.app.ordenaly.model.response.AuthResponse;
-import com.app.ordenaly.model.request.RegisterRequest;
-import com.app.ordenaly.model.entities.User;
-import com.app.ordenaly.infra.repository.UserRepository;
-import com.app.ordenaly.model.enums.Roles;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,6 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+
+import com.app.ordenaly.model.request.AuthRequest;
+import com.app.ordenaly.model.response.AuthResponse;
+import com.app.ordenaly.model.request.RegisterRequest;
+import com.app.ordenaly.model.entities.User;
+import com.app.ordenaly.infra.repository.UserRepository;
+import com.app.ordenaly.model.enums.Roles;
+import com.app.ordenaly.infra.exceptions.auth_exceptions.UserAlreadyExistException;
 
 
 @Service
@@ -39,7 +41,7 @@ public class AuthService {
     //Validar: si existe el usuario y contraseña en la base de datos
     Optional<User> usernameAndEmail = userRepo.findByUsernameAndEmail(username, email);
     if (usernameAndEmail.isPresent()) {
-      throw new UserAlreadyExistException("El usuario " + username + " o el email " + email + " ya estan registrados");
+      throw new UserAlreadyExistException("El username o email ya están registrados, intenta de nuevo");
     }
 
     User user = new User();
