@@ -1,15 +1,16 @@
-package com.app.ordenaly.infra.exceptions;
+package com.app.ordenaly.infra.advice.exception;
 
+import com.app.ordenaly.infra.advice.exception.auth_exception.InvalidCredentialsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
-import com.app.ordenaly.infra.exceptions.auth_exceptions.UserAlreadyExistException;
-import com.app.ordenaly.infra.exceptions.product_exceptions.ProductAlreadyExistException;
-import com.app.ordenaly.infra.exceptions.product_exceptions.ProductNotFoundException;
-import com.app.ordenaly.infra.exceptions.product_exceptions.ProductInvalidPriceException;
+import com.app.ordenaly.infra.advice.exception.auth_exception.UserAlreadyExistException;
+import com.app.ordenaly.infra.advice.exception.product_exception.ProductAlreadyExistException;
+import com.app.ordenaly.infra.advice.exception.product_exception.ProductNotFoundException;
+import com.app.ordenaly.infra.advice.exception.product_exception.ProductInvalidPriceException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -33,13 +34,6 @@ public class GlobalExceptionHandler {
     return new ResponseEntity<>(exceptionMessage, HttpStatus.CONFLICT);
   }
 
-  @ExceptionHandler({})
-  public ResponseEntity<ExceptionMessage> UnauthorizedAccessException(Exception exception, WebRequest request) {
-    String path = request.getDescription(false).replace("uri=", "");
-    ExceptionMessage exceptionMessage = new ExceptionMessage(exception, path);
-    return new ResponseEntity<>(exceptionMessage, HttpStatus.UNAUTHORIZED);
-  }
-
   @ExceptionHandler({
           ProductInvalidPriceException.class
   })
@@ -48,6 +42,26 @@ public class GlobalExceptionHandler {
     ExceptionMessage exceptionMessage = new ExceptionMessage(exception, path);
     return new ResponseEntity<>(exceptionMessage, HttpStatus.BAD_REQUEST);
   }
+
+  @ExceptionHandler({
+          InvalidCredentialsException.class
+  })
+  public ResponseEntity<ExceptionMessage> UnauthorizedAccessException(Exception exception, WebRequest request) {
+    String path = request.getDescription(false).replace("uri=", "");
+    ExceptionMessage exceptionMessage = new ExceptionMessage(exception, path);
+    return new ResponseEntity<>(exceptionMessage, HttpStatus.UNAUTHORIZED);
+  }
+
+  @ExceptionHandler({
+
+  })
+  public ResponseEntity<ExceptionMessage> AccessDeniedException(Exception exception, WebRequest request) {
+    String path = request.getDescription(false).replace("uri=", "");
+    ExceptionMessage exceptionMessage = new ExceptionMessage(exception, path);
+    return new ResponseEntity<>(exceptionMessage, HttpStatus.FORBIDDEN);
+  }
+
+
 
 
   /*@ExceptionHandler({})

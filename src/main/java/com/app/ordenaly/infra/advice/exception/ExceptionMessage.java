@@ -1,4 +1,4 @@
-package com.app.ordenaly.infra.exceptions;
+package com.app.ordenaly.infra.advice.exception;
 
 public class ExceptionMessage {
   private String exception;

@@ -1,6 +1,6 @@
 package com.app.ordenaly.service;
 
-import com.app.ordenaly.infra.exceptions.product_exceptions.ProductInvalidPriceException;
+import com.app.ordenaly.infra.advice.exception.product_exception.ProductInvalidPriceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import com.app.ordenaly.infra.exceptions.product_exceptions.ProductAlreadyExistException;
-import com.app.ordenaly.infra.exceptions.product_exceptions.ProductNotFoundException;
+import com.app.ordenaly.infra.advice.exception.product_exception.ProductAlreadyExistException;
+import com.app.ordenaly.infra.advice.exception.product_exception.ProductNotFoundException;
 import com.app.ordenaly.model.entities.Product;
 import com.app.ordenaly.infra.repository.ProductRepository;
 import com.app.ordenaly.model.request.ProductRequest;

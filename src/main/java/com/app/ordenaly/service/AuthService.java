@@ -18,7 +18,7 @@ import com.app.ordenaly.model.request.RegisterRequest;
 import com.app.ordenaly.model.entities.User;
 import com.app.ordenaly.infra.repository.UserRepository;
 import com.app.ordenaly.model.enums.Roles;
-import com.app.ordenaly.infra.exceptions.auth_exceptions.UserAlreadyExistException;
+import com.app.ordenaly.infra.advice.exception.auth_exception.UserAlreadyExistException;
 
 
 @Service

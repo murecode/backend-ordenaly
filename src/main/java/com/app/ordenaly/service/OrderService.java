@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import com.app.ordenaly.infra.exceptions.order_exceptions.OrderNotFoundException;
+import com.app.ordenaly.infra.advice.exception.order_exception.OrderNotFoundException;
 import com.app.ordenaly.model.entities.User;
 import com.app.ordenaly.model.enums.TicketStatus;
 import com.app.ordenaly.model.response.OrderData;

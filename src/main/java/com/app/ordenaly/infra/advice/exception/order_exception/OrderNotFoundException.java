@@ -1,4 +1,4 @@
-package com.app.ordenaly.infra.exceptions.order_exceptions;
+package com.app.ordenaly.infra.advice.exception.order_exception;
 
 public class OrderNotFoundException extends RuntimeException {
     public OrderNotFoundException(String message) {
