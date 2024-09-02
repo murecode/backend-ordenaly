@@ -20,7 +20,7 @@ class UserRepositoryTest {
   @Autowired
   private EntityManager entityManager;
 
-/*  @Test
+  @Test
   void testCreateUser() {
 
     User user = new User();
@@ -32,8 +32,7 @@ class UserRepositoryTest {
     user.setRole(Roles.USER);
 
     userRepo.save(user);
-
-  }*/
+  }
 
 /*  @Test
   void testUpdateUser() {

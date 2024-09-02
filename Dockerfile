@@ -2,7 +2,7 @@
 FROM eclipse-temurin:21.0.4_7-jdk
 
 # CONTAINER PORT (informative only)
-EXPOSE 8081
+#EXPOSE 8081
 
 # SET CONTAINER WORKDIRECTORY
 WORKDIR /root

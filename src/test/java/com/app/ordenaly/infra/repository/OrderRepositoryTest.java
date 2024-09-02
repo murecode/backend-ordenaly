@@ -26,15 +26,15 @@ class OrderRepositoryTest {
   @Autowired
   private TestEntityManager entityManager;
 
-  /*@Test
+  @Test
   void testGenerateNewOrder() {
-    Ticket ticket = entityManager.find(Ticket.class, 18);
-    User waiter = entityManager.find(User.class, 7);
+    Ticket ticket = entityManager.find(Ticket.class, 8);
+    User waiter = entityManager.find(User.class, 8);
 
     Order order = new Order();
     order.setTicket(ticket);
     order.setWaiter(waiter);
-    order.setCreatedAt(LocalTime.now());
+    order.setCreatedAt(LocalTime.now().toString());
     order.setTable("Sin defini3");
     order.setOrderComplete(true);
     order.setPaymentStatus(PaymentStatus.PAID);
@@ -42,7 +42,7 @@ class OrderRepositoryTest {
     Order saveOrder = orderRepository.save(order);
 
     assertTrue(saveOrder.getId() > 0);
-  }*/
+  }
 
 /*  @Test
   void testUpdateOrderStatus() {

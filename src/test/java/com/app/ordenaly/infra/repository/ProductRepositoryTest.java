@@ -1,6 +1,7 @@
 package com.app.ordenaly.infra.repository;
 
 import com.app.ordenaly.model.entities.Product;
+import com.app.ordenaly.model.entities.ProductCategory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -19,19 +20,22 @@ class ProductRepositoryTest {
   @Autowired
   private TestEntityManager entityManager;
 
- /* @Test
+  @Test
   void testCreateNewProduct() {
 
+    ProductCategory productCategory = entityManager.find(ProductCategory.class, 5);
+
     Product product = new Product();
-    product.setTitle("Pan Tolima");
-    product.setDescription("Grande de 4000");
-    product.setPrice(4000);
-    product.setInStock(true);
+    product.setTitle("Pan Arabe");
+    product.setDescription("Traido de arabia saudita");
+    product.setCategory(productCategory);
+    product.setPrice(8000);
+    product.setInStock(false);
 
     Product saveProduct = productRepository.save(product);
 
     assertTrue(saveProduct.getId() > 0);
-  }*/
+  }
 
 /*  @Test
   void testUpdateProduct() {

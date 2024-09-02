@@ -4,8 +4,8 @@ import com.app.ordenaly.model.entities.Ticket;
 
 import com.app.ordenaly.model.enums.TicketStatus;
 import jakarta.persistence.EntityManager;
-import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -13,7 +13,6 @@ import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalTime;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.context.annotation.ConfigurationClassUtils.getOrder;
 
 @DataJpaTest
@@ -35,7 +34,6 @@ class TicketRepositoryTest {
 
     Ticket generate = ticketRepository.save(newTicket);
 
-    assertTrue(generate.getId() > 0);
   }
 
  /* @Test

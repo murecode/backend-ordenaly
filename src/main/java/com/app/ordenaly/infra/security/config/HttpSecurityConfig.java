@@ -56,6 +56,8 @@ public class HttpSecurityConfig {
               authorize.requestMatchers(HttpMethod.PATCH, "/products/{id}").permitAll();
               authorize.requestMatchers(HttpMethod.DELETE, "/products/{id}").hasAuthority(Permissions.DELETE_PRODUCT.name());
 
+              authorize.requestMatchers(HttpMethod.GET, "/product_category").permitAll();
+
               authorize.requestMatchers(HttpMethod.GET, "/tickets").permitAll();
               authorize.requestMatchers(HttpMethod.GET, "/tickets/status/{status}").permitAll();
               authorize.requestMatchers(HttpMethod.POST, "/tickets").permitAll();

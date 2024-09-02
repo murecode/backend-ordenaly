@@ -3,7 +3,6 @@ package com.app.ordenaly.model.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "products")
@@ -15,6 +14,9 @@ public class Product {
   private String title;
   @Column(name = "\"description\"")
   private String description;
+  @ManyToOne
+  @JoinColumn(name = "category")
+  private ProductCategory category;
   @Column
   private String imageUrl;
   @DecimalMin(value = "0")
@@ -43,6 +45,14 @@ public class Product {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public ProductCategory getCategory() {
+    return category;
+  }
+
+  public void setCategory(ProductCategory category) {
+    this.category = category;
   }
 
   public String getImageUrl() {

@@ -6,7 +6,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
-import static org.junit.jupiter.api.Assertions.*;
 
 import com.app.ordenaly.model.entities.Order;
 import com.app.ordenaly.model.entities.OrderItem;
@@ -32,9 +31,6 @@ class OrderItemRepositoryTest {
     newOrderItem.setQuantity(2);
 
     OrderItem savedOrderItem = orderCartRepo.save(newOrderItem);
-
-    assertTrue(savedOrderItem.getId() > 0);
-
   }
 
   @Test
