@@ -1,9 +1,6 @@
 package com.app.ordenaly.service;
 
-import com.app.ordenaly.model.entities.User;
-import com.app.ordenaly.infra.repository.UserRepository;
-import com.app.ordenaly.model.enums.Roles;
-import org.junit.jupiter.api.Test;
+import com.app.ordenaly.repository.UserRepository;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

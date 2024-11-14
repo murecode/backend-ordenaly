@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  ordenaly-api:
+    image: ordenaly-api-image
+    container_name: ordenaly-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+        - "8081:8081"
+
+    networks:
+      - spring-network
+    depends_on:
+      - postgres
+
+  db:
+    image: postgres:latest
+    container_name: ordenaly-postgres
+    ports:
+      - "5431:5431"
+    environment:
+      - POSTGRES_HOST=127.0.0.1
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=root
+    volumes:
+      - ordenaly-volume:/var/lib/postgresql/data
+    networks:
+      - spring-network
+
+networks:
+  spring-network:
+    driver: bridge
+
+volumes:
+  ordenaly-volume:

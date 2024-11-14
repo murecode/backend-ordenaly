@@ -1,8 +1,8 @@
 package com.app.ordenaly.controller;
 
-import com.app.ordenaly.model.request.OrderCartRequest;
-import com.app.ordenaly.model.response.OrderItemData;
-import com.app.ordenaly.infra.repository.OrderItemRepository;
+import com.app.ordenaly.presentation.request.OrderCartRequest;
+import com.app.ordenaly.presentation.response.OrderItemData;
+import com.app.ordenaly.repository.OrderItemRepository;
 import com.app.ordenaly.service.OrderItemService;
 import com.app.ordenaly.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;

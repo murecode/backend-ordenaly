@@ -1,13 +1,13 @@
 package com.app.ordenaly.service;
 
-import com.app.ordenaly.model.entities.Order;
-import com.app.ordenaly.model.entities.OrderItem;
-import com.app.ordenaly.model.request.OrderCartRequest;
-import com.app.ordenaly.model.response.OrderItemData;
-import com.app.ordenaly.model.entities.Product;
-import com.app.ordenaly.infra.repository.OrderItemRepository;
-import com.app.ordenaly.infra.repository.OrderRepository;
-import com.app.ordenaly.infra.repository.ProductRepository;
+import com.app.ordenaly.model.entity.Order;
+import com.app.ordenaly.model.entity.OrderItem;
+import com.app.ordenaly.presentation.request.OrderCartRequest;
+import com.app.ordenaly.presentation.response.OrderItemData;
+import com.app.ordenaly.model.entity.Product;
+import com.app.ordenaly.repository.OrderItemRepository;
+import com.app.ordenaly.repository.OrderRepository;
+import com.app.ordenaly.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

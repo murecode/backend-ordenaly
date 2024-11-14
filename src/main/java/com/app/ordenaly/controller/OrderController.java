@@ -1,8 +1,8 @@
 package com.app.ordenaly.controller;
 
 import com.app.ordenaly.model.enums.PaymentStatus;
-import com.app.ordenaly.model.response.OrderData;
-import com.app.ordenaly.model.request.OrderRequest;
+import com.app.ordenaly.presentation.response.OrderData;
+import com.app.ordenaly.presentation.request.OrderRequest;
 import com.app.ordenaly.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

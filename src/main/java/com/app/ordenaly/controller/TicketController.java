@@ -1,8 +1,8 @@
 package com.app.ordenaly.controller;
 
 import com.app.ordenaly.model.enums.TicketStatus;
-import com.app.ordenaly.model.request.TicketRequest;
-import com.app.ordenaly.model.response.TicketData;
+import com.app.ordenaly.presentation.request.TicketRequest;
+import com.app.ordenaly.presentation.response.TicketData;
 import com.app.ordenaly.service.TicketService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;

@@ -1,5 +1,8 @@
 package com.app.ordenaly.service;
 
+import com.app.ordenaly.repository.OrderRepository;
+import com.app.ordenaly.repository.TicketRepository;
+import com.app.ordenaly.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,15 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import com.app.ordenaly.infra.advice.exception.order_exception.OrderNotFoundException;
-import com.app.ordenaly.model.entities.User;
+import com.app.ordenaly.presentation.advice.exception.order_exception.OrderNotFoundException;
+import com.app.ordenaly.model.entity.User;
 import com.app.ordenaly.model.enums.TicketStatus;
-import com.app.ordenaly.model.response.OrderData;
-import com.app.ordenaly.model.request.OrderRequest;
-import com.app.ordenaly.model.entities.Order;
-import com.app.ordenaly.model.entities.Ticket;
+import com.app.ordenaly.presentation.response.OrderData;
+import com.app.ordenaly.presentation.request.OrderRequest;
+import com.app.ordenaly.model.entity.Order;
+import com.app.ordenaly.model.entity.Ticket;
 import com.app.ordenaly.model.enums.PaymentStatus;
-import com.app.ordenaly.infra.repository.*;
 
 @Service //1.
 public class OrderService {

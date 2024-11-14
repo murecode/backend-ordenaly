@@ -1,7 +1,7 @@
 package com.app.ordenaly.service;
 
-import com.app.ordenaly.infra.repository.ProductCategoryRepository;
-import com.app.ordenaly.model.entities.ProductCategory;
+import com.app.ordenaly.repository.ProductCategoryRepository;
+import com.app.ordenaly.model.entity.ProductCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

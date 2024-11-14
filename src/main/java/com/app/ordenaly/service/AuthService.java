@@ -12,13 +12,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import com.app.ordenaly.model.request.AuthRequest;
-import com.app.ordenaly.model.response.AuthResponse;
-import com.app.ordenaly.model.request.RegisterRequest;
-import com.app.ordenaly.model.entities.User;
-import com.app.ordenaly.infra.repository.UserRepository;
+import com.app.ordenaly.presentation.request.AuthRequest;
+import com.app.ordenaly.presentation.response.AuthResponse;
+import com.app.ordenaly.presentation.request.RegisterRequest;
+import com.app.ordenaly.model.entity.User;
+import com.app.ordenaly.repository.UserRepository;
 import com.app.ordenaly.model.enums.Roles;
-import com.app.ordenaly.infra.advice.exception.auth_exception.UserAlreadyExistException;
+import com.app.ordenaly.presentation.advice.exception.auth_exception.UserAlreadyExistException;
 
 
 @Service

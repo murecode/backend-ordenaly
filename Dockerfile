@@ -2,14 +2,14 @@
 FROM eclipse-temurin:21.0.4_7-jdk
 
 # CONTAINER PORT (informative only)
-#EXPOSE 8081
+EXPOSE 8081
 
 # SET CONTAINER WORKDIRECTORY
 WORKDIR /root
 
 # COPY ORIGINAL CONFIG FILES AND PUT INSIDE CONTAINER
-COPY ./pom.xml /rootgit
-COPY ./.mvn /root/mvn
+COPY ./pom.xml /root
+COPY ./.mvn /root/.mvn
 COPY ./mvnw /root
 
 # DOWNLOAD THE NECESSARY DEPENDENCIES

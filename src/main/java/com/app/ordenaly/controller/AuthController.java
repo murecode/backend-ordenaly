@@ -1,6 +1,6 @@
 package com.app.ordenaly.controller;
 
-import com.app.ordenaly.model.request.RegisterRequest;
+import com.app.ordenaly.presentation.request.RegisterRequest;
 import com.app.ordenaly.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
-import com.app.ordenaly.model.response.AuthResponse;
-import com.app.ordenaly.model.request.AuthRequest;
+import com.app.ordenaly.presentation.response.AuthResponse;
+import com.app.ordenaly.presentation.request.AuthRequest;
 
 @RestController
 @RequestMapping("/auth")

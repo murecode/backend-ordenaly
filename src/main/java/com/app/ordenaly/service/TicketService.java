@@ -1,9 +1,9 @@
 package com.app.ordenaly.service;
 
-import com.app.ordenaly.model.entities.Ticket;
-import com.app.ordenaly.infra.repository.TicketRepository;
-import com.app.ordenaly.model.request.TicketRequest;
-import com.app.ordenaly.model.response.TicketData;
+import com.app.ordenaly.model.entity.Ticket;
+import com.app.ordenaly.repository.TicketRepository;
+import com.app.ordenaly.presentation.request.TicketRequest;
+import com.app.ordenaly.presentation.response.TicketData;
 import com.app.ordenaly.model.enums.TicketStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -43,8 +43,11 @@ public class TicketService {
     );
   }
 
-//  public Ticket getTicketById(int id) {
-//    return ticketRepo.findById(id).get();
-//  }
+  public void updateTicketStatus() {
+    // cancelado: cuando pasan mas de 30 min sin ser atendido y haber generado una orden
+  }
+
+
+
 
 }

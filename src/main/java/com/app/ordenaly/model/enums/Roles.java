@@ -9,8 +9,8 @@ public enum Roles {
           Permissions.READ_PRODUCTS,
           Permissions.UPDATE_PRODUCT,
           Permissions.DELETE_PRODUCT,
-          Permissions.DELETE_USER,
-          Permissions.SAVE_USER
+          Permissions.SAVE_USER,
+          Permissions.DELETE_USER
   )),
   USER(Arrays.asList(
           Permissions.READ_PRODUCTS,
