@@ -1,6 +1,7 @@
 package com.app.ordenaly.presentation.advice.exception;
 
 import com.app.ordenaly.presentation.advice.exception.auth_exception.InvalidCredentialsException;
+import com.app.ordenaly.presentation.advice.exception.ticket_exception.NumberOfPeopleException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -35,7 +36,8 @@ public class GlobalExceptionHandler {
   }
 
   @ExceptionHandler({
-          ProductInvalidPriceException.class
+          ProductInvalidPriceException.class,
+          NumberOfPeopleException.class
   })
   public ResponseEntity<ExceptionMessage> InvalidInputException(Exception exception, WebRequest request) {
     String path = request.getDescription(false).replace("uri=", "");

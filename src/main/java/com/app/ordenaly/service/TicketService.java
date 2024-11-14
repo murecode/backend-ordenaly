@@ -1,6 +1,7 @@
 package com.app.ordenaly.service;
 
 import com.app.ordenaly.model.entity.Ticket;
+import com.app.ordenaly.presentation.advice.exception.ticket_exception.NumberOfPeopleException;
 import com.app.ordenaly.repository.TicketRepository;
 import com.app.ordenaly.presentation.request.TicketRequest;
 import com.app.ordenaly.presentation.response.TicketData;
@@ -27,6 +28,10 @@ public class TicketService {
   }
 
   public TicketData createTicket(TicketRequest ticketData) {
+
+    if( ticketData.getNumberOfPeople() < 1 || ticketData.getNumberOfPeople() == 0) {
+      throw new NumberOfPeopleException("Valor no valido, solo enteros positivos");
+    }
 
     Ticket ticket = new Ticket();
     ticket.setCreatedAt(LocalTime.now());
