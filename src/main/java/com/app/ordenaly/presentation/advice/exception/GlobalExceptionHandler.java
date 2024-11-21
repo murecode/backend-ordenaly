@@ -1,6 +1,7 @@
 package com.app.ordenaly.presentation.advice.exception;
 
 import com.app.ordenaly.presentation.advice.exception.auth_exception.InvalidCredentialsException;
+import com.app.ordenaly.presentation.advice.exception.order_exception.OrderNotFoundException;
 import com.app.ordenaly.presentation.advice.exception.ticket_exception.NumberOfPeopleException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,8 @@ import com.app.ordenaly.presentation.advice.exception.product_exception.ProductI
 public class GlobalExceptionHandler {
 
   @ExceptionHandler({
-          ProductNotFoundException.class
+          ProductNotFoundException.class,
+          OrderNotFoundException.class
   })
   public ResponseEntity<ExceptionMessage> NotFoundException(Exception exeption, WebRequest request) {
     String path = request.getDescription(false).replace("uri=", "");

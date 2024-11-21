@@ -1,9 +1,12 @@
 package com.app.ordenaly.presentation.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class OrderRequest {
+  @NotNull
   private Integer ticket;
+  @NotNull
   private Integer waiter;
   @NotBlank
   private String table;

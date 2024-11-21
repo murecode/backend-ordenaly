@@ -26,7 +26,7 @@ public class TicketController {
   public ResponseEntity<Page<TicketData>> getAllTickets(
           @PageableDefault(
                   page = 0,
-                  size = 10,
+                  size = 20,
                   sort = {"id"},
                   direction = Sort.Direction.ASC)
           Pageable pageable) {
@@ -39,7 +39,7 @@ public class TicketController {
           @PathVariable("status") TicketStatus status,
           @PageableDefault(
                   page = 0,
-                  size = 10,
+                  size = 15,
                   sort = {"createdAt"},
                   direction = Sort.Direction.ASC)
           Pageable pageable ) {

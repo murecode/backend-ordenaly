@@ -29,8 +29,11 @@ public class TicketService {
 
   public TicketData createTicket(TicketRequest ticketData) {
 
-    if( ticketData.getNumberOfPeople() < 1 || ticketData.getNumberOfPeople() == 0) {
+    if( ticketData.getNumberOfPeople() < 1 ) {
       throw new NumberOfPeopleException("Valor no valido, solo enteros positivos");
+    }
+    if( ticketData.getNumberOfPeople() > 12 ) {
+      throw new NumberOfPeopleException("Valor no valido, número de comensales excesivo por ticket");
     }
 
     Ticket ticket = new Ticket();

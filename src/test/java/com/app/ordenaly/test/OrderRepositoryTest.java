@@ -2,6 +2,7 @@ package com.app.ordenaly.test;
 
 import com.app.ordenaly.model.entity.Order;
 import com.app.ordenaly.model.entity.Ticket;
+import com.app.ordenaly.model.enums.OrderStatus;
 import com.app.ordenaly.model.enums.PaymentStatus;
 import com.app.ordenaly.model.entity.User;
 import com.app.ordenaly.repository.OrderRepository;
@@ -30,7 +31,7 @@ class OrderRepositoryTest {
 
   @Test
   void testGenerateNewOrder() {
-    Ticket ticket = entityManager.find(Ticket.class, 8);
+    Ticket ticket = entityManager.find(Ticket.class, 12);
     User waiter = entityManager.find(User.class, 8);
 
     Order order = new Order();
@@ -38,12 +39,13 @@ class OrderRepositoryTest {
     order.setWaiter(waiter);
     order.setCreatedAt(LocalTime.now().toString());
     order.setTable("Sin defini3");
-    order.setOrderComplete(true);
-    order.setPaymentStatus(PaymentStatus.PAID);
+    order.setOrderStatus(OrderStatus.IN_PROGRESS);
+    order.setPaymentStatus(PaymentStatus.PENDING);
 
     Order saveOrder = orderRepository.save(order);
 
     assertTrue(saveOrder.getId() > 0);
+    assertNotSame(saveOrder.getPaymentStatus(), PaymentStatus.PAID);
   }
 
 /*  @Test

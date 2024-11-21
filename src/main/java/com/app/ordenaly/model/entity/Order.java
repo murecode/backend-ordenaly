@@ -1,30 +1,39 @@
 package com.app.ordenaly.model.entity;
 
+import com.app.ordenaly.model.enums.OrderStatus;
 import com.app.ordenaly.model.enums.PaymentStatus;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "orders")
 public class Order {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column
   private int id;
+
   @OneToOne()
   @JoinColumn(name = "ticketId", unique = true)
   private Ticket ticket;
+
   @Column
   private String createdAt;
+
   @ManyToOne()
   @JoinColumn(name = "waiterId")
   private User waiter;
+
   @Column(name = "mesa", unique = true)
   private String table;
-  @Column
-  private Boolean isOrderComplete;
+
+  @Enumerated(EnumType.STRING)
+  private OrderStatus orderStatus;
+
   @Column
   @Enumerated(EnumType.STRING)
   private PaymentStatus paymentStatus;
+
 
   public int getId() {
     return id;
@@ -42,14 +51,13 @@ public class Order {
     this.ticket = ticket;
   }
 
-//  public LocalTime getCreatedAt() {
+  //  public LocalTime getCreatedAt() {
 //    return createdAt;
 //  }
 //
 //  public void setCreatedAt(LocalTime createdAt) {
 //    this.createdAt = createdAt;
 //  }
-
 
   public String getCreatedAt() {
     return createdAt;
@@ -75,12 +83,12 @@ public class Order {
     this.table = table;
   }
 
-  public Boolean getOrderComplete() {
-    return isOrderComplete;
+  public OrderStatus getOrderStatus() {
+    return orderStatus;
   }
 
-  public void setOrderComplete(Boolean orderComplete) {
-    isOrderComplete = orderComplete;
+  public void setOrderStatus(OrderStatus orderStatus) {
+    this.orderStatus = orderStatus;
   }
 
   public PaymentStatus getPaymentStatus() {

@@ -2,6 +2,7 @@ package com.app.ordenaly.presentation.response;
 
 import com.app.ordenaly.model.entity.Order;
 //import com.app.ordenaly.model.utils.OrderStatus;
+import com.app.ordenaly.model.enums.OrderStatus;
 import com.app.ordenaly.model.enums.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -15,7 +16,7 @@ public record OrderData(
         String waiter,
         String table,
         int numberOfPeople,
-        Boolean isOrderComplete,
+        OrderStatus orderStatus,
         PaymentStatus paymentStatus
 ) {
   public OrderData(Order order) {
@@ -26,7 +27,7 @@ public record OrderData(
             order.getWaiter().getName(),
             order.getTable(),
             order.getTicket().getNumberOfPeople(),
-            order.getOrderComplete(),
+            order.getOrderStatus(),
             order.getPaymentStatus()
     );
   }

@@ -1,5 +1,7 @@
 package com.app.ordenaly.service;
 
+import com.app.ordenaly.model.enums.OrderStatus;
+import com.app.ordenaly.presentation.advice.exception.ticket_exception.TicketAlreadyUsedException;
 import com.app.ordenaly.repository.OrderRepository;
 import com.app.ordenaly.repository.TicketRepository;
 import com.app.ordenaly.repository.UserRepository;
@@ -45,7 +47,7 @@ public class OrderService {
             o.getWaiter().getName(),
             o.getTable(),
             o.getTicket().getNumberOfPeople(),
-            o.getOrderComplete(),
+            o.getOrderStatus(),
             o.getPaymentStatus()
     )).orElseThrow(() -> new OrderNotFoundException("La orden no fue encontrada"));
   }
@@ -62,15 +64,15 @@ public class OrderService {
             o.getWaiter().getName(),
             o.getTable(),
             o.getTicket().getNumberOfPeople(),
-            o.getOrderComplete(),
+            o.getOrderStatus(),
             o.getPaymentStatus()
     ));
   }
 
-  public Page<OrderData> getOrdersByIsComplete(
-          Boolean iscomplete, Pageable pageable) {
+  public Page<OrderData> getOrdersByStatus(
+          OrderStatus status, Pageable pageable) {
 
-    Page<Order> orders = orderRepo.findByIsComplete(iscomplete, pageable);
+    Page<Order> orders = orderRepo.findByOrderStatus(status, pageable);
 
     return orders.map(o -> new OrderData(
             o.getId(),
@@ -79,7 +81,7 @@ public class OrderService {
             o.getWaiter().getName(),
             o.getTable(),
             o.getTicket().getNumberOfPeople(),
-            o.getOrderComplete(),
+            o.getOrderStatus(),
             o.getPaymentStatus()
     ));
   }
@@ -88,13 +90,18 @@ public class OrderService {
   public OrderData createOrder(OrderRequest orderBody) {
 
     Ticket ticket = ticketRepo.findById(orderBody.getTicket()).get();
+
     if (ticket == null) {
-      throw new IllegalArgumentException("Ticket cannot be null");
+      throw new IllegalArgumentException("El campo ticket no puede ser null");
+    }
+
+    if (orderBody.getTicket() == ticket.getId()) {
+      throw new TicketAlreadyUsedException("El Ticket " + ticket.getId() + " ya esta asignado a una Comanda");
     }
 
     User waiter = userRepo.findById(orderBody.getWaiter()).get();
     if (waiter == null) {
-      throw new IllegalArgumentException("Waiter cannot be null");
+      throw new IllegalArgumentException("El campo Waiter no puede ser null");
     }
 
     Order order = new Order();
@@ -102,7 +109,7 @@ public class OrderService {
     order.setWaiter(waiter);
     order.setCreatedAt(ticket.getCreatedAt().toString());
     order.setTable(orderBody.getTable());
-    order.setOrderComplete(false);
+    order.setOrderStatus(OrderStatus.IN_PROGRESS);
     order.setPaymentStatus(PaymentStatus.PENDING);
 
     // Actualizar el estado del ticket
@@ -117,7 +124,7 @@ public class OrderService {
             o.getWaiter().getName(),
             o.getTable(),
             o.getTicket().getNumberOfPeople(),
-            o.getOrderComplete(),
+            o.getOrderStatus(),
             o.getPaymentStatus()
     );
   }

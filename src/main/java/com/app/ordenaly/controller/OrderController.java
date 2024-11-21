@@ -1,5 +1,6 @@
 package com.app.ordenaly.controller;
 
+import com.app.ordenaly.model.enums.OrderStatus;
 import com.app.ordenaly.model.enums.PaymentStatus;
 import com.app.ordenaly.presentation.response.OrderData;
 import com.app.ordenaly.presentation.request.OrderRequest;
@@ -45,11 +46,11 @@ public class OrderController {
     return orderService.getOrdersByPaymentStatus(status, pageable);
   }
 
-  @GetMapping("/completed/{is}")
-  public  Page<OrderData> getOrdersByIsComplete(
-          @PathVariable("is") Boolean iscomplete,
+  @GetMapping("/order_status/{status}")
+  public  Page<OrderData> getOrdersByOrderStatus(
+          @PathVariable("status") OrderStatus status,
           Pageable pageable) {
-    return orderService.getOrdersByIsComplete(iscomplete, pageable);
+    return orderService.getOrdersByStatus(status, pageable);
   }
 
   @PostMapping("")
