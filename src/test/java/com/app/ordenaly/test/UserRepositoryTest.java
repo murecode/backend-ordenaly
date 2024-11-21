@@ -23,12 +23,12 @@ class UserRepositoryTest {
   void testCreateUser() {
 
     User user = new User();
-    user.setName("Adalber");
+    user.setName("Adalberto");
     user.setPhone("3148652");
     user.setUsername("mure");
     user.setEmail("mure@gmail.com");
     user.setPassword("mure123");
-    user.setRole(Roles.USER);
+    user.setRole(Roles.ADMIN);
 
     userRepo.save(user);
   }

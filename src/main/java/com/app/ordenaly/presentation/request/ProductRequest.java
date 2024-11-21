@@ -1,8 +1,11 @@
 package com.app.ordenaly.presentation.request;
 
+import com.app.ordenaly.model.entity.ProductCategory;
 import jakarta.validation.constraints.NotBlank;
 
 public class ProductRequest {
+  @NotBlank
+  private Integer category;
   @NotBlank
   private String title;
   @NotBlank
@@ -17,11 +20,20 @@ public class ProductRequest {
   public ProductRequest() {}
 
   public ProductRequest(
+          Integer productCategory,
           String title,
           String description,
           String imageUrl,
           Integer price,
           Boolean inStock) {
+  }
+
+  public @NotBlank Integer getCategory() {
+    return category;
+  }
+
+  public void setCategory(@NotBlank Integer category) {
+    this.category = category;
   }
 
   public String getTitle() {

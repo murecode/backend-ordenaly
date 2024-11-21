@@ -5,6 +5,7 @@ import com.app.ordenaly.model.entity.ProductCategory;
 
 public record ProductData(
         int id,
+        Integer category,
         String title,
         String description,
         String imageUrl,
@@ -15,6 +16,7 @@ public record ProductData(
   public ProductData(Product product) {
     this(
             product.getId(),
+            product.getCategory().getId(),
             product.getTitle(),
             product.getDescription(),
             product.getImageUrl(),

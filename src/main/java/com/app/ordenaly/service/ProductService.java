@@ -1,6 +1,8 @@
 package com.app.ordenaly.service;
 
+import com.app.ordenaly.model.entity.ProductCategory;
 import com.app.ordenaly.presentation.advice.exception.product_exception.ProductInvalidPriceException;
+import com.app.ordenaly.repository.ProductCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,8 +20,12 @@ import com.app.ordenaly.presentation.response.ProductData;
 
 @Service
 public class ProductService {
+
   @Autowired
   ProductRepository productRepo;
+
+  @Autowired
+  ProductCategoryRepository productCategoryRepo;
 
   public Page<ProductData> getProducts(Pageable pageable) {
     return productRepo.findAll(pageable).map(ProductData::new);
@@ -31,6 +37,8 @@ public class ProductService {
     Integer productPrice = productBody.getPrice();
 
     Optional<Product> productOptional = productRepo.findByTitle(productTitle);
+    Optional<ProductCategory> productCategoryOptional = productCategoryRepo.findById(productBody.getCategory());
+
     if (productOptional.isPresent()) {
       throw new ProductAlreadyExistException("El producto ya existe, intenta de nuevo");
     }
@@ -40,6 +48,7 @@ public class ProductService {
     }
 
     Product product = new Product();
+    product.setCategory(productCategoryOptional.get());
     product.setTitle(productBody.getTitle());
     product.setDescription(productBody.getDescription());
     product.setImageUrl(productBody.getImageUrl());
@@ -50,6 +59,7 @@ public class ProductService {
 
     return new ProductData(
             p.getId(),
+            p.getCategory().getId(),
             p.getTitle(),
             p.getDescription(),
             p.getImageUrl(),
@@ -63,6 +73,7 @@ public class ProductService {
 
     return product.map(p -> new ProductData(
             p.getId(),
+            p.getCategory().getId(),
             p.getTitle(),
             p.getDescription(),
             p.getImageUrl(),
@@ -94,6 +105,7 @@ public class ProductService {
     productRepo.save(product);
 
     return new ProductRequest(
+            productBoby.getCategory(),
             productBoby.getTitle(),
             productBoby.getDescription(),
             productBoby.getImageUrl(),
