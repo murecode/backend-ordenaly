@@ -86,6 +86,24 @@ public class OrderService {
     ));
   }
 
+  //get orders by waiter
+  public Page<OrderData> getOrdersByWaiter(User waiter, Pageable pageable) {
+
+    Page<Order> orders = orderRepo.findByWaiter(waiter, pageable);
+
+    return orders.map(o -> new OrderData(
+            o.getId(),
+            o.getTicket().getId(),
+            o.getTicket().getCreatedAt(),
+            o.getWaiter().getName(),
+            o.getTable(),
+            o.getTicket().getNumberOfPeople(),
+            o.getOrderStatus(),
+            o.getPaymentStatus()
+    ));
+
+  }
+
   @Transactional
   public OrderData createOrder(OrderRequest orderBody) {
 

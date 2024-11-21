@@ -1,6 +1,7 @@
 package com.app.ordenaly.repository;
 
 import com.app.ordenaly.model.entity.Order;
+import com.app.ordenaly.model.entity.User;
 import com.app.ordenaly.model.enums.OrderStatus;
 import com.app.ordenaly.model.enums.PaymentStatus;
 import org.springframework.data.domain.Page;
@@ -23,5 +24,10 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
           @Param("status") OrderStatus status,
           Pageable pageable
   );
+
+  Page<Order> findByWaiter(
+          @Param("id") User user,
+          Pageable pageable
+          );
 
 }

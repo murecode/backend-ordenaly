@@ -1,5 +1,6 @@
 package com.app.ordenaly.controller;
 
+import com.app.ordenaly.model.entity.User;
 import com.app.ordenaly.model.enums.OrderStatus;
 import com.app.ordenaly.model.enums.PaymentStatus;
 import com.app.ordenaly.presentation.response.OrderData;
@@ -51,6 +52,13 @@ public class OrderController {
           @PathVariable("status") OrderStatus status,
           Pageable pageable) {
     return orderService.getOrdersByStatus(status, pageable);
+  }
+
+  @GetMapping("/waiters/{id}")
+  public  Page<OrderData> getOrdersByWaiter(
+          @PathVariable("id") User user,
+          Pageable pageable) {
+    return orderService.getOrdersByWaiter(user, pageable);
   }
 
   @PostMapping("")
