@@ -3,24 +3,34 @@ package com.app.ordenaly.model.entity;
 import com.app.ordenaly.model.enums.TicketStatus;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
 @Table(name = "tickets")
 public class Ticket {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column
   private int id;
+
   @Column
   private LocalTime createdAt;
+
+  @Column
+  private LocalDate createdDate;
+
   @Column
   private int numberOfPeople;
+
   @Column
   @Enumerated(EnumType.STRING)
   private TicketStatus status;
+
   @OneToOne(mappedBy = "ticket")
   private Order relatedOrder;
+
 
   public int getId() {
     return id;
@@ -32,6 +42,14 @@ public class Ticket {
 
   public LocalTime getCreatedAt() {
     return createdAt;
+  }
+
+  public LocalDate getCreatedDate() {
+    return createdDate;
+  }
+
+  public void setCreatedDate(LocalDate createdDate) {
+    this.createdDate = createdDate;
   }
 
   public void setCreatedAt(LocalTime createdAt) {
@@ -64,6 +82,8 @@ public class Ticket {
             ", relatedOrder=" + relatedOrder +
             '}';
   }
+
+
 }
 
 //DOCS
