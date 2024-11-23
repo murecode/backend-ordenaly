@@ -1,6 +1,7 @@
 package com.app.ordenaly.service;
 
 
+import com.app.ordenaly.presentation.advice.exception.auth_exception.InvalidCredentialsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,9 +40,15 @@ public class AuthService {
     String email = registerRequest.getEmail();
 
     //Validar: si existe el usuario y contraseña en la base de datos
-    Optional<User> usernameAndEmail = userRepo.findByUsernameAndEmail(username, email);
-    if (usernameAndEmail.isPresent()) {
-      throw new UserAlreadyExistException("El username o email ya están registrados, intenta de nuevo");
+    Optional<User> userOptional = userRepo.findByUsername(username);
+    Optional<User> emailOptional = userRepo.findByEmail(email);
+
+    if (userOptional.isPresent()) {
+      throw new UserAlreadyExistException("El Username ya está registrado, intenta otro");
+    }
+
+    if (emailOptional.isPresent()) {
+      throw new UserAlreadyExistException("El Email ya está registrado, intenta otro");
     }
 
     User user = new User();
