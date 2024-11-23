@@ -1,5 +1,6 @@
 package com.app.ordenaly.security.config;
 
+import com.app.ordenaly.presentation.advice.exception.auth_exception.UserNotFoundException;
 import com.app.ordenaly.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -39,7 +40,7 @@ public class SecurityConfig {
   public UserDetailsService userDetailsService() {
     return username -> {
       return userRepository.findByUsername(username)
-              .orElseThrow(() -> new RuntimeException("🔴 Usuario no encontrado"));
+              .orElseThrow(() -> new UserNotFoundException("El Usuario no existe"));
     };
   }
 

@@ -2,6 +2,7 @@ package com.app.ordenaly.service;
 
 
 import com.app.ordenaly.presentation.advice.exception.auth_exception.InvalidCredentialsException;
+import com.app.ordenaly.presentation.advice.exception.auth_exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -62,6 +63,15 @@ public class AuthService {
   }
 
   public AuthResponse login(AuthRequest authRequest) {
+
+    String username = authRequest.getUsername();
+
+    Optional<User> userOptional = userRepo.findByUsername(username);
+
+    if (!userOptional.isPresent()) {
+      throw new UserNotFoundException("El usuario no está registrado");
+    }
+
     //1.
     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken (
             authRequest.getUsername(), authRequest.getPassword()
