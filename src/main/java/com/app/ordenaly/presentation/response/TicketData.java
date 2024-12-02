@@ -13,7 +13,6 @@ public record TicketData(
         int id,
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm a")
         LocalTime createdAt,
-//        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd")
         LocalDate createdDate,
         int numberOfPeople,
         TicketStatus status

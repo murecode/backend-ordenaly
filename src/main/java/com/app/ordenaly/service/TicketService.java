@@ -2,6 +2,7 @@ package com.app.ordenaly.service;
 
 import com.app.ordenaly.model.entity.Ticket;
 import com.app.ordenaly.presentation.advice.exception.ticket_exception.NumberOfPeopleException;
+import com.app.ordenaly.presentation.response.TicketStatisticsData;
 import com.app.ordenaly.repository.TicketRepository;
 import com.app.ordenaly.presentation.request.TicketRequest;
 import com.app.ordenaly.presentation.response.TicketData;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class TicketService {
@@ -58,6 +61,16 @@ public class TicketService {
   public void updateTicketStatus() {
     // cancelado: cuando pasan mas de 30 min sin ser atendido y haber generado una orden
   }
+
+  public Map<String, Long> getTicketStatistics() {
+    return ticketRepo.findTicketStatistics()
+            .stream()
+            .collect(Collectors.toMap(
+                    TicketStatisticsData::status,
+                    TicketStatisticsData::quantity
+            ));
+  }
+
 
 
 
