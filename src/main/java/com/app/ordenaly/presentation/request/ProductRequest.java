@@ -2,22 +2,29 @@ package com.app.ordenaly.presentation.request;
 
 import com.app.ordenaly.model.entity.ProductCategory;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class ProductRequest {
+
   @NotBlank
   private Integer category;
+
   @NotBlank
+//  @Size(max = 30)
   private String title;
+
   @NotBlank
+//  @Size(max = 90)
   private String description;
+
   @NotBlank
   private String imageUrl;
+
   @NotBlank
   private Integer price;
+
   @NotBlank
   private Boolean inStock;
-
-  public ProductRequest() {}
 
   public ProductRequest(
           Integer productCategory,
@@ -28,11 +35,11 @@ public class ProductRequest {
           Boolean inStock) {
   }
 
-  public @NotBlank Integer getCategory() {
+  public Integer getCategory() {
     return category;
   }
 
-  public void setCategory(@NotBlank Integer category) {
+  public void setCategory(Integer category) {
     this.category = category;
   }
 

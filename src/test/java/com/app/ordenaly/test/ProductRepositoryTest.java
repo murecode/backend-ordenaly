@@ -38,22 +38,24 @@ class ProductRepositoryTest {
     assertTrue(saveProduct.getId() > 0);
   }
 
-/*  @Test
+  @Test
   void testUpdateProduct() {
-    Product product = entityManager.find(Product.class, 1);
+    Product product = entityManager.find(Product.class, 23);
+    ProductCategory category = entityManager.find(ProductCategory.class, 6);
 
     assertNotNull(product);
 
-    product.setTitle("Pizza Italiana");
-    product.setDescription("con queso y pasta de tomate");
-    product.setPrice(25000);
-    product.setInStock(true);
+    product.setCategory(category);
+    product.setTitle("Actualizado");
+    product.setDescription("Actualizado");
+    product.setPrice(2500);
+    product.setInStock(false);
 
     productRepository.save(product);
 
-    assertTrue(product.getId() > 0); //Debe ser igual al primaryKey
+    assertTrue(product.getId() == 23); //Debe ser igual al primaryKey
 
-  }*/
+  }
 
  /* @Test
   void testDeleteProductById() {

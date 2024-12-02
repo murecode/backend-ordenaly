@@ -82,35 +82,41 @@ public class ProductService {
     )).orElseThrow(() -> new ProductNotFoundException("El producto" + product.get().getId() + "no fue encontrado"));
   }
 
-  @Transactional
-  public ProductRequest updateProduct(int productId, ProductRequest productBoby) {
-    Product product = productRepo.getReferenceById(productId);
+//  @Transactional
+  public ProductData updateProduct(int productId, ProductRequest productBoby) {
 
-    if (productBoby.getTitle() != null) {
-      product.setTitle(productBoby.getTitle());
+    Optional<Product> productOptional = productRepo.findById(productId);
+    Optional<ProductCategory> categoryOptional = productCategoryRepo.findById(productBoby.getCategory());
+
+    if (categoryOptional.isPresent()) {
+      productOptional.get().setCategory(categoryOptional.get());
     }
     if (productBoby.getDescription() != null) {
-      product.setDescription(productBoby.getDescription());
+      productOptional.get().setTitle(productBoby.getTitle());
+    }
+    if (productBoby.getDescription() != null) {
+      productOptional.get().setDescription(productBoby.getDescription());
     }
     if (productBoby.getImageUrl() != null) {
-      product.setImageUrl(productBoby.getImageUrl());
+      productOptional.get().setImageUrl(productBoby.getImageUrl());
     }
     if (productBoby.getPrice() != null) {
-      product.setPrice(productBoby.getPrice());
+      productOptional.get().setPrice(productBoby.getPrice());
     }
     if (productBoby.getInStock() != null) {
-      product.setInStock(productBoby.getInStock());
+      productOptional.get().setInStock(productBoby.getInStock());
     }
 
-    productRepo.save(product);
+    Product p = productRepo.save(productOptional.get());
 
-    return new ProductRequest(
-            productBoby.getCategory(),
-            productBoby.getTitle(),
-            productBoby.getDescription(),
-            productBoby.getImageUrl(),
-            productBoby.getPrice(),
-            productBoby.getInStock()
+    return new ProductData(
+            p.getId(),
+            p.getCategory().getId(),
+            p.getTitle(),
+            p.getDescription(),
+            p.getImageUrl(),
+            p.getPrice(),
+            p.getInStock()
     );
   }
 

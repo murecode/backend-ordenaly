@@ -7,20 +7,27 @@ import jakarta.validation.constraints.DecimalMin;
 @Entity
 @Table(name = "products")
 public class Product {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
+
   @Column(unique = true)
   private String title;
+
   @Column(name = "\"description\"")
   private String description;
+
   @ManyToOne
   @JoinColumn(name = "category")
   private ProductCategory category;
+
   @Column
   private String imageUrl;
+
   @DecimalMin(value = "0")
   private int price;
+
   private Boolean inStock;
 
   public int getId() {
@@ -82,8 +89,9 @@ public class Product {
   @Override
   public String toString() {
     return  "ID: "           + id          + "\n" +
-            "PRODUCT: "      + title + "\n" +
-            "CATEGORY:"      + category + "\n" +
+            "CATEGORY: "     + category    + "\n" +
+            "TITLE: "        + title       + "\n" +
+            "CATEGORY:"      + category    + "\n" +
             "DESCRIPTION: "  + description + "\n" +
             "PRICE: "        + price       + "\n" +
             "INSTOCK: "      + inStock     + "\n" ;
