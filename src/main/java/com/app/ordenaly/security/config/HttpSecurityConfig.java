@@ -60,7 +60,9 @@ public class HttpSecurityConfig {
 
               authorize.requestMatchers(HttpMethod.GET, "/tickets").permitAll();
               authorize.requestMatchers(HttpMethod.GET, "/tickets/status/{status}").permitAll();
+              authorize.requestMatchers(HttpMethod.GET, "/tickets/stats").permitAll();
               authorize.requestMatchers(HttpMethod.POST, "/tickets").permitAll();
+
 
               authorize.requestMatchers(HttpMethod.GET, "/users").permitAll();
 

@@ -7,6 +7,7 @@ import com.app.ordenaly.repository.TicketRepository;
 import com.app.ordenaly.presentation.request.TicketRequest;
 import com.app.ordenaly.presentation.response.TicketData;
 import com.app.ordenaly.model.enums.TicketStatus;
+import jakarta.persistence.Tuple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,13 +16,16 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 public class TicketService {
+
   @Autowired
   private TicketRepository ticketRepo;
+
 
   public Page<TicketData> findAllTickets(Pageable pageable) {
     return ticketRepo.findAll(pageable).map(TicketData::new);
@@ -62,17 +66,20 @@ public class TicketService {
     // cancelado: cuando pasan mas de 30 min sin ser atendido y haber generado una orden
   }
 
-  public Map<String, Long> getTicketStatistics() {
-    return ticketRepo.findTicketStatistics()
-            .stream()
-            .collect(Collectors.toMap(
-                    TicketStatisticsData::status,
-                    TicketStatisticsData::quantity
-            ));
+  public List<TicketStatisticsData> getTicketStatistics() {
+
+    List<Tuple> TicketsStatsTuple = ticketRepo.findTicketStatistics();
+
+    // Mapear Tupla a List de TicketStatisticsData
+    List<TicketStatisticsData> statistics = TicketsStatsTuple.stream()
+            .map(tuple -> new TicketStatisticsData(
+                    tuple.get(0, TicketStatus.class).name(),
+                    tuple.get(1, Long.class)
+            ))
+            .collect(Collectors.toList());
+
+    return statistics;
+
   }
-
-
-
-
 
 }

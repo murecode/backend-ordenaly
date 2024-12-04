@@ -3,6 +3,7 @@ package com.app.ordenaly.controller;
 import com.app.ordenaly.model.enums.TicketStatus;
 import com.app.ordenaly.presentation.request.TicketRequest;
 import com.app.ordenaly.presentation.response.TicketData;
+import com.app.ordenaly.presentation.response.TicketStatisticsData;
 import com.app.ordenaly.service.TicketService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -14,6 +15,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/tickets")
@@ -54,6 +57,12 @@ public class TicketController {
     return new ResponseEntity<>(ticket, HttpStatus.CREATED);
   }
 
-  // Actualizar estado del ticket
+  // Actualizar estado del ticket por medio de un conteo regresivo (temporizador)
+
+  @GetMapping("/stats")
+  public ResponseEntity<List<TicketStatisticsData>> getTicketStats() {
+    List<TicketStatisticsData> stats = ticketService.getTicketStatistics();
+    return new ResponseEntity<>(stats, HttpStatus.OK);
+  }
 
 }
